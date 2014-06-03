@@ -27,10 +27,22 @@ angular.module('conservar.collections',[
     $http({
       method: "POST",
       url: "/collections.json",
-      data: { collection: $scope.collection }
+      data: { collection: collection }
     }).success(function(data, status){
       $scope.collections.push(data.collection);
       $scope.reset_form();
+      $modalInstance.close();
+    }).error(function(data, status){
+      console.log(status);
+    });
+  };
+
+  $scope.updateCollection = function(collection){
+    $http({
+      method: "PATCH",
+      url: "/collections/"+collection.id+".json",
+      data: { collection: collection }
+    }).success(function(data, status){
       $modalInstance.close();
     }).error(function(data, status){
       console.log(status);
@@ -52,7 +64,6 @@ angular.module('conservar.collections',[
       .success(function(data,status){
         index = $scope.collections.indexOf(collection);
         $scope.collections.splice(index, 1);
-        console.log(toRemove);
         if(toRemove){
           $scope.selected = false;
           $scope.selected_collection = null;
@@ -66,11 +77,11 @@ angular.module('conservar.collections',[
     }
   };
 
-  $scope.newCollection = function(){
+  $scope.openModal = function(collection, view, size){
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
-          return $scope.collection;
+          return collection;
         }
       },
       scope: $scope,
@@ -85,12 +96,12 @@ angular.module('conservar.collections',[
     $scope.collection.description = null;
   };
 
-  $scope.details =  function(collectionId){
+  $scope.details =  function(collection){
     $http({
-      url: "/collections/"+ collectionId+".json",
+      url: "/collections/"+ collection.id+".json",
       method: "GET"
     }).success(function(data){
-      $scope.selected_collection = data.collection;
+      $scope.selected_collection = collection;
       $scope.selected_collection.items = data.items;
       $scope.selected = true;
     }).error(function(response){

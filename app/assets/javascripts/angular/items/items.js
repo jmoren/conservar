@@ -34,8 +34,15 @@ angular.module('conservar.items',[
     );
   };
 
-  $scope.openModal = function(myItem){
+  $scope.openModal = function(myItem, size, view){
+    template = "";
     $scope.selected_item = myItem;
+    if(view === "show"){
+      template = '../templates/modalShowItem.html';
+    }else{
+      template = '../templates/modalFormItem.html';
+    }
+
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
@@ -43,9 +50,9 @@ angular.module('conservar.items',[
         }
       },
       scope: $scope,
-      size: 'lg',
+      size: size,
       controller: 'modalCtrl',
-      templateUrl: '../templates/modalItem.html'
+      templateUrl: template
     });
   };
 
@@ -56,9 +63,9 @@ angular.module('conservar.items',[
       data: { item: item }
     }).then(
       function(response, status){
-        console.log(response.data);
         $scope.items.push(response.data.item);
-        $scope.reset_form();
+        $scope.reset_item();
+        $modalInstance.close();
       },
       function(data, status){
         console.log(status);
@@ -66,9 +73,42 @@ angular.module('conservar.items',[
     );
   };
 
-  $scope.reset_form = function() {
-    $scope.newItem.name = null;
-    $scope.newItem.description = null;
+  $scope.saveItem = function(item){
+    $http({
+      url: "/collections/"+$scope.collection.id+"/items/"+item.id+".json",
+      method: "PATCH",
+      data: { item: item }
+    }).then(
+      function(response, status){
+        $modalInstance.close();
+      },
+      function(data, status){
+        console.log(status);
+      }
+    );
+  };
+  $scope.remove = function(item){
+    result = confirm("Estas seguro?");
+    if(result){
+      $http({
+        method: "DELETE",
+        url: "/collections/"+$scope.collection.id+"/items/"+item.id+".json"
+      })
+      .success(function(data,status){
+        index = $scope.items.indexOf(item);
+        $scope.items.splice(index, 1);
+      })
+      .error(function(status, data){
+        console.log(status);
+      });
+    }else{
+      console.log("declined");
+    }
+  };
+
+  $scope.reset_item = function(){
+    $scope.newItem.name = "";
+    $scope.newItem.description = "";
   };
 })
 
