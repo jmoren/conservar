@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :items, only: [:show]
+
+  resources :items, only: [:show] do
+    resources :item_details
+  end
+  
   resources :collections do
     resources :items
   end

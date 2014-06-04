@@ -73,7 +73,7 @@ angular.module('conservar.items',[
     );
   };
 
-  $scope.saveItem = function(item){
+  $scope.updateItem = function(item){
     $http({
       url: "/collections/"+$scope.collection.id+"/items/"+item.id+".json",
       method: "PATCH",

@@ -1,5 +1,46 @@
 <div ng-controller="ItemCtrl" ng-init="init()">
-  <h2> {{ item.name }}</h2>
+  <h2> 
+    {{ item.name }}
+    <div class="btn-group btn-group-sm pull-right">
+      <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-default">+ Medidas</a>
+      <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-default">+ Material</a>
+    </div>
+  </h2>
   <small>{{ collection.name}} <a href="#/collections/{{collection.id}}/items">back</a></small>
   <p> {{ item.description }} </p>
+
+  <legend>Details</legend>
+  <table class="table table-hover">
+    <thead>
+      <th>
+        <a ng-click="predicate = 'detail_type'; reverse=!reverse">
+          Type
+        </a>
+        <span ng-show="predicate === 'detail_type' && reverse === true">&#x25B4;</span>
+        <span ng-show="predicate === 'detail_type' && reverse === false">&#x25BE;</span>
+      </th>
+      <th>
+        <a ng-click="predicate = 'name'; reverse=!reverse">
+          Name
+        </a>
+        <span ng-show="predicate === 'name' && reverse === true">&#x25B4;</span>
+        <span ng-show="predicate === 'name' && reverse === false">&#x25BE;</span>
+      </th>
+      <th>Value</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="detail in item_details | orderBy:predicate:reverse">
+        <td>{{detail.detail_type }}</td>
+        <td>{{ detail.name }}</td>
+        <td>{{ detail.value }}</td>
+        <td>
+          <div class="btn-group btn-group-xs">
+            <a ng-click="openDetailModal(detail, detail.detail_type)" class="btn btn-default">edit</a>
+            <a ng-click="deleteDetail(detail)" class="btn btn-default">delete</a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
