@@ -1,6 +1,7 @@
 angular.module('conservar',[
   'ui.router',
   'common.modal',
+  'common.pagination',
   'conservar.item_detail',
   'conservar.item',
   'conservar.items',

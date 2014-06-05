@@ -1,7 +1,8 @@
 angular.module('conservar.collections',[
   'ui.router.state',
   'ui.router',
-  'ngResource'
+  'ngResource',
+  'common.pagination'
 ])
 
 .config( function( $stateProvider ){
@@ -16,12 +17,22 @@ angular.module('conservar.collections',[
   });
 })
 
-.controller('CollectionsCtrl', function($scope, ItemRes, CollectionRes, $location, $http, $modal){
-  $scope.currentUser = {};
+.controller('CollectionsCtrl', function($scope, ItemRes, CollectionRes, $location, $http, $modal, Pagination){
   $scope.collection  = new CollectionRes();
-  $scope.collections = CollectionRes.query();
   $scope.selected_collection = null;
   $scope.selected    = false;
+
+  $scope.init = function(){
+    $http({
+      url: '/collections.json',
+      method: 'GET'
+    }).then(function(response){
+      $scope.collections = response.data;
+      // paginations
+      $scope.pagination  = Pagination.getNew(5);
+      $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
+    });
+  };
 
   $scope.saveCollection = function(collection) {
     $http({
@@ -32,6 +43,7 @@ angular.module('conservar.collections',[
       $scope.collections.push(data.collection);
       $scope.reset_form();
       $modalInstance.close();
+      $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
     }).error(function(data, status){
       console.log(status);
     });
@@ -64,6 +76,7 @@ angular.module('conservar.collections',[
       .success(function(data,status){
         index = $scope.collections.indexOf(collection);
         $scope.collections.splice(index, 1);
+        $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
         if(toRemove){
           $scope.selected = false;
           $scope.selected_collection = null;
@@ -116,7 +129,6 @@ angular.module('conservar.collections',[
   $scope.close_selected = function(){
     $scope.selected = undefined;
   };
-
 })
 
 .factory( 'CollectionRes', function ( $resource )  {
