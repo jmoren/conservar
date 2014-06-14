@@ -11,8 +11,6 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require font-awesome
  *= require_self
  */
-
-
-a{ cursor: pointer; color: blue;}

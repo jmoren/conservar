@@ -3,7 +3,10 @@
   <div class="col-md-7">
     <h3>
       Collections
-      <a ng-click="openModal(null,'new', 'md')" class=" pull-right btn btn-primary btn-xs">New Collection</a>
+      <a ng-click="openModal(null,'new', 'md')" class=" pull-right btn btn-primary btn-cons btn-xs">
+        <i class="fa fa-plus"></i>
+        New Collection
+      </a>
     </h3>
     <hr>
     
@@ -43,8 +46,8 @@
     <div ng-show="selected">
       <div class="btn-group btn-group-sm">
         <a ng-click="open(selected_collection)" class="btn btn-primary">Open</a>
-        <a ng-click="openModal(selected_collection,'edit','md')" class="btn btn-default">Edit</a>
-        <a ng-click="remove(selected_collection)" class="btn btn-default">Delete</a>
+        <a ng-click="openModal(selected_collection,'edit','md')" class="btn btn-success">Edit</a>
+        <a ng-click="remove(selected_collection)" class="btn btn-danger">Delete</a>
       </div>
       <button ng-click="close_selected()" ng-show="selected" class="close pull-right">×</button>
       <div class="panel panel-default" style="margin-top:10px">

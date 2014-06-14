@@ -1,15 +1,19 @@
 <div ng-controller="ItemCtrl" ng-init="init()">
   <h2> 
     {{ item.name }}
-    <div class="btn-group btn-group-sm pull-right">
-      <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-default">+ Medidas</a>
-      <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-default">+ Material</a>
-    </div>
   </h2>
   <small>{{ collection.name}} <a href="#/collections/{{collection.id}}/items">back</a></small>
   <p> {{ item.description }} </p>
 
-  <legend>Details</legend>
+  <div class="page-header">
+    <h3>
+      Details
+      <div class="btn-group btn-group-sm pull-right">
+        <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary">+ Medidas</a>
+        <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary">+ Material</a>
+      </div>
+    </h3>
+  </div>
   <table class="table table-hover">
     <thead>
       <th>
@@ -43,4 +47,20 @@
       </tr>
     </tbody>
   </table>
+  <div class="page-header"> 
+    <h4>
+      Treatments
+      <a ng-click="openTreatmentModal(null)" ng-hide="treatments.open" class="btn btn-primary btn-sm pull-right">+ Treatment</a>
+    </h4>
+  </div>
+  <div class="panel panel-default" ng-repeat="treatment in item_treatments">
+    <div class="panel-heading">
+      <a ng-click="openTreatmentModal(treatment)">Treatment #{{ treatment.id }}</a>
+      <span class="badge pull-right" ng-show="treatment.id == treatments.current">current</span>
+    </div>
+    <div class="panel-body">
+      <p>{{ treatment.diagnosis}}</p>
+      <p class="muted small-text">{{treatment.time_ago}}</p>
+    </div>
+  </div>
 </div>

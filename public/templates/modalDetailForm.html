@@ -6,14 +6,15 @@
   <form name="detailForm"  role="form">
     <input type="hidden" name="detail_type" ng-model="element.detail_type" value="{{element.detail_type}}">
     <div class="form-group" ng-class="{'has-error':detailForm.detail_type.$invalid && detailForm.detail_type.$dirty}">
-      <label>Name: {{ type }}</label><br>
+      <label class="form-label">Name: {{ type }}</label>
       <select type="text" name="name" class="form-control" ng-model="element.name" required>
         <option ng-repeat="detail in types[element.detail_type]">{{detail}}</option>
       </select>
     </div>
     <div class="form-group" ng-class="{'has-error':detailForm.value.$invalid && detailForm.value.$dirty}">
-      <label>Value</label><br>
-      <input name="value" required class="form-control" ng-model="element.value" value="element.value"/>
+      <label class="form-label">Value</label>
+      <input type='text' name="value" required class="form-control" ng-model="element.value" value="element.value"/>
+      <small ng-show="element.detail_type=='medidas'" class="help-block">Medidas en centimetros</small>
     </div>
   </form>
 </div>

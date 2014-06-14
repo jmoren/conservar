@@ -3,6 +3,7 @@ angular.module('conservar',[
   'common.modal',
   'common.pagination',
   'conservar.item_detail',
+  'conservar.treatments',
   'conservar.item',
   'conservar.items',
   'conservar.collections',

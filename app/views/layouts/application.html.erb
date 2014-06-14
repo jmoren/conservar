@@ -6,6 +6,36 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body ui-view="main" class="container">
+<body>
+  <div class="header">
+    <div class="header-inner container">
+      <h2>Header</h2>
+    </div>
+  </div>
+  <div class="main-panel">
+    <div class="main-panel-inner container">
+      <div ui-view="main">
+        <div class="search-bar">
+          <form class="searchform" ng-controller="searchCtrl" style="position:relative">
+            <input type="text" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Search here..." clear-with-esc/>
+            <ul class="myDropdown" ng-show="searching">
+              <li class="header">
+                <div ng-show="loading"><i class="fa fa-spinner"></i> Searching</div>
+                <div ng-show="!loading && results.length < 1">Can't find a valid User or Doorbot <a ng-click="clear()">×</a></div>
+                <div ng-show="!loading && results.length > 0">Found: <b>{{results.length}}</b> <a ng-click="clear()">×</a></div>
+              </li>
+              <li ng-repeat="result in results | orderBy:model" class="item" focusable>
+                <a ng-click="goTo(result.location)">
+                  <i class="fa fa-mobile-phone" ng-show="result.model == 'doorbot'"></i>
+                  <i class="fa fa-user" ng-show="result.model == 'user'"></i>
+                  {{ result.link }}
+                </a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
