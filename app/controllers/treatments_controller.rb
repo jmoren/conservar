@@ -1,6 +1,6 @@
 class TreatmentsController < ApplicationController
   before_action :set_item
-  before_action :set_treatment, only: [:show, :update, :destroy]
+  before_action :set_treatment, only: [:show, :update, :destroy, :close, :open]
 
   # GET /treatments
   # GET /treatments.json
@@ -53,6 +53,19 @@ class TreatmentsController < ApplicationController
     end
   end
 
+  def open
+    @treatment.open!
+    respond_to do |format|
+      format.json { render :show, status: :ok }
+    end
+  end
+
+  def close
+    @treatment.close!
+    respond_to do |format|
+      format.json { render :show, status: :ok }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_treatment
@@ -65,6 +78,11 @@ class TreatmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def treatment_params
+      if params[:treatment]
+        params[:treatment].delete(:id)
+        params[:treatment].delete(:created_at)
+        params[:treatment].delete(:updated_at)
+      end
       params.require(:treatment).permit(:item_id, :diagnosis, :proposal, :closed_at)
     end
 end

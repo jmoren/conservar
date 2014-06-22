@@ -1,0 +1,12 @@
+<div ng-controller="TreatmentCtrl" ng-init="init()">
+  <div class="col-md-12" style="padding-top: 20px">
+    <div class="page-header">
+      <h1> 
+        Treatment #{{ treatment.id }}
+        <a href="#/items/{{treatment.item.id}}" class="btn btn-sm btn-primary pull-right">back</a>
+      </h1>
+    </div>
+  
+    <p class="well well-xs"> {{ treatment.diagnosis }} </p>
+  </div>
+</div>

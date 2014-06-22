@@ -7,35 +7,59 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="header">
-    <div class="header-inner container">
-      <h2>Header</h2>
-    </div>
-  </div>
-  <div class="main-panel">
-    <div class="main-panel-inner container">
-      <div ui-view="main">
-        <div class="search-bar">
-          <form class="searchform" ng-controller="searchCtrl" style="position:relative">
-            <input type="text" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Search here..." clear-with-esc/>
-            <ul class="myDropdown" ng-show="searching">
-              <li class="header">
-                <div ng-show="loading"><i class="fa fa-spinner"></i> Searching</div>
-                <div ng-show="!loading && results.length < 1">Can't find a valid User or Doorbot <a ng-click="clear()">×</a></div>
-                <div ng-show="!loading && results.length > 0">Found: <b>{{results.length}}</b> <a ng-click="clear()">×</a></div>
-              </li>
-              <li ng-repeat="result in results | orderBy:model" class="item" focusable>
-                <a ng-click="goTo(result.location)">
-                  <i class="fa fa-mobile-phone" ng-show="result.model == 'doorbot'"></i>
-                  <i class="fa fa-user" ng-show="result.model == 'user'"></i>
-                  {{ result.link }}
-                </a>
-              </li>
-            </ul>
-          </form>
+  <div class="navbar-fixed-top"> 
+    <div class="col-md-2"  style="padding:0;border-right: solid 1px #e5e5e5;margin:0px;border-bottom: 3px #fff solid;">
+      <div class="navbar navbar-default nav-green" role="navigation" style="padding-left:15px">      
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><i class="fa fa-recycle"></i> Conservar</a>
         </div>
       </div>
     </div>
+    <div class="col-md-10" style="padding:0px;border-bottom: 3px #fff solid;">
+      <div class="navbar navbar-default nav-green" role="navigation">        
+        <ul class="nav navbar-nav">
+          <form class="navbar-form navbar-left" id="search-form" role="search">
+            <div class="control-form">
+              <input type="text" class="form-control" placeholder="Buscar items o colecciones ... ">
+              <i class="fa fa-search"></i>
+            </div>
+          </form>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="padding-right:30px" >
+          <li>
+            <a href="#"><i class="fa fa-cog"></i> Settings</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
+  <div class="col-md-2 side-bar">
+    <div class="profile-box">
+      <img src="/assets/avatar.jpg">
+      <p class="user">
+        Jorge Moreno
+      </p>
+      <p>
+        <a href="#"><i class="fa fa-cog"></i>  Profile</a>
+        <a href="#"><i class="fa fa-sign-out"></i> Salir</a>
+      </p>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item"><a href="#">Test 1</a></li>
+      <li class="list-group-item"><a href="#">Test 2</a></li>
+      <li class="list-group-item"><a href="#">Test 3</a></li>
+      <li class="list-group-item"><a href="#">Test 4</a></li>
+      <li class="list-group-item"><a href="#">Test 5</a></li>
+      <li class="list-group-item"><a href="#">Test 6</a></li>
+    </ul>
+  </div>
+  <div ui-view="main" class="main col-md-10" style="margin:1px 0"></div>
+
 </body>
 </html>

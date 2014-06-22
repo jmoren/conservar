@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :items, only: [:show] do
     resources :item_details
     resources :treatments do
+      post :close
+      post :open
       resources :interventions
     end
   end

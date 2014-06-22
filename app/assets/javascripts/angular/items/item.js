@@ -6,7 +6,7 @@ angular.module('conservar.item',[
 
 .config( function( $stateProvider ){
   $stateProvider.state( 'item', {
-    url: '/item/:id',
+    url: '/items/:id',
     views: {
       "main": {
         controller: 'ItemCtrl',
@@ -16,10 +16,9 @@ angular.module('conservar.item',[
   });
 })
 
-.controller('ItemCtrl', function($scope, ItemRes, $stateParams, $http, $modal, ItemDetailRes, TreatmentRes){
-  $scope.current_details = {};
-  $scope.item_details = {};
-  $scope.item_treatments = [];
+.controller('ItemCtrl', function($scope, $stateParams, $http, $modal, ItemRes, ItemDetailRes, TreatmentRes){
+  // alert
+  $scope.alert = { type: "", message: "" };
 
   $scope.types = {
     medidas: ["alto", "ancho", "diagonal", "profundo", "largo"],
@@ -27,13 +26,14 @@ angular.module('conservar.item',[
   };
 
   $scope.init = function(){
+    $scope.setItem();
+  };
+
+  $scope.setItem = function(){
     ItemRes.get($stateParams,
       function(data){
         $scope.collection      = data.collection;
         $scope.item            = data.item;
-        $scope.item_details    = ItemDetailRes.query({item_id: $scope.item.id});
-        $scope.item_treatments = TreatmentRes.query({ item_id: $scope.item.id});
-        $scope.treatments      = data.treatments;
       },
       function(error){
         console.log("error");      
@@ -42,12 +42,12 @@ angular.module('conservar.item',[
   };
 
   $scope.openDetailModal = function(detail, type){
-    $scope.current_detail = detail || new ItemDetailRes();
-    $scope.current_detail.detail_type = type;
+    current_detail = detail || new ItemDetailRes();
+    current_detail.detail_type = type;
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
-          return $scope.current_detail;
+          return current_detail;
         }
       },
       scope: $scope,
@@ -58,101 +58,161 @@ angular.module('conservar.item',[
   };
 
   $scope.openTreatmentModal = function(treatment){
-    current_treatment = treatment || new TreatmentRes();
+    current = treatment || new TreatmentRes();
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
-          return current_treatment;
+          return current;
         }
       },
       scope: $scope,
-      size: 'md',
+      size: 'lg',
       controller: 'modalCtrl',
       templateUrl: "../templates/modalTreatmentForm.html"
     });
   };
 
   $scope.saveTreatment = function(treatment){
-    treatment.$create({item_id: $scope.item.id}).then(
+    treatment.$save({item_id: $scope.item.id},
       function(data){
-        $scope.treatments.push(data);
+        $scope.item.treatments.collection.push(data.treatment);
+        $scope.item.treatments.current = data.treatment.id;
+        $scope.item.treatments.open = true;
+        $scope.addAlert("success", "Se guardo con exito");
         $modalInstance.close();
       },
       function(data){
-        console.log("error adding detail");
+        $scope.addAlert("danger", "No pudo guardarse, intente nuevamente");
       }
     );
   };
 
   $scope.updateTreatment = function(treatment){
-    treatment.$update({item_id: $scope.item.id}).then(
+    TreatmentRes.update({item_id: $scope.item.id}, treatment,
       function(data){
+        $scope.addAlert("success", "Se actualizo con exito");
         $modalInstance.close();
       },
       function(data){
-        console.log("error updating treatment");
+        $scope.addAlert("danger", "No pudo actualizarse, intente nuevamente");
       }
     );    
   };
   $scope.deleteTreatment = function(treatment){
-    treatment.$remove({item_id: $scope.item.id}).then(
+    TreatmentRes.remove({item_id: $scope.item.id}, treatment,
       function(data){
-        console.log(data);
-        index = $scope.treatments.indexOf(treatment);
-        $scope.treatments.splice(index,1);
+        index = $scope.item.treatments.collection.indexOf(treatment);
+        $scope.item.treatments.collection.splice(index,1);
+        $scope.item.treatments.open = false;
+        $scope.addAlert("success", "Se elimino con exito");
         $modalInstance.close();
       },
       function(data){
-        console.log("error updating treatment");
+        $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
       }
     );    
   };
   $scope.saveDetail = function(detail){
-    detail.$create({item_id: $scope.item.id}).then(
+    detail.$save({item_id: $scope.item.id},
       function(data){
-        console.log(data);
-        $scope.item_details.push(data);
+        if(data.detail_type == 'materiales')
+          $scope.item.materials.push(data);
+        if(data.detail_type == 'medidas')
+          $scope.item.medidas.push(data); 
         $modalInstance.close();
+        $scope.addAlert("success", "Se guardo con exito!");
       },
       function(data){
-        console.log("error adding detail");
+        $scope.addAlert("danger", "No pudo guardarse, intente nuevamente");
       }
     );
   };
 
   $scope.updateDetail = function(detail){
-    console.log(detail);
-    detail.$update({item_id: $scope.item.id}).then(
+    ItemDetailRes.update({item_id: $scope.item.id},detail,
       function(data){
         $modalInstance.close();
+        $scope.addAlert("success", "Se actualizo con exito!");
       },
       function(data){
-        console.log("error updating detail");
+        $scope.addAlert("danger", "No pudo actualizarse, intente nuevamente");
       }
     );
       
   };
 
   $scope.deleteDetail = function(detail){
-    $http({
-      url: '/items/'+$scope.item.id+"/item_details/"+detail.id+".json",
-      method: 'DELETE',
-    }).success(function(data){
-      index = $scope.item_details.indexOf(detail);
-      $scope.item_details.splice(index,1);
-    }).error(function(data){
-      console.log("error updating detail");
-    });
+    ItemDetailRes.remove({item_id: $scope.item.id}, detail,
+      function(){
+        if(detail.detail_type == 'materiales'){
+          index = $scope.item.materials.indexOf(detail);
+          $scope.item.materials.splice(index,1);
+        }
+        if(detail.detail_type == 'medidas'){
+          index = $scope.item.medidas.indexOf(detail);
+          $scope.item.medidas.splice(index,1);
+        }
+
+        $scope.addAlert("success", "Se elimino con exito!");
+      },
+      function(data){
+        $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+      }
+    );
   };
+
+  $scope.openTreatment = function(treatment){
+    response = confirm("Estas seguro de reabrir el tratamiento?");
+    if(response){
+      $http({
+        url: '/items/'+$scope.item.id+'/treatments/'+treatment.id+'/open.json',
+        method: 'POST',
+        data: {id: treatment.id, item_id: $scope.item.id}
+      }).then(function(data){
+        treatment.closed = false;
+        $scope.item.treatments.open = treatment;
+      }, function(data){
+        console.log("error");
+      });
+    }
+  };
+
+  $scope.closeTreatment = function(treatment){
+    response = confirm("Estas seguro de cerrar el tratamiento?");
+    if(response){
+      $http({
+        url: '/items/'+$scope.item.id+'/treatments/'+treatment.id+'/close.json',
+        method: 'POST',
+        data: {id: treatment.id, item_id: $scope.item.id}
+      }).then(function(result){
+        treatment.closed = true;
+        $scope.item.treatments.open = undefined;
+      }, function(data){
+        console.log("error");
+      });
+    }
+  };
+
+  $scope.goTo = function(elem){
+    $location.path(elem.id);
+  };
+
+  $scope.addAlert = function(type, message){
+    $scope.alert = {type: type, message: message};
+  };
+
+  $scope.closeAlert = function(index) {
+    $scope.alert.type = "";
+    $scope.alert.message = "";
+  };
+
 })
 
 .factory( 'ItemRes', function ( $resource )  {
   var res = $resource("/items/:id.json",
     { id:'@id' },
-    {
-      'update': { method:'PUT' },
-      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'}}
-    });
+    { 'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'} } }
+  );
   return res;
 });
 

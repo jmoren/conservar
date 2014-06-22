@@ -1,66 +1,169 @@
 <div ng-controller="ItemCtrl" ng-init="init()">
-  <h2> 
-    {{ item.name }}
-  </h2>
-  <small>{{ collection.name}} <a href="#/collections/{{collection.id}}/items">back</a></small>
-  <p> {{ item.description }} </p>
-
-  <div class="page-header">
-    <h3>
-      Details
-      <div class="btn-group btn-group-sm pull-right">
-        <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary">+ Medidas</a>
-        <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary">+ Material</a>
-      </div>
-    </h3>
-  </div>
-  <table class="table table-hover">
-    <thead>
-      <th>
-        <a ng-click="predicate = 'detail_type'; reverse=!reverse">
-          Type
+  <div class="col-md-12">
+    <div class="page-header subnav">
+      <h1> 
+        {{ item.name | _.str: 'capitalize'}}
+        <a href="#/collections/{{collection.id}}/items" class="pull-left subnav-link">
+          <i class="fa fa-chevron-left"></i>
         </a>
-        <span ng-show="predicate === 'detail_type' && reverse === true">&#x25B4;</span>
-        <span ng-show="predicate === 'detail_type' && reverse === false">&#x25BE;</span>
-      </th>
-      <th>
-        <a ng-click="predicate = 'name'; reverse=!reverse">
-          Name
-        </a>
-        <span ng-show="predicate === 'name' && reverse === true">&#x25B4;</span>
-        <span ng-show="predicate === 'name' && reverse === false">&#x25BE;</span>
-      </th>
-      <th>Value</th>
-      <th>Actions</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat="detail in item_details | orderBy:predicate:reverse">
-        <td>{{detail.detail_type }}</td>
-        <td>{{ detail.name }}</td>
-        <td>{{ detail.value }}</td>
-        <td>
-          <div class="btn-group btn-group-xs">
-            <a ng-click="openDetailModal(detail, detail.detail_type)" class="btn btn-default">edit</a>
-            <a ng-click="deleteDetail(detail)" class="btn btn-default">delete</a>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="page-header"> 
-    <h4>
-      Treatments
-      <a ng-click="openTreatmentModal(null)" ng-hide="treatments.open" class="btn btn-primary btn-sm pull-right">+ Treatment</a>
-    </h4>
-  </div>
-  <div class="panel panel-default" ng-repeat="treatment in item_treatments">
-    <div class="panel-heading">
-      <a ng-click="openTreatmentModal(treatment)">Treatment #{{ treatment.id }}</a>
-      <span class="badge pull-right" ng-show="treatment.id == treatments.current">current</span>
+      </h1>
     </div>
-    <div class="panel-body">
-      <p>{{ treatment.diagnosis}}</p>
-      <p class="muted small-text">{{treatment.time_ago}}</p>
+    <div class="alert" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
+       <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+      {{alert.message}}
+    </div>
+    <p class="well well-xs"> {{ item.description }} </p>
+  </div>
+  <hr>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4>
+            Medidas
+            <div class="btn-group btn-group-sm pull-right">
+              <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary">
+                <i class="fa fa-plus"></i>
+                Medidas
+              </a>
+            </div>
+          </h4>
+        </div>
+      </div>
+      <table class="table details-table">
+        <thead>
+          <th>
+            <a ng-click="predicate = 'name'; reverse=!reverse">Name</a>
+            <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th>
+            <a ng-click="predicate = 'value'; reverse=!reverse">Value</a>
+            <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="detail in item.medidas | orderBy:predicate:reverse" class="detail-row">
+            <td>{{ detail.name }}</td>
+            <td>{{ detail.value }}</td>
+            <td class="detail-actions">
+              <div class="actions">
+                <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
+                <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4>
+            Materiales
+            <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary btn-sm pull-right">
+              <i class="fa fa-plus"></i>
+              Material
+            </a>
+          </h4>
+        </div>
+      </div>
+      <table class="table details-table">
+        <thead>
+          <th>
+            <a ng-click="predicate = 'name'; reverse=!reverse">Name</a>
+            <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th>
+            <a ng-click="predicate = 'value'; reverse=!reverse">Value</a>
+            <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="detail in item.materials | orderBy:predicate:reverse" class="detail-row">
+            <td>{{ detail.name }}</td>
+            <td>{{ detail.value }}</td>
+            <td class="detail-actions">
+              <div class="actions">
+                <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
+                <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
+  <div class="col-md-12">
+    <p>
+      <a ng-click="openTreatmentModal(null)" class="btn btn-primary btn-sm" ng-hide="item.treatments.open">
+        <i class="fa fa-plus"></i>
+        Treatment
+      </a>
+    </p>
+    <div ng-repeat="treatment in item.treatments.collection">
+      <div  class="panel panel-default" >
+        <div class="panel-heading">
+          <h4>
+            <span class="label label-warning" ng-show="treatment.id == item.treatments.current">current</span>
+            <a href="#/items/{{treatment.item_id}}/treatments/{{treatment.id}}">Treatment #{{ treatment.id }}</a>
+            <div class="btn-group btn-group-xs pull-right" >  
+              <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Edit</a>
+              <a ng-click="openTreatment(treatment)" class="btn btn-primary" ng-if="treatment.closed">Open</a>
+              <a ng-click="closeTreatment(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Close</a>
+            </div>
+          </h4>
+        </div>
+        <div class="panel-body" ng-if="!treatment.closed">
+          <div class="row">
+            <div class="col-md-2 ">
+              <div class="center-block">
+                <h4>
+                  <i class="fa fa-search"></i> Diagnosis
+                </h4>
+                <small class="text-muted">Help text to users dasjaj asjdla ksjdkasnknd </small>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <p style="padding:15px" class="bg-warning" ng-bind-html="treatment.diagnosis"></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="center-block">
+                <h4>
+                  <i class="fa fa-wrench"></i> Proposal
+                </h4>
+              </div>
+              <small class="text-muted">Help text to users<small>
+            </div>
+            <div class="col-md-10">
+              <p style="padding:15px" class="bg-warning" ng-bind-html='treatment.proposal'></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="pull-right" style="padding:15px">
+              <div class="btn btn-primary btn-xs">
+                <i class="fa fa-clock-o"></i>
+                creado {{treatment.created_at}} ago
+              </div>
+              <div class="btn btn-primary btn-xs">
+                <i class="fa fa-clock-o"></i>
+                actualizado {{treatment.updated_at}} ago
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,31 +1,30 @@
-<hr>
 <div ng-controller="ItemsCtrl" ng-init="init()">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2> 
-        Item Group {{ collection.name }} 
+  <div class="col-md-12">
+    <div class="page-header">
+      <h2>
+        Group {{ collection.name }} 
         <div class="btn-group btn-group-sm pull-right">
           <a ng-click="openModal(newItem,'md','new')" class="btn btn-primary">New Item</a>
           <a href="#/collections" class="btn btn-default">Back</a>
         </div>
       </h2>
     </div>
-    <div class="panel-body">
+    <div class="well">
       <p> {{collection.description}}</p>
     </div>
+    <hr>
+    <h3>Items</h3>
+    <ul class="list-group">
+      <li ng-repeat='item in items' class="list-group-item">
+        {{ item.name }}
+        <p>{{ item.description}}</p>
+        <div class="btn-group btn-group-xs">
+          <a ng-click="openModal(item,'lg','show')" class="btn btn-primary">view</a>
+          <a href="#/items/{{item.id}}" class="btn btn-primary">details</a>
+          <a ng-click="openModal(item,'md','edit')" class="btn btn-primary">edit</a>
+          <a ng-click="remove(item)" class="btn btn-primary">delete</a>
+        </div>
+      </li>
+    </ul>
   </div>
-  <hr>
-  <h3>Items</h3>
-  <ul class="list-group">
-    <li ng-repeat='item in items' class="list-group-item">
-      {{ item.name }}
-      <p>{{ item.description}}</p>
-      <div class="btn-group btn-group-xs">
-        <a ng-click="openModal(item,'lg','show')" class="btn btn-default">view</a>
-        <a href="#/item/{{item.id}}" class="btn btn-default">details</a>
-        <a ng-click="openModal(item,'md','edit')" class="btn btn-default">edit</a>
-        <a ng-click="remove(item)" class="btn btn-default">delete</a>
-      </div>
-    </li>
-  </ul>
 </div>
