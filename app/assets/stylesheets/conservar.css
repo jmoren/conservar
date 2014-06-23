@@ -109,7 +109,7 @@ table.details-table tr.detail-row:hover td .actions{
 .side-bar{
   padding:0;
   color: #f1f1f1;
-  width: 214px;
+  width: 213px;
   position: fixed;
  }
 
@@ -170,13 +170,18 @@ table.details-table tr.detail-row:hover td .actions{
   position: relative;
   display: block;
   padding: 10px 15px 10px 30px;
-  margin-bottom: 2px;
   border: 1px solid #ddd;
   border-right: none;
   border-left: none;
   border-bottom: none;
 }
 
+.side-bar .list-group-item.active{
+  background: #4F4F4F;
+}
+.side-bar .list-group-item.active a{
+  color: #fff;
+}
 .list-group-item:first-child {
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;

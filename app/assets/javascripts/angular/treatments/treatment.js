@@ -15,8 +15,9 @@ angular.module('conservar.treatment',[
   });
 })
 
-.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes){
+.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes){
   $scope.inteventions = {};
+  $scope.current_note = new TreatmentNoteRes();
 
   $scope.init = function(){
     TreatmentRes.get($stateParams,
@@ -30,6 +31,31 @@ angular.module('conservar.treatment',[
   };
 })
 
+.directive('treatmentNote', function(){
+    return {
+        restrict: 'E',
+        templateUrl: '/templates/treatmentNoteForm.html',
+        scope: {
+          note: '=',
+          treatment: '='
+        },
+        controller: function($scope, TreatmentNoteRes) {
+
+          $scope.save = function(note){
+            TreatmentNoteRes.save({treatment_id: $scope.treatment.id, treatment_note: note}, 
+              function(data){
+                console.log(data);
+                $scope.treatment.notes.push(data);
+                $scope.note.content = "";
+              }, function(error){
+                console.log(error);
+              }
+            );
+          };
+        }
+    };
+})
+
 .factory('TreatmentRes', function($resource){
   var res = $resource("/items/:item_id/treatments/:id.json",
     { id:'@id', item_id: '@item_id' },
@@ -38,6 +64,15 @@ angular.module('conservar.treatment',[
       'destroy': { method: 'DELETE', headers: {'Content-Type': 'application/json'}},
       'close': {method: 'POST'},
       'open': {method: 'POST'},
+    });
+  return res;
+})
+
+.factory('TreatmentNoteRes', function($resource){
+  var res = $resource("/treatments/:treatment_id/treatment_notes/:id.json",
+    { id:'@id', treatment_id: '@treatment_id' },
+    { 
+      'update': { method: 'PATCH' },
     });
   return res;
 });

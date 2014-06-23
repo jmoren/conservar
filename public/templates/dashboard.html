@@ -1,3 +1,10 @@
-<h1>Home#index template</h1>
-<p>Find me in app/assets/templates/index.html</p>
-<a href='#/collections'>Collections</a>
+<div class="col-md-12" style="padding-top:20px">
+  <div class="page-header subnav">
+    <h1>Home#index template</h1>
+  </div>
+</div>
+<div class="col-md-12">
+  $state = {{$state.current.name}}
+  <br>$stateParams = {{$stateParams}}
+  <br>$state full url = {{ $state.$current.url.source }}
+</div>
