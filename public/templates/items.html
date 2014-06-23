@@ -1,30 +1,43 @@
 <div ng-controller="ItemsCtrl" ng-init="init()">
-  <div class="col-md-12">
-    <div class="page-header">
-      <h2>
-        Group {{ collection.name }} 
-        <div class="btn-group btn-group-sm pull-right">
-          <a ng-click="openModal(newItem,'md','new')" class="btn btn-primary">New Item</a>
-          <a href="#/collections" class="btn btn-default">Back</a>
-        </div>
-      </h2>
+  <div class="col-md-12"  style="padding-top: 20px">
+    <div class="page-header subnav">
+      <h1>
+        {{ collection.name }} 
+        <a href="#/collections" class="pull-left subnav-link">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+      </h1>
     </div>
+    <p>
+      <a ng-click="openModal(newItem,'md','new')" class="btn btn-primary"><i class="fa fa-plus"></i> Item</a>
+      <a ng-click="openModalCollection(collection)" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+    </p>
     <div class="well">
       <p> {{collection.description}}</p>
     </div>
     <hr>
-    <h3>Items</h3>
-    <ul class="list-group">
-      <li ng-repeat='item in items' class="list-group-item">
-        {{ item.name }}
-        <p>{{ item.description}}</p>
-        <div class="btn-group btn-group-xs">
-          <a ng-click="openModal(item,'lg','show')" class="btn btn-primary">view</a>
-          <a href="#/items/{{item.id}}" class="btn btn-primary">details</a>
-          <a ng-click="openModal(item,'md','edit')" class="btn btn-primary">edit</a>
-          <a ng-click="remove(item)" class="btn btn-primary">delete</a>
+    <div class="row">
+      <div class="col-md-4" ng-repeat='item in items'>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>
+                {{ item.name }}
+                <a href="#/items/{{item.id}}" class="pull-right"><i class="fa fa-chevron-right"></i></a>
+              </h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <p>{{ item.description}}</p>
+            <hr>
+            <div class="btn-group btn-group-xs">
+              <a ng-click="openModal(item,'md','show')" class="btn btn-green">Ver</a>
+              <a ng-click="openModal(item,'md','edit')" class="btn btn-green">Editar</a>
+            </div>
+            <a ng-click="remove(item)" class="btn btn-default btn-xs pull-right"><i class="fa fa-trash-o"></i> Borrar</a>
+          </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </div>

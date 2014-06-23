@@ -34,6 +34,29 @@ angular.module('conservar.items',[
     );
   };
 
+  $scope.openModalCollection = function(collection){
+    $modalInstance = $modal.open({
+      resolve: {
+        element: function(){
+          return collection;
+        }
+      },
+      scope: $scope,
+      controller: 'modalCtrl',
+      templateUrl: '../templates/collectionFormModal.html'
+    });
+  };
+
+  $scope.updateCollection = function(collection){
+    CollectionRes.update({id: collection.id, collection: collection},
+      function(data, status){
+        $modalInstance.close();
+      }, function(data, status){
+        console.log(status);
+      }
+    );
+  };
+
   $scope.openModal = function(myItem, size, view){
     template = "";
     $scope.selected_item = myItem;

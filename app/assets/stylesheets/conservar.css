@@ -9,7 +9,7 @@ body { padding-top: 50px;   background: #333;}
 }
 
 .nav-green{
-  background: #0aa699;
+  background: #1fa67a;
 }
 
 .nav-green .navbar-nav > li > a, .navbar-default .navbar-brand, .navbar-default .navbar-brand{
@@ -53,7 +53,7 @@ table.details-table tr.detail-row:hover td .actions{
   text-align: right;
 }
 
-/* my dropdown */
+/* my dropdown 
 .myDropdown{
    position: absolute;
    min-width: 251px;
@@ -104,34 +104,29 @@ table.details-table tr.detail-row:hover td .actions{
 .myDropdown li.item a i{
    margin-right: 10px;
 }
-/*-------*/
+-------*/
 
 .side-bar{
   padding:0;
-  margin:3px 0px;
   color: #f1f1f1;
+  width: 214px;
+  position: fixed;
  }
 
 .side-bar .profile-box{
-  padding: 20px 10px 11px 30px;
+  padding: 12px 0px 20px 30px;
   margin: 2px auto;
-}
-
-.side-bar .profile-box img{
-  width: 50px;
-  border: solid 1px #ccc;
-  border-radius: 30px;
-  float: left;
-  margin-right: 10px;
-  vertical-align: middle;
 }
 
 .side-bar .profile-box .user{
   text-align: left;
 }
-
+.side-bar .profile-box .user .date{
+  color: #ddd;
+  font-size:11px;
+}
 .side-bar .profile-box a{
-  font-size: 12px;
+  font-size: 11px;
   color: #999;
 }
 
@@ -151,20 +146,25 @@ table.details-table tr.detail-row:hover td .actions{
   margin-right: 10px;
 }
 
-.main{
+.main-content{
   background: #f1f1f1;
-  min-height:550px;
   border-left: solid 1px #f1f1f1;
-  margin:3px 0px;
+  margin: -18px 0 0 214px;
+  min-height: 600px;
 }
 
-.main .well{
+.main-content .well{
   background: #fff;
 }
 
-.main .panel-default .panel-heading{
+.main-content .panel-default .panel-heading{
   background-color: #fff;
 }
+
+.main-content hr{
+  border-top: 1px solid #ccc;
+}
+
 .side-bar .list-group-item {
   background: transparent;
   position: relative;
@@ -190,25 +190,28 @@ table.details-table tr.detail-row:hover td .actions{
   border-left: none;
 }
 
-.subnav{
-  padding: 15px 30px 9px 30px;
-  margin: -16px -30px 20px -30px;
+.main-content .subnav{
+  padding: 12px 30px;
+  margin: 0px -15px 20px -15px;
   border-bottom: 1px solid #bcbcbc;
   background: #fff;
+  border-radius: 0;
 }
 
 .subnav-link{
   margin: 5px 20px 0px 0px;
   font-size: 20px;
   padding: 5px;
+  color: #999;
 }
 
 #search-form{
   position: relative;
 }
+
 #search-form .control-form input.form-control{
   width: 300px;
-  background: #e4e4e4;
+  background: #f1f1f1;
   border-radius: 2px;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -226,4 +229,26 @@ table.details-table tr.detail-row:hover td .actions{
   outline: none;
   background: #fff;
   border-color: transparent;
+}
+
+.settings{
+  padding-right: 30px;
+  font-size: 20px;
+}
+
+.settings > li > a{
+  padding: 16px;
+  margin: -1px 1px;
+}
+.settings > li > a{
+  color: #f1f1f1;
+}
+
+.btn-green{
+  background: #1fa67a;
+  color: #f1f1f1;
+  border-color: #1b926c;
+}
+.btn-green:hover{
+  color: #fff;
 }

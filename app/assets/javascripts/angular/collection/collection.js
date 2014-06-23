@@ -29,7 +29,7 @@ angular.module('conservar.collections',[
     }).then(function(response){
       $scope.collections = response.data;
       // paginations
-      $scope.pagination  = Pagination.getNew(5);
+      $scope.pagination  = Pagination.getNew(10);
       $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
     });
   };
@@ -135,8 +135,6 @@ angular.module('conservar.collections',[
   var res = $resource("/collections/:id.json",
     { id:'@id' },
     {
-      'get': { method: 'GET'},
-      'query': { method: 'GET', isArray: true },
       'update': { method:'PUT' },
       'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'}}
     });

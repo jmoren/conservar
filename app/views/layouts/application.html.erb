@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="navbar-fixed-top"> 
-    <div class="col-md-2"  style="padding:0;border-right: solid 1px #e5e5e5;margin:0px;border-bottom: 3px #fff solid;">
+    <div class="col-md-2" style="padding:0;">
       <div class="navbar navbar-default nav-green" role="navigation" style="padding-left:15px">      
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-10" style="padding:0px;border-bottom: 3px #fff solid;">
+    <div class="col-md-10" style="padding:0px;border-left: solid 1px #1b926c;">
       <div class="navbar navbar-default nav-green" role="navigation">        
         <ul class="nav navbar-nav">
           <form class="navbar-form navbar-left" id="search-form" role="search">
@@ -31,35 +31,40 @@
             </div>
           </form>
         </ul>
-        <ul class="nav navbar-nav navbar-right" style="padding-right:30px" >
-          <li>
-            <a href="#"><i class="fa fa-cog"></i> Settings</a>
+        <ul class="nav navbar-nav navbar-right settings">
+          <li class="dropdown" on-toggle="toggled(open)">
+            <a href class="dropdown-toggle">
+              <i class="fa fa-bars"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Settings</a>
+                <a href="#">Users</a>
+                <a href="#">Admin</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="col-md-2 side-bar">
+  <div class="side-bar" style="">
     <div class="profile-box">
-      <img src="/assets/avatar.jpg">
-      <p class="user">
-        Jorge Moreno
-      </p>
-      <p>
+      <div class="user">
+        <h4>Jorge Moreno</h4>
         <a href="#"><i class="fa fa-cog"></i>  Profile</a>
         <a href="#"><i class="fa fa-sign-out"></i> Salir</a>
-      </p>
+      </div>
     </div>
     <ul class="list-group">
-      <li class="list-group-item"><a href="#">Test 1</a></li>
-      <li class="list-group-item"><a href="#">Test 2</a></li>
-      <li class="list-group-item"><a href="#">Test 3</a></li>
-      <li class="list-group-item"><a href="#">Test 4</a></li>
-      <li class="list-group-item"><a href="#">Test 5</a></li>
-      <li class="list-group-item"><a href="#">Test 6</a></li>
+      <li class="list-group-item"><a href="#"><i class="fa fa-tags"></i> Items</a></li>
+      <li class="list-group-item"><a href="#"><i class="fa fa-camera"></i> Imagenes</a></li>
+      <li class="list-group-item"><a href="#"><i class="fa fa-bar-chart-o"></i> Reportes</a></li>
+      <li class="list-group-item"><a href="#"><i class="fa fa-search"></i> Analisis</a></li>
+      <li class="list-group-item"><a href="#"><i class="fa fa-users"></i> Organizacion</a></li>
     </ul>
   </div>
-  <div ui-view="main" class="main col-md-10" style="margin:1px 0"></div>
+  <div ui-view="main" class="main-content clearfix"></div>
 
 </body>
 </html>

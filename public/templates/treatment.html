@@ -1,9 +1,11 @@
 <div ng-controller="TreatmentCtrl" ng-init="init()">
   <div class="col-md-12" style="padding-top: 20px">
-    <div class="page-header">
+    <div class="page-header subnav">
       <h1> 
         Treatment #{{ treatment.id }}
-        <a href="#/items/{{treatment.item.id}}" class="btn btn-sm btn-primary pull-right">back</a>
+        <a href="#/items/{{treatment.item.id}}" class="pull-left subnav-link">
+          <i class="fa fa-chevron-left"></i>
+        </a>
       </h1>
     </div>
   
