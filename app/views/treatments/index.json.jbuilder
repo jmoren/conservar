@@ -1,6 +1,10 @@
 json.array! @treatments do |treatment|
   json.id treatment.id
-  json.item_id treatment.item_id
+  json.item do
+    json.id treatment.item_id
+    json.name treatment.item.name
+    json.description treatment.item.description
+  end
   json.diagnosis  treatment.diagnosis
   json.proposal   treatment.proposal
   json.closed_at  treatment.closed? ? treatment.closed_at : nil

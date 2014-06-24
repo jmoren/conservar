@@ -10,7 +10,7 @@ angular.module('conservar.item',[
     views: {
       "main": {
         controller: 'ItemCtrl',
-        templateUrl: '/templates/item.html'
+        templateUrl: '/templates/items/item.html'
       }
     }
   });
@@ -41,6 +41,25 @@ angular.module('conservar.item',[
     );
   };
 
+  $scope.updateItem = function(item){
+    ItemRes.update({}, item, function(){
+      $modalInstance.close();
+    });
+  };
+
+  $scope.openModalItem = function(myItem){
+    $modalInstance = $modal.open({
+      resolve: {
+        element: function(){
+          return myItem;
+        }
+      },
+      scope: $scope,
+      controller: 'modalCtrl',
+      templateUrl: '../templates/items/modalFormItem.html'
+    });
+  };
+
   $scope.openDetailModal = function(detail, type){
     current_detail = detail || new ItemDetailRes();
     current_detail.detail_type = type;
@@ -51,9 +70,8 @@ angular.module('conservar.item',[
         }
       },
       scope: $scope,
-      size: 'md',
       controller: 'modalCtrl',
-      templateUrl: "../templates/modalDetailForm"
+      templateUrl: "../templates/details/modalDetailForm"
     });
   };
 
@@ -68,7 +86,7 @@ angular.module('conservar.item',[
       scope: $scope,
       size: 'lg',
       controller: 'modalCtrl',
-      templateUrl: "../templates/modalTreatmentForm.html"
+      templateUrl: "../templates/treatments/modalTreatmentForm.html"
     });
   };
 
@@ -211,7 +229,10 @@ angular.module('conservar.item',[
 .factory( 'ItemRes', function ( $resource )  {
   var res = $resource("/items/:id.json",
     { id:'@id' },
-    { 'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'} } }
+    { 
+      'update': { method: 'PUT'},
+      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'} },
+     }
   );
   return res;
 });

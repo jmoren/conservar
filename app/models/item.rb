@@ -3,7 +3,10 @@ class Item < ActiveRecord::Base
   has_many :item_details, dependent: :destroy
   has_many :treatments, dependent: :destroy
   has_many :interventions, dependent: :destroy
+  has_many :images, dependent: :destroy
   
+  mount_uploader :cover, CoverUploader
+
   def treatment_open?
     treatments.where(closed_at: nil).size > 0
   end

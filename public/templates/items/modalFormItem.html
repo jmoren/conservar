@@ -3,7 +3,7 @@
   <h3  ng-show="element.id" class="modal-title">Edit Item</h3>
 </div>
 <div class="modal-body">
-  <form name="addItem"  role="form">
+  <form name="addItem"  role="form" enctype="multipart/form-data">
     <div class="form-group" ng-class="{'has-error':addItem.name.$invalid && addItem.name.$dirty}">
       <label>Name</label><br>
       <input type="text" name="name" class="form-control" ng-model="element.name" value="element.name" required/>
@@ -11,6 +11,10 @@
     <div class="form-group" ng-class="{'has-error':addItem.description.$invalid && addItem.description.$dirty}">
       <label>Description</label><br>
       <textarea name="description" required class="form-control" ng-model="element.description" value="element.description"/>
+    </div>
+    <div class="form-group">
+      <label>Cover image</label><br>
+      <input type="file" name="cover" ng-model="element.cover"/>
     </div>
   </form>
 </div>

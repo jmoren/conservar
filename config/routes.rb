@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
 
-  resources :items, only: [:show] do
+  resources :items, only: [:show, :update] do
     resources :item_details
+    resources :images
     resources :treatments do
       post :close
       post :open
-      resources :treatment_notes
-      resources :interventions
     end
   end
-  
-  resources :treatments, only: [:show] do
+
+  resources :images, only: [:index, :show]
+
+  resources :treatments, only: [:index] do
     resources :treatment_notes
+    resources :images
+    resources :interventions
   end
 
   resources :collections do

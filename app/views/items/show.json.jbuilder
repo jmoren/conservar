@@ -1,6 +1,6 @@
 json.collection @item.collection, :id, :name, :description, :code
 json.item do
-  json.extract! @item, :id, :name, :description, :collection_id, :created_at, :updated_at
+  json.extract! @item, :id, :name, :description, :collection_id, :created_at, :updated_at, :cover
   json.materials do
     json.array! @item.item_details.materiales do |detail|
       json.extract! detail, :id, :name, :value, :detail_type

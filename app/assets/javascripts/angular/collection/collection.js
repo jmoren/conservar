@@ -1,96 +1,40 @@
-angular.module('conservar.collections',[
+angular.module('conservar.collection',[
   'ui.router.state',
   'ui.router',
-  'ngResource',
-  'common.pagination'
+  'ui.bootstrap',
+  'ngResource'
 ])
 
 .config( function( $stateProvider ){
-  $stateProvider.state( 'collections', {
-    url: '/collections',
+  $stateProvider.state( 'collection', {
+    url: '/collections/:id',
     views: {
       "main": {
-        controller: 'CollectionsCtrl',
-        templateUrl: '/templates/collections.html'
+        controller: 'CollectionCtrl',
+        templateUrl: '/templates/collections/collection.html'
       }
     }
   });
 })
 
-.controller('CollectionsCtrl', function($scope, ItemRes, CollectionRes, $location, $http, $modal, Pagination){
-  $scope.collection  = new CollectionRes();
-  $scope.selected_collection = null;
-  $scope.selected    = false;
+.controller('CollectionCtrl', function($scope, CollectionRes, ItemsRes,  $modal, $stateParams, $http){
+  $scope.currentUser = {};
+  $scope.selected_item = {};
+  $scope.newItem = new ItemsRes();
 
   $scope.init = function(){
-    $http({
-      url: '/collections.json',
-      method: 'GET'
-    }).then(function(response){
-      $scope.collections = response.data;
-      // paginations
-      $scope.pagination  = Pagination.getNew(10);
-      $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
-    });
+    CollectionRes.get($stateParams,
+      function(data){
+        $scope.collection = data.collection;
+        $scope.items = data.items;
+      },
+      function(error){
+        console.log("error");      
+      }
+    );
   };
 
-  $scope.saveCollection = function(collection) {
-    $http({
-      method: "POST",
-      url: "/collections.json",
-      data: { collection: collection }
-    }).success(function(data, status){
-      $scope.collections.push(data.collection);
-      $scope.reset_form();
-      $modalInstance.close();
-      $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
-    }).error(function(data, status){
-      console.log(status);
-    });
-  };
-
-  $scope.updateCollection = function(collection){
-    $http({
-      method: "PATCH",
-      url: "/collections/"+collection.id+".json",
-      data: { collection: collection }
-    }).success(function(data, status){
-      $modalInstance.close();
-    }).error(function(data, status){
-      console.log(status);
-    });
-  };
-
-  $scope.remove = function(collection){
-    toRemove = false;
-    if(($scope.selected !== undefined) && collection.id == $scope.selected.id){
-      toRemove = true;
-    }
-
-    result = confirm("Estas seguro?");
-    if(result){
-      $http({
-        method: "DELETE",
-        url: "/collections/"+collection.id+".json"
-      })
-      .success(function(data,status){
-        index = $scope.collections.indexOf(collection);
-        $scope.collections.splice(index, 1);
-        $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
-        if(toRemove){
-          $scope.selected = false;
-          $scope.selected_collection = null;
-        }
-      })
-      .error(function(status, data){
-        console.log(status);
-      });
-    }else{
-      console.log("declined");
-    }
-  };
-
-  $scope.openModal = function(collection, view, size){
+  $scope.openModalCollection = function(collection){
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
@@ -98,45 +42,89 @@ angular.module('conservar.collections',[
         }
       },
       scope: $scope,
-      size: 'md',
       controller: 'modalCtrl',
-      templateUrl: '../templates/collectionFormModal.html'
+      templateUrl: '../templates/collections/collectionFormModal.html'
     });
   };
 
-  $scope.reset_form = function() {
-    $scope.collection.name = null;
-    $scope.collection.description = null;
+  $scope.updateCollection = function(collection){
+    CollectionRes.update({id: collection.id, collection: collection},
+      function(data, status){
+        $modalInstance.close();
+      }, function(data, status){
+        console.log(status);
+      }
+    );
   };
 
-  $scope.details =  function(collection){
-    $http({
-      url: "/collections/"+ collection.id+".json",
-      method: "GET"
-    }).success(function(data){
-      $scope.selected_collection = collection;
-      $scope.selected_collection.items = data.items;
-      $scope.selected = true;
-    }).error(function(response){
-      console.log(response);
+  $scope.openModalItem = function(myItem, size, view){
+    $scope.selected_item = myItem || $scope.newItem;
+    
+    $modalInstance = $modal.open({
+      resolve: {
+        element: function(){
+          return $scope.selected_item;
+        }
+      },
+      scope: $scope,
+      size: size,
+      controller: 'modalCtrl',
+      templateUrl: '../templates/items/modalFormItem.html'
     });
   };
 
-  $scope.open = function(collection){
-    $location.path('/collections/'+collection.id+"/items");
+  $scope.saveItem = function(item){
+    ItemsRes.save({collection_id: $scope.collection.id}, item,
+      function(response, status){
+        $scope.items.push(response.item);
+        $scope.reset_item();
+        $modalInstance.close();
+      },
+      function(data, status){
+        console.log(status);
+      }
+    );
   };
 
-  $scope.close_selected = function(){
-    $scope.selected = undefined;
+  $scope.updateItem = function(item){
+    ItemsRes.update({collection_id: $scope.collection.id}, item,
+      function(response, status){
+        $modalInstance.close();
+      },
+      function(data, status){
+        console.log(status);
+      }
+    );
+  };
+  $scope.remove = function(item){
+    result = confirm("Estas seguro?");
+    if(result){
+      ItemsRes.delete({collection_id: $scope.collection.id}, item,
+        function(data,status){
+          index = $scope.items.indexOf(item);
+          $scope.items.splice(index, 1);
+        },
+        function(status, data){
+          console.log(status);
+        }
+      );
+    }else{
+      console.log("declined");
+    }
+  };
+
+  $scope.reset_item = function(){
+    $scope.newItem.name = "";
+    $scope.newItem.description = "";
   };
 })
 
-.factory( 'CollectionRes', function ( $resource )  {
-  var res = $resource("/collections/:id.json",
-    { id:'@id' },
+.factory( 'ItemsRes', function ( $resource )  {
+  var res = $resource("/collections/:collection_id/items/:id.json",
+    { id:'@id', collection_id: '@collection_id' },
     {
-      'update': { method:'PUT' },
-      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'}}
-    });
+      'update': {method: 'PUT'}
+    }
+  );
   return res;
 });

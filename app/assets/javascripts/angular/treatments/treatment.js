@@ -9,15 +9,16 @@ angular.module('conservar.treatment',[
     views: {
       "main": {
         controller: 'TreatmentCtrl',
-        templateUrl: '/templates/treatment.html'
+        templateUrl: '/templates/treatments/treatment.html'
       }
     }
   });
 })
 
-.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes){
-  $scope.inteventions = {};
+.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes){
+  $scope.alert = { type: "", message: "" };
   $scope.current_note = new TreatmentNoteRes();
+  $scope.current_intervention = new InterventionRes();
 
   $scope.init = function(){
     TreatmentRes.get($stateParams,
@@ -29,31 +30,76 @@ angular.module('conservar.treatment',[
       }
     );
   };
+
+  $scope.openModalIntervention = function(intervention){
+    current_intervention = intervention || new InterventionRes();
+    $modalInstance = $modal.open({
+      resolve: {
+        element: function(){
+          return current_intervention;
+        }
+      },
+      scope: $scope,
+      controller: 'modalCtrl',
+      templateUrl: "../templates/interventions/modalInterventionForm"
+    });
+  };
+
+  $scope.removeIntervention = function(intervention){
+    InterventionRes.remove({treatment_id: $scope.treatment.id}, intervention,
+      function(data){
+        index = $scope.treatment.interventions.indexOf(intervention);
+        $scope.treatment.interventions.splice(index,1);
+        $scope.addAlert("success", "Se elimino con exito");
+      },
+      function(data){
+        $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+      }
+    );    
+  };
+
+  $scope.addAlert = function(type, message){
+    $scope.alert = {type: type, message: message};
+  };
+
+  $scope.closeAlert = function(index) {
+    $scope.alert.type = "";
+    $scope.alert.message = "";
+  };
 })
 
 .directive('treatmentNote', function(){
-    return {
-        restrict: 'E',
-        templateUrl: '/templates/treatmentNoteForm.html',
-        scope: {
-          note: '=',
-          treatment: '='
-        },
-        controller: function($scope, TreatmentNoteRes) {
+  return {
+    restrict: 'E',
+    templateUrl: '/templates/treatments/treatmentNoteForm.html',
+    scope: {
+      treatment: '=treatment'
+    },
+    controller: function($scope, TreatmentNoteRes) {
+      $scope.save = function(note){
+        TreatmentNoteRes.save({treatment_id: $scope.treatment.id, treatment_note: note}, 
+          function(data){
+            console.log(data);
+            $scope.treatment.notes.push(data);
+            $scope.note.content = "";
+          }, function(error){
+            console.log(error);
+          }
+        );
+      };
+    }
+  };
+})
 
-          $scope.save = function(note){
-            TreatmentNoteRes.save({treatment_id: $scope.treatment.id, treatment_note: note}, 
-              function(data){
-                console.log(data);
-                $scope.treatment.notes.push(data);
-                $scope.note.content = "";
-              }, function(error){
-                console.log(error);
-              }
-            );
-          };
-        }
-    };
+.directive('interventionForm', function(){
+  return {
+    restrict: 'E',
+    templateUrl: '/templates/interventions/InterventionForm.html',
+    scope: {
+      treatment: "=treatment"
+    },
+    controller: 'InterventionCtrl'
+  };
 })
 
 .factory('TreatmentRes', function($resource){
@@ -61,7 +107,6 @@ angular.module('conservar.treatment',[
     { id:'@id', item_id: '@item_id' },
     { 
       'update': { method: 'PATCH' },
-      'destroy': { method: 'DELETE', headers: {'Content-Type': 'application/json'}},
       'close': {method: 'POST'},
       'open': {method: 'POST'},
     });

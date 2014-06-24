@@ -1,11 +1,11 @@
 class TreatmentsController < ApplicationController
-  before_action :set_item
+  before_action :set_item, except: [:index]
   before_action :set_treatment, only: [:show, :update, :destroy, :close, :open]
 
   # GET /treatments
   # GET /treatments.json
   def index
-    @treatments = @item.treatments
+    @treatments = Treatment.all
   end
 
   # GET /treatments/1

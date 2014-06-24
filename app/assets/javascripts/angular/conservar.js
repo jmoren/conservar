@@ -6,9 +6,11 @@ angular.module('conservar',[
   'common.modal',
   'common.pagination',
   'conservar.item_detail',
+  'conservar.intervention',
   'conservar.item',
-  'conservar.items',
   'conservar.treatment',
+  'conservar.treatments',
+  'conservar.collection',
   'conservar.collections',
   'conservar.dashboard'
   ])

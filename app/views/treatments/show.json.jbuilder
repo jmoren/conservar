@@ -15,4 +15,9 @@ json.treatment do
       json.content note.content
     end
   end
+  json.interventions do
+    json.array!(@treatment.interventions) do |intervention|
+      json.extract! intervention, :id, :description, :created_at, :intervention_type
+    end
+  end
 end

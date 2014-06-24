@@ -1,0 +1,78 @@
+
+<div class="navbar navbar-default" ng-init="init()">
+  <div class="col-md-12" style="padding-top:20px;margin-left:-1px">
+    <div class="page-header subnav">
+      <h1>
+        Items
+        <a ng-click="openModal(null,'new')" class="btn btn-primary pull-right">
+          <i class="fa fa-plus"></i> New Collection
+        </a>
+      </h1>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-7">
+      <div style="height:350px;overflow:scroll" class="panel panel-default">
+        <div class="panel-heading">
+          <ul class="pagination pagination-sm" style="margin:0 0 5px 0">
+            <li ng-class="{disabled: pagination.page == 0}">
+              <a ng-disabled="pagination.page == 0" ng-click="pagination.prevPage()">&laquo;</a>
+            </li>
+            <li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}"  ng-disabled="n == pagination.page">
+              <a ng-click="pagination.toPageId(n)">{{n + 1}}</a>
+            </li>
+            <li ng-class="{disabled: pagination.page+1 == pagination.numPages}">
+              <a ng-disabled="pagination.page+1 == pagination.numPages" ng-click="pagination.nextPage()">&raquo;</a>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="collection in collections | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+              <a ng-click="setSelected(collection)">
+                <i class="fa fa-tag"></i> {{ collection.name }} 
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="item-panel">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4 ng-hide="selected" class="text-center text-muted">
+                Select collection to preview
+              </h4>
+              <h4 ng-show="selected">
+                {{selected_collection.name}}
+                <button ng-click="close_selected()" ng-show="selected" class="close pull-right">×</button>
+              </h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <p ng-hide="selected" class="text-center text-muted">
+              Item details
+            </p>
+            <h5 ng-show="selected_collection.items.length < 1">
+              No hay items
+            </h5>
+            <div class="item" ng-repeat="item in selected_collection.items">
+              <i class="fa fa-chevron-right"></i>
+              <a href="#/items/{{item.id}}"> {{ item.name }}</a>
+            </div>
+            <div ng-show="selected">
+              <hr>
+              <div class="btn-group btn-group-sm" >
+                <a href="#/collections/{{selected_collection.id}}" class="btn btn-default">Open</a>
+                <a ng-click="openModal(selected_collection,'edit')" class="btn btn-default">Edit</a>
+                <a ng-click="remove(selected_collection)" class="btn btn-default">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,7 +29,7 @@ class InterventionsController < ApplicationController
     respond_to do |format|
       if @intervention.save
         format.html { redirect_to @intervention, notice: 'Intervention was successfully created.' }
-        format.json { render :show, status: :created, location: @intervention }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json { render json: @intervention.errors, status: :unprocessable_entity }
@@ -43,7 +43,7 @@ class InterventionsController < ApplicationController
     respond_to do |format|
       if @intervention.update(intervention_params)
         format.html { redirect_to @intervention, notice: 'Intervention was successfully updated.' }
-        format.json { render :show, status: :ok, location: @intervention }
+        format.json { render :show, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @intervention.errors, status: :unprocessable_entity }

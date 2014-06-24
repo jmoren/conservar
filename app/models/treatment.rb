@@ -1,6 +1,8 @@
 class Treatment < ActiveRecord::Base
   belongs_to :item
   has_many :treatment_notes, dependent: :destroy
+  has_many :images, dependent: :destroy
+  has_many :interventions, dependent: :destroy
 
   def closed?
     !closed_at.nil? && closed_at >= Date.today

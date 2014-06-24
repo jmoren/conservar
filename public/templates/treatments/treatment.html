@@ -1,0 +1,83 @@
+<div ng-controller="TreatmentCtrl" ng-init="init()">
+  <div class="col-md-12" style="padding-top: 20px">
+    <div class="page-header subnav">
+      <h1> 
+        Treatment #{{ treatment.id }}
+        <a href="#/items/{{treatment.item.id}}" class="pull-left subnav-link">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+      </h1>
+    </div>
+    <div class="alert col-md-12" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
+       <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+      {{alert.message}}
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4> 
+            Diagnostico / Propuesta
+            <a href="#" class="btn btn-sm btn-primary pull-right"><i class="fa fa-edit"></i> Editar</a>
+          </h4>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p class="well well-xs" ng-bind-html="treatment.diagnosis"></p>
+        <p class="well well-xs" ng-bind-html="treatment.proposal"></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <a class="close pull-right" ng-click="toggleActions = true" ng-hide="toggleActions">&plus;</a>
+          <a class="close pull-right" ng-click="toggleActions = false" ng-show="toggleActions">&times;</a>
+          <h4> Intervenciones </h4>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div  ng-show="toggleActions">
+          <intervention-form treatment="treatment"></intervention-form>
+          <hr>
+        </div>
+        <div class="intervention" ng-repeat="intervention in treatment.interventions">
+          <div class="col-md-2" style="padding-left:0px;padding-right:3px">
+            <div class="label label-primary">{{intervention.intervention_type}}</div>
+            <p class="toggle-intervention"> 
+              <a ng-click="open = true">Abrir <i class="fa fa-external-link"></i></a>
+            </p>
+          </div>
+          <div class="col-md-10" style="padding-right:0px">
+            <div class="well well-sm">
+              <p>{{ intervention.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <a class="close pull-right" ng-click="toggleNotes = true" ng-hide="toggleNotes">&plus;</a>
+          <a class="close pull-right" ng-click="toggleNotes = false" ng-show="toggleNotes">&times;</a>
+          <h4>Notas</h4>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div ng-show="toggleNotes">
+          <treatment-note note="current_note" treatment="treatment"></treatment-note>
+          <hr>    
+        </div>
+        <div class="well well-sm" ng-repeat="note in treatment.notes">
+          <a ng-click="removeNote(note)" class="text-danger pull-right"><i class="fa fa-trash-o"></i></a>
+          <p><i class="fa fa-comments-o"></i> {{ note.content }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

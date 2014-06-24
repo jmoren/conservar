@@ -1,4 +1,4 @@
-<div ng-controller="ItemsCtrl" ng-init="init()">
+<div ng-controller="CollectionCtrl" ng-init="init()">
   <div class="col-md-12"  style="padding-top: 20px">
     <div class="page-header subnav">
       <h1>
@@ -9,7 +9,7 @@
       </h1>
     </div>
     <p>
-      <a ng-click="openModal(newItem,'md','new')" class="btn btn-primary"><i class="fa fa-plus"></i> Item</a>
+      <a ng-click="openModalItem(newItem,'new')" class="btn btn-primary"><i class="fa fa-plus"></i> Item</a>
       <a ng-click="openModalCollection(collection)" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
     </p>
     <div class="well">
@@ -30,10 +30,7 @@
           <div class="panel-body">
             <p>{{ item.description}}</p>
             <hr>
-            <div class="btn-group btn-group-xs">
-              <a ng-click="openModal(item,'md','show')" class="btn btn-green">Ver</a>
-              <a ng-click="openModal(item,'md','edit')" class="btn btn-green">Editar</a>
-            </div>
+            <a ng-click="openModalItem(item,'edit')" class="btn btn-green btn-xs">Editar</a>
             <a ng-click="remove(item)" class="btn btn-default btn-xs pull-right"><i class="fa fa-trash-o"></i> Borrar</a>
           </div>
         </div>
