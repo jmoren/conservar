@@ -41,18 +41,44 @@ table.details-table td:last-child{
   width: 50px;
 }
 
-
-.intervention .toggle-intervention{
-  font-size: 12px;
-  margin-top: 10px;
+.intervention{
+  margin-bottom: 10px;
+  border-bottom: solid 1px #f1f1f1;
+  padding-bottom: 7px;
 }
-.intervention .toggle-intervention a{
-  color: #999;
+
+.intervention:last-child{
+  border-bottom: none;
+}
+
+.intervention p{
+  margin-bottom: 5px;
+}
+.intervention .toggle-intervention{
+  float: right;
+  margin-top: 0px;
 }
 
 .intervention .toggle-intervention a i{
-  float: left;
-  margin: 3px 5px;
+  margin: 0px 10px;
+}
+
+.note{
+  margin-bottom: 10px;
+  border-bottom: solid 1px #f1f1f1;
+  padding-bottom: 7px;
+}
+
+.note:last-child{
+  border-bottom: none;
+}
+
+.note p{
+  margin-bottom: 5px;
+}
+
+.note small{
+  margin-top: 0px;
 }
 
 table.details-table td.detail-actions .actions{

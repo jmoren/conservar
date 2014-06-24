@@ -12,7 +12,9 @@ json.treatment do
   json.closed @treatment.closed?
   json.notes do
     json.array!(@treatment.treatment_notes) do |note|
+      json.id note.id
       json.content note.content
+      json.created_at distance_of_time_in_words_to_now(note.created_at)
     end
   end
   json.interventions do

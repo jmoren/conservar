@@ -19,6 +19,7 @@ angular.module('conservar.intervention',[
 .controller('InterventionCtrl', function($scope, $stateParams, $http, $modal, InterventionRes){
   // alert
   $scope.alert = { type: "", message: "" };
+  $scope.types = { consolidacion: "Consolidacion", limpieza: "Limipeza", montaje: "Montaje", preparacion: "Preparacion" };
 
   $scope.save = function(intervention){
     intervention.treatment_id = $scope.treatment.id;
@@ -27,6 +28,7 @@ angular.module('conservar.intervention',[
         $scope.treatment.interventions.push(data);
         $scope.addAlert("success", "Se guardo con exito");
         $scope.intervention.description = "";
+        $scope.intervention.intervention_type = "";
       },
       function(data){
         $scope.addAlert("danger", "No pudo guardarse, intente nuevamente");
@@ -59,7 +61,9 @@ angular.module('conservar.intervention',[
 .factory( 'InterventionRes', function ( $resource )  {
   var res = $resource("/treatments/:treatment_id/interventions/:id.json",
     { id:'@id', treatment_id: '@treatment_id' },
-    {}
+    {
+      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'} }
+    }
   );
   return res;
 });

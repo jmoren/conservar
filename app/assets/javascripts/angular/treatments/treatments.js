@@ -20,7 +20,6 @@ angular.module('conservar.treatments',[
   $scope.init = function(){
     TreatmentsRes.query(
       function(data){
-        console.log(data);
         $scope.treatments = data;
       },
       function(error){

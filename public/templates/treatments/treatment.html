@@ -43,18 +43,17 @@
           <intervention-form treatment="treatment"></intervention-form>
           <hr>
         </div>
-        <div class="intervention" ng-repeat="intervention in treatment.interventions">
+        <div class="intervention clearfix" ng-repeat="intervention in treatment.interventions">
           <div class="col-md-2" style="padding-left:0px;padding-right:3px">
             <div class="label label-primary">{{intervention.intervention_type}}</div>
-            <p class="toggle-intervention"> 
-              <a ng-click="open = true">Abrir <i class="fa fa-external-link"></i></a>
-            </p>
           </div>
-          <div class="col-md-10" style="padding-right:0px">
-            <div class="well well-sm">
-              <p>{{ intervention.description }}</p>
-            </div>
+          <div class="col-md-10" style="padding-right:0">
+            <p class="well well-sm">{{ intervention.description }}</p>
           </div>
+          <small class="toggle-intervention"> 
+            <a ng-click="removeIntervention(intervention)" class="text-danger">Remove </a> |
+            <a ng-click="openModalIntervention(intervention)">Abrir</a>
+          </small>
         </div>
       </div>
     </div>
@@ -73,9 +72,14 @@
           <treatment-note note="current_note" treatment="treatment"></treatment-note>
           <hr>    
         </div>
-        <div class="well well-sm" ng-repeat="note in treatment.notes">
-          <a ng-click="removeNote(note)" class="text-danger pull-right"><i class="fa fa-trash-o"></i></a>
-          <p><i class="fa fa-comments-o"></i> {{ note.content }}</p>
+        <div class="note clearfix" ng-repeat="note in treatment.notes">
+          <p class="well well-sm">
+            <i class="fa fa-comments-o"></i> {{ note.content }}
+          </p>
+          <small class="text-muted">
+            <a ng-click="removeNote(note)" class="text-danger pull-left">Eliminar</a>
+            <div class="pull-right">criado {{note.created_at}} <i class="fa fa-clock-o"></i></div>
+          </small>
         </div>
       </div>
     </div>

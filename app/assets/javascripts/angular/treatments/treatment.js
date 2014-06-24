@@ -32,17 +32,29 @@ angular.module('conservar.treatment',[
   };
 
   $scope.openModalIntervention = function(intervention){
-    current_intervention = intervention || new InterventionRes();
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
-          return current_intervention;
+          return intervention;
         }
       },
       scope: $scope,
       controller: 'modalCtrl',
-      templateUrl: "../templates/interventions/modalInterventionForm"
+      templateUrl: "../templates/interventions/modalIntervention.html"
     });
+  };
+
+  $scope.removeNote = function(note){
+    TreatmentNoteRes.remove({treatment_id: $scope.treatment.id }, note,
+      function(data){
+        index = $scope.treatment.notes.indexOf(note);
+        $scope.treatment.notes.splice(index,1);
+        $scope.addAlert("success", "Se elimino con exito");
+      },
+      function(data){
+        $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+      }
+    );    
   };
 
   $scope.removeIntervention = function(intervention){
@@ -77,9 +89,8 @@ angular.module('conservar.treatment',[
     },
     controller: function($scope, TreatmentNoteRes) {
       $scope.save = function(note){
-        TreatmentNoteRes.save({treatment_id: $scope.treatment.id, treatment_note: note}, 
+        TreatmentNoteRes.save({treatment_id: $scope.treatment.id}, note, 
           function(data){
-            console.log(data);
             $scope.treatment.notes.push(data);
             $scope.note.content = "";
           }, function(error){
@@ -117,7 +128,7 @@ angular.module('conservar.treatment',[
   var res = $resource("/treatments/:treatment_id/treatment_notes/:id.json",
     { id:'@id', treatment_id: '@treatment_id' },
     { 
-      'update': { method: 'PATCH' },
+      'update': { method: 'PATCH' }
     });
   return res;
 });

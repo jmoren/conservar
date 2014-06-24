@@ -5,9 +5,7 @@
       <div class="form-group">
         <lable> Tipo de intervencion</lable>
         <select name="intervention_type" ng-model="intervention.intervention_type" class="form-control" placeholder="Seleccion">
-          <option value="limpieza">Limpieza</option>
-          <option value="consolidacion">Consolidacion</option>
-          <option value="montaje">Montaje</option>
+          <option ng-repeat="(key,value) in types" value="{{key}}">{{value}}</option>
         </select>
       </div>
     </div>
