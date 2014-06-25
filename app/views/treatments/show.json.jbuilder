@@ -17,6 +17,14 @@ json.treatment do
       json.created_at distance_of_time_in_words_to_now(note.created_at)
     end
   end
+  json.images do
+    json.array!(@treatment.images) do |image|
+      json.id image.id
+      json.photo image.photo_url
+      json.description image.description
+      json.intervention_id image.intervention_id
+    end
+  end
   json.interventions do
     json.array!(@treatment.interventions) do |intervention|
       json.extract! intervention, :id, :description, :created_at, :intervention_type

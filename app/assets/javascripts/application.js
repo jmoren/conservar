@@ -17,6 +17,6 @@
 //= require angular-resource
 //= require angular-ui-router
 //= require angular-bootstrap
-//= require angular-underscore-string
+//= require angular-upload
 //= require angular/conservar
 //= require_tree .

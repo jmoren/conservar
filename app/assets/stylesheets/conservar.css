@@ -253,8 +253,6 @@ table.details-table tr.detail-row:hover td .actions{
 
 #search-form{
   position: relative;
-  margin: -1px;
-  padding: 0; 
 }
 
 #search-form .control-form input.form-control{
@@ -264,19 +262,15 @@ table.details-table tr.detail-row:hover td .actions{
   box-shadow: none;
   -webkit-transition: none;
   transition: none;
-  padding: 16px;
-  height: auto;
+  padding: 10px;
   border-radius: 0;
-  border-top: none;
-  border-left:none;
-  border-right: none;
-  border-bottom: 1px solid #ccc;
+  float: right;
 }
 
 #search-form .control-form i{
   position: absolute;
-  right: 15px;
-  top: 18px;
+  right: 25px;
+  top: 10px;
   color: #999;
 }
 #search-form .control-form input.form-control:focus{
@@ -286,16 +280,19 @@ table.details-table tr.detail-row:hover td .actions{
 }
 
 .settings{
-  padding-right: 30px;
+  padding: 0px;
   font-size: 20px;
+  margin: -1px;
 }
 
 .settings > li > a{
   padding: 16px;
-  margin: -1px 1px;
 }
 .settings > li > a{
   color: #f1f1f1;
+}
+.settings > li > .dropdown-menu{
+  margin: -1px;
 }
 
 .btn-green{
@@ -314,4 +311,9 @@ table.details-table tr.detail-row:hover td .actions{
 .item-panel .item i{
   color: #4F4F4F;
   font-size: 12px;
+}
+
+table.image-info{
+  font-size: 12px;
+  margin-bottom: 0px;
 }

@@ -12,24 +12,16 @@ class ImagesController < ApplicationController
   def show
   end
 
-  # GET /images/new
-  def new
-    @image = Image.new
-  end
-
-  # GET /images/1/edit
-  def edit
-  end
-
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(image_params)
-
+    @treatment = Treatment.find(params[:treatment_id])
+    @image = @treatment.images.new(image_params)
+    
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json { render json: @image.errors, status: :unprocessable_entity }

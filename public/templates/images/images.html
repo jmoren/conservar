@@ -1,0 +1,34 @@
+<div ng-controller="ImagesCtrl" ng-init="init()">
+  <div class="col-md-12" style="padding-top: 20px">
+    <div class="page-header subnav">
+      <h1> 
+        Imagens
+        <a class="subnav-link pull-right" ng-click="toggleDetails = true" ng-hide="toggleDetails"><i class="fa fa-plus"></i> Detalles</a>
+        <a class="subnav-link pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> Detalles</a>
+      </h1>
+    </div>
+    <div class="col-md-4" ng-repeat="image in images">
+      <div class="thumbnail">
+        <a href="#/treatments/{{image.treatment.id}}/images/{{image.id}}">
+          <img ng-src="{{image.photo}}">
+        </a>
+        <div class="caption" ng-show="toggleDetails">
+          <p class="well well-sm">{{ image.description}}</p>
+          <table class="table image-info">
+            <tbody>
+              <tr>
+                <td><i class="fa fa-paperclip"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-paperclip"></i>  Treatment</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-paperclip"></i> Intervention</td><td>#{{image.intervention.id}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

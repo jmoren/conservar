@@ -15,7 +15,7 @@ angular.module('conservar.treatment',[
   });
 })
 
-.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes){
+.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, upload){
   $scope.alert = { type: "", message: "" };
   $scope.current_note = new TreatmentNoteRes();
   $scope.current_intervention = new InterventionRes();
@@ -27,6 +27,29 @@ angular.module('conservar.treatment',[
       },
       function(error){
         console.log("error");      
+      }
+    );
+  };
+
+  $scope.doUpload = function(data){
+    upload({
+      url: '/treatments/'+$scope.treatment.id+'/images.json',
+      method:"POST",
+      data: { 
+        "image[treatment_id]": $scope.treatment.id, 
+        "image[item_id]": $scope.treatment.item.id,
+        "image[photo]": $("#file")[0].files[0],
+        "image[description]": data.description,
+        "image[intervention_id]": data.intervention_id
+      }
+    }).then(
+      function (response) {
+        $scope.treatment.images.push(response.data.image);
+        data.description = "";
+        data.intervention_id = "";
+      },
+      function (response) {
+        console.log(response);
       }
     );
   };
@@ -78,6 +101,19 @@ angular.module('conservar.treatment',[
     $scope.alert.type = "";
     $scope.alert.message = "";
   };
+
+  $scope.getFile = function (image) {
+    $scope.progress = 0;
+    fileReader.readAsDataUrl($scope.file, $scope).then(
+      function(result) {
+        $scope.imageSrc = result;
+      });
+  };
+
+  $scope.$on("fileProgress", function(e, progress) {
+    $scope.progress = progress.loaded / progress.total;
+  });
+ 
 })
 
 .directive('treatmentNote', function(){

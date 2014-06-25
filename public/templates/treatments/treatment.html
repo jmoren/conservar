@@ -84,4 +84,60 @@
       </div>
     </div>
   </div>
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <a class="close pull-right" ng-click="toggleImages = true" ng-hide="toggleImages">&plus;</a>
+          <a class="close pull-right" ng-click="toggleImages = false" ng-show="toggleImages">&times;</a>
+          <h4>Imagens</h4>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div ng-show="toggleImages">
+          <form name="imageForm" ng-submit="doUpload(dataForm)">        
+            <div class="row"> 
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-label">Intervention</label>
+                  <select ng-model="dataForm.intervention_id" class="form-control">
+                    <option value="">select</option>
+                    <option ng-repeat="intervention in treatment.interventions" value="{{intervention.id}}">{{intervention.id}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Imagen</label>
+                  <input id="file" type="file"/>
+                </div>
+              </div>
+              <div class="col-md-8">      
+                <div class="form-group">          
+                  <label class="form-label">Descripcion</label>
+                  <textarea ng-model="dataForm.description" rows="4" class="form-control" placeholder="Agregar una descripcion"/>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-green">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-3" ng-repeat="image in treatment.images">
+            <div class="thumbnail">
+              <img ng-src="{{image.photo}}">
+              <div class="caption">
+                <p>{{ image.description}}</p>
+                <p>Intervention: #{{ image.intervention_id }} </p>
+                <small><a href="#/treatments/{{treatment.id}}/images/{{image.id}}">Ver</a> | <a href="#">Borrar</a></small>
+              </div>       
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>

@@ -1,0 +1,41 @@
+<div ng-controller="ImageCtrl" ng-init="init()">
+  <div class="col-md-12" style="padding-top: 20px">
+    <div class="page-header subnav">
+      <h1> 
+        {{ image.description }}
+        <a href="#/images" class="pull-left subnav-link">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+      </h1>
+    </div>
+    <div class='col-md-7'>
+      <div class='thumbnail'>
+        <img ng-elevate-zoom ng-src='{{image.photo}}' zoom-image='{{image.photo}}'>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <button class="btn btn-primary btn-sm">Editar</button>
+          <button class="btn btn-danger btn-sm">Eliminar</button>
+        </div>
+        <div class="panel-body">
+          <p class="well well-sm">{{ image.description}}</p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><i class="fa fa-check"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-search"></i>  Treatment</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-wrench"></i> Intervention</td><td>#{{image.intervention.id}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

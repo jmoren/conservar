@@ -1,7 +1,6 @@
 angular.module('conservar',[
   'ui.router',
   'ngWYSIWYG',
-  'underscore.string',
   'ngSanitize',
   'common.modal',
   'common.pagination',
@@ -12,7 +11,10 @@ angular.module('conservar',[
   'conservar.treatments',
   'conservar.collection',
   'conservar.collections',
-  'conservar.dashboard'
+  'conservar.images',
+  'conservar.image',
+  'conservar.dashboard',
+  'lr.upload'
   ])
 
 .config( function ConservarConfig ( $stateProvider, $urlRouterProvider ) {
