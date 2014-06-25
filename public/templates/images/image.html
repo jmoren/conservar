@@ -16,11 +16,18 @@
     <div class="col-md-5">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <button class="btn btn-primary btn-sm">Editar</button>
-          <button class="btn btn-danger btn-sm">Eliminar</button>
+          <button class="btn btn-primary btn-sm" ng-click="updateImage = true">Editar</button>
+          <button class="btn btn-danger btn-sm" ng-click="remove(image)">Eliminar</button>
         </div>
         <div class="panel-body">
-          <p class="well well-sm">{{ image.description}}</p>
+          <form ng-submit="update(image)" name="imageForm" ng-show="updateImage" style="margin-bottom: 15px;">
+            <div class="form-group" ng-class="{'has-error':imageForm.description.$invalid && imageForm.description.$dirty}">
+              <textarea class="form-control" ng-model="image.description" value="image.description" required/>
+            </div>
+            <button ng-disabled="imageForm.$invalid" type="submit" class="btn btn-xs btn-green">Guardar</button>
+            <button ng-click="updateImage = false" class="btn btn-xs btn-default">Cancelar</button>
+          </form>
+          <p ng-hide="updateImage" class="well well-sm">{{ image.description}}</p>
           <table class="table">
             <tbody>
               <tr>

@@ -12,6 +12,6 @@ json.image do
     json.url item_treatment_path(@image.item, @image.treatment)
   end
   json.intervention do
-    json.id @image.intervention ? @image.intervention.id : null
+    json.id @image.intervention ? @image.intervention.id : nil
   end
 end

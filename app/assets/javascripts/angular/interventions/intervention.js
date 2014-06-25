@@ -25,7 +25,7 @@ angular.module('conservar.intervention',[
     intervention.treatment_id = $scope.treatment.id;
     InterventionRes.save({ treatment_id: $scope.treatment.id }, intervention,
       function(data){
-        $scope.treatment.interventions.push(data);
+        $scope.interventions.push(data);
         $scope.addAlert("success", "Se guardo con exito");
         $scope.intervention.description = "";
         $scope.intervention.intervention_type = "";

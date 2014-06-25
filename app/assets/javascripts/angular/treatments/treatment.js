@@ -23,7 +23,11 @@ angular.module('conservar.treatment',[
   $scope.init = function(){
     TreatmentRes.get($stateParams,
       function(data){
-        $scope.treatment = data.treatment;
+        $scope.treatment        = data.treatment;
+        $scope.images           = data.images;
+        $scope.notes            = data.notes;
+        $scope.interventions    = data.interventions;
+        $scope.treatment_status = data.status;
       },
       function(error){
         console.log("error");      
@@ -32,26 +36,35 @@ angular.module('conservar.treatment',[
   };
 
   $scope.doUpload = function(data){
+    console.log(data);
     upload({
       url: '/treatments/'+$scope.treatment.id+'/images.json',
       method:"POST",
       data: { 
         "image[treatment_id]": $scope.treatment.id, 
-        "image[item_id]": $scope.treatment.item.id,
+        "image[item_id]": $scope.treatment.item_id,
         "image[photo]": $("#file")[0].files[0],
         "image[description]": data.description,
         "image[intervention_id]": data.intervention_id
       }
     }).then(
       function (response) {
-        $scope.treatment.images.push(response.data.image);
+        $scope.images.push(response.data.image);
         data.description = "";
         data.intervention_id = "";
+        $("#imageForm")[0].reset();
       },
       function (response) {
         console.log(response);
       }
     );
+  };
+
+  $scope.update = function(treatment){
+    TreatmentRes.update({item_id: treatment.item.id, id: $scope.treatment.id}, treatment, function(){
+      $scope.editDiagnosis = false;
+      $scope.editProposal  = false;
+    });
   };
 
   $scope.openModalIntervention = function(intervention){
@@ -70,8 +83,8 @@ angular.module('conservar.treatment',[
   $scope.removeNote = function(note){
     TreatmentNoteRes.remove({treatment_id: $scope.treatment.id }, note,
       function(data){
-        index = $scope.treatment.notes.indexOf(note);
-        $scope.treatment.notes.splice(index,1);
+        index = $scope.notes.indexOf(note);
+        $scope.notes.splice(index,1);
         $scope.addAlert("success", "Se elimino con exito");
       },
       function(data){
@@ -83,8 +96,8 @@ angular.module('conservar.treatment',[
   $scope.removeIntervention = function(intervention){
     InterventionRes.remove({treatment_id: $scope.treatment.id}, intervention,
       function(data){
-        index = $scope.treatment.interventions.indexOf(intervention);
-        $scope.treatment.interventions.splice(index,1);
+        index = $scope.interventions.indexOf(intervention);
+        $scope.interventions.splice(index,1);
         $scope.addAlert("success", "Se elimino con exito");
       },
       function(data){
@@ -101,19 +114,6 @@ angular.module('conservar.treatment',[
     $scope.alert.type = "";
     $scope.alert.message = "";
   };
-
-  $scope.getFile = function (image) {
-    $scope.progress = 0;
-    fileReader.readAsDataUrl($scope.file, $scope).then(
-      function(result) {
-        $scope.imageSrc = result;
-      });
-  };
-
-  $scope.$on("fileProgress", function(e, progress) {
-    $scope.progress = progress.loaded / progress.total;
-  });
- 
 })
 
 .directive('treatmentNote', function(){
@@ -121,13 +121,14 @@ angular.module('conservar.treatment',[
     restrict: 'E',
     templateUrl: '/templates/treatments/treatmentNoteForm.html',
     scope: {
-      treatment: '=treatment'
+      treatment: '=treatment',
+      notes: '=notes'
     },
     controller: function($scope, TreatmentNoteRes) {
       $scope.save = function(note){
         TreatmentNoteRes.save({treatment_id: $scope.treatment.id}, note, 
           function(data){
-            $scope.treatment.notes.push(data);
+            $scope.notes.push(data);
             $scope.note.content = "";
           }, function(error){
             console.log(error);
@@ -143,7 +144,8 @@ angular.module('conservar.treatment',[
     restrict: 'E',
     templateUrl: '/templates/interventions/InterventionForm.html',
     scope: {
-      treatment: "=treatment"
+      treatment: "=treatment",
+      interventions: "=interventions"
     },
     controller: 'InterventionCtrl'
   };

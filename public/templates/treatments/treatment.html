@@ -2,7 +2,7 @@
   <div class="col-md-12" style="padding-top: 20px">
     <div class="page-header subnav">
       <h1> 
-        Treatment #{{ treatment.id }}
+        Tratamento #{{ treatment.id }}
         <a href="#/items/{{treatment.item.id}}" class="pull-left subnav-link">
           <i class="fa fa-chevron-left"></i>
         </a>
@@ -18,14 +18,30 @@
       <div class="panel-heading">
         <div class="panel-title">
           <h4> 
-            Diagnostico / Propuesta
-            <a href="#" class="btn btn-sm btn-primary pull-right"><i class="fa fa-edit"></i> Editar</a>
+            Diagnóstico / Proposta
           </h4>
         </div>
       </div>
       <div class="panel-body">
-        <p class="well well-xs" ng-bind-html="treatment.diagnosis"></p>
-        <p class="well well-xs" ng-bind-html="treatment.proposal"></p>
+        <p ng-dblclick="editDiagnosis = true" ng-hide="editDiagnosis" class="well well-xs" ng-bind-html="treatment.diagnosis"></p>
+        <form ng-submit="update(treatment)" ng-show="editDiagnosis">
+          <wysiwyg-edit name="diagnosis" content="treatment.diagnosis"></wysiwyg-edit>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-green">Salvar</button>
+            <button ng-click="editDiagnosis = false" class="btn btn-sm btn-default">Cancelar</button>
+          </div>
+          <hr>
+        </form>
+        <p ng-dblclick="editTreatment = true" ng-hide="editTreatment" class="well well-xs" ng-bind-html="treatment.proposal"></p>
+        <form ng-submit="update(treatment)" ng-show="editTreatment">
+          <wysiwyg-edit name="proposal" content="treatment.proposal"></wysiwyg-edit>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-green">Salvar</button>
+            <button ng-click="editProposal = false" class="btn btn-sm btn-default">Cancelar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -35,15 +51,16 @@
         <div class="panel-title">
           <a class="close pull-right" ng-click="toggleActions = true" ng-hide="toggleActions">&plus;</a>
           <a class="close pull-right" ng-click="toggleActions = false" ng-show="toggleActions">&times;</a>
-          <h4> Intervenciones </h4>
+          <h4> Intervenções </h4>
         </div>
       </div>
       <div class="panel-body">
         <div  ng-show="toggleActions">
-          <intervention-form treatment="treatment"></intervention-form>
+          <intervention-form interventions="interventions" treatment="treatment"></intervention-form>
           <hr>
         </div>
-        <div class="intervention clearfix" ng-repeat="intervention in treatment.interventions">
+        <h4 class="text-muted" ng-show="interventions.length < 1">Atualmente não há intervenções</h4>
+        <div class="intervention clearfix" ng-repeat="intervention in interventions">
           <div class="col-md-2" style="padding-left:0px;padding-right:3px">
             <div class="label label-primary">{{intervention.intervention_type}}</div>
           </div>
@@ -51,8 +68,8 @@
             <p class="well well-sm">{{ intervention.description }}</p>
           </div>
           <small class="toggle-intervention"> 
-            <a ng-click="removeIntervention(intervention)" class="text-danger">Remove </a> |
-            <a ng-click="openModalIntervention(intervention)">Abrir</a>
+            <a ng-click="openModalIntervention(intervention)">Ver</a> -
+            <a ng-click="removeIntervention(intervention)" class="text-danger"> Apagar</a>
           </small>
         </div>
       </div>
@@ -69,16 +86,17 @@
       </div>
       <div class="panel-body">
         <div ng-show="toggleNotes">
-          <treatment-note note="current_note" treatment="treatment"></treatment-note>
+          <treatment-note notes="notes" open="toogleNotes" treatment="treatment"></treatment-note>
           <hr>    
         </div>
-        <div class="note clearfix" ng-repeat="note in treatment.notes">
+        <h4 class="text-muted" ng-show="notes.length < 1">Atualmente não há notas</h4>
+        <div class="note clearfix" ng-repeat="note in notes">
           <p class="well well-sm">
             <i class="fa fa-comments-o"></i> {{ note.content }}
           </p>
           <small class="text-muted">
-            <a ng-click="removeNote(note)" class="text-danger pull-left">Eliminar</a>
-            <div class="pull-right">criado {{note.created_at}} <i class="fa fa-clock-o"></i></div>
+            <a ng-click="removeNote(note)" class="text-danger pull-right">Apagar</a>
+            <div class="pull-left">criado {{note.created_at}} <i class="fa fa-clock-o"></i></div>
           </small>
         </div>
       </div>
@@ -95,44 +113,54 @@
       </div>
       <div class="panel-body">
         <div ng-show="toggleImages">
-          <form name="imageForm" ng-submit="doUpload(dataForm)">        
+          <form name="imageForm" id="imageForm" ng-submit="doUpload(dataForm)">        
             <div class="row"> 
               <div class="col-md-4">
                 <div class="form-group">
-                  <label class="form-label">Intervention</label>
+                  <label class="form-label">Intervenção <small class="text-muted">(Opcional)</small></label>
                   <select ng-model="dataForm.intervention_id" class="form-control">
-                    <option value="">select</option>
-                    <option ng-repeat="intervention in treatment.interventions" value="{{intervention.id}}">{{intervention.id}}</option>
+                    <option value="">seleciona</option>
+                    <option ng-repeat="intervention in interventions" value="{{intervention.id}}">{{intervention.id}}</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Imagen</label>
-                  <input id="file" type="file"/>
+                  <label class="form-label">Imagem</label>
+                  <br>
+                  <div class="image-placeholder">
+                    <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+                    <i class="fa fa-camera"></i>
+                  </div>
+                  <div class="fileUpload btn btn-green btn-sm">
+                    <span>Imagem</span>
+                    <input type="file" class="upload" id="file" type="file"/>
+                  </div>
                 </div>
               </div>
               <div class="col-md-8">      
                 <div class="form-group">          
-                  <label class="form-label">Descripcion</label>
-                  <textarea ng-model="dataForm.description" rows="4" class="form-control" placeholder="Agregar una descripcion"/>
+                  <label class="form-label">Descrição / Nome <small class="text-muted">(Opcional)</small></label>
+                  <textarea ng-model="dataForm.description" rows="5" class="form-control" placeholder="Agregar una descripcion"/>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-green">Agregar</button>
+                  <button type="submit" class="btn btn-primary btn-sm btn-primary">Salvar</button>
+                  <button class="btn btn-default btn-sm" ng-click="toggleImages=false">Cancelar</button>
                 </div>
               </div>
             </div>
           </form>
           <hr>
         </div>
+        <h4 class="text-muted" ng-show="images.length < 1">Atualmente não há imagens</h4>
         <div class="row">
-          <div class="col-md-3" ng-repeat="image in treatment.images">
+          <div class="col-md-3" ng-repeat="image in images">
             <div class="thumbnail">
               <img ng-src="{{image.photo}}">
               <div class="caption">
                 <p>{{ image.description}}</p>
-                <p>Intervention: #{{ image.intervention_id }} </p>
-                <small><a href="#/treatments/{{treatment.id}}/images/{{image.id}}">Ver</a> | <a href="#">Borrar</a></small>
+                <p>Intervenção: #{{ image.intervention.id }} </p>
+                <small><a href="#/treatments/{{treatment.id}}/images/{{image.id}}">Ver</a> - <a href="#">Apagar</a></small>
               </div>       
             </div>
           </div>
@@ -141,3 +169,12 @@
     </div>
   </div>  
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#file").on('change', function () {
+      filename = $(this).val().split("\\")[2];
+      console.log(filename);
+      $("#uploadFile").val(filename);
+    });  
+  });
+</script>

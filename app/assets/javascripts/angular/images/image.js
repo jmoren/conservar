@@ -17,6 +17,7 @@ angular.module('conservar.image',[
 
 .controller('ImageCtrl', function($scope, $location, $stateParams, ImageRes){
   $scope.alert = { type: "", message: "" };
+  $scope.updateImage = false;
 
   $scope.init = function(){
     ImageRes.get($stateParams,
@@ -27,6 +28,34 @@ angular.module('conservar.image',[
         console.log("error");      
       }
     );
+  };
+
+  $scope.update = function(image){
+    console.log(image);
+    ImageRes.update({treatment_id: image.treatment.id}, image, 
+      function(data){
+        $scope.updateImage = false;
+      },
+      function(error){
+        console.log(error);
+      }
+    );
+  };
+
+  $scope.remove = function(image){
+    res = confirm("Estas seguro?");
+    if(res){
+      ImageRes.remove({treatment_id: image.treatment.id}, image, 
+        function(data){
+          location = "#/items/"+image.item.id+"/treatments/" + image.treatment.id;
+          $location.path(location);
+      
+        },
+        function(error){
+          console.log(error);
+        }
+      );
+    }
   };
 
   $scope.addAlert = function(type, message){

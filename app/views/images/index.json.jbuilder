@@ -1,6 +1,6 @@
 json.array!(@images) do |image|
   json.id image.id
-  json.description image.description
+  json.description truncate(image.description)
   json.photo image.photo_url
   json.item do
     json.id image.item.id
@@ -12,6 +12,6 @@ json.array!(@images) do |image|
     json.url item_treatment_path(image.item, image.treatment)
   end
   json.intervention do
-    json.id image.intervention ? image.intervention.id : null
+    json.id image.intervention ? image.intervention.id : nil
   end
 end
