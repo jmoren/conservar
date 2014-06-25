@@ -61,7 +61,7 @@ angular.module('conservar.treatment',[
   };
 
   $scope.update = function(treatment){
-    TreatmentRes.update({item_id: treatment.item.id, id: $scope.treatment.id}, treatment, function(){
+    TreatmentRes.update({item_id: treatment.item_id, id: $scope.treatment.id}, treatment, function(){
       $scope.editDiagnosis = false;
       $scope.editProposal  = false;
     });
