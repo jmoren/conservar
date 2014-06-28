@@ -16,7 +16,7 @@ angular.module('conservar.item',[
   });
 })
 
-.controller('ItemCtrl', function($scope, $stateParams, $http, $modal, ItemRes, ItemDetailRes, TreatmentRes){
+.controller('ItemCtrl', function($scope, $stateParams, $http, $modal, ItemRes, ItemDetailRes, TreatmentRes, upload){
   // alert
   $scope.alert = { type: "", message: "" };
 
@@ -45,6 +45,27 @@ angular.module('conservar.item',[
     ItemRes.update({}, item, function(){
       $modalInstance.close();
     });
+  };
+
+  $scope.uploadCover = function(){
+    upload({
+      url: '/items/'+$scope.item.id+'/upload.json',
+      method:"PATCH",
+      data: { 
+        "collection_id": $scope.collection.id,
+        "item[cover]": $("#cover")[0].files[0]
+      }
+    }).then(
+      function (response) {
+        console.log(response);
+        $("#itemCover")[0].reset();
+        $scope.updateFile = false;
+        $scope.addAlert("success", "A imagem foi atualizada");
+      },
+      function (response) {
+        $scope.addAlert("danger", "A imagem nao foi atualizada");
+      }
+    );
   };
 
   $scope.openModalItem = function(myItem){
@@ -226,6 +247,22 @@ angular.module('conservar.item',[
 
 })
 
+.directive("ngFileSelect",function(){
+  return {
+    link: function($scope,el){
+      el.bind("change", function(e){
+        file = (e.srcElement || e.target).files[0];
+        reader = new FileReader();
+        reader.onload = function (e){
+          $('#preview').attr('src',e.target.result).height(150).width(200);
+          filename = el.val().split("\\")[2];
+          $("#uploadFile").val(filename);
+        };
+        reader.readAsDataURL(file);
+      }); 
+    }
+  };
+})
 .factory( 'ItemRes', function ( $resource )  {
   var res = $resource("/items/:id.json",
     { id:'@id' },

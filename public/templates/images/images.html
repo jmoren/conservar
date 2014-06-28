@@ -10,7 +10,7 @@
     <div class="col-md-4" ng-repeat="image in images">
       <div class="thumbnail">
         <a href="#/treatments/{{image.treatment.id}}/images/{{image.id}}">
-          <img ng-src="{{image.photo}}">
+          <img ng-src="{{image.photo}}"  style="height:205px">
         </a>
         <div class="caption" ng-show="toggleDetails">
           <p class="well well-sm">{{ image.description}}</p>

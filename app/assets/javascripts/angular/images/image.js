@@ -31,7 +31,6 @@ angular.module('conservar.image',[
   };
 
   $scope.update = function(image){
-    console.log(image);
     ImageRes.update({treatment_id: image.treatment.id}, image, 
       function(data){
         $scope.updateImage = false;

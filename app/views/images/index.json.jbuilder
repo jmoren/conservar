@@ -1,6 +1,6 @@
 json.array!(@images) do |image|
   json.id image.id
-  json.description truncate(image.description)
+  json.description truncate(image.description, length:30)
   json.photo image.photo_url
   json.item do
     json.id image.item.id

@@ -53,21 +53,23 @@
           </div>
           <div class="panel-body">
             <p ng-hide="selected" class="text-center text-muted">
-              Item details
+              Items details
             </p>
-            <h5 ng-show="selected_collection.items.length < 1">
-              No hay items
-            </h5>
-            <div class="item" ng-repeat="item in selected_collection.items">
-              <i class="fa fa-chevron-right"></i>
-              <a href="#/items/{{item.id}}"> {{ item.name }}</a>
-            </div>
             <div ng-show="selected">
-              <hr>
-              <div class="btn-group btn-group-sm" >
-                <a href="#/collections/{{selected_collection.id}}" class="btn btn-default">Open</a>
-                <a ng-click="openModal(selected_collection,'edit')" class="btn btn-default">Edit</a>
-                <a ng-click="remove(selected_collection)" class="btn btn-default">Delete</a>
+              <h5 ng-show="selected_collection.items.length < 1">
+                No hay items
+              </h5>
+              <div class="item" ng-repeat="item in selected_collection.items">
+                <i class="fa fa-chevron-right"></i>
+                <a href="#/items/{{item.id}}"> {{ item.name }}</a>
+              </div>
+              <div ng-show="selected">
+                <hr>
+                <div class="btn-group btn-group-sm" >
+                  <a href="#/collections/{{selected_collection.id}}" class="btn btn-default">Open</a>
+                  <a ng-click="openModal(selected_collection,'edit')" class="btn btn-default">Edit</a>
+                  <a ng-click="remove(selected_collection)" class="btn btn-default">Delete</a>
+                </div>
               </div>
             </div>
           </div>

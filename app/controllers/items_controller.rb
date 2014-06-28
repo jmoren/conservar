@@ -64,7 +64,24 @@ class ItemsController < ApplicationController
     end
   end
 
+  def upload
+    @collection = Collection.find(params[:collection_id])
+    @item = @collection.items.find(params[:id])
+    respond_to do |format|
+      if @item.update(cover_params)
+        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.json { render :show, status: :ok, location: @item }
+      else
+        format.html { render :edit }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   private
+
+    def cover_params
+      params.require(:item).permit(:cover)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
@@ -73,6 +90,9 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params[:item].delete(:id)
+      params[:item].delete(:images)
+      params[:item].delete(:created_at)
+      params[:item].delete(:updated_at)
       params.require(:item).permit(:name, :description, :collection_id, :cover)
     end
 end

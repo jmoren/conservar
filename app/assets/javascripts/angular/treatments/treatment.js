@@ -28,11 +28,23 @@ angular.module('conservar.treatment',[
         $scope.notes            = data.notes;
         $scope.interventions    = data.interventions;
         $scope.treatment_status = data.status;
+        $scope.item             = data.item;
       },
       function(error){
         console.log("error");      
       }
     );
+  };
+
+  $scope.openAndScroll = function(toggle,anchor){
+    if(toggle == 'toggleImages')
+      $scope.toggleImages = true;
+    if(toggle == 'toggleNotes')
+      $scope.toggleNotes = true; 
+    if(toggle == 'toggleActions')
+      $scope.toggleActions = true; 
+
+    $location.hash(anchor);
   };
 
   $scope.doUpload = function(data){

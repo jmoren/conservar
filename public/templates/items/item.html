@@ -1,33 +1,61 @@
 <div ng-controller="ItemCtrl" ng-init="init()">
-  <div class="col-md-12">
+  <div class="col-md-12" style="padding-top: 20px">
     <div class="page-header subnav">
-      <h1> 
+      <h2> 
         {{ item.name }}
         <a href="#/collections/{{collection.id}}" class="pull-left subnav-link">
           <i class="fa fa-chevron-left"></i>
         </a>
-        <a ng-click="openModalItem(item,'edit')" class="btn btn-primary  btn-sm pull-right">Editar</a>
-      </h1>
+        <div class="pull-right">
+          <a ng-click="openModalItem(item,'edit')" class="btn btn-primary btn-sm">
+            <i class="fa fa-edit"></i>
+            Editar
+          </a>
+          <a ng-click="openTreatmentModal(null)" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i>
+            Treatment
+          </a>
+           <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i>
+            Material
+          </a>
+          <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary btn-sm">
+            <i class="fa fa-plus"></i>
+            Medidas
+          </a>
+        </div>
+      </h2>
     </div>
     <div class="alert" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
        <button type="button" class="close" ng-click="closeAlert()">&times;</button>
       {{alert.message}}
     </div>
-    <p class="well well-xs"> {{ item.description }} </p>
   </div>
-  <hr>
+
+  
+  <div class="col-md-3" id="item-cover">
+    <img ng-src="{{item.cover}}" id="preview"/>
+    <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false"><i class="fa fa-camera"></i></span>
+  </div>
+  <div class="col-md-9">
+    <p class="well well-xs" style="height:150px"> {{ item.description }} </p>
+  </div>
+  <div class="col-md-12" ng-show="updateFile">
+    <form ng-submit="uploadCover()" id="itemCover">
+      <div class="fileUpload image-placeholder">
+        <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+        <input ng-file-select="onFileSelect($files)" type="file" class="upload" id="cover" type="file"/>
+        <i class="fa fa-camera"></i>
+      </div>
+      <button type="submit" class="btn btn-sm btn-primary">Upload</button>
+    </form>
+  </div>
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">
           <h4>
             Medidas
-            <div class="btn-group btn-group-sm pull-right">
-              <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary">
-                <i class="fa fa-plus"></i>
-                Medidas
-              </a>
-            </div>
           </h4>
         </div>
       </div>
@@ -66,10 +94,6 @@
         <div class="panel-title">
           <h4>
             Materiales
-            <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary btn-sm pull-right">
-              <i class="fa fa-plus"></i>
-              Material
-            </a>
           </h4>
         </div>
       </div>
@@ -102,66 +126,50 @@
       </table>
     </div>
   </div>
-  <hr>
-  <div class="col-md-12">
-    <p>
-      <a ng-click="openTreatmentModal(null)" class="btn btn-primary btn-sm" ng-hide="item.treatments.open">
-        <i class="fa fa-plus"></i>
-        Treatment
-      </a>
-    </p>
-    <hr>
-    <div ng-repeat="treatment in item.treatments.collection">
-      <div  class="panel panel-default" >
-        <div class="panel-heading">
-          <h4>
-            <span class="label label-warning" ng-show="treatment.id == item.treatments.current">current</span>
-            <a href="#/items/{{treatment.item_id}}/treatments/{{treatment.id}}">Treatment #{{ treatment.id }}</a>
-            <div class="btn-group btn-group-xs pull-right" >  
-              <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Edit</a>
-              <a ng-click="openTreatment(treatment)" class="btn btn-primary" ng-if="treatment.closed">Open</a>
-              <a ng-click="closeTreatment(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Close</a>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title"><h4>Tratamentos</h4></div>
+      </div>
+      <div class="panel-body">
+        <div ng-repeat="treatment in item.treatments.collection">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            <div class="panel-title">
+              <h4>
+                <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">#{{ treatment.id }}</a>
+                <div class="btn-group btn-group-xs pull-right" >  
+                  <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Edit</a>
+                  <a ng-click="treatment.show = !treatment.show" class="btn btn-primary">Toggle</a>
+                </div>
+              </h4>
             </div>
+            </div>
+            <div class="panel-body" ng-show="treatment.show">
+            <p class="well well-sm" ng-bind-html="treatment.diagnosis"></p>
+            <p class="well well-sm" ng-bind-html='treatment.proposal'></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4>
+            Imagens
           </h4>
         </div>
-        <div class="panel-body" ng-if="!treatment.closed">
-          <div class="row">
-            <div class="col-md-2 ">
-              <div class="center-block">
-                <h4>
-                  <i class="fa fa-search"></i> Diagnosis
-                </h4>
-                <small class="text-muted">Help text to users dasjaj asjdla ksjdkasnknd </small>
-              </div>
-            </div>
-            <div class="col-md-10">
-              <p style="padding:15px" class="bg-warning" ng-bind-html="treatment.diagnosis"></p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-2">
-              <div class="center-block">
-                <h4>
-                  <i class="fa fa-wrench"></i> Proposal
-                </h4>
-              </div>
-              <small class="text-muted">Help text to users</small>
-            </div>
-            <div class="col-md-10">
-              <p style="padding:15px" class="bg-warning" ng-bind-html='treatment.proposal'></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="pull-right" style="padding:15px">
-              <div class="btn btn-primary btn-xs">
-                <i class="fa fa-clock-o"></i>
-                creado {{treatment.created_at}} ago
-              </div>
-              <div class="btn btn-primary btn-xs">
-                <i class="fa fa-clock-o"></i>
-                actualizado {{treatment.updated_at}} ago
-              </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4" ng-repeat="image in item.images">
+            <div class="thumbnail">
+              <a href="#/treatments/{{image.treatment}}/images/{{image.id}}">
+                <img ng-src="{{image.photo}}" style="height:100px">
+              </a>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :items, only: [:show, :update] do
+    patch :upload, on: :member 
     resources :item_details
     resources :images
     resources :treatments do

@@ -240,8 +240,8 @@ table.details-table tr.detail-row:hover td .actions{
 }
 
 .subnav-link{
-  margin: 5px 20px 0px 0px;
-  font-size: 20px;
+  margin: -2px 15px 0px 0px;
+  font-size: 25px;
   padding: 5px;
   color: #999;
 }
@@ -336,8 +336,7 @@ table.image-info{
 .fileUpload {
   position: relative;
   overflow: hidden;
-  margin: 10px 0px;
-  padding: 5px 16px;
+  margin: 0px 0px 10px 0;
 }
 
 .fileUpload input.upload {
@@ -350,4 +349,27 @@ table.image-info{
   cursor: pointer;
   opacity: 0;
   filter: alpha(opacity=0);
+}
+
+#item-cover:hover .cover{
+  display: block;
+}
+#preview{
+  position: relative;
+  height: 150px;
+  background: #f1f1f1;
+  border: solid 1px #ccc;
+  width: 200px;
+}
+.cover{
+  position: absolute;
+  top: 0;
+  right: 13px;
+  width: 30px;
+  padding: 5px;
+  background: #4f4f4f;
+  color: #f1f1f1;
+  text-align: center;
+  opacity: 0.8;
+  display: none;
 }

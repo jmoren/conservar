@@ -11,8 +11,7 @@ json.status do
   json.closed @treatment.closed?
 end
 json.item do
-  json.id @treatment.item_id
-  json.name @treatment.item.name
+  json.name @treatment.item.name.titleize
 end
 json.notes do
   json.array!(@treatment.treatment_notes) do |note|
@@ -25,7 +24,7 @@ json.images do
   json.array!(@treatment.images) do |image|
     json.id image.id
     json.photo image.photo_url
-    json.description image.description
+    json.description truncate(image.description, length:30)
     json.intervention do
       json.id image.intervention_id
     end

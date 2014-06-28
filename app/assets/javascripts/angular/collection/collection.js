@@ -17,7 +17,7 @@ angular.module('conservar.collection',[
   });
 })
 
-.controller('CollectionCtrl', function($scope, CollectionRes, ItemsRes,  $modal, $stateParams, $http){
+.controller('CollectionCtrl', function($scope, CollectionRes, ItemsRes,  $modal, $stateParams, $http, upload){
   $scope.currentUser = {};
   $scope.selected_item = {};
   $scope.newItem = new ItemsRes();
@@ -74,14 +74,23 @@ angular.module('conservar.collection',[
   };
 
   $scope.saveItem = function(item){
-    ItemsRes.save({collection_id: $scope.collection.id}, item,
-      function(response, status){
+    upload({
+      url: '/items.json',
+      method:"POST",
+      data: { 
+        "collection_id": $scope.collection.id,
+        "item[name]": item.name, 
+        "item[cover]": $("#cover")[0].files[0],
+        "item[description]": item.description
+      }
+    }).then(
+      function (response) {
         $scope.items.push(response.item);
         $scope.reset_item();
         $modalInstance.close();
       },
-      function(data, status){
-        console.log(status);
+      function (response) {
+        console.log(response);
       }
     );
   };
@@ -96,6 +105,7 @@ angular.module('conservar.collection',[
       }
     );
   };
+
   $scope.remove = function(item){
     result = confirm("Estas seguro?");
     if(result){
