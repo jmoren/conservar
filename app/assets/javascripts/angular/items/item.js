@@ -254,11 +254,20 @@ angular.module('conservar.item',[
         file = (e.srcElement || e.target).files[0];
         reader = new FileReader();
         reader.onload = function (e){
-          $('#preview').attr('src',e.target.result).height(150).width(200);
+          
           filename = el.val().split("\\")[2];
-          $("#uploadFile").val(filename);
+          if(filename){
+            $('#preview').attr('src',e.target.result);  
+            $("#uploadFile").val(filename);
+            $("#submitCover").attr('disabled',false);
+          }else{
+            $('#preview').attr('src',"");  
+            $("#submitCover").attr('disabled',true);
+            $("#uploadFile").val('');
+          }
         };
-        reader.readAsDataURL(file);
+        if(file.type.match('image.*'))
+          reader.readAsDataURL(file);
       }); 
     }
   };

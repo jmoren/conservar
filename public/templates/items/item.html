@@ -13,15 +13,15 @@
           </a>
           <a ng-click="openTreatmentModal(null)" class="btn btn-primary btn-sm">
             <i class="fa fa-plus"></i>
-            Treatment
+            Adicionar Tratamento
           </a>
            <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary btn-sm">
             <i class="fa fa-plus"></i>
-            Material
+            Adicionar Material
           </a>
           <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary btn-sm">
             <i class="fa fa-plus"></i>
-            Medidas
+            Adicionar Medidas
           </a>
         </div>
       </h2>
@@ -35,7 +35,7 @@
   
   <div class="col-md-3" id="item-cover">
     <img ng-src="{{item.cover}}" id="preview"/>
-    <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false"><i class="fa fa-camera"></i></span>
+    <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false">alterar imagem <i class="fa fa-camera"></i></span>
   </div>
   <div class="col-md-9">
     <p class="well well-xs" style="height:150px"> {{ item.description }} </p>
@@ -43,11 +43,11 @@
   <div class="col-md-12" ng-show="updateFile">
     <form ng-submit="uploadCover()" id="itemCover">
       <div class="fileUpload image-placeholder">
-        <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-        <input ng-file-select="onFileSelect($files)" type="file" class="upload" id="cover" type="file"/>
+        <input id="uploadFile" placeholder="Selecionar imagem"  ng-model="name" disabled/>
+        <input ng-file-select="onFileSelect($files)" accept="image/*" type="file" class="upload" id="cover" type="file"/>
         <i class="fa fa-camera"></i>
       </div>
-      <button type="submit" class="btn btn-sm btn-primary">Upload</button>
+      <button type="submit" disabled="true" id="submitCover" class="btn btn-sm btn-primary">Upload</button>
     </form>
   </div>
   <div class="col-md-6">

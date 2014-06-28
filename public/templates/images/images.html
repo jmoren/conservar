@@ -3,8 +3,8 @@
     <div class="page-header subnav">
       <h1> 
         Imagens
-        <a class="subnav-link pull-right" ng-click="toggleDetails = true" ng-hide="toggleDetails"><i class="fa fa-plus"></i> Detalles</a>
-        <a class="subnav-link pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> Detalles</a>
+        <a class="subnav-link pull-right" ng-click="toggleDetails = true" ng-hide="toggleDetails"><i class="fa fa-plus"></i> Detalhes</a>
+        <a class="subnav-link pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> Detalhes</a>
       </h1>
     </div>
     <div class="col-md-4" ng-repeat="image in images">
@@ -20,10 +20,10 @@
                 <td><i class="fa fa-paperclip"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
               </tr>
               <tr>
-                <td><i class="fa fa-paperclip"></i>  Treatment</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+                <td><i class="fa fa-paperclip"></i> Tratamento</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
               </tr>
               <tr>
-                <td><i class="fa fa-paperclip"></i> Intervention</td><td>#{{image.intervention.id}}</td>
+                <td><i class="fa fa-paperclip"></i> Intervencao</td><td>#{{image.intervention.id}}</td>
               </tr>
             </tbody>
           </table>

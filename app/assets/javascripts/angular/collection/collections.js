@@ -17,7 +17,7 @@ angular.module('conservar.collections',[
   });
 })
 
-.controller('CollectionsCtrl', function($scope, ItemRes, CollectionRes, $location, $http, $modal, Pagination){
+.controller('CollectionsCtrl', function($scope, ItemRes, CollectionRes, $location, $http, $modal){
   $scope.collection  = new CollectionRes();
   $scope.selected_collection = null;
   $scope.selected    = false;
@@ -26,8 +26,6 @@ angular.module('conservar.collections',[
     CollectionRes.query(
       function(response){
         $scope.collections = response;
-        $scope.pagination  = Pagination.getNew(10);
-        $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
       },
       function(error){
         console.log(error);
@@ -40,7 +38,6 @@ angular.module('conservar.collections',[
       function(data, status){
         $scope.collections.push(data.collection);
         $modalInstance.close();
-        $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
         $scope.reset_form();
       },
       function(data, status){
@@ -67,7 +64,6 @@ angular.module('conservar.collections',[
         function(data,status){
           index = $scope.collections.indexOf(collection);
           removed = $scope.collections.splice(index, 1);
-          $scope.pagination.numPages = Math.ceil($scope.collections.length/$scope.pagination.perPage);
           if(collection.id === $scope.selected_collection.id){
             $scope.selected = false;
             $scope.selected_collection = undefined;

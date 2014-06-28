@@ -17,14 +17,14 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <button class="btn btn-primary btn-sm" ng-click="updateImage = true">Editar</button>
-          <button class="btn btn-danger btn-sm" ng-click="remove(image)">Eliminar</button>
+          <button class="btn btn-danger btn-sm" ng-click="remove(image)">Apagar</button>
         </div>
         <div class="panel-body">
           <form ng-submit="update(image)" name="imageForm" ng-show="updateImage" style="margin-bottom: 15px;">
             <div class="form-group" ng-class="{'has-error':imageForm.description.$invalid && imageForm.description.$dirty}">
               <textarea class="form-control" ng-model="image.description" value="image.description" required/>
             </div>
-            <button ng-disabled="imageForm.$invalid" type="submit" class="btn btn-xs btn-green">Guardar</button>
+            <button ng-disabled="imageForm.$invalid" type="submit" class="btn btn-xs btn-green">Salvar</button>
             <button ng-click="updateImage = false" class="btn btn-xs btn-default">Cancelar</button>
           </form>
           <p ng-hide="updateImage" class="well well-sm">{{ image.description}}</p>
@@ -34,10 +34,10 @@
                 <td><i class="fa fa-check"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
               </tr>
               <tr>
-                <td><i class="fa fa-search"></i>  Treatment</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+                <td><i class="fa fa-search"></i> Tratamento</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
               </tr>
               <tr>
-                <td><i class="fa fa-wrench"></i> Intervention</td><td>#{{image.intervention.id}}</td>
+                <td><i class="fa fa-wrench"></i> Intervencao</td><td>#{{image.intervention.id}}</td>
               </tr>
             </tbody>
           </table>

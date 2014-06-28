@@ -12,30 +12,13 @@
   </div>
   <div class="col-md-12">
     <div class="col-md-7">
-      <div style="height:350px;overflow:scroll" class="panel panel-default">
-        <div class="panel-heading">
-          <ul class="pagination pagination-sm" style="margin:0 0 5px 0">
-            <li ng-class="{disabled: pagination.page == 0}">
-              <a ng-disabled="pagination.page == 0" ng-click="pagination.prevPage()">&laquo;</a>
-            </li>
-            <li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}"  ng-disabled="n == pagination.page">
-              <a ng-click="pagination.toPageId(n)">{{n + 1}}</a>
-            </li>
-            <li ng-class="{disabled: pagination.page+1 == pagination.numPages}">
-              <a ng-disabled="pagination.page+1 == pagination.numPages" ng-click="pagination.nextPage()">&raquo;</a>
-            </li>
-          </ul>
-        </div>
-        <div class="panel-body">
-          <ul class="list-group">
-            <li class="list-group-item" ng-repeat="collection in collections | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
-              <a ng-click="setSelected(collection)">
-                <i class="fa fa-tag"></i> {{ collection.name }} 
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="collection in collections">
+          <a ng-click="setSelected(collection)">
+            <i class="fa fa-tag"></i> {{ collection.name }} 
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="col-md-5">
       <div class="item-panel">
@@ -66,9 +49,9 @@
               <div ng-show="selected">
                 <hr>
                 <div class="btn-group btn-group-sm" >
-                  <a href="#/collections/{{selected_collection.id}}" class="btn btn-default">Open</a>
-                  <a ng-click="openModal(selected_collection,'edit')" class="btn btn-default">Edit</a>
-                  <a ng-click="remove(selected_collection)" class="btn btn-default">Delete</a>
+                  <a href="#/collections/{{selected_collection.id}}" class="btn btn-default">Abrir</a>
+                  <a ng-click="openModal(selected_collection,'edit')" class="btn btn-default">Editar</a>
+                  <a ng-click="remove(selected_collection)" class="btn btn-default">Apagar</a>
                 </div>
               </div>
             </div>

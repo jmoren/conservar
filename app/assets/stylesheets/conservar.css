@@ -328,9 +328,9 @@ table.image-info{
 .image-placeholder #uploadFile{
   padding: 4px 5px;
   border: solid 1px #ccc;
-  margin-right: 10px;
+  margin-right: 5px;
   border-radius: 2px;
-  width: 16em;
+  width: 14.5em;
 }
 
 .fileUpload {
@@ -351,9 +351,6 @@ table.image-info{
   filter: alpha(opacity=0);
 }
 
-#item-cover:hover .cover{
-  display: block;
-}
 #preview{
   position: relative;
   height: 150px;
@@ -361,15 +358,29 @@ table.image-info{
   border: solid 1px #ccc;
   width: 200px;
 }
+
+#item-cover:hover .cover{
+  display: block;
+}
+
+form#itemCover{
+  margin-top: -10px;
+}
+
+form#itemCover button{
+  padding: 4px 10px;
+  margin-top: 1px;
+}
 .cover{
-  position: absolute;
-  top: 0;
-  right: 13px;
-  width: 30px;
-  padding: 5px;
-  background: #4f4f4f;
-  color: #f1f1f1;
-  text-align: center;
-  opacity: 0.8;
   display: none;
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 200px;
+  padding: 3px;
+  background: #4f4f4f;
+  color: #fff;
+  text-align: center;
+  opacity: 0.9;
+  cursor: pointer;
 }
