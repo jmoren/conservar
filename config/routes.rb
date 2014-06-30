@@ -10,17 +10,19 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :images, only: [:index, :show]
-
   resources :treatments, only: [:index] do
     resources :treatment_notes
-    resources :images
+    resources :images, except: [:index]
     resources :interventions
+    resources :exams, except: [:index]
   end
 
   resources :collections do
-    resources :items
+    resources :items, except: [:show]
   end
+
+  resources :images, only: [:index, :show]
+  resources :exams, only: [:index]
 
   root 'home#index'
 end

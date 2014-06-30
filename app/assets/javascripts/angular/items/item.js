@@ -12,7 +12,8 @@ angular.module('conservar.item',[
         controller: 'ItemCtrl',
         templateUrl: '/templates/items/item.html'
       }
-    }
+    },
+    title:'Item'
   });
 })
 

@@ -12,7 +12,7 @@ angular.module('conservar.dashboard',[
         templateUrl: '/templates/dashboard.html'
       }
     },
-    data:{ pageTitle: 'Dashboard' }
+    title: 'Dashboard'
   });
 })
 

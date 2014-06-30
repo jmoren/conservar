@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  treatment_id: 1
+  pdf: MyString
+
+two:
+  treatment_id: 1
+  pdf: MyString

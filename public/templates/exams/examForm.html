@@ -1,0 +1,15 @@
+<form ng-submit="save(exam)" name="examForm">  
+  <h4 class="form-title"> Adicionar Analise</h4>  
+  <div class="form-group">
+    <input type="text" name="name" required placeholder="Insira o nome..." ng-model="exam.name" value="exam.name" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <textarea type="text" placeholder="Insira o resultado" rows="5" name="result" ng-model="exam.result" class="form-control" required/>
+  </div>
+  <div class="form-group">
+    <textarea name="observations" ng-model="exam.observations" class="form-control" placeholder="Observacoes..." required/>
+  </div>
+  <div class="form-group">
+    <button type="submit" ng-disabled="examForm.$invalid" class="btn btn-primary btn-sm">Salvar</button>
+  </div>
+</form>

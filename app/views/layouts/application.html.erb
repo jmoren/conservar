@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="conservar">
 <head>
-  <title>Conservar</title>
+  <title>Conservar - {{$state.current.title}}</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -66,7 +66,9 @@
         <a href="#/treatments" ui-sref="treatments"><i class="fa fa-bars"></i> Tratamentos</a>
       </li>
       <li class="list-group-item"><a href="#"><i class="fa fa-bar-chart-o"></i> Relatorios </a></li>
-      <li class="list-group-item"><a href="#"><i class="fa fa-search"></i> Analises</a></li>
+      <li class="list-group-item" ui-sref-active="active">
+        <a href="#/analises" ui-sref="exams"><i class="fa fa-search"></i> Analises</a>
+      </li>
       <li class="list-group-item"><a href="#"><i class="fa fa-users"></i> Organizacao</a></li>
     </ul>
   </div>

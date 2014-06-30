@@ -12,6 +12,6 @@ json.array!(@images) do |image|
     json.url item_treatment_path(image.item, image.treatment)
   end
   json.intervention do
-    json.id image.intervention ? image.intervention.id : nil
+    json.id image.intervention ? "##{image.intervention.id}" : 'n/a'
   end
 end

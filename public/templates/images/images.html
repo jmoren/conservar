@@ -7,26 +7,28 @@
         <a class="subnav-link pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> Detalhes</a>
       </h1>
     </div>
-    <div class="col-md-4" ng-repeat="image in images">
-      <div class="thumbnail">
-        <a href="#/treatments/{{image.treatment.id}}/images/{{image.id}}">
-          <img ng-src="{{image.photo}}"  style="height:205px">
-        </a>
-        <div class="caption" ng-show="toggleDetails">
-          <p class="well well-sm">{{ image.description}}</p>
-          <table class="table image-info">
-            <tbody>
-              <tr>
-                <td><i class="fa fa-paperclip"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-paperclip"></i> Tratamento</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-paperclip"></i> Intervencao</td><td>#{{image.intervention.id}}</td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="row" style="margin: 30px">
+      <div class="col-md-4" ng-repeat="image in images">
+        <div class="thumbnail">
+          <a href="#/treatments/{{image.treatment.id}}/images/{{image.id}}">
+            <img ng-src="{{image.photo}}"  style="height:205px">
+          </a>
+          <div class="caption" ng-show="toggleDetails">
+            <p class="well well-sm">{{ image.description}}</p>
+            <table class="table image-info">
+              <tbody>
+                <tr>
+                  <td><i class="fa fa-paperclip"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
+                </tr>
+                <tr>
+                  <td><i class="fa fa-paperclip"></i> Tratamento</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+                </tr>
+                <tr>
+                  <td><i class="fa fa-paperclip"></i> Intervencao</td><td>{{image.intervention.id}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

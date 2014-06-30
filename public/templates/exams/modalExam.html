@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    Exame {{element.name}}
+    <button class="close" ng-click="cancel()">&times;</button>
+  </h3>
+</div>
+<div class="modal-body clearfix">
+  <h4> Resultados</h4>
+  <p class="well well-sm">
+    {{ element.result }}
+  </p>
+  <h4> Observacoes</h4>
+  <p class="well well-sm">
+    {{ element.observations }}
+  </p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="cancel()">Fechar</button>
+</div>

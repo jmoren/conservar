@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   has_many :treatments, dependent: :destroy
   has_many :interventions, dependent: :destroy
   has_many :images, dependent: :destroy
+  has_many :exams, dependent: :destroy
   
   mount_uploader :cover, CoverUploader
 

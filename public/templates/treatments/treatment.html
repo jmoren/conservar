@@ -1,120 +1,150 @@
-<div ng-controller="TreatmentCtrl" ng-init="init()">
+<div ng-controller="TreatmentCtrl" ng-init="init()" id="treatment">
   <div class="col-md-12" style="padding-top: 20px">
     <div class="page-header subnav">
       <h2> 
         Tratamento #{{ treatment.id }} 
         <div class="pull-right">
           <span class="text-muted"><i style="font-size:25px" class="fa fa-ellipsis-v"></i></span>
-          <span class="text-primary">{{ item.name }}</span>
+          <a href="#/items/{{treatment.item_id}}">{{ item.name }}</a>
         </div>
-        <a href="#/items/{{treatment.item_id}}" class="pull-left subnav-link">
-          <i class="fa fa-chevron-left"></i>
-        </a>
       </h2>
     </div>
-    <div class="alert col-md-12" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
+    <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
        <button type="button" class="close" ng-click="closeAlert()">&times;</button>
       {{alert.message}}
     </div>
   </div>
-  <div class="col-md-12">
+  
+  <div class="col-md-12" id="treatmentPanel" style="margin-top: 30px">
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">
           <a class="close pull-right" ng-click="toggleTreatment = true" ng-hide="toggleTreatment">&plus;</a>
           <a class="close pull-right" ng-click="toggleTreatment = false" ng-show="toggleTreatment">&times;</a>
-          <h4>Diagnóstico / Proposta</h4>
+          <h4><i class="fa fa-pencil"></i> Diagnóstico e Proposta</h4>
         </div>
       </div>
-      <div class="panel-body">
-        <div ng-show="toggleTreatment">
-          <p ng-dblclick="editDiagnosis = true" ng-hide="editDiagnosis" class="well well-xs" ng-bind-html="treatment.diagnosis"></p>
-          <form ng-submit="update(treatment)" ng-show="editDiagnosis">
-            <wysiwyg-edit name="diagnosis" content="treatment.diagnosis"></wysiwyg-edit>
-            <br>
-            <div class="form-group">
-              <button type="submit" class="btn btn-sm btn-green">Salvar</button>
-              <button ng-click="editDiagnosis = false" class="btn btn-sm btn-default">Cancelar</button>
-            </div>
-            <hr>
-          </form>
-          <p ng-dblclick="editProposal = true" ng-hide="editProposal" class="well well-xs" ng-bind-html="treatment.proposal"></p>
-          <form ng-submit="update(treatment)" ng-show="editProposal">
-            <wysiwyg-edit name="proposal" content="treatment.proposal"></wysiwyg-edit>
-            <br>
-            <div class="form-group">
-              <button type="submit" class="btn btn-sm btn-green">Salvar</button>
-              <button ng-click="editProposal = false" class="btn btn-sm btn-default">Cancelar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6" id="interventionPanel">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <a class="close pull-right" ng-click="openAndScroll('toggleActions','interventionPanel')" ng-hide="toggleActions">&plus;</a>
-          <a class="close pull-right" ng-click="toggleActions = false" ng-show="toggleActions">&times;</a>
-          <h4> Intervenções </h4>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div ng-show="toggleActions">
-          <intervention-form interventions="interventions" treatment="treatment"></intervention-form>
+      <div class="panel-body" ng-show="toggleTreatment">
+        <p ng-dblclick="editDiagnosis = true" ng-hide="editDiagnosis" class="well well-xs" ng-bind-html="treatment.diagnosis"></p>
+        <form ng-submit="update(treatment)" ng-show="editDiagnosis">
+          <wysiwyg-edit name="diagnosis" content="treatment.diagnosis"></wysiwyg-edit>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-green">Salvar</button>
+            <button ng-click="editDiagnosis = false" class="btn btn-sm btn-default">Cancelar</button>
+          </div>
           <hr>
+        </form>
+        <p ng-dblclick="editProposal = true" ng-hide="editProposal" class="well well-xs" ng-bind-html="treatment.proposal"></p>
+        <form ng-submit="update(treatment)" ng-show="editProposal">
+          <wysiwyg-edit name="proposal" content="treatment.proposal"></wysiwyg-edit>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-green">Salvar</button>
+            <button ng-click="editProposal = false" class="btn btn-sm btn-default">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12" id="detailsPanel">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <a class="close pull-right" ng-click="openAndScroll('detailsPanel')" ng-hide="toggleDetails">&plus;</a>
+          <a class="close pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails">&times;</a>
+          <h4><i class="fa fa-gears"></i> Detalhes do tratamento</h4>
         </div>
-        <h4 class="text-muted" ng-show="interventions.length < 1">Atualmente não há intervenções</h4>
-        <div class="intervention clearfix" ng-repeat="intervention in interventions">
-          <div class="col-md-2" style="padding-left:0px;padding-right:3px">
-            <div class="label label-primary">{{intervention.intervention_type}}</div>
+      </div>
+      <div class="panel-body" ng-show="toggleDetails">
+        <ul class="nav nav-pills" style="margin: 5px 0">
+          <li ng-class="{'active':tabs.actions.active}">
+            <a ng-click="openTab(tabs.actions)">
+              {{ tabs.actions.name }}
+            </a>
+          </li>
+          <li ng-class="{'active':tabs.exams.active}">
+            <a ng-click="openTab(tabs.exams)"> 
+              {{ tabs.exams.name }} 
+            </a>
+          </li>
+          <li ng-class="{'active':tabs.notes.active}">
+            <a ng-click="openTab(tabs.notes)"> 
+              {{ tabs.notes.name }} 
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div ng-show="tabs.actions.active" class="row">
+          <div class="col-md-4">
+            <div class="intervention-form">
+              <intervention-form interventions="interventions" treatment="treatment"></intervention-form>
+            </div>
           </div>
-          <div class="col-md-10" style="padding-right:0">
-            <p class="well well-sm">{{ intervention.description }}</p>
+          <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
+            <h4 class="text-muted" ng-show="interventions.length < 1">Atualmente não há intervenções</h4>
+            <div class="intervention clearfix" ng-repeat="intervention in interventions">
+              <div class="col-md-2" style="padding-left:0px;padding-right:3px">
+                <p><a ng-click="openModalIntervention(intervention)">#{{ intervention.id }}</a></p>
+                <p><small><i class="fa fa-calendar-o"></i> 14/12/2014</small></p>
+                <p><span class="label label-primary">{{intervention.intervention_type}}</span></p>
+              </div>
+              <div class="col-md-10" style="padding-right:0">
+                <p class="well">{{ intervention.description }}</p>
+                <small>                  
+                  <a ng-click="removeIntervention(intervention)" class="text-danger pull-right"><i class="fa fa-trash-o"> apagar</i></a>
+                </small>
+              </div>
+            </div>
           </div>
-          <small class="toggle-intervention"> 
-            <a ng-click="openModalIntervention(intervention)">Ver</a> -
-            <a ng-click="removeIntervention(intervention)" class="text-danger"> Apagar</a>
-          </small>
+        </div>
+        <div ng-show="tabs.exams.active" class="row">
+          <div class="col-md-4">
+            <exam-form exams="exams" treatment="treatment"></exam-form>
+          </div>
+          <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
+            <h4 class="text-muted" ng-show="exams.length < 1">Atualmente não há exames</h4>
+            <div class="exam clearfix" ng-repeat="exam in exams">
+              <div class="exam-name">
+                <div class="btn btn-group btn-group-xs pull-right" style="margin-top:-5px;padding-right:0"> 
+                  <a ng-click="openModalExam(exam)" class="btn btn-primary">Ver</a>
+                  <a ng-click="removeExam(exam)" class="btn btn-primary"> Apagar</a>
+                </div>
+                <h3>{{exam.name}}</h3>
+              </div>
+              <p class="well well-sm">{{ exam.result }}</p>
+            </div>
+          </div>
+        </div>
+        <div ng-show="tabs.notes.active" class="row">
+          <div class="col-md-4">
+            <treatment-note notes="notes" open="toogleNotes" treatment="treatment"></treatment-note>
+          </div>
+          <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
+            <h4 class="text-muted" ng-show="notes.length < 1">Atualmente não há notas</h4>
+            <div class="note clearfix" ng-repeat="note in notes">
+              <p class="well well-sm">
+                <i class="fa fa-comments-o"></i> {{ note.content }}
+              </p>
+              <small class="text-muted">
+                <a ng-click="removeNote(note)" class="text-danger pull-right">Apagar</a>
+                <div class="pull-left"><i class="fa fa-clock-o"></i> criado {{note.created_at}}</div>
+              </small>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6" id="notePanel">
+
+  <div class="col-md-12" id="imagesPanel">
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">
-          <a class="close pull-right" ng-click="openAndScroll('toggleNotes','notePanel')" ng-hide="toggleNotes">&plus;</a>
-          <a class="close pull-right" ng-click="toggleNotes = false" ng-show="toggleNotes">&times;</a>
-          <h4>Notas</h4>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div ng-show="toggleNotes">
-          <treatment-note notes="notes" open="toogleNotes" treatment="treatment"></treatment-note>
-          <hr>    
-        </div>
-        <h4 class="text-muted" ng-show="notes.length < 1">Atualmente não há notas</h4>
-        <div class="note clearfix" ng-repeat="note in notes">
-          <p class="well well-sm">
-            <i class="fa fa-comments-o"></i> {{ note.content }}
-          </p>
-          <small class="text-muted">
-            <a ng-click="removeNote(note)" class="text-danger pull-right">Apagar</a>
-            <div class="pull-left">criado {{note.created_at}} <i class="fa fa-clock-o"></i></div>
-          </small>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-12" id="imagePanel">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <a class="close pull-right" ng-click="openAndScroll('toggleImages','imagePanel')" ng-hide="toggleImages">&plus;</a>
+          <a class="close pull-right" ng-click="openAndScroll('imagesPanel')" ng-hide="toggleImages">&plus;</a>
           <a class="close pull-right" ng-click="toggleImages = false" ng-show="toggleImages">&times;</a>
-          <h4>Imagens</h4>
+          <h4><i class="fa fa-image"></i> Imagens</h4>
         </div>
       </div>
       <div class="panel-body">
@@ -130,13 +160,11 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Imagem</label>
-                  <br>
                   <div class="image-placeholder">
                     <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
                     <i class="fa fa-camera"></i>
                   </div>
-                  <div class="fileUpload btn btn-green btn-sm">
+                  <div class="fileUpload btn btn-green btn-sm" style="margin-top:10px">
                     <span>Imagem</span>
                     <input type="file" class="upload" id="file" type="file"/>
                   </div>
@@ -177,6 +205,7 @@
     </div>
   </div>  
 </div>
+
 <script type="text/javascript">
   $(document).ready(function(){
     $("#file").on('change', function () {

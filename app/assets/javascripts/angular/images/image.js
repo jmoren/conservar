@@ -11,7 +11,8 @@ angular.module('conservar.image',[
         controller: 'ImageCtrl',
         templateUrl: '/templates/images/image.html'
       }
-    }
+    },
+    title:'Image'
   });
 })
 

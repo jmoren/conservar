@@ -11,7 +11,8 @@ angular.module('conservar.images',[
         controller: 'ImagesCtrl',
         templateUrl: '/templates/images/images.html'
       }
-    }
+    },
+    title:'Images'
   });
 })
 
@@ -20,7 +21,6 @@ angular.module('conservar.images',[
   $scope.init = function(){
     ImagesRes.query(
       function(data){
-        console.log(data);
         $scope.images = data;
       },
       function(error){

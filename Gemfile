@@ -28,6 +28,8 @@ gem 'less-rails'
 gem 'font-awesome-less'
 gem 'therubyracer',  platforms: :ruby
 gem 'carrierwave'
+gem 'prawn'
+gem 'pdf-reader'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

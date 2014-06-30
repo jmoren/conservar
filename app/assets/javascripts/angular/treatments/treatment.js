@@ -11,14 +11,21 @@ angular.module('conservar.treatment',[
         controller: 'TreatmentCtrl',
         templateUrl: '/templates/treatments/treatment.html'
       }
-    }
+    },
+    title:'Tratamento'
   });
 })
 
-.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, upload){
+.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, ExamRes, upload){
   $scope.alert = { type: "", message: "" };
-  $scope.current_note = new TreatmentNoteRes();
+  $scope.current_note         = new TreatmentNoteRes();
   $scope.current_intervention = new InterventionRes();
+  $scope.current_exam         = new ExamRes();
+  $scope.tabs = {
+    actions: { active: true, name: 'Intervenções'},
+    exams: { active: false, name: 'Analises'},
+    notes: { active: false, name: 'Notas'},
+  };
 
   $scope.init = function(){
     TreatmentRes.get($stateParams,
@@ -29,6 +36,7 @@ angular.module('conservar.treatment',[
         $scope.interventions    = data.interventions;
         $scope.treatment_status = data.status;
         $scope.item             = data.item;
+        $scope.exams            = data.exams;
       },
       function(error){
         console.log("error");      
@@ -36,15 +44,21 @@ angular.module('conservar.treatment',[
     );
   };
 
-  $scope.openAndScroll = function(toggle,anchor){
-    if(toggle == 'toggleImages')
-      $scope.toggleImages = true;
-    if(toggle == 'toggleNotes')
-      $scope.toggleNotes = true; 
-    if(toggle == 'toggleActions')
-      $scope.toggleActions = true; 
+  $scope.openTab = function(current_tab){
+    angular.forEach($scope.tabs, function(tab){
+      if(tab.name == current_tab.name)
+        current_tab.active = true;
+      else
+        tab.active = false;        
+    });
+  };
 
-    $location.hash(anchor);
+  $scope.openAndScroll = function(hash){
+    if(hash === 'imagesPanel')
+      $scope.toggleImages = true;
+    if(hash === 'detailsPanel')
+      $scope.toggleDetails = true;
+    $location.hash(hash);
   };
 
   $scope.doUpload = function(data){
@@ -92,11 +106,37 @@ angular.module('conservar.treatment',[
     });
   };
 
+  $scope.openModalExam = function(exam){
+    $modalInstance = $modal.open({
+      resolve: {
+        element: function(){
+          return exam;
+        }
+      },
+      scope: $scope,
+      controller: 'modalCtrl',
+      templateUrl: "../templates/exams/modalExam.html"
+    });
+  };
+
   $scope.removeNote = function(note){
     TreatmentNoteRes.remove({treatment_id: $scope.treatment.id }, note,
       function(data){
         index = $scope.notes.indexOf(note);
         $scope.notes.splice(index,1);
+        $scope.addAlert("success", "Se elimino con exito");
+      },
+      function(data){
+        $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+      }
+    );    
+  };
+
+  $scope.removeExam = function(exam){
+    ExamRes.remove({treatment_id: $scope.treatment.id}, exam,
+      function(data){
+        index = $scope.exams.indexOf(exam);
+        $scope.exams.splice(index,1);
         $scope.addAlert("success", "Se elimino con exito");
       },
       function(data){
@@ -154,12 +194,24 @@ angular.module('conservar.treatment',[
 .directive('interventionForm', function(){
   return {
     restrict: 'E',
-    templateUrl: '/templates/interventions/InterventionForm.html',
+    templateUrl: '/templates/interventions/interventionForm.html',
     scope: {
       treatment: "=treatment",
       interventions: "=interventions"
     },
     controller: 'InterventionCtrl'
+  };
+})
+
+.directive('examForm', function(){
+  return {
+    restrict: 'E',
+    templateUrl: '/templates/exams/examForm.html',
+    scope: {
+      treatment: "=treatment",
+      exams: "=exams"
+    },
+    controller: 'ExamCtrl'
   };
 })
 

@@ -30,8 +30,8 @@ json.item do
     json.collection do
       json.array! @item.treatments do |treatment|
         json.id treatment.id
-        json.diagnosis  truncate(treatment.diagnosis)
-        json.proposal   truncate(treatment.proposal)
+        json.diagnosis  truncate(treatment.diagnosis, lenght: 15)
+        json.proposal   truncate(treatment.proposal, lenght: 15)
         json.show false
       end
     end

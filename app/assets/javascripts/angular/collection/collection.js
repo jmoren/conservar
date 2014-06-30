@@ -13,7 +13,8 @@ angular.module('conservar.collection',[
         controller: 'CollectionCtrl',
         templateUrl: '/templates/collections/collection.html'
       }
-    }
+    },
+    title:'Collection'
   });
 })
 

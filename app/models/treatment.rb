@@ -3,7 +3,8 @@ class Treatment < ActiveRecord::Base
   has_many :treatment_notes, dependent: :destroy
   has_many :images, dependent: :destroy
   has_many :interventions, dependent: :destroy
-
+  has_many :exams, dependent: :destroy
+  
   def closed?
     !closed_at.nil? && closed_at >= Date.today
   end

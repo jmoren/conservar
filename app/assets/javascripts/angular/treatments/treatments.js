@@ -11,7 +11,8 @@ angular.module('conservar.treatments',[
         controller: 'TreatmentsCtrl',
         templateUrl: '/templates/treatments/treatments.html'
       }
-    }
+    },
+    title:'Tratamentos'
   });
 })
 

@@ -78,11 +78,9 @@ class TreatmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def treatment_params
-      if params[:treatment]
-        params[:treatment].delete(:id)
-        params[:treatment].delete(:created_at)
-        params[:treatment].delete(:updated_at)
-      end
+      params[:treatment].delete(:id)
+      params[:treatment].delete(:created_at)
+      params[:treatment].delete(:updated_at)
       params.require(:treatment).permit(:item_id, :diagnosis, :proposal, :closed_at)
     end
 end

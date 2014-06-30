@@ -1,22 +1,17 @@
 <form ng-submit="save(intervention)" name="interventionForm">
-  <input type="hidden" name="treatment_id" ng-model="intervention.treatment_id" value="{{treatment.id}}">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <lable> Tipo de intervencao</lable>
-        <select name="intervention_type" ng-model="intervention.intervention_type" class="form-control" placeholder="Seleccion">
-          <option ng-repeat="(key,value) in types" value="{{key}}">{{value}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <lable> Data</lable>
-      <input type="text" placeholder="Selecciona una fecha" class="form-control">
-    </div>
+  <h4 class="form-title"> Adicionar Intervencao</h4>  
+  <div class="form-group">
+    <select name="intervention_type" required ng-model="intervention.intervention_type" class="form-control" placeholder="Seleccion">
+      <option value="">Tipo</option>
+      <option ng-repeat="(key,value) in types" value="{{key}}">{{value}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Data" class="form-control">
   </div>
   <div class="form-group">
     <lable>Descripcao</lable>
-    <textarea name="description" ng-model="intervention.description" class="form-control" placeholder="Como fue la intervention..." required/>
+    <textarea name="description" ng-model="intervention.description" class="form-control" placeholder="Como foi a intervencao..." required/>
   </div>
   <div class="form-group">
     <button type="submit" ng-disabled="interventionForm.$invalid" class="btn btn-primary btn-sm">Salvar</button>

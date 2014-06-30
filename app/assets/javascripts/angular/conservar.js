@@ -13,6 +13,8 @@ angular.module('conservar',[
   'conservar.collections',
   'conservar.images',
   'conservar.image',
+  'conservar.exam',
+  'conservar.exams',
   'conservar.dashboard',
   'lr.upload'
   ])
