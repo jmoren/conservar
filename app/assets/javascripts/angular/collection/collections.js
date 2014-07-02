@@ -120,7 +120,8 @@ angular.module('conservar.collections',[
     { id:'@id' },
     {
       'update': { method:'PUT' },
-      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'}}
+      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'}},
+      'getReport': {method: 'POST'}
     });
   return res;
 });

@@ -21,29 +21,27 @@ class TreatmentReportPdf < PdfReport
   private
 
   def display_actions_table(actions)
-    pad(10) { text "Intervencoes feitos", size: 11, style: :bold }
     table_data = actions_table_data(actions)
     unless table_data.empty?
+      pad(10) { text "Intervencoes feitos", size: 11, style: :bold }
       table_data.unshift(ACTIONS_TABLE_HEADERS)
       table table_data,
         header: true, :width => 500, :cell_style => {:padding => 12}
-    end
-    move_down 10
-    stroke_horizontal_rule
+      move_down 10
+      stroke_horizontal_rule
+    end  
   end
 
   def display_exams_table(exams)
-    pad(10) { text "Analises feitos", size: 11, style: :bold }
     table_data = exams_table_data(exams)
     unless table_data.empty?
-      table_data.unshift(EXMAS_TABLE_HEADERS)
+      pad(10) { text "Analises feitos", size: 11, style: :bold }
+      table_data.unshift(EXAMS_TABLE_HEADERS)
       table table_data,
-        header: true,
-        :width => 500,
-        :cell_style => {:padding => 12}
+        header: true, :width => 500, :cell_style => {:padding => 12}
+      move_down 10
+      stroke_horizontal_rule
     end
-    move_down 10
-    stroke_horizontal_rule
   end
 
   def item_introduction(item, treatment)

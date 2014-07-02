@@ -18,7 +18,7 @@ angular.module('conservar.collection',[
   });
 })
 
-.controller('CollectionCtrl', function($scope, CollectionRes, ItemsRes,  $modal, $stateParams, $http, upload){
+.controller('CollectionCtrl', function($scope, CollectionRes, ItemsRes, ReportRes, $modal, $stateParams, upload){
   $scope.currentUser = {};
   $scope.selected_item = {};
   $scope.newItem = new ItemsRes();
@@ -27,7 +27,8 @@ angular.module('conservar.collection',[
     CollectionRes.get($stateParams,
       function(data){
         $scope.collection = data.collection;
-        $scope.items = data.items;
+        $scope.items      = data.items;
+        $scope.reports    = data.reports;
       },
       function(error){
         console.log("error");      
@@ -35,11 +36,11 @@ angular.module('conservar.collection',[
     );
   };
 
-  $scope.openModalCollection = function(collection){
+  $scope.openModalCollection = function(){
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
-          return collection;
+          return $scope.collection;
         }
       },
       scope: $scope,
@@ -75,16 +76,7 @@ angular.module('conservar.collection',[
   };
 
   $scope.saveItem = function(item){
-    upload({
-      url: '/items.json',
-      method:"POST",
-      data: { 
-        "collection_id": $scope.collection.id,
-        "item[name]": item.name, 
-        "item[cover]": $("#cover")[0].files[0],
-        "item[description]": item.description
-      }
-    }).then(
+    ItemsRes.save({collection_id: $scope.collection.id}, item,
       function (response) {
         $scope.items.push(response.item);
         $scope.reset_item();
@@ -124,6 +116,44 @@ angular.module('conservar.collection',[
     }
   };
 
+  $scope.generateReport = function(){
+    
+    ReportRes.save({collection_id: $scope.collection.id},
+      function(data){
+        console.log(data);
+      },
+      function(error){
+        console.log(error);
+      }
+    );
+  };
+
+  $scope.download = function(report){
+    ReportRes.get({collection_id: $scope.collection.id, id: report.id},
+      function(data){
+        console.log(data);
+      },
+      function(error){
+        console.log(error);
+      }
+    );
+  };
+
+  $scope.remove = function(report){
+    result = confirm("Estas seguro?");
+    if(result){
+      ReportRes.remove({collection_id: $scope.collection.id }, report,
+        function(data,status){
+          index = collections.reports.indexOf(collection);
+          collections.reports.splice(index, 1);        },
+        function(status, data){
+          console.log(status);
+        }
+      );
+    }else{
+      console.log("declined");
+    }
+  };
   $scope.reset_item = function(){
     $scope.newItem.name = "";
     $scope.newItem.description = "";

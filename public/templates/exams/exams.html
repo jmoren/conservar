@@ -8,32 +8,41 @@
   </div>
   <div class="col-md-12" style="margin-top:30px">
     <div class="panel panel-default">
-      <table class="table table-hover">
-        <thead>
-          <th>Nome</th>
-          <th>Resultado</th>
-          <th>Observacoes</th>
-        </thead>
-        <tbody>
-          <tr ng-repeat="exam in exams">
-            <td>
-              <a href="#/item/{{exam.item_id}}" class="panel-title">      
-                <h4>{{ exam.name }}</h4>
-              </a>
-              <p>
-                <a href="#/items/{{exam.item.id}}">{{ exam.item.name}}</a> | 
-                <a href="#/items/{{exam.item.id}}/treatment/{{exam.treatment_id}}">Tratamento #{{ exam.treatment_id}}</a>
-              </p>
-            </td>
-            <td>
-              <p class="well">{{ exam.result}}</p>
-            </td>
-            <td>
-              <p class="well">{{ exam.observations}}</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="panel-heading">
+        <form class="form-inline">
+          <div class="form-group">
+            <input class="form-control" name="filter" placeholder="Filter analises ..." style="width:400px"/>
+          </div>
+        </form>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <th>Nome</th>
+            <th>Resultado</th>
+            <th>Observacoes</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="exam in exams">
+              <td>
+                <a href="#/item/{{exam.item_id}}" class="panel-title">      
+                  <h4>{{ exam.name }}</h4>
+                </a>
+                <p>
+                  <a href="#/items/{{exam.item.id}}">{{ exam.item.name}}</a> | 
+                  <a href="#/items/{{exam.item.id}}/treatment/{{exam.treatment_id}}">Tratamento #{{ exam.treatment_id}}</a>
+                </p>
+              </td>
+              <td>
+                <p class="well">{{ exam.result}}</p>
+              </td>
+              <td>
+                <p class="well">{{ exam.observations}}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

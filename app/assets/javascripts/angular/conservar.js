@@ -16,6 +16,7 @@ angular.module('conservar',[
   'conservar.exam',
   'conservar.exams',
   'conservar.dashboard',
+  'conservar.reports',
   'lr.upload'
   ])
 

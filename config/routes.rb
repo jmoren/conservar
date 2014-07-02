@@ -17,8 +17,11 @@ Rails.application.routes.draw do
     resources :exams, except: [:index]
   end
 
+  resources :reports, only: [:index]
+  
   resources :collections do
     resources :items, except: [:show]
+    resources :reports, except: [:edit, :update]
   end
 
   resources :images, only: [:index, :show]

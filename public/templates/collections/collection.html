@@ -10,31 +10,55 @@
     </div>
     <p style="margin-top:30px">
       <a ng-click="openModalItem(newItem,'new')" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Item</a>
-      <a ng-click="openModalCollection(collection)" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Colecao</a>
+      <a ng-click="openModalCollection()" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Colecao</a>
+      <a ng-click="generateReport()" class="btn btn-primary pull-right"><i class="fa fa-bar-chart-o"></i> Generar Reporte</a>
     </p>
-    <div class="well">
-      <p> {{collection.description}}</p>
+    <p class="well"> {{collection.description}}</p>
+    <div class="panel panel-default" ng-show="collection.reports.lenght > 0">
+      <ul>
+        <li ng-repeat="report in collection.reports">
+          {{ report.name }}
+          <a ng-click="download(collection, report)" class="btn btn-green btn-sm" data-confirm="Estas seguro?"> <i class="fa fa-download"></i> Baixar reporte</a>
+        </li>
+      </ul>
     </div>
     <hr>
-    <div class="row">
-      <div class="col-md-4" ng-repeat='item in items'>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <h4>
-                {{ item.name }}
-                <a href="#/items/{{item.id}}" class="pull-right"><i class="fa fa-chevron-right"></i></a>
-              </h4>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-md-4" ng-repeat='item in items'>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <h4>
+                  {{ item.name }}
+                  <a href="#/items/{{item.id}}" class="pull-right"><i class="fa fa-chevron-right"></i></a>
+                </h4>
+              </div>
             </div>
-          </div>
-          <div class="panel-body">
-            <p>{{ item.description}}</p>
-            <hr>
-            <a ng-click="openModalItem(item,'edit')" class="btn btn-default btn-xs">Editar</a>
-            <a ng-click="remove(item)" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Apagar</a>
+            <div class="panel-body">
+              <div class="clearfix">
+                <img ng-src="{{item.cover}}" style="width:60px;height:50px;float:left;margin: 0 0px 10px 0;background: #f1f1f1"/>
+              
+                <p style="float:right;width:210px">{{ item.description}}</p>
+              </div>
+              <hr>
+              <a ng-click="openModalItem(item,'edit')" class="btn btn-default btn-xs">Editar</a>
+              <a ng-click="remove(item)" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Apagar</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script type="text/ng-template" id="reportModal.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Collection Report</h3>
+  </div>
+  <div class="modal-body">
+    <p class="well">Generating report</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="cancel()">OK</button>
+  </div>
+</script>

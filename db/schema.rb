@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(version: 20140629152350) do
   end
 
   create_table "reports", force: true do |t|
-    t.integer  "treatment_id"
+    t.integer  "collection_id"
     t.string   "pdf"
+    t.integer  "total_downloads"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
