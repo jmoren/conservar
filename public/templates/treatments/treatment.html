@@ -54,7 +54,7 @@
         <div class="panel-title">
           <a class="close pull-right" ng-click="openAndScroll('detailsPanel')" ng-hide="toggleDetails">&plus;</a>
           <a class="close pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails">&times;</a>
-          <h4><i class="fa fa-gears"></i> Detalhes do tratamento</h4>
+          <h4 ng-click="toggleDetails = !toogleDetails"><i class="fa fa-gears"></i> Detalhes do tratamento</h4>
         </div>
       </div>
       <div class="panel-body" ng-show="toggleDetails">
@@ -87,7 +87,7 @@
             <div class="intervention clearfix" ng-repeat="intervention in interventions">
               <div class="col-md-2" style="padding-left:0px;padding-right:3px">
                 <p><a ng-click="openModalIntervention(intervention)">#{{ intervention.id }}</a></p>
-                <p><small><i class="fa fa-calendar-o"></i> 14/12/2014</small></p>
+                <p><small><i class="fa fa-calendar-o"></i> {{intervention.intervention_date}}</small></p>
                 <p><span class="label label-primary">{{intervention.intervention_type}}</span></p>
               </div>
               <div class="col-md-10" style="padding-right:0">

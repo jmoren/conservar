@@ -5,18 +5,32 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = @collection.reports.new 
-    # generate file
-    # upload file to report
-    # save report
+    @report  = @collection.reports.new 
+    file     = CollectionReportPdf.new(@collection)
+    tmp_path = "#{Rails.root}/tmp/report_#{@collection.id}_#{Time.now.to_i}.pdf"
+    file.render_file tmp_path
     respond_to do |format|
-      format.json {render json: @report, status: :created }
+      if File.exists?(tmp_path)
+        @report.pdf = File.open(tmp_path)  
+        if @report.save
+          format.json { render json: {
+            id:         @report.id, 
+            pdf:        @report.pdf_url, 
+            created_at: @report.created_at.strftime('%d/%m/%Y'),
+            collection: { 
+              id:   @collection.id, 
+              name: @collection.name
+            } 
+          }, 
+          status: :created }
+        else
+          format.json { render json: @report.errors, status: :unprocessable_entity }
+        end
+        File.delete(tmp_path)
+      else
+        render status: 500, text: "Error generating report"
+      end
     end
-  end
-
-  def show
-    @report = @collection.report.find(params[:id])
-    # send_data to client
   end
 
   def destroy

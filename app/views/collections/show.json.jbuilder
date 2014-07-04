@@ -1,4 +1,9 @@
-json.collection @collection, :id, :name, :description
+json.collection do
+  json.id @collection.id
+  json.name @collection.name
+  json.description @collection.description
+  json.reportable @reportable
+end
 json.items do 
   json.array!(@collection.items) do |item|
     json.id item.id
@@ -10,7 +15,10 @@ json.items do
 end
 json.reports do
   json.array!(@collection.reports) do |report|
-    json.date report.created_at
+    json.id report.id
+    json.collection_id report.collection_id
+    json.created_at report.created_at.strftime('%d/%m/%Y')
     json.total_downloads
+    json.pdf report.pdf_url
   end
 end

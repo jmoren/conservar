@@ -17,7 +17,8 @@ angular.module('conservar',[
   'conservar.exams',
   'conservar.dashboard',
   'conservar.reports',
-  'lr.upload'
+  'lr.upload',
+  'ui.bootstrap'
   ])
 
 .config( function ConservarConfig ( $stateProvider, $urlRouterProvider ) {

@@ -11,6 +11,7 @@ class CollectionsController < ApplicationController
   # GET /collections/1.json
   def show
     @items = @collection.items
+    @reportable = @collection.has_data_to_write?
   end
 
   # GET /collections/new
@@ -70,6 +71,7 @@ class CollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
+      params[:collection].delete(:id)
       params.require(:collection).permit(:name, :description, :code)
     end
 end

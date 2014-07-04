@@ -5,6 +5,8 @@ class Treatment < ActiveRecord::Base
   has_many :interventions, dependent: :destroy
   has_many :exams, dependent: :destroy
   
+  scope :open, -> {where(closed_at: nil)}
+  
   def closed?
     !closed_at.nil? && closed_at >= Date.today
   end

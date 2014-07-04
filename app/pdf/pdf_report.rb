@@ -28,9 +28,4 @@ class PdfReport < Prawn::Document
     # ...
   end
 
-  def find_path(treatment)
-    path = "#{Rails.root}/app/assets/reports/#{treatment.id}/report.pdf"
-  end
-
-  # ... More helpers
 end

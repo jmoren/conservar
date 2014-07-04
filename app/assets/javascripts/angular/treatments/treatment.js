@@ -16,11 +16,12 @@ angular.module('conservar.treatment',[
   });
 })
 
-.controller('TreatmentCtrl', function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, ExamRes, upload){
+.controller('TreatmentCtrl', function($scope, $location, $anchorScroll, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, ExamRes, upload){
   $scope.alert = { type: "", message: "" };
   $scope.current_note         = new TreatmentNoteRes();
   $scope.current_intervention = new InterventionRes();
   $scope.current_exam         = new ExamRes();
+
   $scope.tabs = {
     actions: { active: true, name: 'Intervenções'},
     exams: { active: false, name: 'Analises'},
@@ -59,6 +60,7 @@ angular.module('conservar.treatment',[
     if(hash === 'detailsPanel')
       $scope.toggleDetails = true;
     $location.hash(hash);
+    $anchorScroll();
   };
 
   $scope.doUpload = function(data){

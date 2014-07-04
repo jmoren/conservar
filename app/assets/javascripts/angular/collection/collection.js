@@ -117,24 +117,21 @@ angular.module('conservar.collection',[
   };
 
   $scope.generateReport = function(){
-    
+    modal = $modal.open({
+      size: 'sm',
+      scope: $scope,
+      templateUrl: '../templates/reports/reportModal.html'
+    });
+
     ReportRes.save({collection_id: $scope.collection.id},
       function(data){
         console.log(data);
+        $scope.reports.push(data);
+        modal.close();
       },
       function(error){
         console.log(error);
-      }
-    );
-  };
-
-  $scope.download = function(report){
-    ReportRes.get({collection_id: $scope.collection.id, id: report.id},
-      function(data){
-        console.log(data);
-      },
-      function(error){
-        console.log(error);
+        modal.close();
       }
     );
   };
@@ -154,10 +151,12 @@ angular.module('conservar.collection',[
       console.log("declined");
     }
   };
+
   $scope.reset_item = function(){
     $scope.newItem.name = "";
     $scope.newItem.description = "";
   };
+
 })
 
 .factory( 'ItemsRes', function ( $resource )  {

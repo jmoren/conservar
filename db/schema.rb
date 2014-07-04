@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629152350) do
+ActiveRecord::Schema.define(version: 20140704131712) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20140629152350) do
     t.string   "intervention_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "materials"
+    t.date     "intervention_date"
   end
 
   create_table "item_details", force: true do |t|
@@ -71,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140629152350) do
   create_table "reports", force: true do |t|
     t.integer  "collection_id"
     t.string   "pdf"
-    t.integer  "total_downloads"
+    t.integer  "total_downloads", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

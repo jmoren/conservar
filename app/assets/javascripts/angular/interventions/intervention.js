@@ -21,6 +21,19 @@ angular.module('conservar.intervention',[
   $scope.alert = { type: "", message: "" };
   $scope.types = { consolidacion: "Consolidacion", limpieza: "Limipeza", montaje: "Montaje", preparacion: "Preparacion" };
 
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'dd/MM/yyyy',
+    startingDay: 1,
+    showWeeks: false
+  };
+
   $scope.save = function(intervention){
     intervention.treatment_id = $scope.treatment.id;
     InterventionRes.save({ treatment_id: $scope.treatment.id }, intervention,

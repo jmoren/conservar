@@ -11,20 +11,23 @@
     <p style="margin-top:30px">
       <a ng-click="openModalItem(newItem,'new')" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Item</a>
       <a ng-click="openModalCollection()" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Colecao</a>
-      <a ng-click="generateReport()" class="btn btn-primary pull-right"><i class="fa fa-bar-chart-o"></i> Generar Reporte</a>
+      <a ng-click="generateReport()" ng-show="collection.reportable" class="btn btn-primary pull-right"><i class="fa fa-bar-chart-o"></i> Generar Reporte</a>
     </p>
     <p class="well"> {{collection.description}}</p>
-    <div class="panel panel-default" ng-show="collection.reports.lenght > 0">
-      <ul>
-        <li ng-repeat="report in collection.reports">
-          {{ report.name }}
-          <a ng-click="download(collection, report)" class="btn btn-green btn-sm" data-confirm="Estas seguro?"> <i class="fa fa-download"></i> Baixar reporte</a>
+    <div class="panel panel-default" ng-show="reports.length > 0">
+      <ul class="report-list">
+        <li ng-repeat="report in reports">
+          <h4><i class="fa fa-file-pdf-o"></i> {{ report.created_at }}</h4>
+          <a ng-href="{{report.pdf}}" class="btn btn-green btn-sm" target="_blank" > 
+            <i class="fa fa-download"></i> Abrir reporte
+          </a>
         </li>
       </ul>
     </div>
     <hr>
     <div class="panel panel-default">
       <div class="panel-body">
+        <div ng-show="{items.lenght > 0}"><h4> Nao ha items</h4></div>
         <div class="col-md-4" ng-repeat='item in items'>
           <div class="panel panel-default">
             <div class="panel-heading">

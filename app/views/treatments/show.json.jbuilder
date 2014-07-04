@@ -45,5 +45,6 @@ end
 json.interventions do
   json.array!(@treatment.interventions) do |intervention|
     json.extract! intervention, :id, :description, :created_at, :intervention_type
+    json.intervention_date intervention.intervention_date.strftime('%d/%m/%Y')
   end
 end

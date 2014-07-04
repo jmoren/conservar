@@ -1,17 +1,21 @@
 <form ng-submit="save(intervention)" name="interventionForm">
   <h4 class="form-title"> Adicionar Intervencao</h4>  
-  <div class="form-group">
-    <select name="intervention_type" required ng-model="intervention.intervention_type" class="form-control" placeholder="Seleccion">
-      <option value="">Tipo</option>
-      <option ng-repeat="(key,value) in types" value="{{key}}">{{value}}</option>
-    </select>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <select name="intervention_type" required ng-model="intervention.intervention_type" class="form-control" placeholder="Seleccion">
+        <option value="">Tipo</option>
+        <option ng-repeat="(key,value) in types" value="{{key}}">{{value}}</option>
+      </select>
+    </div>
+    <div class="col-md-6 withDatePicker">
+      <input type="text" name="intervention_date" class="form-control" datepicker-popup="{{format}}" ng-model="intervention.intervention_date" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" placeholder="Selecione a data.." required>
+    </div>
   </div>
   <div class="form-group">
-    <input type="text" placeholder="Data" class="form-control">
-  </div>
-  <div class="form-group">
-    <lable>Descripcao</lable>
     <textarea name="description" ng-model="intervention.description" class="form-control" placeholder="Como foi a intervencao..." required/>
+  </div>
+  <div class="form-group">
+    <textarea name="materials" ng-model="intervention.materials" class="form-control" placeholder="Insira os materiais utilizados..."/>
   </div>
   <div class="form-group">
     <button type="submit" ng-disabled="interventionForm.$invalid" class="btn btn-primary btn-sm">Salvar</button>

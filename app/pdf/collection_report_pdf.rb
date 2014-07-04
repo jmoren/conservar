@@ -1,4 +1,4 @@
-class TreatmentReportPdf < PdfReport
+class CollectionReportPdf < PdfReport
   ACTIONS_TABLE_WIDTHS = [150, 700, 100]
   ACTIONS_TABLE_HEADERS = ["Tipo", "Descricao", "Date"]
 

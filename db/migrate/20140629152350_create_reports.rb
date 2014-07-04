@@ -3,7 +3,7 @@ class CreateReports < ActiveRecord::Migration
     create_table :reports do |t|
       t.integer :collection_id
       t.string  :pdf
-      t.integer :total_downloads
+      t.integer :total_downloads, default: 0
       t.timestamps
     end
   end
