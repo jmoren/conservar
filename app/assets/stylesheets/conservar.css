@@ -430,24 +430,9 @@ form#itemCover button{
   border-bottom: solid 1px #329439;
   border-top: solid 1px #329439;
 }
-
-ul.report-list{
-  margin: 0;
-  padding: 10px;
-  list-style: none;
-  clear: both;
-  content:"";
-  display: table;
+.download{
+  margin-right:10px;
 }
-ul.report-list li{
-  float: left;
-  padding: 10px;
-  border: solid 2px #999;
-  margin: 0 10px;
-}
-ul.report-list li:first-child{
-  margin-left: 0px;
-}
-ul.report-list li:last-child{
-  margin-right: 0px;
+.download:last-child{
+  margin-right:0px;
 }

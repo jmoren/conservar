@@ -142,27 +142,8 @@ angular.module('ngWYSIWYG', [])
   var linker = function( scope, $element, attrs, ctrl ) {
     scope.editMode = false;
     scope.fonts = ['Verdana','Arial', 'Arial Black', 'Arial Narrow', 'Courier New', 'Century Gothic', 'Comic Sans MS', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Webdings','Trebuchet MS'];
-    scope.$watch('font', function(newValue) {
-      if(newValue) {
-        scope.execCommand( 'fontname', newValue );
-        scope.font = '';
-      }
-    });
-    
     scope.fontsizes = [1, 2, 3, 4, 5, 6, 7, 10, 15, 20, 25, 30, 40];
-    scope.$watch('fontsize', function(newValue) {
-      if(newValue) {
-        scope.execCommand( 'fontsize', newValue );
-        scope.fontsize = '';
-      }
-    });
-    scope.styles = [{name: 'Paragraph', key: '<p>'}, {name: 'Header 1', key: '<h1>'}, {name: 'Header 2', key: '<h2>'}, {name: 'Header 3', key: '<h3>'}, {name: 'Header 4', key: '<h4>'}, {name: 'Header 5', key: '<h5>'}, {name: 'Header 6', key: '<h6>'}];
-    scope.$watch('textstyle', function(newValue) {
-      if(newValue) {
-        scope.execCommand( 'formatblock', newValue );
-        scope.fontsize = '';
-      }
-    });
+    
     scope.showFontColors = false;
     scope.setFontColor = function( color ) {
       scope.execCommand('foreColor', color);

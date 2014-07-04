@@ -13,7 +13,7 @@ class PdfUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/reports/#{model.id}/#{Date.today.strftime('%d_%m_%Y')}"
+    "uploads/reports/#{model.id}/#{Date.today.strftime('%d_%m_%Y_%H_%M')}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

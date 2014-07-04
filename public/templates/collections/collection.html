@@ -15,14 +15,25 @@
     </p>
     <p class="well"> {{collection.description}}</p>
     <div class="panel panel-default" ng-show="reports.length > 0">
-      <ul class="report-list">
-        <li ng-repeat="report in reports">
-          <h4><i class="fa fa-file-pdf-o"></i> {{ report.created_at }}</h4>
-          <a ng-href="{{report.pdf}}" class="btn btn-green btn-sm" target="_blank" > 
-            <i class="fa fa-download"></i> Abrir reporte
-          </a>
-        </li>
-      </ul>
+      <div class="panel-body">        
+        <div class="btn-group download" ng-repeat="report in reports" dropdown is-open="status.isopen">
+          <button type="button" class="btn btn-green">
+            <i class="fa fa-file-pdf-o"></i> Relatorio {{ report.created_at }}
+          </button>
+          <button type="button" class="btn btn-green dropdown-toggle">
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a ng-href="{{report.pdf}}" target="_blank">
+                <i class="fa fa-download"></i> Baixar
+              </a>
+              <a href="#"><i class="fa fa-trash-o"></i> Apagar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <hr>
     <div class="panel panel-default">
@@ -40,9 +51,9 @@
             </div>
             <div class="panel-body">
               <div class="clearfix">
-                <img ng-src="{{item.cover}}" style="width:60px;height:50px;float:left;margin: 0 0px 10px 0;background: #f1f1f1"/>
+                <img ng-src="{{item.cover}}" style="width:60px;height:50px;float:left;margin: 0 10px 10px 0;background: #f1f1f1"/>
               
-                <p style="float:right;width:210px">{{ item.description}}</p>
+                <p style="float:right;width:200px">{{ item.description}}</p>
               </div>
               <hr>
               <a ng-click="openModalItem(item,'edit')" class="btn btn-default btn-xs">Editar</a>

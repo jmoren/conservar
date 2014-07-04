@@ -17,10 +17,10 @@
   
   <div class="col-md-12" id="treatmentPanel" style="margin-top: 30px">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <a class="close pull-right" ng-click="toggleTreatment = true" ng-hide="toggleTreatment">&plus;</a>
-          <a class="close pull-right" ng-click="toggleTreatment = false" ng-show="toggleTreatment">&times;</a>
+      <div class="panel-heading" ng-init="toggleTreatment = false"> 
+        <div class="panel-title" ng-click="toggleTreatment = !toggleTreatment" style="cursor:pointer">
+          <a class="close pull-right" ng-hide="toggleTreatment">&plus;</a>
+          <a class="close pull-right" ng-show="toggleTreatment">&times;</a>
           <h4><i class="fa fa-pencil"></i> Diagnóstico e Proposta</h4>
         </div>
       </div>
@@ -50,11 +50,11 @@
 
   <div class="col-md-12" id="detailsPanel">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <a class="close pull-right" ng-click="openAndScroll('detailsPanel')" ng-hide="toggleDetails">&plus;</a>
-          <a class="close pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails">&times;</a>
-          <h4 ng-click="toggleDetails = !toogleDetails"><i class="fa fa-gears"></i> Detalhes do tratamento</h4>
+      <div class="panel-heading" ng-init="toogleDetails=false">
+        <div class="panel-title" ng-click="toggleDetails = !toggleDetails" style="cursor:pointer">
+          <a class="close pull-right" ng-hide="toggleDetails">&plus;</a>
+          <a class="close pull-right" ng-show="toggleDetails">&times;</a>
+          <h4><i class="fa fa-gears"></i> Detalhes do tratamento</h4>
         </div>
       </div>
       <div class="panel-body" ng-show="toggleDetails">
@@ -140,10 +140,10 @@
 
   <div class="col-md-12" id="imagesPanel">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <a class="close pull-right" ng-click="openAndScroll('imagesPanel')" ng-hide="toggleImages">&plus;</a>
-          <a class="close pull-right" ng-click="toggleImages = false" ng-show="toggleImages">&times;</a>
+      <div class="panel-heading" ng-init="toggleImages = false">
+        <div class="panel-title" ng-click="toggleImages = !toggleImages" style="cursor:pointer">
+          <a class="close pull-right" ng-hide="toggleImages">&plus;</a>
+          <a class="close pull-right" ng-show="toggleImages">&times;</a>
           <h4><i class="fa fa-image"></i> Imagens</h4>
         </div>
       </div>
