@@ -13,8 +13,13 @@
     </div>
     <div class="form-group" ng-class="{'has-error':detailForm.value.$invalid && detailForm.value.$dirty}">
       <label class="form-label">Valor</label>
-      <input type='text' name="value" required class="form-control" ng-model="element.value" value="element.value"/>
-      <small ng-show="element.detail_type=='medidas'" class="help-block"><i class="fa fa-warning"></i> Medidas em centímetros</small>
+      <div ng-if="element.detail_type == 'materiales'">
+        <input type='text' name="value" required class="form-control" ng-model="element.value" value="element.value"/>
+      </div>
+      <div ng-if="element.detail_type == 'medidas'">
+        <input type='text' name="value" ng-required="true" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control" ng-model="element.value" value="element.value" placeholder="Insira solo numeros..."/>
+        <small class="help-block"><i class="fa fa-warning"></i> Medidas em centímetros</small>
+      </div>
     </div>
   </form>
 </div>

@@ -19,6 +19,10 @@ body { padding-top: 50px;   background: #333;}
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color: #fff;
 }
+.navbar-brand{
+  border-right: solid 1px #047A54;
+  padding: 15px 75px 0px 15px;
+}
 
 a, a:hover{
   outline:none;
@@ -295,7 +299,7 @@ table.details-table tr.detail-row:hover td .actions{
   color: #f1f1f1;
   border-color: #1b926c;
 }
-.btn-green:hover{
+.btn-green:focus, .btn-green:hover{
   color: #fff;
 }
 
@@ -354,7 +358,7 @@ table.image-info{
 #preview{
   position: relative;
   height: 150px;
-  background: #f1f1f1;
+  background: #e4e4e4;
   border: solid 1px #ccc;
   width: 200px;
 }

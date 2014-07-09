@@ -22,7 +22,7 @@ angular.module('conservar.item',[
   $scope.alert = { type: "", message: "" };
 
   $scope.types = {
-    medidas: ["alto", "ancho", "diagonal", "profundo", "largo"],
+    medidas: ["alto", "ancho", "diagonal (izq - der)", "diagonal (der - izq)", "profundo", "largo", "diametro", "radio"],
     materiales: ["madera", "plastico", "cuero", "vidrio", "metal"],
   };
 

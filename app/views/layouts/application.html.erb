@@ -45,7 +45,7 @@
   <div class="col-md-2 side-bar" ng-controller="DashboardCtrl">
     <div class="profile-box">
       <div class="user">
-        <h4>{{current_user.name }}</h4>
+        <h4>{{current_user.name }} {{ current_user.last_name }}</h4>
         <a href="#/users/me"><i class="fa fa-cog"></i> Perfil</a>
         <a ng-click="logout()"><i class="fa fa-sign-out"></i> Sair</a>
       </div>
@@ -71,7 +71,7 @@
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/reports" ui-sref="reports">
-          <i class="fa fa-bar-chart-o"></i> Relatorios 
+          <i class="fa fa-file-pdf-o"></i> Relatorios 
         </a>
         <span class="arrow-left"></span>
       </li>

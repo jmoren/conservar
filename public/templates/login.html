@@ -3,24 +3,22 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <form ng-submit="login(user)">
-        <div class="page-header"  style="margin:10px 0">
-        </div>
         <div class="form-group form-group-icon">
           <input type="text" class="form-control uname" name="email" placeholder="Email" ng-model="user.email"/>
           <i class="fa fa-envelope"></i>
         </div>
         <div class="form-group form-group-icon">
           <input type="password" class="form-control pword" name="password" placeholder="Password" ng-model="user.password"/>
-          <i class="fa fa-lock" style="font-size:20px;top:8px"></i>
+          <i class="fa fa-lock" style="font-size:20px;"></i>
         </div>
         <div class="form-group clearfix">
           <div class="checkbox pull-left">
             <input type="checkbox" name="remember_me" checked/>
             Mantenha-me conectado
           </div>
-          <button class="btn btn-green pull-right" type="submit">FAZER LOGIN</button>
+          <a href="#" class="forgot pull-right">Esqueceu a senha? <i class="fa fa-question-circle"></i></a>
         </div>
-        <a href="#" class="forgot">Esqueceu a senha?</a>
+        <button class="btn btn-green" type="submit">Fazer Login <i class="fa fa-unlock" style="font-size:15px;margin-left:10px"></i></button>
       </form>
       <div ng-show="login_error.message" class="alert alert-danger" style="margin:20px 0 0 0">
         <b>{{login_error.message}}</b>

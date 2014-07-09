@@ -61,21 +61,21 @@
       <table class="table details-table">
         <thead>
           <th>
-            <a ng-click="predicate = 'name'; reverse=!reverse">Nome</a>
-            <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
-            <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
+            <a ng-click="predicate1 = 'name'; reverse1 = !reverse1">Nome</a>
+            <span ng-show="predicate1 === 'name' && reverse1 === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate1 === 'name' && reverse1 === false"><i class="fa fa-angle-down"></i></span>
           </th>
           <th>
-            <a ng-click="predicate = 'value'; reverse=!reverse">Valor</a>
-            <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
-            <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
+            <a ng-click="predicate1 = 'value'; reverse1 = !reverse1">Valor</a>
+            <span ng-show="predicate1 === 'value' && reverse1 === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate1 === 'value' && reverse1 === false"><i class="fa fa-angle-down"></i></span>
           </th>
           <th></th>
         </thead>
         <tbody>
-          <tr ng-repeat="detail in item.medidas | orderBy:predicate:reverse" class="detail-row">
-            <td>{{ detail.name }}</td>
-            <td>{{ detail.value }}</td>
+          <tr ng-repeat="medida in item.medidas | orderBy:predicate1:reverse1" class="detail-row">
+            <td>{{ medida.name }}</td>
+            <td>{{ medida.value }}</td>
             <td class="detail-actions">
               <div class="actions">
                 <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
@@ -99,21 +99,21 @@
       <table class="table details-table">
         <thead>
           <th>
-            <a ng-click="predicate = 'name'; reverse=!reverse">Nome</a>
-            <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
-            <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
+            <a ng-click="predicate2 = 'name'; reverse2 = !reverse2">Nome</a>
+            <span ng-show="predicate2 === 'name' && reverse2 === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate2 === 'name' && reverse2 === false"><i class="fa fa-angle-down"></i></span>
           </th>
           <th>
-            <a ng-click="predicate = 'value'; reverse=!reverse">Valor</a>
-            <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
-            <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
+            <a ng-click="predicate2 = 'value'; reverse2 =! reverse2">Valor</a>
+            <span ng-show="predicate2 === 'value' && reverse2 === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate2 === 'value' && reverse2 === false"><i class="fa fa-angle-down"></i></span>
           </th>
           <th></th>
         </thead>
         <tbody>
-          <tr ng-repeat="detail in item.materials | orderBy:predicate:reverse" class="detail-row">
-            <td>{{ detail.name }}</td>
-            <td>{{ detail.value }}</td>
+          <tr ng-repeat="material in item.materials | orderBy:predicate2:reverse2" class="detail-row">
+            <td>{{ material.name }}</td>
+            <td>{{ material.value }}</td>
             <td class="detail-actions">
               <div class="actions">
                 <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
