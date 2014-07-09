@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  belongs_to :organization
   belongs_to :collection
   has_many :item_details, dependent: :destroy
   has_many :treatments, dependent: :destroy

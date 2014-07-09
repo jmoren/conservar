@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @collection = Collection.find(params[:collection_id])
     @items = @collection.items
   end
 
@@ -15,7 +14,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    @item = @organization.items.new
   end
 
   # GET /items/1/edit
@@ -25,9 +24,9 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @collection = Collection.find(params[:collection_id])
+    @collection = @organization.collections.find(params[:collection_id])
     @item = @collection.items.new(item_params)
-
+    @item.organization_id = @organization.id
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -42,7 +41,6 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    @collection = Collection.find(params[:collection_id])
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -65,7 +63,7 @@ class ItemsController < ApplicationController
   end
 
   def upload
-    @collection = Collection.find(params[:collection_id])
+    @collection = @organization.collections.find(params[:collection_id])
     @item = @collection.items.find(params[:id])
     respond_to do |format|
       if @item.update(cover_params)
@@ -84,7 +82,7 @@ class ItemsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = @organization.items.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

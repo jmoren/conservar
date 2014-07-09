@@ -1,21 +1,20 @@
-<div ng-controller="TreatmentCtrl" ng-init="init()" id="treatment">
-  <div class="col-md-12" style="padding-top: 20px">
-    <div class="page-header subnav">
-      <h2> 
-        Tratamento #{{ treatment.id }} 
-        <div class="pull-right">
-          <span class="text-muted"><i style="font-size:25px" class="fa fa-ellipsis-v"></i></span>
-          <a href="#/items/{{treatment.item_id}}">{{ item.name }}</a>
-        </div>
-      </h2>
-    </div>
-    <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
-       <button type="button" class="close" ng-click="closeAlert()">&times;</button>
-      {{alert.message}}
-    </div>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2>
+      Tratamento #{{ treatment.id }} 
+      <div class="pull-right">
+        <span class="text-muted"><i style="font-size:25px" class="fa fa-ellipsis-v"></i></span>
+        <a href="#/items/{{treatment.item_id}}">{{ item.name }}</a>
+      </div>
+    </h2>
   </div>
-  
-  <div class="col-md-12" id="treatmentPanel" style="margin-top: 30px">
+</div>
+<div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
+  <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+  {{alert.message}}
+</div>
+<div style="margin-top: 30px">
+  <div class="col-md-12" id="treatmentPanel">
     <div class="panel panel-default">
       <div class="panel-heading" ng-init="toggleTreatment = false"> 
         <div class="panel-title" ng-click="toggleTreatment = !toggleTreatment" style="cursor:pointer">
@@ -31,7 +30,7 @@
           <br>
           <div class="form-group">
             <button type="submit" class="btn btn-sm btn-green">Salvar</button>
-            <button ng-click="editDiagnosis = false" class="btn btn-sm btn-default">Cancelar</button>
+            <a ng-click="editDiagnosis = false" class="btn btn-sm btn-default">Cancelar</a>
           </div>
           <hr>
         </form>
@@ -41,7 +40,7 @@
           <br>
           <div class="form-group">
             <button type="submit" class="btn btn-sm btn-green">Salvar</button>
-            <button ng-click="editProposal = false" class="btn btn-sm btn-default">Cancelar</button>
+            <a ng-click="editProposal = false" class="btn btn-sm btn-default">Cancelar</a>
           </div>
         </form>
       </div>
@@ -85,17 +84,17 @@
           <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
             <h4 class="text-muted" ng-show="interventions.length < 1">Atualmente não há intervenções</h4>
             <div class="intervention clearfix" ng-repeat="intervention in interventions">
-              <div class="col-md-2" style="padding-left:0px;padding-right:3px">
-                <p><a ng-click="openModalIntervention(intervention)">#{{ intervention.id }}</a></p>
-                <p><small><i class="fa fa-calendar-o"></i> {{intervention.intervention_date}}</small></p>
-                <p><span class="label label-primary">{{intervention.intervention_type}}</span></p>
+              <a ng-click="openModalIntervention(intervention)" class="btn btn-xs btn-primary">Ver #{{ intervention.id }}</a>
+              <span class="btn btn-default btn-xs">
+                <i class="fa fa-calendar" style="font-weight:bold;"></i> {{intervention.intervention_date}}
+              </span>
+              <div class="pull-right">
+                <a ng-click="removeIntervention(intervention)" class="text-muted">
+                  <i class="fa fa-trash-o" style="font-weight:bold;font-size:15px"></i>
+                </a>
               </div>
-              <div class="col-md-10" style="padding-right:0">
-                <p class="well">{{ intervention.description }}</p>
-                <small>                  
-                  <a ng-click="removeIntervention(intervention)" class="text-danger pull-right"><i class="fa fa-trash-o"> apagar</i></a>
-                </small>
-              </div>
+              <br>
+              <p class="well well-sm" style="margin: 10px 0;">{{ intervention.description }}</p>
             </div>
           </div>
         </div>
@@ -104,16 +103,14 @@
             <exam-form exams="exams" treatment="treatment"></exam-form>
           </div>
           <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
-            <h4 class="text-muted" ng-show="exams.length < 1">Atualmente não há exames</h4>
+            <h4 class="text-muted" ng-show="exams.length < 1">Atualmente não há análises</h4>
             <div class="exam clearfix" ng-repeat="exam in exams">
-              <div class="exam-name">
-                <div class="btn btn-group btn-group-xs pull-right" style="margin-top:-5px;padding-right:0"> 
-                  <a ng-click="openModalExam(exam)" class="btn btn-primary">Ver</a>
-                  <a ng-click="removeExam(exam)" class="btn btn-primary"> Apagar</a>
-                </div>
-                <h3>{{exam.name}}</h3>
-              </div>
-              <p class="well well-sm">{{ exam.result }}</p>
+              <a ng-click="removeExam(exam)" class="pull-right text-muted">
+                <i class="fa fa-trash-o" style="font-weight:bold;font-size:15px"></i>
+              </a>
+              <a ng-click="openModalExam(exam)" class="btn btn-xs btn-primary">{{exam.name}}</a>
+              <br>
+              <p class="well well-sm" style="margin: 10px 0;">{{ exam.result }}</p>
             </div>
           </div>
         </div>
@@ -124,13 +121,16 @@
           <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
             <h4 class="text-muted" ng-show="notes.length < 1">Atualmente não há notas</h4>
             <div class="note clearfix" ng-repeat="note in notes">
-              <p class="well well-sm">
+              <span class="btn btn-xs btn-default">
+                <i class="fa fa-clock-o"></i> comentado {{note.created_at}}
+              </span>
+              <a ng-click="removeNote(note)" class="pull-right text-muted">
+                <i class="fa fa-trash-o" style="font-weight:bold;font-size:15px"></i>
+              </a>
+              <br>
+              <p class="well well-sm" style="margin: 10px 0;">
                 <i class="fa fa-comments-o"></i> {{ note.content }}
               </p>
-              <small class="text-muted">
-                <a ng-click="removeNote(note)" class="text-danger pull-right">Apagar</a>
-                <div class="pull-left"><i class="fa fa-clock-o"></i> criado {{note.created_at}}</div>
-              </small>
             </div>
           </div>
         </div>
@@ -155,7 +155,7 @@
                 <div class="form-group">
                   <label class="form-label">Intervenção <small class="text-muted">(Opcional)</small></label>
                   <select ng-model="dataForm.intervention_id" class="form-control">
-                    <option value="">seleciona</option>
+                    <option value="">selecione</option>
                     <option ng-repeat="intervention in interventions" value="{{intervention.id}}">{{intervention.id}}</option>
                   </select>
                 </div>
@@ -196,7 +196,7 @@
               <div class="caption">
                 <p>{{ image.description}}</p>
                 <p>Intervenção: #{{ image.intervention.id }} </p>
-                <small><a href="#" class="btn btn-danger btn-xs">APAGAR</a></small>
+                <small><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> apagar</a></small>
               </div>       
             </div>
           </div>

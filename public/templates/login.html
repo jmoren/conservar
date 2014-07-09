@@ -1,0 +1,41 @@
+<section class="signin">  
+  <h2 class="title"> <i class="fa fa-recycle"></i> Conservar</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form ng-submit="login(user)">
+        <div class="page-header"  style="margin:10px 0">
+        </div>
+        <div class="form-group form-group-icon">
+          <input type="text" class="form-control uname" name="email" placeholder="Email" ng-model="user.email"/>
+          <i class="fa fa-envelope"></i>
+        </div>
+        <div class="form-group form-group-icon">
+          <input type="password" class="form-control pword" name="password" placeholder="Password" ng-model="user.password"/>
+          <i class="fa fa-lock" style="font-size:20px;top:8px"></i>
+        </div>
+        <div class="form-group clearfix">
+          <div class="checkbox pull-left">
+            <input type="checkbox" name="remember_me" checked/>
+            Mantenha-me conectado
+          </div>
+          <button class="btn btn-green pull-right" type="submit">FAZER LOGIN</button>
+        </div>
+        <a href="#" class="forgot">Esqueceu a senha?</a>
+      </form>
+      <div ng-show="login_error.message" class="alert alert-danger" style="margin:20px 0 0 0">
+        <b>{{login_error.message}}</b>
+      </div>  
+    </div>
+  </div>
+  <hr>
+  <div class="footer">
+    <div class="pull-left">
+      &copy; 2014
+    </div>
+    <div class="pull-right">
+      <a href="#">Policy</a> -
+      <a href="#">Termos e condicoes</a> -
+      <a href="#">Ajuda</a>
+    </div>
+  </div>
+</section>

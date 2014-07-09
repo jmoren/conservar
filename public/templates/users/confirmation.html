@@ -1,0 +1,22 @@
+<section class="signin" ng-init="init()">  
+  <h2 class="title"> <i class="fa fa-recycle"></i> Conservar</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">{{user.email }} - Confira sua conta</h2>
+    </div>
+    <div class="panel-body">
+      <form ng-submit="confirm(user)" name="userForm">
+        <div class="form-group form-group-icon">
+          <input type="password" name="password" ng-model="user.password" placeholder="Insira sua senha" class="form-control" required/>
+          <i class="fa fa-lock" style="font-size:20px;top:8px"></i>
+        </div>
+        <div class="form-group form-group-icon">
+          <input type="password" name="password_confirmation" ng-model="user.password_confirmation" placeholder="Confira sua senha" class="form-control" required/>
+          <i class="fa fa-lock" style="font-size:20px;top:8px"></i>
+        </div>
+        <button class="btn btn-primary" ng-disabled="userForm.$invalid">Confirma!</button>
+        <a href="#/login" class="pull-right">Entrar <i class="fa fa-sign-in"></i></a>
+      </form>
+    </div>
+  </div>
+</section>

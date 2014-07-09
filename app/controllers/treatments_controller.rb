@@ -5,7 +5,7 @@ class TreatmentsController < ApplicationController
   # GET /treatments
   # GET /treatments.json
   def index
-    @treatments = Treatment.all
+    @treatments = @organization.treatments
   end
 
   # GET /treatments/1
@@ -17,7 +17,7 @@ class TreatmentsController < ApplicationController
   # POST /treatments.json
   def create
     @treatment = @item.treatments.new(treatment_params)
-
+    @treatment.organization_id = @organization.id
     respond_to do |format|
       if @treatment.save
         format.html { redirect_to @treatment, notice: 'Treatment was successfully created.' }
@@ -73,7 +73,7 @@ class TreatmentsController < ApplicationController
     end
 
     def set_item
-      @item = Item.find(params[:item_id])
+      @item = @organization.items.find(params[:item_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

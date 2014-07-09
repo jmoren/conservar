@@ -6,53 +6,48 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <div class="navbar-fixed-top"> 
-    <div class="col-md-2" style="padding:0;">
-      <div class="navbar navbar-default nav-green" role="navigation" style="padding-left:15px">      
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><i class="fa fa-recycle"></i> Conservar</a>
-        </div>
+<body ui-view="body" ng-controller="ConservarCtrl">
+  <div class="navbar-fixed-top">   
+    <div class="navbar navbar-default nav-green" role="navigation" style="padding-left:15px">      
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><i class="fa fa-recycle"></i> Conservar</a>
       </div>
-    </div>
-    <div class="col-md-10" style="padding:0px;border-left: solid 1px #1b926c;">
-      <div class="navbar navbar-default nav-green" role="navigation">        
-        <ul class="nav navbar-nav navbar-right">
-          <form class="navbar-form navbar-left" id="search-form" role="search">
-            <div class="control-form">
-              <input type="text" class="form-control" placeholder="Buscar items o colecciones ... ">
-              <i class="fa fa-search"></i>
-            </div>
-          </form>
-        </ul>
-        <ul class="nav navbar-nav settings">
-          <li class="dropdown" on-toggle="toggled(open)">
-            <a href class="dropdown-toggle">
-              <i class="fa fa-bars"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#"><i class="fa fa-cogs"></i> Settings</a>
-                <a href="#"><i class="fa fa-users"></i> Usuarios</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+      <ul class="nav navbar-nav settings navbar-right">
+        <li class="dropdown" on-toggle="toggled(open)">
+          <a href class="dropdown-toggle">
+            <i class="fa fa-bars"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#"><i class="fa fa-cogs"></i> Settings</a>
+              <a href="#/organization/{{current_user.organization.id}}/users"><i class="fa fa-users"></i> Usuarios</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-left" id="search-form" role="search">
+          <div class="control-form">
+            <input type="text" class="form-control" placeholder="Buscar items o colecciones ... ">
+            <i class="fa fa-search"></i>
+          </div>
+        </form>
+      </ul>
+      
     </div>
   </div>
-  <div class="side-bar" style="">
+  <div class="col-md-2 side-bar" ng-controller="DashboardCtrl">
     <div class="profile-box">
       <div class="user">
-        <h4>Jorge Moreno</h4>
-        <a href="#"><i class="fa fa-cog"></i>Perfil</a>
-        <a href="#"><i class="fa fa-sign-out"></i>Sair</a>
+        <h4>{{current_user.name }}</h4>
+        <a href="#/users/me"><i class="fa fa-cog"></i> Perfil</a>
+        <a ng-click="logout()"><i class="fa fa-sign-out"></i> Sair</a>
       </div>
     </div>
     <ul class="list-group">
@@ -60,35 +55,40 @@
         <a href='#/collections' ui-sref="collections">
           <i class="fa fa-tags"></i> Items
         </a>
+        <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
-        <a href="#/images">
+        <a href="#/images" ui-sref="images">
           <i class="fa fa-camera"></i> Imagens
         </a>
+        <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/treatments" ui-sref="treatments">
           <i class="fa fa-bars"></i> Tratamentos
         </a>
+        <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/reports" ui-sref="reports">
           <i class="fa fa-bar-chart-o"></i> Relatorios 
         </a>
+        <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/analises" ui-sref="exams">
           <i class="fa fa-search"></i> Analises
         </a>
+        <span class="arrow-left"></span>
       </li>
-      <li class="list-group-item">
-        <a href="#">
+      <li class="list-group-item" ui-sref-active="active">
+        <a href="#/organization/{{current_user.organization.id}}" ui-sref="organization">
           <i class="fa fa-users"></i> Organizacao
         </a>
+        <span class="arrow-left"></span>
       </li>
     </ul>
   </div>
-  <div ui-view="main" class="main-content clearfix"></div>
-
+  <div ui-view="main" class="col-md-10 main-content clearfix"></div>
 </body>
 </html>

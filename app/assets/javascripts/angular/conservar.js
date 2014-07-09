@@ -4,6 +4,7 @@ angular.module('conservar',[
   'ngSanitize',
   'common.modal',
   'common.pagination',
+  'common.authentication',
   'conservar.item_detail',
   'conservar.intervention',
   'conservar.item',
@@ -17,6 +18,12 @@ angular.module('conservar',[
   'conservar.exams',
   'conservar.dashboard',
   'conservar.reports',
+  'conservar.users',
+  'conservar.profile',
+  'conservar.login',
+  'conservar.organization',
+  'conservar.users',
+  'conservar.confirmation',
   'lr.upload',
   'ui.bootstrap'
   ])
@@ -25,13 +32,31 @@ angular.module('conservar',[
   $urlRouterProvider.otherwise( '/dashboard' );
 })
 
-.run(function ($rootScope,   $state,   $stateParams) {
+.run(function ($rootScope, $state, $stateParams) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+})
 
-    // It's very handy to add references to $state and $stateParams to the $rootScope
-    // so that you can access them from any scope within your applications.For example,
-    // <li ui-sref-active="active }"> will set the <li> // to active whenever
-    // 'contacts.list' or one of its decendents is active.
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams;
-    }
-  );
+.controller( 'ConservarCtrl', function($rootScope, $scope, $location, $http) {
+  
+  $scope.current_user = { email: null };
+  $scope.loggedIn     = false;
+  
+  $scope.$on('sessionActive', function(event, user){
+    $scope.loggedIn = true;
+    $scope.current_user = user;
+  });
+
+  $scope.$on('loggedIn', function(event, user){
+    $scope.loggedIn = true;
+    $scope.current_user = user;
+    //$scope.alert.showBox('You are logged in. ','Welcome back '+user.email, 'alert-success');
+  });
+
+  $scope.$on('loggedOut', function(){
+    $scope.loggedIn = false;
+    //$scope.alert.showBox('You are logged out. ','Goodbye '+$scope.current_user.email, 'alert-success');
+    $scope.current_user = { email: null };
+  });
+
+});

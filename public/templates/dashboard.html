@@ -1,10 +1,14 @@
-<div class="col-md-12" style="padding-top:20px">
-  <div class="page-header subnav">
-    <h1>Home#index template</h1>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2>
+      Dashboard
+    </h2>
   </div>
 </div>
-<div class="col-md-12">
-  $state = {{$state.current.name}}
-  <br>$stateParams = {{$stateParams}}
-  <br>$state full url = {{ $state.$current.url.source }}
+<div style="margin-top:30px">
+  <div class="col-md-12">
+    <p>$state = {{$state.current.name}}</p>
+    <p>$stateParams = {{$stateParams}}</p>
+    <p>$state full url = {{ $state.$current.url.source }}</p>
+  </div>
 </div>

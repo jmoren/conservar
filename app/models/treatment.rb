@@ -1,4 +1,5 @@
 class Treatment < ActiveRecord::Base
+  belongs_to :organization
   belongs_to :item
   has_many :treatment_notes, dependent: :destroy
   has_many :images, dependent: :destroy

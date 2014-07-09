@@ -1,47 +1,47 @@
-<div ng-controller="ImageCtrl" ng-init="init()">
-  <div class="col-md-12" style="padding-top: 20px">
-    <div class="page-header subnav">
-      <h2> 
-        {{ image.description }}
-        <a href="#/images" class="pull-left subnav-link">
-          <i class="fa fa-chevron-left"></i>
-        </a>
-      </h2>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2>  
+      {{ image.description }}
+      <a href="#/images" class="pull-left subnav-link">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </h2>
+  </div>
+</div>
+<div style="margin-top:30px">
+  <div class='col-md-7'>
+    <div class='thumbnail'>
+      <img ng-elevate-zoom ng-src='{{image.photo}}' zoom-image='{{image.photo}}'>
     </div>
-    <div class='col-md-7'>
-      <div class='thumbnail'>
-        <img ng-elevate-zoom ng-src='{{image.photo}}' zoom-image='{{image.photo}}'>
+  </div>
+  <div class="col-md-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <button class="btn btn-primary btn-sm" ng-click="updateImage = true">Editar</button>
+        <button class="btn btn-danger btn-sm" ng-click="remove(image)">Apagar</button>
       </div>
-    </div>
-    <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <button class="btn btn-primary btn-sm" ng-click="updateImage = true">Editar</button>
-          <button class="btn btn-danger btn-sm" ng-click="remove(image)">Apagar</button>
-        </div>
-        <div class="panel-body">
-          <form ng-submit="update(image)" name="imageForm" ng-show="updateImage" style="margin-bottom: 15px;">
-            <div class="form-group" ng-class="{'has-error':imageForm.description.$invalid && imageForm.description.$dirty}">
-              <textarea class="form-control" ng-model="image.description" value="image.description" required/>
-            </div>
-            <button ng-disabled="imageForm.$invalid" type="submit" class="btn btn-xs btn-green">Salvar</button>
-            <button ng-click="updateImage = false" class="btn btn-xs btn-default">Cancelar</button>
-          </form>
-          <p ng-hide="updateImage" class="well well-sm">{{ image.description}}</p>
-          <table class="table">
-            <tbody>
-              <tr>
-                <td><i class="fa fa-check"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-search"></i> Tratamento</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-wrench"></i> Intervencao</td><td>#{{image.intervention.id}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="panel-body">
+        <form ng-submit="update(image)" name="imageForm" ng-show="updateImage" style="margin-bottom: 15px;">
+          <div class="form-group" ng-class="{'has-error':imageForm.description.$invalid && imageForm.description.$dirty}">
+            <textarea class="form-control" ng-model="image.description" value="image.description" required/>
+          </div>
+          <button ng-disabled="imageForm.$invalid" type="submit" class="btn btn-xs btn-green">Salvar</button>
+          <button ng-click="updateImage = false" class="btn btn-xs btn-default">Cancelar</button>
+        </form>
+        <p ng-hide="updateImage" class="well well-sm">{{ image.description}}</p>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><i class="fa fa-check"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-search"></i> Tratamento</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-wrench"></i> Intervencao</td><td>#{{image.intervention.id}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

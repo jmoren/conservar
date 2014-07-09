@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.json
   def index
-    @collections = Collection.all
+    @collections = @organization.collections
   end
 
   # GET /collections/1
@@ -16,7 +16,7 @@ class CollectionsController < ApplicationController
 
   # GET /collections/new
   def new
-    @collection = Collection.new
+    @collection = @organization.collections.new
   end
 
   # GET /collections/1/edit
@@ -28,6 +28,7 @@ class CollectionsController < ApplicationController
   def create
     @collection = Collection.new(collection_params)
     @collection.code = SecureRandom.hex(6)
+    @collection.organization_id = @organization.id
     respond_to do |format|
       if @collection.save
         format.html { redirect_to @collection, notice: 'Collection was successfully created.' }
@@ -66,7 +67,7 @@ class CollectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
-      @collection = Collection.find(params[:id])
+      @collection = @organization.collections.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

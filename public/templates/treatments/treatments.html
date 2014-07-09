@@ -1,48 +1,47 @@
-<div ng-controller="TreatmentsCtrl" ng-init="init()">
-  <div class="col-md-12" style="padding-top: 20px">
-    <div class="page-header subnav">
-      <h1> 
-        Tratamentos
-      </h1>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2> 
+      Tratamentos
+    </h2>
+  </div>
+</div>
+<div style="margin-top: 30px">
+  <div ng-repeat="treatment in treatments">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4>
+            <a href="#/items/{{treatment.item.id}}" class="btn btn-danger btn-sm">
+              <i class="fa fa-tag"></i> {{ treatment.item.name }}
+            </a>
+          </h4>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="well">
+          {{ treatment.item.description }}
+        </div>
+      </div>
+      </div>
     </div>
-    <div style="margin-top: 30px">
-      <div ng-repeat="treatment in treatments" >
-      <div class="col-md-4">
-        <div class="panel panel-default">
+    <div class="col-md-8">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <div class="panel-title">
             <h4>
-              <a href="#/items/{{treatment.item.id}}" class="btn btn-danger btn-sm">
-                <i class="fa fa-tag"></i> {{ treatment.item.name }}
+              <a href="#/items/{{treatment.item.id}}/treatments/{{treatment.id}}" class="btn btn-sm btn-primary">
+                Ver Tratamento #{{treatment.id}}
               </a>
             </h4>
           </div>
         </div>
         <div class="panel-body">
-          <div class="well">
-            {{ treatment.item.description }}
-          </div>
-        </div>
+          <p class="well well-xs" ng-bind-html="treatment.diagnosis"></p>
+          <p class="well well-xs" ng-bind-html="treatment.proposal"></p>
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <h4>
-                <a href="#/items/{{treatment.item.id}}/treatments/{{treatment.id}}" class="btn btn-sm btn-primary">
-                  Ver Tratamento #{{treatment.id}}
-                </a>
-              </h4>
-            </div>
-          </div>
-          <div class="panel-body">
-            <p class="well well-xs" ng-bind-html="treatment.diagnosis"></p>
-            <p class="well well-xs" ng-bind-html="treatment.proposal"></p>
-          </div>
-        </div>
-      </div>
-      </div>
+    </div>
     </div>
   </div>
 </div>

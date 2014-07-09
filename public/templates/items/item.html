@@ -1,176 +1,174 @@
-<div ng-controller="ItemCtrl" ng-init="init()">
-  <div class="col-md-12" style="padding-top: 20px">
-    <div class="page-header subnav">
-      <h2> 
-        {{ item.name }}
-        <a href="#/collections/{{collection.id}}" class="pull-left subnav-link">
-          <i class="fa fa-chevron-left"></i>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2>
+      {{ item.name }}
+      <a href="#/collections/{{collection.id}}" class="pull-left subnav-link">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+      <div class="pull-right">
+        <a ng-click="openModalItem(item,'edit')" class="btn btn-primary btn-sm">
+          <i class="fa fa-edit"></i>
+          Editar
         </a>
-        <div class="pull-right">
-          <a ng-click="openModalItem(item,'edit')" class="btn btn-primary btn-sm">
-            <i class="fa fa-edit"></i>
-            Editar
-          </a>
-          <a ng-click="openTreatmentModal(null)" class="btn btn-primary btn-sm">
-            <i class="fa fa-plus"></i>
-            Adicionar Tratamento
-          </a>
-           <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary btn-sm">
-            <i class="fa fa-plus"></i>
-            Adicionar Material
-          </a>
-          <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary btn-sm">
-            <i class="fa fa-plus"></i>
-            Adicionar Medidas
-          </a>
-        </div>
-      </h2>
-    </div>
-    <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
-       <button type="button" class="close" ng-click="closeAlert()">&times;</button>
-      {{alert.message}}
-    </div>
+        <a ng-click="openTreatmentModal(null)" class="btn btn-primary btn-sm">
+          <i class="fa fa-plus"></i>
+          Adicionar Tratamento
+        </a>
+         <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-primary btn-sm">
+          <i class="fa fa-plus"></i>
+          Adicionar Material
+        </a>
+        <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-primary btn-sm">
+          <i class="fa fa-plus"></i>
+          Adicionar Medida
+        </a>
+      </div>
+    </h2>
+  </div>
+</div>
+<div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''" style="margin: -1px -15px;">
+   <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+  {{alert.message}}
+</div>
+<div style="margin-top:30px">
+  <div class="col-md-3" id="item-cover">
+    <img ng-src="{{item.cover}}" id="preview"/>
+    <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false">alterar imagem <i class="fa fa-camera"></i></span>
+  </div>
+  <div class="col-md-9">
+    <p class="well well-xs" style="height:150px"> {{ item.description }} </p>
   </div>
 
-  <div class="col-md-12"  style="margin-top:30px">
-    <div class="col-md-3" id="item-cover">
-      <img ng-src="{{item.cover}}" id="preview"/>
-      <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false">alterar imagem <i class="fa fa-camera"></i></span>
-    </div>
-    <div class="col-md-9">
-      <p class="well well-xs" style="height:150px"> {{ item.description }} </p>
-    </div>
-    <div class="col-md-12" ng-show="updateFile">
-      <form ng-submit="uploadCover()" id="itemCover">
-        <div class="fileUpload image-placeholder">
-          <input id="uploadFile" placeholder="Selecionar imagem"  ng-model="name" disabled/>
-          <input ng-file-select="onFileSelect($files)" accept="image/*" type="file" class="upload" id="cover" type="file"/>
-          <i class="fa fa-camera"></i>
-        </div>
-        <button type="submit" disabled="true" id="submitCover" class="btn btn-sm btn-primary">Upload</button>
-      </form>
-    </div>
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <h4>
-              Medidas
-            </h4>
-          </div>
-        </div>
-        <table class="table details-table">
-          <thead>
-            <th>
-              <a ng-click="predicate = 'name'; reverse=!reverse">Name</a>
-              <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
-              <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
-            </th>
-            <th>
-              <a ng-click="predicate = 'value'; reverse=!reverse">Value</a>
-              <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
-              <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
-            </th>
-            <th></th>
-          </thead>
-          <tbody>
-            <tr ng-repeat="detail in item.medidas | orderBy:predicate:reverse" class="detail-row">
-              <td>{{ detail.name }}</td>
-              <td>{{ detail.value }}</td>
-              <td class="detail-actions">
-                <div class="actions">
-                  <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
-                  <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="col-md-12" ng-show="updateFile">
+    <form ng-submit="uploadCover()" id="itemCover">
+      <div class="fileUpload image-placeholder">
+        <input id="uploadFile" placeholder="Selecionar imagem"  ng-model="name" disabled/>
+        <input ng-file-select="onFileSelect($files)" accept="image/*" type="file" class="upload" id="cover" type="file"/>
+        <i class="fa fa-camera"></i>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <h4>
-              Materiales
-            </h4>
-          </div>
+      <button type="submit" disabled="true" id="submitCover" class="btn btn-sm btn-primary">Carregar</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4>
+            Medidas
+          </h4>
         </div>
-        <table class="table details-table">
-          <thead>
-            <th>
-              <a ng-click="predicate = 'name'; reverse=!reverse">Name</a>
-              <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
-              <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
-            </th>
-            <th>
-              <a ng-click="predicate = 'value'; reverse=!reverse">Value</a>
-              <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
-              <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
-            </th>
-            <th></th>
-          </thead>
-          <tbody>
-            <tr ng-repeat="detail in item.materials | orderBy:predicate:reverse" class="detail-row">
-              <td>{{ detail.name }}</td>
-              <td>{{ detail.value }}</td>
-              <td class="detail-actions">
-                <div class="actions">
-                  <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
-                  <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
+      <table class="table details-table">
+        <thead>
+          <th>
+            <a ng-click="predicate = 'name'; reverse=!reverse">Nome</a>
+            <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th>
+            <a ng-click="predicate = 'value'; reverse=!reverse">Valor</a>
+            <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="detail in item.medidas | orderBy:predicate:reverse" class="detail-row">
+            <td>{{ detail.name }}</td>
+            <td>{{ detail.value }}</td>
+            <td class="detail-actions">
+              <div class="actions">
+                <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
+                <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="panel-title"><h4>Tratamentos</h4></div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4>
+            Materiais
+          </h4>
         </div>
-        <div class="panel-body">
-          <div ng-repeat="treatment in item.treatments.collection">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-              <div class="panel-title">
-                <h4>
-                  <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">#{{ treatment.id }}</a>
-                  <div class="btn-group btn-group-xs pull-right" >  
-                    <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Edit</a>
-                    <a ng-click="treatment.show = !treatment.show" class="btn btn-primary">Toggle</a>
-                  </div>
-                </h4>
+      </div>
+      <table class="table details-table">
+        <thead>
+          <th>
+            <a ng-click="predicate = 'name'; reverse=!reverse">Nome</a>
+            <span ng-show="predicate === 'name' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'name' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th>
+            <a ng-click="predicate = 'value'; reverse=!reverse">Valor</a>
+            <span ng-show="predicate === 'value' && reverse === true"><i class="fa fa-angle-up"></i></span>
+            <span ng-show="predicate === 'value' && reverse === false"><i class="fa fa-angle-down"></i></span>
+          </th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="detail in item.materials | orderBy:predicate:reverse" class="detail-row">
+            <td>{{ detail.name }}</td>
+            <td>{{ detail.value }}</td>
+            <td class="detail-actions">
+              <div class="actions">
+                <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
+                <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
               </div>
-              </div>
-              <div class="panel-body" ng-show="treatment.show">
-              <p class="well well-sm" ng-bind-html="treatment.diagnosis"></p>
-              <p class="well well-sm" ng-bind-html='treatment.proposal'></p>
-              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title"><h4>Tratamentos</h4></div>
+      </div>
+      <div class="panel-body">
+        <div ng-repeat="treatment in item.treatments.collection">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            <div class="panel-title">
+              <h4>
+                <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">#{{ treatment.id }}</a>
+                <div class="btn-group btn-group-xs pull-right" >  
+                  <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Editar</a>
+                  <a ng-click="treatment.show = !treatment.show" class="btn btn-primary">Ver</a>
+                </div>
+              </h4>
+            </div>
+            </div>
+            <div class="panel-body" ng-show="treatment.show">
+            <p class="well well-sm" ng-bind-html="treatment.diagnosis"></p>
+            <p class="well well-sm" ng-bind-html='treatment.proposal'></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <h4>
-              Imagens
-            </h4>
-          </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <h4>
+            Imagens
+          </h4>
         </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-4" ng-repeat="image in item.images">
-              <div class="thumbnail">
-                <a href="#/treatments/{{image.treatment}}/images/{{image.id}}">
-                  <img ng-src="{{image.photo}}" style="height:100px">
-                </a>
-              </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4" ng-repeat="image in item.images">
+            <div class="thumbnail">
+              <a href="#/treatments/{{image.treatment}}/images/{{image.id}}">
+                <img ng-src="{{image.photo}}" style="height:100px">
+              </a>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = @organization.images
   end
 
   # GET /images/1
@@ -17,7 +17,7 @@ class ImagesController < ApplicationController
   def create
     @treatment = Treatment.find(params[:treatment_id])
     @image = @treatment.images.new(image_params)
-    
+    @image.organization_id = @organization.id
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
@@ -56,7 +56,7 @@ class ImagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_image
-      @image = Image.find(params[:id])
+      @image = @organization.images.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

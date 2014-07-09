@@ -2,11 +2,12 @@ class ExamsController < ApplicationController
   before_action :set_treatment, except: [:index]
 
   def index
-    @exams = Exam.all
+    @exams = @organization.exams
   end
 
   def create
     @exam = @treatment.exams.new(exam_params)
+    @exam.organization_id = @organization.id
     respond_to do |format|
       if @exam.save
         format.json { render :show, status: :created}
@@ -37,7 +38,7 @@ class ExamsController < ApplicationController
 
 private
   def set_treatment
-    @treatment = Treatment.find(params[:treatment_id])
+    @treatment = @organization.treatments.find(params[:treatment_id])
   end
 
   def exam_params

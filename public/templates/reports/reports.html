@@ -1,18 +1,18 @@
-<div ng-controller="ReportsCtrl" ng-init="init()">
-  <div class="col-md-12" style="padding-top: 20px">
-    <div class="page-header subnav">
-      <h1> 
-        Relatorios
-      </h1>
-    </div>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2> 
+      Relatórios
+    </h2>
   </div>
-  <div class="col-md-12" style="margin-top:30px">
+</div>
+<div style="margin-top:30px">
+  <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-body">
         <table class="table">
           <thead>
             <th>Data</th>
-            <th>Download</th>
+            <th>Baixar</th>
             <th>Item</th>
           </thead>
           <tbody>
@@ -22,7 +22,7 @@
               </td>
               <td>
                 <a ng-href="{{report.pdf}}" class="btn btn-green btn-sm" target="_blank" > 
-                  <i class="fa fa-download"></i> Abrir reporte
+                  <i class="fa fa-download"></i> Abrir relatório
                 </a>
               </td>
               <td>

@@ -1,4 +1,5 @@
 class Collection < ActiveRecord::Base
+  belongs_to :organization
   has_many :items, dependent: :destroy
   has_many :reports, dependent: :nullify
 

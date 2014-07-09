@@ -1,0 +1,51 @@
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2> 
+      Organização
+      <div class="pull-right">
+        <a class="btn btn-green" href="#/organization/{{organization.id}}/users">Usuários</a>
+        <a class="btn btn-primary" ng-click="editOrg = !editOrg" ng-show="!editOrg"><i class="fa fa-edit"></i> Editar</a>
+        <a class="btn btn-primary" ng-click="editOrg = !editOrg" ng-show="editOrg">Cancelar</a>
+      </div>
+    </h2>
+  </div>
+</div>
+<div style="margin-top:30px">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form ng-submit="save(organization)" class="form-horizontal" name="orgForm">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Nome</label>
+            <div class="col-sm-6">
+              <input type="text" name="name" class="form-control" ng-model="organization.name" value="{{organization.name}}" ng-disabled="!editOrg"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Endereço</label>
+            <div class="col-sm-6">
+              <input type="text" name="address" class="form-control" ng-model="organization.address" value="{{organization.address }}" ng-disabled="!editOrg"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="contact_email" ng-model="organization.contact_email" value="{{organization.contact_email}}" ng-disabled="!editOrg"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Telefone</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="phone" ng-model="organization.phone" value="{{organization.phone}}" ng-disabled="!editOrg"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-green" ng-disabled="!editOrg || orgForm.$invalid">Salvar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

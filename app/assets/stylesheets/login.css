@@ -1,0 +1,54 @@
+.signin{
+  width:40%;
+  margin: 30px auto;
+}
+.signin .title{
+  color: #9f9f9f;  
+  margin-bottom: 20px;
+}
+.signin .panel{
+  background: #f1f1f1;
+}
+
+.signin .panel a:hover{
+  color: #333;
+}
+
+.signin .form-group-icon{
+  position:relative;
+}
+
+.signin .form-group-icon i{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.signin .form-control{
+  background: #f1f1f1;
+  border: solid 1px #ccc;
+  border-color: #ccc;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -fox-box-shadow: none;
+}
+.signin .form-control:focus{
+  outline: none;
+  background: #fff;
+}
+.signin hr{
+  border-top: 1px solid #696969;
+  margin: 30px 0 20px 0;
+}
+
+.signin .footer, .signin .footer a{
+  color: #696969;
+}
+
+.signin a.forgot{
+  color:#999;
+  margin-top:5px;
+  font-size: 12px;
+}

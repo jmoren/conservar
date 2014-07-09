@@ -1,58 +1,57 @@
-
-<div class="navbar navbar-default" ng-init="init()">
-  <div class="col-md-12" style="padding-top:20px;margin-left:-1px">
-    <div class="page-header subnav">
-      <h1>
-        Items
-        <a ng-click="openModal(null,'new')" class="btn btn-primary pull-right">
-          <i class="fa fa-plus"></i> New Collection
-        </a>
-      </h1>
-    </div>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2>
+      Items
+      <a ng-click="openModal(null,'new')" class="btn btn-primary pull-right">
+        <i class="fa fa-plus"></i> Novo Item
+      </a>
+    </h2>
   </div>
-  <div class="col-md-12" style="margin-top:30px">
-    <div class="col-md-7">
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="collection in collections">
+</div>
+<div style="margin-top:30px">
+  <div ng-class="{'col-md-7':selected, 'col-md-12':!selected}">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="collection in collections">
+        <h4>
           <a ng-click="setSelected(collection)">
             <i class="fa fa-tag"></i> {{ collection.name }} 
           </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-5">
-      <div class="item-panel">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <h4 ng-hide="selected" class="text-center text-muted">
-                Select collection to preview
-              </h4>
-              <h4 ng-show="selected">
-                {{selected_collection.name}}
-                <button ng-click="close_selected()" ng-show="selected" class="close pull-right">×</button>
-              </h4>
-            </div>
+        </h4>
+        <p class="well well-sm">
+          {{ collection.description}}
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-5" ng-show="selected">
+    <div class="item-panel">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4 ng-show="selected">
+              {{selected_collection.name}}
+              <button ng-click="close_selected()" ng-show="selected" class="close pull-right">×</button>
+            </h4>
           </div>
-          <div class="panel-body">
-            <p ng-hide="selected" class="text-center text-muted">
-              Items details
-            </p>
+        </div>
+        <div class="panel-body">
+          <div ng-hide="selected" class="box" style="background: #f1f1f1;height: 100px">
+            
+          </div>
+          <div ng-show="selected">
+            <h5 class="text-muted" ng-show="selected_collection.items.length < 1">
+              No há peças
+            </h5>
+            <div class="item" ng-repeat="item in selected_collection.items">
+              <i class="fa fa-chevron-right"></i>
+              <a href="#/items/{{item.id}}"> {{ item.name }}</a>
+            </div>
             <div ng-show="selected">
-              <h5 ng-show="selected_collection.items.length < 1">
-                No hay items
-              </h5>
-              <div class="item" ng-repeat="item in selected_collection.items">
-                <i class="fa fa-chevron-right"></i>
-                <a href="#/items/{{item.id}}"> {{ item.name }}</a>
-              </div>
-              <div ng-show="selected">
-                <hr>
-                <div class="btn-group btn-group-sm" >
-                  <a href="#/collections/{{selected_collection.id}}" class="btn btn-default">Abrir</a>
-                  <a ng-click="openModal(selected_collection,'edit')" class="btn btn-default">Editar</a>
-                  <a ng-click="remove(selected_collection)" class="btn btn-default">Apagar</a>
-                </div>
+              <hr>
+              <div class="btn-group btn-group-sm" >
+                <a href="#/collections/{{selected_collection.id}}" class="btn btn-default"><i class="fa fa-search"></i> Abrir</a>
+                <a ng-click="openModal(selected_collection,'edit')" class="btn btn-default"><i class="fa fa-edit"></i> Editar</a>
+                <a ng-click="remove(selected_collection)" class="btn btn-default"><i class="fa fa-times"></i> Apagar</a>
               </div>
             </div>
           </div>

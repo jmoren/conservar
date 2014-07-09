@@ -1,35 +1,33 @@
-<div ng-controller="ImagesCtrl" ng-init="init()">
-  <div class="col-md-12" style="padding-top: 20px">
-    <div class="page-header subnav">
-      <h1> 
-        Imagens
-        <a class="subnav-link pull-right" ng-click="toggleDetails = true" ng-hide="toggleDetails"><i class="fa fa-plus"></i> Detalhes</a>
-        <a class="subnav-link pull-right" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> Detalhes</a>
-      </h1>
-    </div>
-    <div class="row" style="margin: 30px">
-      <div class="col-md-4" ng-repeat="image in images">
-        <div class="thumbnail">
-          <a href="#/treatments/{{image.treatment.id}}/images/{{image.id}}">
-            <img ng-src="{{image.photo}}"  style="height:205px">
-          </a>
-          <div class="caption" ng-show="toggleDetails">
-            <p class="well well-sm">{{ image.description}}</p>
-            <table class="table image-info">
-              <tbody>
-                <tr>
-                  <td><i class="fa fa-paperclip"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
-                </tr>
-                <tr>
-                  <td><i class="fa fa-paperclip"></i> Tratamento</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
-                </tr>
-                <tr>
-                  <td><i class="fa fa-paperclip"></i> Intervencao</td><td>{{image.intervention.id}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+<div class="navbar navbar-default subnav" ng-init="init()">
+  <div class="col-md-12">
+    <h2> 
+      Imagens
+      <a class="pull-right btn btn-primary" ng-click="toggleDetails = true" ng-hide="toggleDetails"><i class="fa fa-plus"></i> Detalhes</a>
+      <a class="pull-right btn btn-primary" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> Detalhes</a>
+    </h2>
+  </div>
+</div>
+<div style="margin-top: 30px">
+  <div class="col-md-4" ng-repeat="image in images">
+    <div class="thumbnail">
+      <a href="#/treatments/{{image.treatment.id}}/images/{{image.id}}">
+        <img ng-src="{{image.photo}}"  style="height:205px">
+      </a>
+      <div class="caption" ng-show="toggleDetails">
+        <p class="well well-sm">{{ image.description}}</p>
+        <table class="table image-info">
+          <tbody>
+            <tr>
+              <td><i class="fa fa-paperclip"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-paperclip"></i> Tratamento</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-paperclip"></i> Intervenção</td><td>{{image.intervention.id}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

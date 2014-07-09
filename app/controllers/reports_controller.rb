@@ -1,11 +1,12 @@
 class ReportsController < ApplicationController
   before_action :set_collection, except: [:index]
   def index
-    @reports = Report.all
+    @reports = @organization.reports
   end
 
   def create
     @report  = @collection.reports.new 
+    @report.organization_id = @organization.id
     file     = CollectionReportPdf.new(@collection)
     tmp_path = "#{Rails.root}/tmp/report_#{@collection.id}_#{Time.now.to_i}.pdf"
     file.render_file tmp_path
@@ -43,6 +44,6 @@ class ReportsController < ApplicationController
   
 private
   def set_collection
-    @collection = Collection.find(params[:collection_id])
+    @collection = @organization.collections.find(params[:collection_id])
   end
 end
