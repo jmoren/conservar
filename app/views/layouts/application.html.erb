@@ -8,7 +8,7 @@
 </head>
 <body ui-view="body" ng-controller="ConservarCtrl">
   <div class="navbar-fixed-top">   
-    <div class="navbar navbar-default nav-green" role="navigation" style="padding-left:15px">      
+    <div class="navbar navbar-default nav-green" role="navigation">      
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
@@ -18,28 +18,22 @@
         </button>
         <a class="navbar-brand" href="#"><i class="fa fa-recycle"></i> Conservar</a>
       </div>
-      <ul class="nav navbar-nav settings navbar-right">
-        <li class="dropdown" on-toggle="toggled(open)">
-          <a href class="dropdown-toggle">
-            <i class="fa fa-bars"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#"><i class="fa fa-cogs"></i> Settings</a>
-              <a href="#/organization/{{current_user.organization.id}}/users"><i class="fa fa-users"></i> Usuarios</a>
-            </li>
-          </ul>
+      <ul class="nav navbar-nav menu" style="border-left: 1px solid #048549">
+        <li>
+          <a href="#/organization/{{current_user.organization.id}}/users"><i class="fa fa-home"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-cog"></i></a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul  class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left" id="search-form" role="search">
           <div class="control-form">
             <input type="text" class="form-control" placeholder="Buscar items o colecciones ... ">
             <i class="fa fa-search"></i>
           </div>
         </form>
-      </ul>
-      
+      </ul>   
     </div>
   </div>
   <div class="col-md-2 side-bar" ng-controller="DashboardCtrl">
@@ -71,19 +65,19 @@
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/reports" ui-sref="reports">
-          <i class="fa fa-file-pdf-o"></i> Relatorios 
+          <i class="fa fa-file-pdf-o"></i> Relatórios 
         </a>
         <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/analises" ui-sref="exams">
-          <i class="fa fa-search"></i> Analises
+          <i class="fa fa-search"></i> Análises
         </a>
         <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/organization/{{current_user.organization.id}}" ui-sref="organization">
-          <i class="fa fa-users"></i> Organizacao
+          <i class="fa fa-users"></i> Organização
         </a>
         <span class="arrow-left"></span>
       </li>

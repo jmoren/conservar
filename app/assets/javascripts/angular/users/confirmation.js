@@ -28,6 +28,7 @@ angular.module( 'conservar.confirmation', [
  */
 .controller( 'ConfirmationCtrl', function($scope, UsersRes, $http, $location, $stateParams) {
   $scope.user = new UsersRes();
+  $scope.message_error = [];
 
   $scope.init = function(){
     console.log('init');
@@ -57,8 +58,9 @@ angular.module( 'conservar.confirmation', [
       function(data){
         $location.path("/");
       },
-      function(error){
-        console.log(error);
+      function(response){
+        $scope.message_error = response.data.errors;
+        console.log($scope.message_error);
       }
     );
   };

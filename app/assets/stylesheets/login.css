@@ -48,6 +48,10 @@
   color: #696969;
 }
 
+.signin .footer a:hover{
+  color: #f1f1f1;
+}
+
 .signin a.forgot{
   color:#999;
   margin:10px 0;

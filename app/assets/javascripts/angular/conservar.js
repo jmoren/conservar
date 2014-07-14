@@ -29,7 +29,7 @@ angular.module('conservar',[
   ])
 
 .config( function ConservarConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/dashboard' );
+  $urlRouterProvider.otherwise( '/collections' );
 })
 
 .run(function ($rootScope, $state, $stateParams) {

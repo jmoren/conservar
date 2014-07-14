@@ -2,7 +2,7 @@
   <h2 class="title"> <i class="fa fa-recycle"></i> Conservar</h2>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2 class="panel-title">{{user.email }} - Confira sua conta</h2>
+      <h4>Confira sua conta, {{user.email }}</h4>
     </div>
     <div class="panel-body">
       <form ng-submit="confirm(user)" name="userForm">
@@ -17,6 +17,16 @@
         <button class="btn btn-primary" ng-disabled="userForm.$invalid">Confirma!</button>
         <a href="#/login" class="pull-right">Entrar <i class="fa fa-sign-in"></i></a>
       </form>
+      <div ng-show="message_error" class="alert alert-danger" style="margin:20px 0 0 0">
+        <p ng-show="message_error.password">
+          <b>Senha: </b>
+          <span ng-repeat="m in message_error.password">{{m}}</span>
+        </p>
+        <p ng-show="message_error.password_confirmation">
+          <b>Confirmação da senha: </b>
+          <span ng-repeat="m in message_error.password_confirmation">{{m}}</span>
+        </p>
+      </div>
     </div>
   </div>
 </section>

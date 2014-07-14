@@ -20,7 +20,8 @@ angular.module('conservar.intervention',[
   // alert
   $scope.alert = { type: "", message: "" };
   $scope.types = { consolidacion: "Consolidacion", limpieza: "Limipeza", montaje: "Montaje", preparacion: "Preparacion" };
-
+  $scope.format = 'dd/MM/yyyy';
+  
   $scope.open = function($event) {
     $event.preventDefault();
     $event.stopPropagation();

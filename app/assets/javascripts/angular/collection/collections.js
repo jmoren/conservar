@@ -22,7 +22,8 @@ angular.module('conservar.collections',[
   $scope.collection  = new CollectionRes();
   $scope.selected_collection = null;
   $scope.selected    = false;
-
+  $scope.format = 'dd/MM/yyyy';
+  
   $scope.init = function(){
     CollectionRes.query(
       function(response){
@@ -112,6 +113,19 @@ angular.module('conservar.collections',[
 
   $scope.close_selected = function(){
     $scope.selected = undefined;
+  };
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'dd/MM/yyyy',
+    startingDay: 1,
+    showWeeks: false
   };
 })
 
