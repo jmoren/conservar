@@ -1,37 +1,27 @@
 class UsersController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:get_current_user]  
+  respond_to :json
+
   def index
     @users = @organization.users
-    respond_to do |format|
-      format.json { render json: @users }
-    end
   end
+
   def show
     @user = @organization.users.find(params[:id])
   end
   
   def profile
     @user = current_user
+    respond_to do |format|
+      format.json { render :show, status: :ok }
+    end
   end
 
   def update
     @user = @organization.users.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
-        response = {
-          id: current_user.id,
-          email: current_user.email,
-          name: current_user.name,
-          last_name: current_user.last_name,
-          organization: {
-            id: current_user.organization.id,
-            name: current_user.organization.name,
-            address: current_user.organization.address,
-            contact_email: current_user.organization.contact_email,
-            phone: current_user.organization.phone
-          }
-        }
-        format.json { render json: response }
+        format.json { render :show, status: :ok }
       else
         format.json {render json: @user.errors }
       end
@@ -52,24 +42,12 @@ class UsersController < ApplicationController
   end
   
   def get_current_user
+    @user = current_user
     respond_to do |format|
-      if current_user
-        response = {
-          id: current_user.id,
-          email: current_user.email,
-          name: current_user.name,
-          last_name: current_user.last_name,
-          organization: {
-            id: current_user.organization.id,
-            name: current_user.organization.name,
-            address: current_user.organization.address,
-            contact_email: current_user.organization.contact_email,
-            phone: current_user.organization.phone
-          }
-        }
-        format.json { render json: response }
+      if @user
+        format.json { render :show }
       else
-        format.json { render json: { } }
+        format.json { head :no_content }
       end
     end
   end

@@ -27,7 +27,7 @@ angular.module( 'conservar.users', [
  * And of course we define a controller for our route.
  */
 .controller( 'UsersCtrl', function UserController( $scope, UsersRes, $location, $http, $anchorScroll, $window) {
-  
+  $scope.alert = { type: "", message: ""};
   $scope.user = new UsersRes();
   $scope.organization = $scope.current_user.organization;
   $scope.users = UsersRes.query({organization_id: $scope.organization.id});
@@ -53,11 +53,31 @@ angular.module( 'conservar.users', [
         function(data, status){
           index = $scope.users.indexOf(user);
           $scope.users.splice(index, 1);
+          $scope.addAlert('success', "O usaurio "+ user.email + " foi removido!");
         }, 
         function(data){
           console.log(data);
         }
       );
     }
+  };
+
+  $scope.reSend = function(user){
+    $http({
+      url: '/users/confirmation',
+      method: 'POST',
+      data: { id: user.id, email: user.email }
+    }).then(function(response){
+      $scope.addAlert('success',response.data.text);
+    });
+  };
+
+  $scope.addAlert = function(type, message){
+    $scope.alert = {type: type, message: message};
+  };
+
+  $scope.closeAlert = function(index) {
+    $scope.alert.type = "";
+    $scope.alert.message = "";
   };
 });

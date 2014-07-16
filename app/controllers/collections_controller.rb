@@ -73,6 +73,7 @@ class CollectionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
       params[:collection].delete(:id)
+      params[:collection].delete(:reportable)
       params.require(:collection).permit(:name, :description, :entry_date, :origin, :owner)
     end
 end

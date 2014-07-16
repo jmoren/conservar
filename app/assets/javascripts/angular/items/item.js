@@ -182,7 +182,8 @@ angular.module('conservar.item',[
   };
 
   $scope.deleteDetail = function(detail){
-    ItemDetailRes.remove({item_id: $scope.item.id}, detail,
+    console.log(detail);
+    ItemDetailRes.remove({item_id: $scope.item.id, id: detail.id},
       function(){
         if(detail.detail_type == 'materiales'){
           index = $scope.item.materials.indexOf(detail);
@@ -193,10 +194,10 @@ angular.module('conservar.item',[
           $scope.item.medidas.splice(index,1);
         }
 
-        $scope.addAlert("success", "Se elimino con exito!");
+        $scope.addAlert("success", "Foi apagado com suceso");
       },
       function(data){
-        $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+        $scope.addAlert("danger", "Nao foi posivel apagar o detalhe, intente novamente mais tarde");
       }
     );
   };
@@ -204,32 +205,26 @@ angular.module('conservar.item',[
   $scope.openTreatment = function(treatment){
     response = confirm("Estas seguro de reabrir el tratamiento?");
     if(response){
-      $http({
-        url: '/items/'+$scope.item.id+'/treatments/'+treatment.id+'/open.json',
-        method: 'POST',
-        data: {id: treatment.id, item_id: $scope.item.id}
-      }).then(function(data){
-        treatment.closed = false;
-        $scope.item.treatments.open = treatment;
-      }, function(data){
-        console.log("error");
-      });
+      TreatmentRes.update({item_id: $scope.item.id, id: treatment.id}, { closed_at: null },
+        function(response){
+          treatment.closed = false;
+        }, function(data){
+          console.log("error");
+        }
+      );
     }
   };
 
   $scope.closeTreatment = function(treatment){
     response = confirm("Estas seguro de cerrar el tratamiento?");
     if(response){
-      $http({
-        url: '/items/'+$scope.item.id+'/treatments/'+treatment.id+'/close.json',
-        method: 'POST',
-        data: {id: treatment.id, item_id: $scope.item.id}
-      }).then(function(result){
-        treatment.closed = true;
-        $scope.item.treatments.open = undefined;
-      }, function(data){
-        console.log("error");
-      });
+      TreatmentRes.update({item_id: $scope.item.id, id: treatment.id}, { closed_at: new Date() },
+        function(response){
+          treatment.closed = true;
+        }, function(data){
+          console.log("error");
+        }
+      );
     }
   };
 

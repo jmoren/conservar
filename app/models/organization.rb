@@ -5,7 +5,8 @@ class Organization < ActiveRecord::Base
   has_many :images
   has_many :exams
   has_many :treatments
-
+  has_many :reports
+  
   def contact_info
     "#{self.phone || 'no phone'} - #{self.contact_email || 'no email'}"
   end

@@ -13,9 +13,9 @@
 <div style="margin-top:30px">
   <div class="col-md-12">
     <p>
-      <a ng-click="openModalItem(newItem,'new')" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Item</a>
-      <a ng-click="openModalCollection()" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Colecao</a>
-      <a ng-click="generateReport()" ng-show="collection.reportable" class="btn btn-default pull-right"><i class="fa fa-bar-chart-o"></i> Generar Reporte</a>
+      <a ng-click="openModalItem(newItem,'new')" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Peça</a>
+      <a ng-click="openModalCollection()" class="btn btn-primary"><i class="fa fa-edit"></i> Editar Item</a>
+      <a ng-click="generateReport()" ng-show="collection.reportable" class="btn btn-default pull-right"><i class="fa fa-bar-chart-o"></i> Gerar Relatório</a>
     </p>
     <p class="well"> {{collection.description}}</p>
     <div class="well well-sm"> 
@@ -47,7 +47,7 @@
     <hr>
     <div class="panel panel-default">
       <div class="panel-body">
-        <div ng-show="items.lenght > 0"><h4> Nao ha items</h4></div>
+        <div ng-show="items.lenght > 0"><h4> Não há itens</h4></div>
         <div class="col-md-4" ng-repeat='item in items'>
           <div class="panel panel-default">
             <div class="panel-heading">

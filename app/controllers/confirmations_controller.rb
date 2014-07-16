@@ -5,6 +5,13 @@ class ConfirmationsController < Devise::ConfirmationsController
   skip_before_filter :authenticate_user!
   respond_to :json
 
+  # POST /resource/confirmation
+  def create
+    params.require(:email)
+    resource_class.send_confirmation_instructions({email: params[:email]})
+    render json: { status: :ok, text: "O email foi enviado com suceso!"}
+  end
+
   # PUT /resource/confirmation
   def update
     with_unconfirmed_confirmable do

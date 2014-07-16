@@ -35,7 +35,7 @@ class TreatmentsController < ApplicationController
     respond_to do |format|
       if @treatment.update(treatment_params)
         format.html { redirect_to @treatment, notice: 'Treatment was successfully updated.' }
-        format.json { render :show, status: :ok, location: item_treatment_path(@item, @treatment) }
+        format.json { render :show, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @treatment.errors, status: :unprocessable_entity }

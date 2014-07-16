@@ -23,7 +23,8 @@ angular.module('conservar.collections',[
   $scope.selected_collection = null;
   $scope.selected    = false;
   $scope.format = 'dd/MM/yyyy';
-  
+  $scope.opened = false;
+
   $scope.init = function(){
     CollectionRes.query(
       function(response){
@@ -88,7 +89,6 @@ angular.module('conservar.collections',[
         }
       },
       scope: $scope,
-      controller: 'modalCtrl',
       templateUrl: '../templates/collections/collectionFormModal.html'
     });
   };
@@ -126,6 +126,11 @@ angular.module('conservar.collections',[
     formatYear: 'dd/MM/yyyy',
     startingDay: 1,
     showWeeks: false
+  };
+
+  $scope.cancel = function () {
+    $scope.opened = false;
+    $modalInstance.dismiss('cancel');
   };
 })
 

@@ -1,5 +1,6 @@
 json.treatment do
   json.extract! @treatment, :id, :item_id, :diagnosis, :proposal
+  json.closed @treatment.closed?
 end
 
 json.status do

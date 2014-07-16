@@ -22,7 +22,8 @@ angular.module('conservar.collection',[
   $scope.currentUser = {};
   $scope.selected_item = {};
   $scope.newItem = new ItemsRes();
-
+  $scope.format = 'dd/MM/yyyy';
+  
   $scope.init = function(){
     CollectionRes.get($stateParams,
       function(data){
@@ -157,6 +158,18 @@ angular.module('conservar.collection',[
     $scope.newItem.description = "";
   };
 
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'dd/MM/yyyy',
+    startingDay: 1,
+    showWeeks: false
+  };
 })
 
 .factory( 'ItemsRes', function ( $resource )  {

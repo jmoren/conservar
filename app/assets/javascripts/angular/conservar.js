@@ -5,6 +5,7 @@ angular.module('conservar',[
   'common.modal',
   'common.pagination',
   'common.authentication',
+  'common.search',
   'conservar.item_detail',
   'conservar.intervention',
   'conservar.item',

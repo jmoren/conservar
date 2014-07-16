@@ -24,16 +24,13 @@ json.item do
       json.treatment image.treatment_id
     end
   end
-  json.treatments do
-    json.open json.open @item.treatment_open?
-    json.current json.current @item.current_treatment
-    json.collection do
-      json.array! @item.treatments do |treatment|
-        json.id treatment.id
-        json.diagnosis  truncate(treatment.diagnosis, lenght: 15)
-        json.proposal   truncate(treatment.proposal, lenght: 15)
-        json.show false
-      end
+  json.treatments do    
+    json.array! @item.treatments do |treatment|
+      json.id treatment.id
+      json.show false
+      json.closed  treatment.closed?
+      json.created_at treatment.created_at.strftime('%d/%m/%Y')
+      json.updated_at treatment.updated_at.strftime('%d/%m/%Y')
     end
   end
 end

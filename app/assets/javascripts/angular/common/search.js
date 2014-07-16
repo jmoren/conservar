@@ -21,7 +21,7 @@ controller('searchCtrl', function($scope, $http, $location, SearchRes){
   $scope.results = [];
   $scope.searching = false;
   $scope.loading   = false;
-  $scope.invalidCodes = [91, 18, 37, 38, 39, 40];
+  $scope.invalidCodes = [91, 18, 37, 38, 39, 40, 27];
 
   $scope.search = function(event){
     if($scope.keyword.length > 2){
@@ -30,7 +30,7 @@ controller('searchCtrl', function($scope, $http, $location, SearchRes){
         $scope.loading   = true;
         SearchRes.query({ q: $scope.keyword }, function(response){
           $scope.loading = false;
-          $scope.results = response.users.concat(response.doorbots);
+          $scope.results = response.items.concat(response.collections);
         });
       }
     }else{

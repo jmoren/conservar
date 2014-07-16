@@ -20,17 +20,28 @@
       </div>
       <ul class="nav navbar-nav menu" style="border-left: 1px solid #048549">
         <li>
-          <a href="#/organization/{{current_user.organization.id}}/users"><i class="fa fa-home"></i></a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-cog"></i></a>
+          <a href="#/organization/{{current_user.organization.id}}/users"><i class="fa fa-users"></i> Users</a>
         </li>
       </ul>
       <ul  class="nav navbar-nav navbar-right">
-        <form class="navbar-form navbar-left" id="search-form" role="search">
-          <div class="control-form">
-            <input type="text" class="form-control" placeholder="Buscar items o colecciones ... ">
+        <form class="navbar-form navbar-left" id="search-form" ng-controller="searchCtrl" ng-submit="search()">
+          <div class="control-form" style="position:relative">
+            <input type="text" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Procurar itens ou peças..." clear-with-esc/>
             <i class="fa fa-search"></i>
+            <ul class="myDropdown" ng-show="searching">
+              <li class="header">
+                <div ng-show="loading"><i class="fa fa-spinner"></i> Procurando</div>
+                <div ng-show="!loading && results.length < 1">Não foi possivel achar itens ou peças <a ng-click="clear()">×</a></div>
+                <div ng-show="!loading && results.length > 0">Achados: <b>{{results.length}}</b> <a ng-click="clear()">×</a></div>
+              </li>
+              <li ng-repeat="result in results | orderBy:model" class="item" focusable>
+                <a ng-click="goTo(result.location)">
+                  <i class="fa fa-tag" ng-show="result.model == 'item'"></i>
+                  <i class="fa fa-tags" ng-show="result.model == 'collection'"></i>
+                  {{ result.name }}
+                </a>
+              </li>
+            </ul>
           </div>
         </form>
       </ul>   
@@ -77,7 +88,7 @@
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/organization/{{current_user.organization.id}}" ui-sref="organization">
-          <i class="fa fa-users"></i> Organização
+          <i class="fa fa-home"></i> Organização
         </a>
         <span class="arrow-left"></span>
       </li>

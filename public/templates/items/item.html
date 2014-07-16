@@ -78,8 +78,8 @@
             <td>{{ medida.value }}</td>
             <td class="detail-actions">
               <div class="actions">
-                <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
-                <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
+                <a ng-click="openDetailModal(medida, medida.detail_type)"><i class="fa fa-edit"></i></a>
+                <a ng-click="deleteDetail(medida)" class="text-danger"><i class="fa fa-trash-o"></i></a>
               </div>
             </td>
           </tr>
@@ -116,8 +116,8 @@
             <td>{{ material.value }}</td>
             <td class="detail-actions">
               <div class="actions">
-                <a ng-click="openDetailModal(detail, detail.detail_type)"><i class="fa fa-edit"></i></a>
-                <a ng-click="deleteDetail(detail)" class="text-danger"><i class="fa fa-trash-o"></i></a>
+                <a ng-click="openDetailModal(material, material.detail_type)"><i class="fa fa-edit"></i></a>
+                <a ng-click="deleteDetail(material)" class="text-danger"><i class="fa fa-trash-o"></i></a>
               </div>
             </td>
           </tr>
@@ -131,22 +131,33 @@
         <div class="panel-title"><h4>Tratamentos</h4></div>
       </div>
       <div class="panel-body">
-        <div ng-repeat="treatment in item.treatments.collection">
+        <div ng-repeat="treatment in item.treatments">
           <div class="panel panel-default">
             <div class="panel-heading">
             <div class="panel-title">
               <h4>
-                <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">#{{ treatment.id }}</a>
+                <i class="fa fa-circle" ng-class="{'text-danger':!treatment.closed, 'text-success':treatment.closed}"></i>
+                <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">
+                  Tratamento #{{ treatment.id }}
+                </a>
                 <div class="btn-group btn-group-xs pull-right" >  
                   <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Editar</a>
-                  <a ng-click="treatment.show = !treatment.show" class="btn btn-primary">Ver</a>
+                  <a ng-click="closeTreatment(treatment)" ng-if="!treatment.closed" class="btn btn-primary">Encerrar</a>
+                  <a ng-click="openTreatment(treatment)"  ng-if="treatment.closed" class="btn btn-primary">Reabrir</a>
                 </div>
               </h4>
             </div>
             </div>
-            <div class="panel-body" ng-show="treatment.show">
-            <p class="well well-sm" ng-bind-html="treatment.diagnosis"></p>
-            <p class="well well-sm" ng-bind-html='treatment.proposal'></p>
+            <div class="panel-body">
+              <p>
+                <i class="fa fa-lock" ng-show="treatment.closed"></i>
+                <i class="fa fa-unlock" ng-show="!treatment.closed"></i>
+                <b> {{ treatment.closed ? 'Encerrado' : 'Aberto'}}</b>
+              </p>
+              <i class="fa fa-calendar"></i> 
+              Criado no dia <span class="text-primary">{{ treatment.created_at }}</span>
+              <i class="fa fa fa-ellipsis-v"></i>
+              Ultima atualizacao foi <span class="text-primary">{{ treatment.updated_at}}</span>
             </div>
           </div>
         </div>

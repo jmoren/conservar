@@ -9,14 +9,14 @@ class Treatment < ActiveRecord::Base
   scope :open, -> {where(closed_at: nil)}
   
   def closed?
-    !closed_at.nil? && closed_at >= Date.today
+    !closed_at.nil?
   end
 
   def open!
-    self.update(closed_at: nil) if closed?
+    self.update(closed_at: nil)
   end
 
   def close!
-    self.update(closed_at: Time.now) unless closed?
+    self.update(closed_at: Date.today)
   end
 end

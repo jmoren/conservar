@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :users
   
+  get '/search'  => "search#index"
   get '/current_user' => 'users#get_current_user'
 
   root 'home#index'

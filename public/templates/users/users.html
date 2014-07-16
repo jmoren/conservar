@@ -5,6 +5,10 @@
     </h2>
   </div>
 </div>
+<div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message != ''">
+  <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+  {{alert.message}}
+</div>
 <div style="margin-top:30px">
   <div class="col-md-12">
     <div class="panel panel-default">
@@ -49,7 +53,8 @@
                 {{ user.email}}
               </td>
               <td>
-                <a ng-click="delete(user)" ng-hide="current_user.id == user.id"><i class="fa fa-times"></i></a>
+                <a ng-click="delete(user)" ng-hide="current_user.id == user.id"><i class="fa fa-trash-o text-danger"></i></a>
+                <a ng-click="reSend(user)" ng-hide="user.confirmed"><i class="fa fa-envelope-o"></i></a>
               </td>
             </tr>
           </tbody>
