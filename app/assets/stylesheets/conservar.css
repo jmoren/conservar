@@ -1,28 +1,32 @@
-body { background: #1fa67a; font-family: 'Ubuntu'; color: #4b4b4b;}
+body { background: #333; font-family: 'Ubuntu'; color: #4b4b4b;}
 
 #brand{
-  color: #eee;
-  padding: 30px;
-  margin: -1px auto 0px auto;
+  background: #fff;
+  color: #333;
+  padding: 30px 50px;
+  margin: -1px 0px 0 0;
+  border-right: solid 1px #ccc;
 }
 
 #brand .title{
   font-size: 14px;
-  border-bottom: solid 1px #eee ;
+  border-bottom: solid 1px #4b4b4b ;
   padding-bottom: 2px;
 }
-#brand .title .search .ar {
-  border-bottom: solid 3px #eee ;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-#brand .title .search{
-  border: solid 4px #167858;
+
+#brand .search{
+  border: solid 4px #1b926c;
   border-radius: 30px;
   padding: 6px 5px;
   font-size: 22px;
   z-index: 30;
   margin-left: -4px;
+}
+
+#brand .search .ar {
+  border-bottom: solid 3px #4b4b4b ;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .navbar {
@@ -156,7 +160,7 @@ table.details-table tr.detail-row:hover td .actions{
   color: #4b4b4b;
   background: #fff;
   height: 51px;
-  border-bottom: 1px #ccc solid;
+  border: 1px #ccc solid;
   border-left: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -196,9 +200,10 @@ table.details-table tr.detail-row:hover td .actions{
 
 .side-bar .profile-box{
   padding: 15px 30px 15px 30px;
-  border-top: 1px solid #167858;
-  border-bottom: 1px solid #1b926c;
-  background: #1fa67a;
+  border-top: 1px solid #4b4b4b;
+  border-bottom: 1px solid #4b4b4b;
+  background: #333;
+  margin: -1px 0;
 }
 
 .side-bar .profile-box a{
@@ -224,7 +229,6 @@ table.details-table tr.detail-row:hover td .actions{
 
 .main-content{
   background: #f1f1f1;
-  border-left: solid 1px #f1f1f1;
   min-height: 630px;
 }
 
@@ -246,13 +250,13 @@ table.details-table tr.detail-row:hover td .actions{
   display: block;
   padding: 20px 30px;
   border:none;  
-  border-top: 1px solid #1b926c;
+  border-top: 1px solid #4b4b4b;
   cursor: pointer;
 }
 
 
 .side-bar .list-group-item:hover{
-  background: #1b926c;
+  background: #4A4849;
 }
 
 .side-bar .list-group-item.active .arrow-left{
@@ -272,16 +276,14 @@ table.details-table tr.detail-row:hover td .actions{
 .side-bar .list-group-item:last-child {
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
-  border: 1px solid #1b926c;
-  border-right: none;
-  border-left: none;
+  border-bottom: 1px solid #4b4b4b;
 }
 
 .main-content .subnav{
-  margin: -1px -15px -1px -16px;
+  margin: -1px -15px -1px -15px;
   padding: 10px 15px 0 15px;
   border: none;
-  border-bottom: 2px solid #167858;
+  border-bottom: 3px solid #333;
   background: #fff;
   border-radius: 0;
   min-height: 94px;
@@ -297,14 +299,13 @@ table.details-table tr.detail-row:hover td .actions{
 #search-form{
   position: relative;
   padding: 0px;
-  margin: 1px 0;
-  border-top: 2px solid #167858;
+  margin: 0px;
   height: 51px;
 }
 
 
 #search-form .control-form input.form-control{
-  background: #1b926c;
+  background: #333;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: none;
@@ -333,6 +334,7 @@ table.details-table tr.detail-row:hover td .actions{
 
 #search-form .control-form input.form-control:focus{
   outline: none;
+  background: #3B3A39;
 }
 
 .btn-green{
@@ -514,26 +516,11 @@ form#itemCover button{
 }
 
 .panel-collection .header{
-  padding: 5px 10px;
-  border: solid 1px #ccc;
-  font-weight: bold;
-}
-
-.panel-collection.date .header{
-  background: #d14836;
-  color: #fff;
-  border: solid 1px #d14836;
-}
-
-.panel-collection .header{
-  background: #666;
+  background: #428bca;
   color: #f1f1f1;
-}
-
-.panel-collection.owner .header{
-  background: #357ebd;
-  color: #fff;
-  border: solid 1px #357ebd;
+  border: solid 1px #428bca;
+  padding: 5px 10px;
+  font-weight: bold;
 }
 
 .panel-collection .header i{

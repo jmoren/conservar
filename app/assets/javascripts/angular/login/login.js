@@ -12,7 +12,8 @@ config(function config( $stateProvider, $httpProvider ) {
         templateUrl: '/templates/login.html'
       }
     },
-    title:'Login'
+    title:'Login',
+    className: 'signin-panel'
   });
 }).
 

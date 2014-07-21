@@ -7,14 +7,14 @@
   <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
-<body ui-view="body" ng-controller="ConservarCtrl">
+<body ui-view="body" ng-controller="ConservarCtrl" class="{{ $state.current.className}}">
   <div class="col-md-2 side-bar" ng-controller="DashboardCtrl">
     <div id="brand">
-      <span class="title">CONSERV<span class='search'><span class='ar'>AR</span></span></span>
+      <span class="title">CONSERV</span><span class='search'><span class='ar'>AR</span></span>
     </div>
     <form class="" id="search-form" ng-controller="searchCtrl" ng-submit="search()">
       <div class="control-form" style="position:relative">
-        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" clear-with-esc/>
+        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Procurar..." clear-with-esc/>
         <i class="fa fa-search" style="color: #f1f1f1"></i>
         <span class="arrow-left-search" ng-show="searching"></span>
         <ul class="myDropdown" ng-show="searching">
@@ -35,8 +35,8 @@
     </form>
     <div class="profile-box">
       <div class="user">
-        <a href="#/users/me" class='btn btn-green btn-sm'><i class="fa fa-user"></i> Perfil</a>
-        <a ng-click="logout()" class='btn btn-green btn-sm'><i class="fa fa-sign-out"></i> Sair</a>
+        <a href="#/users/me"><i class="fa fa-user"></i> Perfil</a>
+        <a ng-click="logout()"><i class="fa fa-sign-out"></i> Sair</a>
       </div>
     </div>
     

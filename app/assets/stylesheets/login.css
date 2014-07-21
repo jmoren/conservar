@@ -1,27 +1,33 @@
-body{
+.signin-panel{
   background: #333;
 }
-.signin{
+
+#signin{
   width:40%;
   margin: 30px auto;
 }
-.signin .title{
+
+#signin .title{
   color: #f1f1f1;  
   margin-bottom: 20px;
 }
-.signin .panel{
+#signin .panel{
   background: #e4e4e4;
 }
 
-.signin .panel a:hover{
+#signin a{
+  color: #696969;
+}
+
+#signin .panel a:hover{
   color: #333;
 }
 
-.signin .form-group-icon{
+#signin .form-group-icon{
   position:relative;
 }
 
-.signin .form-group-icon i{
+#signin .form-group-icon i{
   position:absolute;
   top:15px;
   right:15px;
@@ -29,7 +35,7 @@ body{
   opacity: 0.8;
 }
 
-.signin .form-control{
+#signin .form-control{
   background: #f1f1f1;
   border: solid 1px #ccc;
   border-color: #ccc;
@@ -38,54 +44,60 @@ body{
   -fox-box-shadow: none;
   padding: 20px 10px;
 }
-.signin .form-control:focus{
+
+#signin .form-control:focus{
   outline: none;
   background: #fff;
 }
-.signin hr{
+
+#signin hr{
   border-top: 1px solid #696969;
   margin: 30px 0 20px 0;
 }
 
-.signin .footer, .signin .footer a{
+#signin .footer, .signin .footer a{
   color: #696969;
 }
 
-.signin .footer a:hover{
+#signin .footer a:hover{
   color: #f1f1f1;
 }
 
-.signin a.forgot{
+#signin a.forgot{
   color:#999;
   margin:10px 0;
   font-size: 13px;
 }
 
-#brand{
+#signin #brand{
   color: #eee !important;
   padding: 30px 0;
   text-align: right;
+  background: transparent;
+  border-right: none;
 }
 
-#brand:after{
+#signin #brand:after{
   clear: both;
 }
 
-#brand .title{
-  font-size: 17px;
+#signin #brand .title{
+  font-size: 15px;
   border-bottom: solid 1px #eee ;
   padding-bottom: 2px;
 }
-#brand .title .search .ar {
-  border-bottom: solid 3px #eee !important;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-#brand .title .search{
+
+#signin #brand .search{
   border: solid 4px #167858;
   border-radius: 30px;
   padding: 6px 5px;
-  font-size: 25px;
+  font-size: 20px;
   z-index: 30;
   margin-left: -4px;
+}
+
+#signin #brand .search .ar {
+  border-bottom: solid 3px #eee !important;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
