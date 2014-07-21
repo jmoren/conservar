@@ -1,9 +1,12 @@
+body{
+  background: #333;
+}
 .signin{
   width:40%;
   margin: 30px auto;
 }
 .signin .title{
-  color: #9f9f9f;  
+  color: #f1f1f1;  
   margin-bottom: 20px;
 }
 .signin .panel{
@@ -56,4 +59,33 @@
   color:#999;
   margin:10px 0;
   font-size: 13px;
+}
+
+#brand{
+  color: #eee !important;
+  padding: 30px 0;
+  text-align: right;
+}
+
+#brand:after{
+  clear: both;
+}
+
+#brand .title{
+  font-size: 17px;
+  border-bottom: solid 1px #eee ;
+  padding-bottom: 2px;
+}
+#brand .title .search .ar {
+  border-bottom: solid 3px #eee !important;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+#brand .title .search{
+  border: solid 4px #167858;
+  border-radius: 30px;
+  padding: 6px 5px;
+  font-size: 25px;
+  z-index: 30;
+  margin-left: -4px;
 }

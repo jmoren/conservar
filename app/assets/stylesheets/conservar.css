@@ -1,4 +1,29 @@
-body { padding-top: 50px;   background: #333;}
+body { background: #1fa67a; font-family: 'Ubuntu'; color: #4b4b4b;}
+
+#brand{
+  color: #eee;
+  padding: 30px;
+  margin: -1px auto 0px auto;
+}
+
+#brand .title{
+  font-size: 14px;
+  border-bottom: solid 1px #eee ;
+  padding-bottom: 2px;
+}
+#brand .title .search .ar {
+  border-bottom: solid 3px #eee ;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+#brand .title .search{
+  border: solid 4px #167858;
+  border-radius: 30px;
+  padding: 6px 5px;
+  font-size: 22px;
+  z-index: 30;
+  margin-left: -4px;
+}
 
 .navbar {
   border-radius: 0px;
@@ -104,56 +129,63 @@ table.details-table tr.detail-row:hover td .actions{
 }
 
 .myDropdown{
-   position: absolute;
-   width: 298px;
-   top: 33px;
-   left:1px;
-   background: #fff;
-   margin:0;
-   padding:0;
-   box-shadow: 0px 5px 5px -2px #666;
-   -moz-box-shadow: 0px 5px 5px -2px #666;
-   -webkit-box-shadow: 0px 5px 5px -2px #666;
-   list-style:none;
-   border-top: solid 2px #eeeeee;
-   max-height: 250px;
-   overflow: scroll;
+  position: absolute;
+  width: 99%;
+  top: 0px;
+  left: 213px;
+  background: #fff;
+  margin:0;
+  padding:0;
+  list-style:none;
+  max-height: 250px;
+  overflow: scroll;
+  z-index: 10000;
 }
 .myDropdown li {
    padding: 10px 0;
    border-bottom: 1px #eeeeee solid;
-}
-.myDropdown li:last-child{
-   border-bottom: none;
-}
-.myDropdown li.header{
-   padding: 5px 10px 5px 10px;
-   font-size: 13px;
+   border-right: 1px #ccc solid;
 }
 
-.myDropdown li.header a{
-   color: #999;
-   text-decoration:none;
-   float: right;
-   font-size: 15px;
-   padding-right: 5px;
+.myDropdown li:last-child{
+   border-bottom: solid 1px #ccc;
+}
+.myDropdown li.header{
+  padding: 15px 20px;
+  font-size: 13px;
+  color: #4b4b4b;
+  background: #fff;
+  height: 51px;
+  border-bottom: 1px #ccc solid;
+  border-left: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+  .myDropdown li.header a{
+  color: #ccc;
+  text-decoration:none;
+  float: right;
+  font-size: 17px;
+  margin-top: -3px;
 }
 
 .myDropdown li.item:hover{
-   background: #428bca;
+  background: #428bca;
 }
 
 .myDropdown li.item:hover a{
-   color: #fff;  
+  color: #fff;  
 }
 
 .myDropdown li.item a{
-   padding: 10px 0 10px 15px;
-   text-decoration:none;
+  padding: 10px 0 10px 15px;
+  text-decoration:none;
+  color: #4b4b4b;
 }
 
 .myDropdown li.item a i{
-   margin-right: 10px;
+  margin-right: 10px;
 }
 
 .side-bar{
@@ -163,21 +195,23 @@ table.details-table tr.detail-row:hover td .actions{
  }
 
 .side-bar .profile-box{
-  padding: 10px 0px 20px 30px;
-  margin: 1px auto;
+  padding: 15px 30px 15px 30px;
+  border-top: 1px solid #167858;
+  border-bottom: 1px solid #1b926c;
+  background: #1fa67a;
 }
 
 .side-bar .profile-box a{
   font-size: 12px;
-  color: #cbcbcb;
-}
-
-.side-bar .profile-box a:hover{
   color: #f1f1f1;
 }
 
+.side-bar .profile-box a:hover{
+  color: #fff;
+}
+
 .side-bar a{
-  color: #cbcbcb;
+  color: #f1f1f1;
 }
 
 .side-bar a:last-child{
@@ -191,7 +225,7 @@ table.details-table tr.detail-row:hover td .actions{
 .main-content{
   background: #f1f1f1;
   border-left: solid 1px #f1f1f1;
-  min-height: 600px;
+  min-height: 630px;
 }
 
 .main-content .well{
@@ -212,13 +246,13 @@ table.details-table tr.detail-row:hover td .actions{
   display: block;
   padding: 20px 30px;
   border:none;  
-  border-top: 1px solid #4F4F4F;
+  border-top: 1px solid #1b926c;
   cursor: pointer;
 }
 
 
 .side-bar .list-group-item:hover{
-  background: #4f4f4f;
+  background: #1b926c;
 }
 
 .side-bar .list-group-item.active .arrow-left{
@@ -226,19 +260,19 @@ table.details-table tr.detail-row:hover td .actions{
 }
 
 .side-bar .list-group-item:hover a{
-  color: #f1f1f1;
+  color: #fff;
 }
 
 .side-bar .list-group-item:first-child {
+  border-top: none;
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
-  border-top: 2px solid #999;
 }
 
 .side-bar .list-group-item:last-child {
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
-  border: 1px solid #4F4F4F;
+  border: 1px solid #1b926c;
   border-right: none;
   border-left: none;
 }
@@ -247,7 +281,7 @@ table.details-table tr.detail-row:hover td .actions{
   margin: -1px -15px -1px -16px;
   padding: 10px 15px 0 15px;
   border: none;
-  border-bottom: 2px solid #bcbcbc;
+  border-bottom: 2px solid #167858;
   background: #fff;
   border-radius: 0;
   min-height: 94px;
@@ -262,21 +296,26 @@ table.details-table tr.detail-row:hover td .actions{
 
 #search-form{
   position: relative;
-  margin-right: 15px;
+  padding: 0px;
+  margin: 1px 0;
+  border-top: 2px solid #167858;
+  height: 51px;
 }
 
+
 #search-form .control-form input.form-control{
-  width: 300px;
-  background: #fff;
+  background: #1b926c;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: none;
   transition: none;
-  padding: 10px;
   border-radius: 0;
-  float: right;
-  border: #1fa67a 1px solid;
+  color: #f1f1f1;
+  border: none;
+  padding: 10px 20px 10px 25px;
+  height: 50px;
 }
+
 
 #search-form .myDropDown i{
   position: absolute;
@@ -287,8 +326,8 @@ table.details-table tr.detail-row:hover td .actions{
 
 #search-form .control-form  i.fa-search{
   position: absolute;
-  right: 15px;
-  top: 10px;
+  right: 22px;
+  top: 18px;
   color: #666;
 }
 
@@ -454,6 +493,16 @@ form#itemCover button{
   right: 0px;
 }
 
+.arrow-left-search {
+  width: 0;
+  height: 0;
+  top: 15px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #fff;
+  position: absolute;
+  right: 0px;
+}
 .panel-collection{
   display: inline-block;
   background: #fff;
