@@ -85,6 +85,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pg (0.17.1)
     polyglot (0.3.4)
     prawn (1.0.0)
       pdf-core (~> 0.2.2)
@@ -163,6 +164,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   pdf-reader
+  pg
   prawn
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)

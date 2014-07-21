@@ -453,3 +453,53 @@ form#itemCover button{
   position: absolute;
   right: 0px;
 }
+
+.panel-collection{
+  display: inline-block;
+  background: #fff;
+  margin: 0 10px;
+  width: 200px;
+}
+.panel-collection:first-child{
+  margin-left: 0;
+}
+
+.panel-collection .header{
+  padding: 5px 10px;
+  border: solid 1px #ccc;
+  font-weight: bold;
+}
+
+.panel-collection.date .header{
+  background: #d14836;
+  color: #fff;
+  border: solid 1px #d14836;
+}
+
+.panel-collection .header{
+  background: #666;
+  color: #f1f1f1;
+}
+
+.panel-collection.owner .header{
+  background: #357ebd;
+  color: #fff;
+  border: solid 1px #357ebd;
+}
+
+.panel-collection .header i{
+  margin-right: 10px;
+}
+
+.panel-collection .content{
+  padding: 10px;
+  color: #666;
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  height: 80px;
+}
+
+

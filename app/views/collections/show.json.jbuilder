@@ -5,7 +5,8 @@ json.collection do
   json.reportable @reportable
   json.origin @collection.origin
   json.owner @collection.owner
-  json.entry_date @collection.entry_date.nil? ? '' : @collection.entry_date.strftime('%d/%m/%Y')
+  json.entry_date @collection.entry_date.nil? ? '' : @collection.entry_date.strftime('%B %d, %Y')
+
 end
 json.items do 
   json.array!(@collection.items) do |item|
