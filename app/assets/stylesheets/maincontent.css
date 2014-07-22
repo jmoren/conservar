@@ -1,6 +1,6 @@
 /* main conent */
 .main-content{
-  background: #f1f1f1;
+  background: #e4e7ea;
   float: right;
 }
 
@@ -22,7 +22,7 @@
 
 .main-content .subnav{
   margin: -1px -15px -1px -15px;
-  padding: 17px 15px 20px 15px;
+  padding: 16px 15px 20px 15px;
   border: none;
   border-bottom: 3px solid #1d2939;
   background: #fff;

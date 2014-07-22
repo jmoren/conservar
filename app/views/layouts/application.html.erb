@@ -59,9 +59,9 @@
         <ul class="myDropdown" ng-show="searching">
           <li ng-repeat="result in results | orderBy:model" class="item" focusable>
             <a ng-click="goTo(result.location)">
-              <i class="fa fa-tag" ng-show="result.model == 'item'"></i>
-              <i class="fa fa-tags" ng-show="result.model == 'collection'"></i>
+              <i class="fa fa-chevron-right"></i>
               {{ result.name }}
+              <span class="pull-right" style="margin-right:5px">({{ result.model[0]}})</span>
             </a>
           </li>
         </ul>

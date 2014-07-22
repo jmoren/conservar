@@ -17,7 +17,7 @@
 <div style="margin-top:30px">
   <div class="col-md-12">
     <p class="well"> {{collection.description}}</p>
-    <div class="clearfix">
+    <div class="clearfix" style="margin-bottom: 20px">
       <div class="panel-collection"> 
         <div class="header"><i class="fa fa-calendar"></i>  Data</div>
         <div class="content">
@@ -42,23 +42,15 @@
       </div>
     </div>
     <div class="panel panel-default" ng-show="reports.length > 0">
+      <div class="panel-heading">
+        <h3 class="panel-title">Relatorios criados</h3>
+      </div>
       <div class="panel-body">        
-        <div class="btn-group download" ng-repeat="report in reports" dropdown is-open="status.isopen">
-          <button type="button" class="btn btn-green">
-            <i class="fa fa-file-pdf-o"></i> Relatorio {{ report.created_at }}
-          </button>
-          <button type="button" class="btn btn-green dropdown-toggle">
-            <span class="caret"></span>
-            <span class="sr-only">Split button!</span>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a ng-href="{{report.pdf}}" target="_blank">
-                <i class="fa fa-download"></i> Baixar
-              </a>
-              <a href="#"><i class="fa fa-trash-o"></i> Apagar</a>
-            </li>
-          </ul>
+        <div ng-repeat="report in reports"  style="border: solid 1px #ccc;padding: 2px;dispaly:block;" class="clearfix">
+          <a ng-href="{{report.pdf}}" target="_blank" class="pull-left" style="border-right: solid 1px #ccc;padding: 2px;padding:0 5px;">
+            <i class="fa fa-download"></i>
+          </a>
+          <div style="margin-left: 5px;" class="pull-left">Relatorio criado {{ report.created_at }}</div>
         </div>
       </div>
     </div>

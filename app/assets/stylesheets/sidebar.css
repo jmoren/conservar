@@ -29,9 +29,9 @@
 
 #search-form .control-form  i.fa-search, #search-form .control-form  i.fa-times{
   position: absolute;
-  right: 22px;
+  right: 10px;
   top: 20px;
-  color: #333;
+  color: #4b4b4b;
 }
 
 #search-form .control-form  i.fa-times{
@@ -80,6 +80,15 @@
 .myDropdown li.item a i{
   margin-right: 10px;
 }
+
+.myDropdown li.item:hover a{
+  color: #357ebd;
+}
+
+.myDropdown li.item:hover a i{
+  color: #357ebd;
+}
+
 
 /* profile box */
 .side-bar .profile-box{
@@ -150,7 +159,7 @@
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-right: 10px solid #f1f1f1;
+  border-right: 10px solid #e4e7ea;
   position: absolute;
   right: 0px;
 }

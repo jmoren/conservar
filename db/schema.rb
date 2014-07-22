@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709210130) do
+ActiveRecord::Schema.define(version: 20140722214622) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140709210130) do
     t.datetime "updated_at"
     t.integer  "intervention_id"
     t.integer  "organization_id"
+    t.boolean  "show_report",     default: false
   end
 
   create_table "interventions", force: true do |t|
