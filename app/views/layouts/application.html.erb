@@ -9,37 +9,7 @@
 </head>
 <body ui-view="body" ng-controller="ConservarCtrl" class="{{ $state.current.className}}">
   <div class="col-md-2 side-bar" ng-controller="DashboardCtrl">
-    <div id="brand">
-      <span class="title">CONSERV</span><span class='search'><span class='ar'>AR</span></span>
-    </div>
-    <form class="" id="search-form" ng-controller="searchCtrl" ng-submit="search()">
-      <div class="control-form" style="position:relative">
-        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Procurar..." clear-with-esc/>
-        <i class="fa fa-search" style="color: #f1f1f1"></i>
-        <span class="arrow-left-search" ng-show="searching"></span>
-        <ul class="myDropdown" ng-show="searching">
-          <li class="header">
-            <div ng-show="loading"><i class="fa fa-spinner"></i> Procurando</div>
-            <div ng-show="!loading && results.length < 1">Sem resultados <a ng-click="clear()">×</a></div>
-            <div ng-show="!loading && results.length > 0">Achados: <b>{{results.length}}</b> <a ng-click="clear()">×</a></div>
-          </li>
-          <li ng-repeat="result in results | orderBy:model" class="item" focusable>
-            <a ng-click="goTo(result.location)">
-              <i class="fa fa-tag" ng-show="result.model == 'item'"></i>
-              <i class="fa fa-tags" ng-show="result.model == 'collection'"></i>
-              {{ result.name }}
-            </a>
-          </li>
-        </ul>
-      </div>
-    </form>
-    <div class="profile-box">
-      <div class="user">
-        <a href="#/users/me"><i class="fa fa-user"></i> Perfil</a>
-        <a ng-click="logout()"><i class="fa fa-sign-out"></i> Sair</a>
-      </div>
-    </div>
-    
+    <div id="brand"><a href="#/"><img src="/assets/logo.png" style="height:50px"></a></div>
     <ul class="list-group">
       <li class="list-group-item" ui-sref-active="active">
         <a href='#/collections' ui-sref="collections">
@@ -78,7 +48,35 @@
         <span class="arrow-left"></span>
       </li>
     </ul>
+    <div class="profile-box">
+      <div class="user">
+        <a href="#/users/me" class="profile"><i class="fa fa-user"></i></a>
+        <a ng-click="logout()" class="logout"><i class="fa fa-sign-out"></i></a>
+      </div>
+    </div>
+    <form id="search-form" ng-controller="searchCtrl">
+      <div class="control-form" style="position:relative">
+        <ul class="myDropdown" ng-show="searching">
+          <li ng-repeat="result in results | orderBy:model" class="item" focusable>
+            <a ng-click="goTo(result.location)">
+              <i class="fa fa-tag" ng-show="result.model == 'item'"></i>
+              <i class="fa fa-tags" ng-show="result.model == 'collection'"></i>
+              {{ result.name }}
+            </a>
+          </li>
+        </ul>
+        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Procurar..."/>
+        <i class="fa fa-search" ng-hide="searching"></i>
+        <i class="fa fa-times" ng-click="clear()" ng-show="searching"x1></i>
+      </div>
+    </form>
   </div>
-  <div ui-view="main" class="col-md-10 main-content clearfix"></div>
+  <div class="col-md-10 main-content">
+    <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message" style="margin: -1px -15px;">
+      <button type="button" class="close" ng-click="closeAlert()">&times;</button>
+      {{alert.message}}
+    </div>
+    <div ui-view="main"></div>
+  </div>
 </body>
 </html>

@@ -4,8 +4,8 @@ angular.module('conservar',[
   'ngSanitize',
   'common.modal',
   'common.pagination',
-  'common.authentication',
   'common.search',
+  'common.authentication',
   'conservar.item_detail',
   'conservar.intervention',
   'conservar.item',
@@ -38,11 +38,11 @@ angular.module('conservar',[
   $rootScope.$stateParams = $stateParams;
 })
 
-.controller( 'ConservarCtrl', function($rootScope, $scope, $location, $http) {
+.controller( 'ConservarCtrl', function($rootScope, $scope, $location, $http, SearchRes) {
   
   $scope.current_user = { email: null };
   $scope.loggedIn     = false;
-  
+
   $scope.$on('sessionActive', function(event, user){
     $scope.loggedIn = true;
     $scope.current_user = user;
@@ -59,5 +59,4 @@ angular.module('conservar',[
     //$scope.alert.showBox('You are logged out. ','Goodbye '+$scope.current_user.email, 'alert-success');
     $scope.current_user = { email: null };
   });
-
 });

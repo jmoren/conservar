@@ -1,11 +1,14 @@
-body { background: #333; font-family: 'Ubuntu'; color: #4b4b4b;}
+html{ height: 100%;}
+
+body { background: #f1f1f1; font-family: 'Ubuntu'; color: #4b4b4b;height: 100%;}
 
 #brand{
   background: #fff;
-  color: #333;
-  padding: 30px 50px;
-  margin: -1px 0px 0 0;
-  border-right: solid 1px #ccc;
+  padding: 24px 50px 25px 50px;
+  margin: 0px;
+  border-bottom: 3px solid #1d2939;
+  border-right: 1px solid #1d2939;
+  border-radius: 0;
 }
 
 #brand .title{
@@ -54,24 +57,36 @@ body { background: #333; font-family: 'Ubuntu'; color: #4b4b4b;}
   color: #fff;
 }
 
-.navbar-header{
-  padding: 0px 15px;
-}
-
-.navbar-header .navbar-brand{
-  font-size: 25px;
-}
-
-
 .nav.navbar-nav.menu{
   margin-left: 6px;
   font-size: 17px;
 }
+
 a, a:hover{
   outline:none;
   cursor: pointer;
   text-decoration: none;
 }
+
+.alert-panel.alert-success{
+  border-bottom: solid 1px #329439;
+}
+
+.center-text{
+  text-align: right;
+}
+
+
+.btn-green{
+  background: #1fa67a;
+  color: #f1f1f1;
+  border-color: #1b926c;
+}
+.btn-green:focus, .btn-green:hover{
+  color: #fff;
+}
+
+
 
 table.details-table td{
   width: 160px;
@@ -79,6 +94,23 @@ table.details-table td{
 
 table.details-table td:last-child{
   width: 50px;
+}
+
+
+table.details-table td.detail-actions .actions{
+  display: none;
+}
+
+table.details-table tr.detail-row:hover td .actions{
+  display: inline-block;
+}
+
+
+.subnav-link{
+  margin: -2px 15px 0px 0px;
+  font-size: 25px;
+  padding: 5px;
+  color: #999;
 }
 
 .intervention{
@@ -118,232 +150,6 @@ table.details-table td:last-child{
 
 .note small{
   margin-top: 0px;
-}
-
-table.details-table td.detail-actions .actions{
-  display: none;
-}
-
-table.details-table tr.detail-row:hover td .actions{
-  display: inline-block;
-}
-
-.center-text{
-  text-align: right;
-}
-
-.myDropdown{
-  position: absolute;
-  width: 99%;
-  top: 0px;
-  left: 213px;
-  background: #fff;
-  margin:0;
-  padding:0;
-  list-style:none;
-  max-height: 250px;
-  overflow: scroll;
-  z-index: 10000;
-}
-.myDropdown li {
-   padding: 10px 0;
-   border-bottom: 1px #eeeeee solid;
-   border-right: 1px #ccc solid;
-}
-
-.myDropdown li:last-child{
-   border-bottom: solid 1px #ccc;
-}
-.myDropdown li.header{
-  padding: 15px 20px;
-  font-size: 13px;
-  color: #4b4b4b;
-  background: #fff;
-  height: 51px;
-  border: 1px #ccc solid;
-  border-left: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-  .myDropdown li.header a{
-  color: #ccc;
-  text-decoration:none;
-  float: right;
-  font-size: 17px;
-  margin-top: -3px;
-}
-
-.myDropdown li.item:hover{
-  background: #428bca;
-}
-
-.myDropdown li.item:hover a{
-  color: #fff;  
-}
-
-.myDropdown li.item a{
-  padding: 10px 0 10px 15px;
-  text-decoration:none;
-  color: #4b4b4b;
-}
-
-.myDropdown li.item a i{
-  margin-right: 10px;
-}
-
-.side-bar{
-  color: #f1f1f1;
-  margin: 0;
-  padding: 0;
- }
-
-.side-bar .profile-box{
-  padding: 15px 30px 15px 30px;
-  border-top: 1px solid #4b4b4b;
-  border-bottom: 1px solid #4b4b4b;
-  background: #333;
-  margin: -1px 0;
-}
-
-.side-bar .profile-box a{
-  font-size: 12px;
-  color: #f1f1f1;
-}
-
-.side-bar .profile-box a:hover{
-  color: #fff;
-}
-
-.side-bar a{
-  color: #f1f1f1;
-}
-
-.side-bar a:last-child{
-  margin-left: 5px;
-}
-
-.side-bar a:first-child{
-  margin-right: 10px;
-}
-
-.main-content{
-  background: #f1f1f1;
-  min-height: 630px;
-}
-
-.main-content .well{
-  background: #fff;
-}
-
-.main-content .panel-default .panel-heading{
-  background-color: #fff;
-}
-
-.main-content hr{
-  border-top: 1px solid #ccc;
-}
-
-.side-bar .list-group-item {
-  background: transparent;
-  position: relative;
-  display: block;
-  padding: 20px 30px;
-  border:none;  
-  border-top: 1px solid #4b4b4b;
-  cursor: pointer;
-}
-
-
-.side-bar .list-group-item:hover{
-  background: #4A4849;
-}
-
-.side-bar .list-group-item.active .arrow-left{
-  display: initial;
-}
-
-.side-bar .list-group-item:hover a{
-  color: #fff;
-}
-
-.side-bar .list-group-item:first-child {
-  border-top: none;
-  border-top-left-radius: 0px !important;
-  border-top-right-radius: 0px !important;
-}
-
-.side-bar .list-group-item:last-child {
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  border-bottom: 1px solid #4b4b4b;
-}
-
-.main-content .subnav{
-  margin: -1px -15px -1px -15px;
-  padding: 10px 15px 0 15px;
-  border: none;
-  border-bottom: 3px solid #333;
-  background: #fff;
-  border-radius: 0;
-  min-height: 94px;
-}
-
-.subnav-link{
-  margin: -2px 15px 0px 0px;
-  font-size: 25px;
-  padding: 5px;
-  color: #999;
-}
-
-#search-form{
-  position: relative;
-  padding: 0px;
-  margin: 0px;
-  height: 51px;
-}
-
-
-#search-form .control-form input.form-control{
-  background: #333;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -webkit-transition: none;
-  transition: none;
-  border-radius: 0;
-  color: #f1f1f1;
-  border: none;
-  padding: 10px 20px 10px 25px;
-  height: 50px;
-}
-
-
-#search-form .myDropDown i{
-  position: absolute;
-  right: 25px;
-  top: 10px;
-  color: #fff;
-}
-
-#search-form .control-form  i.fa-search{
-  position: absolute;
-  right: 22px;
-  top: 18px;
-  color: #666;
-}
-
-#search-form .control-form input.form-control:focus{
-  outline: none;
-  background: #3B3A39;
-}
-
-.btn-green{
-  background: #1fa67a;
-  color: #f1f1f1;
-  border-color: #1b926c;
-}
-.btn-green:focus, .btn-green:hover{
-  color: #fff;
 }
 
 .item-panel .item{
@@ -473,10 +279,6 @@ form#itemCover button{
   padding: 20px 20px;
 }
 
-.alert-panel.alert-success{
-  border-bottom: solid 1px #329439;
-}
-
 .download{
   margin-right:10px;
 }
@@ -484,27 +286,6 @@ form#itemCover button{
   margin-right:0px;
 }
 
-.arrow-left {
-  display: none;
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid #f1f1f1;
-  position: absolute;
-  right: 0px;
-}
-
-.arrow-left-search {
-  width: 0;
-  height: 0;
-  top: 15px;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid #fff;
-  position: absolute;
-  right: 0px;
-}
 .panel-collection{
   display: inline-block;
   background: #fff;
@@ -538,4 +319,7 @@ form#itemCover button{
   height: 80px;
 }
 
+#customForm{
+  padding: 20px;
+}
 

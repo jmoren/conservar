@@ -1,5 +1,5 @@
 .signin-panel{
-  background: #333;
+  background: #1d2939;
 }
 
 #signin{
@@ -51,12 +51,12 @@
 }
 
 #signin hr{
-  border-top: 1px solid #696969;
+  border-top: 1px solid #999;
   margin: 30px 0 20px 0;
 }
 
-#signin .footer, .signin .footer a{
-  color: #696969;
+#signin .footer, #signin .footer a{
+  color: #999;
 }
 
 #signin .footer a:hover{
