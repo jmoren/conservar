@@ -9,6 +9,7 @@ body { background: #e4e7ea; font-family: 'Ubuntu'; color: #4b4b4b;height: 100%;}
   border-bottom: 3px solid #1d2939;
   border-right: 1px solid #1d2939;
   border-radius: 0;
+  height: 101px;
 }
 
 #brand .title{
@@ -107,9 +108,9 @@ table.details-table tr.detail-row:hover td .actions{
 
 
 .subnav-link{
-  margin: -2px 15px 0px 0px;
+  margin: 0px 15px 0px 0px;
   font-size: 25px;
-  padding: 5px;
+  padding: 4px;
   color: #999;
 }
 
@@ -323,3 +324,46 @@ form#itemCover button{
   padding: 20px;
 }
 
+.iname{
+  padding: 0 5px;
+}
+.idesc{
+  padding: 10px;
+}
+
+.iname i.fa-edit{
+  display: none;
+  font-size: 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.idesc i.fa-edit{
+  display: none;
+  font-size: 20px;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  cursor: pointer;
+}
+.iname:hover{
+  border-bottom: solid 1px #ccc;
+  
+}
+.iname:hover i.fa-edit, .idesc:hover i.fa-edit{
+  display: inline-block;
+}
+
+.itemForm {
+  padding: 0;
+  margin: 0;
+}
+
+.itemNameForm input{
+  padding: 18px;
+  margin-top: -10px;
+  font-size: 20px;
+}
+.itemNameForm button{
+  padding: 8px 10px;
+  margin-top: -10px;
+}

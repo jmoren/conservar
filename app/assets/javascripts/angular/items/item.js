@@ -19,7 +19,9 @@ angular.module('conservar.item',[
 })
 
 .controller('ItemCtrl', function($scope, $stateParams, $http, $modal, ItemRes, ItemDetailRes, TreatmentRes, upload){
-  // alert
+  $scope.editName = false;
+  $scope.editDesc = false;
+
   $scope.alert = { type: "", message: "" };
 
   $scope.types = {
@@ -43,9 +45,10 @@ angular.module('conservar.item',[
     );
   };
 
-  $scope.updateItem = function(item){
+  $scope.updateInlineItem = function(item){
     ItemRes.update({}, item, function(){
-      $modalInstance.close();
+      $scope.editName = false;
+      $scope.editDesc = false;
     });
   };
 

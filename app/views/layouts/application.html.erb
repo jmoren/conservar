@@ -10,10 +10,26 @@
 <body ui-view="body" ng-controller="ConservarCtrl" class="{{ $state.current.className}}">
   <div class="col-md-2 side-bar" ng-controller="DashboardCtrl">
     <div id="brand"><a href="#/"><img src="/assets/logo.png" style="height:50px"></a></div>
+    <form id="search-form" ng-controller="searchCtrl">
+      <div class="control-form" style="position:relative">
+        <ul class="myDropdown" ng-show="searching">
+          <li ng-repeat="result in results | orderBy:model" class="item" focusable>
+            <a ng-click="goTo(result.location)">
+              <i class="fa fa-chevron-right"></i>
+              {{ result.name }}
+              <span class="pull-right" style="margin-right:5px">({{ result.model[0]}})</span>
+            </a>
+          </li>
+        </ul>
+        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Procurar..."/>
+        <i class="fa fa-search" ng-hide="searching"></i>
+        <i class="fa fa-times" ng-click="clear()" ng-show="searching"x1></i>
+      </div>
+    </form>
     <ul class="list-group">
       <li class="list-group-item" ui-sref-active="active">
         <a href='#/collections' ui-sref="collections">
-          <i class="fa fa-tags"></i> Items
+          <i class="fa fa-tags"></i> Itens
         </a>
         <span class="arrow-left"></span>
       </li>
@@ -54,22 +70,7 @@
         <a ng-click="logout()" class="logout"><i class="fa fa-sign-out"></i></a>
       </div>
     </div>
-    <form id="search-form" ng-controller="searchCtrl">
-      <div class="control-form" style="position:relative">
-        <ul class="myDropdown" ng-show="searching">
-          <li ng-repeat="result in results | orderBy:model" class="item" focusable>
-            <a ng-click="goTo(result.location)">
-              <i class="fa fa-chevron-right"></i>
-              {{ result.name }}
-              <span class="pull-right" style="margin-right:5px">({{ result.model[0]}})</span>
-            </a>
-          </li>
-        </ul>
-        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Procurar..."/>
-        <i class="fa fa-search" ng-hide="searching"></i>
-        <i class="fa fa-times" ng-click="clear()" ng-show="searching"x1></i>
-      </div>
-    </form>
+    
   </div>
   <div class="col-md-10 main-content">
     <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message" style="margin: -1px -15px;">

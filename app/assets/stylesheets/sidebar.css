@@ -15,23 +15,24 @@
 }
 /* search box */
 #search-form{
-  position: absolute;
-  bottom: 0;
+  border-right: 1px solid #1d2939;
+  margin-bottom: 2px;
 }
 
 #search-form .control-form input.form-control{
   border-radius: 0;
   border: none;
-  padding: 10px 30px;
-  height: 50px;
-  border-right: 1px #ccc solid;
+  padding: 20px 30px;
+  height: 60px;
+  background: #2A3B52;
+  color:#fff;
 }
 
 #search-form .control-form  i.fa-search, #search-form .control-form  i.fa-times{
   position: absolute;
   right: 10px;
   top: 20px;
-  color: #4b4b4b;
+  color:#fff;
 }
 
 #search-form .control-form  i.fa-times{
@@ -54,8 +55,8 @@
 .myDropdown{
   position: absolute;
   width: 100%;
-  bottom: 50px;
-  left: 0px;
+  top: 60px;
+  left: 1px;
   background: #fff;
   margin:0;
   padding:0;
