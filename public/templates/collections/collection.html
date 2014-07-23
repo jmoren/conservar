@@ -1,15 +1,15 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
-    
+
     <h2>
-      {{ collection.name }} 
+      {{ collection.name }}
       <a href="#/collections" class="pull-left subnav-link">
         <i class="fa fa-chevron-left"></i>
       </a>
-      <div class="btn-group btn-group-sm pull-right">
-        <a ng-click="openModalItem(newItem,'new')" class="btn btn-green"><i class="fa fa-plus"></i> Adicionar Peça</a>
-        <a ng-click="openModalCollection()" class="btn btn-green"><i class="fa fa-edit"></i> Editar Item</a>
-        <a ng-click="generateReport()" ng-show="collection.reportable" class="btn btn-green"><i class="fa fa-bar-chart-o"></i> Gerar Relatório</a>
+      <div class="pull-right">
+        <a ng-click="openModalItem(newItem,'new')" class="btn btn-sm btn-green"><i class="fa fa-plus"></i> Adicionar Peça</a>
+        <a ng-click="openModalCollection()" class="btn btn-sm btn-green"><i class="fa fa-edit"></i> Editar Item</a>
+        <a ng-click="generateReport()" ng-show="collection.reportable" class="btn btn-sm btn-green"><i class="fa fa-bar-chart-o"></i> Gerar Relatório</a>
       </div>
     </h2>
   </div>
@@ -18,7 +18,7 @@
   <div class="col-md-12">
     <p class="well"> {{collection.description}}</p>
     <div class="clearfix" style="margin-bottom: 20px">
-      <div class="panel-collection"> 
+      <div class="panel-collection">
         <div class="header"><i class="fa fa-calendar"></i>  Data</div>
         <div class="content">
           <p>
@@ -45,7 +45,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">Relatorios criados</h3>
       </div>
-      <div class="panel-body">        
+      <div class="panel-body">
         <div ng-repeat="report in reports"  style="border: solid 1px #ccc;padding: 2px;dispaly:block;" class="clearfix">
           <a ng-href="{{report.pdf}}" target="_blank" class="pull-left" style="border-right: solid 1px #ccc;padding: 2px;padding:0 5px;">
             <i class="fa fa-download"></i>
@@ -71,7 +71,7 @@
             <div class="panel-body">
               <div class="clearfix">
                 <img ng-src="{{item.cover}}" style="width:60px;height:50px;float:left;margin: 0 10px 10px 0;background: #f1f1f1"/>
-              
+
                 <p style="float:right;width:190px">{{ item.description}}</p>
               </div>
               <hr>

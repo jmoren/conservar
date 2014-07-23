@@ -21,7 +21,7 @@
       <span ng-hide="editName" class="iname pull-left">
         {{ item.name }} <i class="text-muted fa fa-edit" ng-click="editName = true"></i>
       </span>
-      
+
       <form class="form-inline itemNameForm" ng-show="editName">
         <div class="form-group">
           <input ng-model="item.name" type="text" class="form-control pull-left"/>
@@ -29,7 +29,7 @@
         <button class="btn btn-sm btn-primary" ng-click="updateInlineItem(item)"><i class="fa fa-check"></i></button>
         <button class="btn btn-sm btn-default" ng-click="editName=false"><i class="fa fa-times"></i></button>
       </form>
-      
+
     </h2>
   </div>
 </div>
@@ -39,14 +39,14 @@
     <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false">alterar imagem <i class="fa fa-camera"></i></span>
   </div>
   <div class="col-md-9">
-    <div class="well well-xs idesc" style="height:150px"> 
-      <p ng-hide="editDesc" >
+    <div class="well well-xs idesc" style="height:150px">
+      <p ng-hide="editDesc" style="padding:10px">
         <i class="fa fa-edit text-muted" ng-click="editDesc = true"></i>
         {{ item.description }}
       </p>
       <form class="itemDescForm" ng-show="editDesc">
         <div class="form-group">
-          <textarea ng-model="item.description" rows="3" class="form-control"></textarea> 
+          <textarea ng-model="item.description" rows="3" class="form-control" style="padding:10px"></textarea>
         </div>
         <button class="btn btn-sm btn-primary" ng-click="updateInlineItem(item)"><i class="fa fa-check"></i></button>
         <button class="btn btn-sm btn-default" ng-click="editDesc=false"><i class="fa fa-times"></i></button>
@@ -155,7 +155,7 @@
                 <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">
                   Tratamento #{{ treatment.id }}
                 </a>
-                <div class="btn-group btn-group-xs pull-right" >  
+                <div class="btn-group btn-group-xs pull-right" >
                   <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Editar</a>
                   <a ng-click="closeTreatment(treatment)" ng-if="!treatment.closed" class="btn btn-primary">Encerrar</a>
                   <a ng-click="openTreatment(treatment)"  ng-if="treatment.closed" class="btn btn-primary">Reabrir</a>
@@ -169,7 +169,7 @@
                 <i class="fa fa-unlock" ng-show="!treatment.closed"></i>
                 <b> {{ treatment.closed ? 'Encerrado' : 'Aberto'}}</b>
               </p>
-              <i class="fa fa-calendar"></i> 
+              <i class="fa fa-calendar"></i>
               Criado no dia <span class="text-primary">{{ treatment.created_at }}</span>
               <i class="fa fa fa-ellipsis-v"></i>
               Ultima atualizacao foi <span class="text-primary">{{ treatment.updated_at}}</span>

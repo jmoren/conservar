@@ -4,12 +4,12 @@ body { background: #e4e7ea; font-family: 'Ubuntu'; color: #4b4b4b;height: 100%;}
 
 #brand{
   background: #fff;
-  padding: 24px 50px 24px 50px;
+  padding: 10px 0px 5px 50px;
   margin: 0px;
   border-bottom: 3px solid #1d2939;
   border-right: 1px solid #1d2939;
   border-radius: 0;
-  height: 101px;
+  height: 70px;
 }
 
 #brand .title{
@@ -274,7 +274,7 @@ form#itemCover button{
 }
 
 .alert-panel{
-  margin: -1px -15px 0 -16px; 
+  margin: -1px -15px 0 -16px;
   border-radius:0;
   font-weight: bold;
   padding: 20px 20px;
@@ -342,12 +342,12 @@ form#itemCover button{
   font-size: 20px;
   position: absolute;
   right: 30px;
-  top: 10px;
+  top: 20px;
   cursor: pointer;
 }
 .iname:hover{
   border-bottom: solid 1px #ccc;
-  
+
 }
 .iname:hover i.fa-edit, .idesc:hover i.fa-edit{
   display: inline-block;

@@ -22,10 +22,10 @@
 
 .main-content .subnav{
   margin: 0px -15px 0px -15px;
-  padding: 15px 15px 20px 15px;
+  padding: 0px 15px 0px 15px;
   border: none;
   border-bottom: 3px solid #1d2939;
   background: #fff;
   border-radius: 0;
-  height: 101px;
+  height: 70px;
 }
