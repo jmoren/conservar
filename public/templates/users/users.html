@@ -5,57 +5,55 @@
     </h2>
   </div>
 </div>
-<div style="margin-top:30px">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <form ng-submit="save(user)" name="userForm" class="form-inline">
-          <div class="form-group col-md-5">
-            <label>Email</label><br>
-            <input name="email" class="form-control" ng-pattern="/^[a-zA-Z.-]+@[a-zA-Z]+\.[a-z]{3}$/" ng-model="user.email" placeholder="example@email.com" style="width:100%" required>
-          </div>
-          <div class="form-group col-md-3">
-            <label>Nome</label><br>
-            <input name="name" class="form-control" ng-model="user.name" placeholder="Nome..." style="width:100%" required>
-          </div>
-          <div class="form-group col-md-3">
-            <label>Sobrenome</label><br>
-            <input name="last_name" class="form-control" ng-model="user.last_name" placeholder="Sobrenome..." style="width:100%" required>
-          </div>
-          <div class="form-group">
-            <button ng-disabled="userForm.$invalid" class="btn btn-green" type="submit" style="margin: 25px 0px 0 10px;">Salvar</button>
-          </div>
-        </form>
-      </div>
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form ng-submit="save(user)" name="userForm" class="form-inline">
+        <div class="form-group col-md-5">
+          <label>Email</label><br>
+          <input name="email" class="form-control" ng-pattern="/^[a-zA-Z.-]+@[a-zA-Z]+\.[a-z]{3}$/" ng-model="user.email" placeholder="example@email.com" style="width:100%" required>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Nome</label><br>
+          <input name="name" class="form-control" ng-model="user.name" placeholder="Nome..." style="width:100%" required>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Sobrenome</label><br>
+          <input name="last_name" class="form-control" ng-model="user.last_name" placeholder="Sobrenome..." style="width:100%" required>
+        </div>
+        <div class="form-group">
+          <button ng-disabled="userForm.$invalid" class="btn btn-green" type="submit" style="margin: 25px 0px 0 10px;">Salvar</button>
+        </div>
+      </form>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <table class="table">
-          <thead>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>Email</th>
-            <th></th>
-          </thead>
-          <tbody>
-            <tr ng-repeat="user in users">
-              <td>
-                {{ user.name}}
-              </td>
-              <td>
-                {{ user.last_name}}
-              </td>
-              <td>
-                {{ user.email}}
-              </td>
-              <td>
-                <a ng-click="delete(user)" ng-hide="current_user.id == user.id"><i class="fa fa-trash-o text-danger"></i></a>
-                <a ng-click="reSend(user)" ng-hide="user.confirmed"><i class="fa fa-envelope-o"></i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Email</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in users">
+            <td>
+              {{ user.name}}
+            </td>
+            <td>
+              {{ user.last_name}}
+            </td>
+            <td>
+              {{ user.email}}
+            </td>
+            <td>
+              <a ng-click="delete(user)" ng-hide="current_user.id == user.id"><i class="fa fa-trash-o text-danger"></i></a>
+              <a ng-click="reSend(user)" ng-hide="user.confirmed"><i class="fa fa-envelope-o"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

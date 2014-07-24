@@ -14,69 +14,67 @@
     </h2>
   </div>
 </div>
-<div style="margin-top:30px">
-  <div class="col-md-12">
-    <p class="well"> {{collection.description}}</p>
-    <div class="clearfix" style="margin-bottom: 20px">
-      <div class="panel-collection">
-        <div class="header"><i class="fa fa-calendar"></i>  Data</div>
-        <div class="content">
-          <p>
-            {{ collection.entry_date}}
-          </p>
-        </div>
-      </div>
-
-      <div class="panel-collection">
-        <div class="header"><i class="fa fa-globe"></i> Procedência</div>
-        <div class="content">
-         {{collection.origin}}
-        </div>
-      </div>
-
-      <div class="panel-collection">
-        <div class="header"><i class="fa fa-user"></i> Proprietário</div>
-        <div class="content">
-          {{ collection.owner }}
-        </div>
+<div class="col-md-12">
+  <p class="well"> {{collection.description}}</p>
+  <div class="clearfix" style="margin-bottom: 20px">
+    <div class="panel-collection">
+      <div class="header"><i class="fa fa-calendar"></i>  Data</div>
+      <div class="content">
+        <p>
+          {{ collection.entry_date}}
+        </p>
       </div>
     </div>
-    <div class="panel panel-default" ng-show="reports.length > 0">
-      <div class="panel-heading">
-        <h3 class="panel-title">Relatorios criados</h3>
-      </div>
-      <div class="panel-body">
-        <div ng-repeat="report in reports"  style="border: solid 1px #ccc;padding: 2px;dispaly:block;" class="clearfix">
-          <a ng-href="{{report.pdf}}" target="_blank" class="pull-left" style="border-right: solid 1px #ccc;padding: 2px;padding:0 5px;">
-            <i class="fa fa-download"></i>
-          </a>
-          <div style="margin-left: 5px;" class="pull-left">Relatorio criado {{ report.created_at }}</div>
-        </div>
+
+    <div class="panel-collection">
+      <div class="header"><i class="fa fa-globe"></i> Procedência</div>
+      <div class="content">
+       {{collection.origin}}
       </div>
     </div>
-    <hr>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div ng-show="items.lenght > 0"><h4> Não há itens</h4></div>
-        <div class="col-md-4" ng-repeat='item in items'>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="panel-title">
-                <h4>
-                  {{ item.name }}
-                  <a href="#/items/{{item.id}}" class="pull-right"><i class="fa fa-chevron-right"></i></a>
-                </h4>
-              </div>
-            </div>
-            <div class="panel-body">
-              <div class="clearfix">
-                <img ng-src="{{item.cover}}" style="width:60px;height:50px;float:left;margin: 0 10px 10px 0;background: #f1f1f1"/>
 
-                <p style="float:right;width:190px">{{ item.description}}</p>
-              </div>
-              <hr>
-              <a ng-click="remove(item)" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Apagar</a>
+    <div class="panel-collection">
+      <div class="header"><i class="fa fa-user"></i> Proprietário</div>
+      <div class="content">
+        {{ collection.owner }}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default" ng-show="reports.length > 0">
+    <div class="panel-heading">
+      <h3 class="panel-title">Relatorios criados</h3>
+    </div>
+    <div class="panel-body">
+      <div ng-repeat="report in reports"  style="border: solid 1px #ccc;padding: 2px;dispaly:block;" class="clearfix">
+        <a ng-href="{{report.pdf}}" target="_blank" class="pull-left" style="border-right: solid 1px #ccc;padding: 2px;padding:0 5px;">
+          <i class="fa fa-download"></i>
+        </a>
+        <div style="margin-left: 5px;" class="pull-left">Relatorio criado {{ report.created_at }}</div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div ng-show="items.lenght > 0"><h4> Não há itens</h4></div>
+      <div class="col-md-4" ng-repeat='item in items'>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>
+                {{ item.name }}
+                <a href="#/items/{{item.id}}" class="pull-right"><i class="fa fa-chevron-right"></i></a>
+              </h4>
             </div>
+          </div>
+          <div class="panel-body">
+            <div class="clearfix">
+              <img ng-src="{{item.cover}}" style="width:60px;height:50px;float:left;margin: 0 10px 10px 0;background: #f1f1f1"/>
+
+              <p style="float:right;width:190px">{{ item.description}}</p>
+            </div>
+            <hr>
+            <a ng-click="remove(item)" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Apagar</a>
           </div>
         </div>
       </div>
