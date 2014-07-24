@@ -21,7 +21,7 @@ angular.module('conservar.intervention',[
   $scope.alert = { type: "", message: "" };
   $scope.types = { consolidacion: "Consolidacion", limpieza: "Limipeza", montaje: "Montaje", preparacion: "Preparacion" };
   $scope.format = 'dd/MM/yyyy';
-  
+
   $scope.open = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -43,6 +43,8 @@ angular.module('conservar.intervention',[
         $scope.addAlert("success", "Se guardo con exito");
         $scope.intervention.description = "";
         $scope.intervention.intervention_type = "";
+        $scope.intervention.intervention_date = "";
+        $scope.intervention.material = "";
       },
       function(data){
         $scope.addAlert("danger", "No pudo guardarse, intente nuevamente");
@@ -59,7 +61,7 @@ angular.module('conservar.intervention',[
       function(data){
         $scope.addAlert("danger", "No pudo actualizarse, intente nuevamente");
       }
-    );    
+    );
   };
 
   $scope.addAlert = function(type, message){
@@ -81,5 +83,3 @@ angular.module('conservar.intervention',[
   );
   return res;
 });
-
-

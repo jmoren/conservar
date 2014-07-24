@@ -40,7 +40,7 @@ angular.module('conservar.item',[
         $scope.item            = data.item;
       },
       function(error){
-        console.log("error");      
+        console.log("error");
       }
     );
   };
@@ -56,7 +56,7 @@ angular.module('conservar.item',[
     upload({
       url: '/items/'+$scope.item.id+'/upload.json',
       method:"PATCH",
-      data: { 
+      data: {
         "collection_id": $scope.collection.id,
         "item[cover]": $("#cover")[0].files[0]
       }
@@ -119,9 +119,7 @@ angular.module('conservar.item',[
   $scope.saveTreatment = function(treatment){
     treatment.$save({item_id: $scope.item.id},
       function(data){
-        $scope.item.treatments.collection.push(data.treatment);
-        $scope.item.treatments.current = data.treatment.id;
-        $scope.item.treatments.open = true;
+        $scope.item.treatments.push(data.treatment);
         $scope.addAlert("success", "Se guardo con exito");
         $modalInstance.close();
       },
@@ -140,7 +138,7 @@ angular.module('conservar.item',[
       function(data){
         $scope.addAlert("danger", "No pudo actualizarse, intente nuevamente");
       }
-    );    
+    );
   };
   $scope.deleteTreatment = function(treatment){
     TreatmentRes.remove({item_id: $scope.item.id}, treatment,
@@ -154,7 +152,7 @@ angular.module('conservar.item',[
       function(data){
         $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
       }
-    );    
+    );
   };
   $scope.saveDetail = function(detail){
     detail.$save({item_id: $scope.item.id},
@@ -162,7 +160,7 @@ angular.module('conservar.item',[
         if(data.detail_type == 'materiales')
           $scope.item.materials.push(data);
         if(data.detail_type == 'medidas')
-          $scope.item.medidas.push(data); 
+          $scope.item.medidas.push(data);
         $modalInstance.close();
         $scope.addAlert("success", "Se guardo con exito!");
       },
@@ -182,7 +180,7 @@ angular.module('conservar.item',[
         $scope.addAlert("danger", "No pudo actualizarse, intente nuevamente");
       }
     );
-      
+
   };
 
   $scope.deleteDetail = function(detail){
@@ -254,33 +252,31 @@ angular.module('conservar.item',[
         file = (e.srcElement || e.target).files[0];
         reader = new FileReader();
         reader.onload = function (e){
-          
+
           filename = el.val().split("\\")[2];
           if(filename){
-            $('#preview').attr('src',e.target.result);  
+            $('#preview').attr('src',e.target.result);
             $("#uploadFile").val(filename);
             $("#submitCover").attr('disabled',false);
           }else{
-            $('#preview').attr('src',"");  
+            $('#preview').attr('src',"");
             $("#submitCover").attr('disabled',true);
             $("#uploadFile").val('');
           }
         };
         if(file.type.match('image.*'))
           reader.readAsDataURL(file);
-      }); 
+      });
     }
   };
 })
 .factory( 'ItemRes', function ( $resource )  {
   var res = $resource("/items/:id.json",
     { id:'@id' },
-    { 
+    {
       'update': { method: 'PUT'},
       'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'} },
      }
   );
   return res;
 });
-
-

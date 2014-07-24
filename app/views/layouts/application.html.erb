@@ -4,6 +4,7 @@
   <title>Conservar - {{$state.current.title}}</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
   <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
@@ -47,7 +48,7 @@
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/reports" ui-sref="reports">
-          <i class="fa fa-file-pdf-o"></i> Relatórios 
+          <i class="fa fa-file-pdf-o"></i> Relatórios
         </a>
         <span class="arrow-left"></span>
       </li>
@@ -70,7 +71,7 @@
         <a ng-click="logout()" class="logout"><i class="fa fa-sign-out"></i></a>
       </div>
     </div>
-    
+
   </div>
   <div class="col-md-10 main-content">
     <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message" style="margin: -1px -15px;">
