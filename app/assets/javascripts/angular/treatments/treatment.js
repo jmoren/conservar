@@ -40,7 +40,7 @@ angular.module('conservar.treatment',[
         $scope.exams            = data.exams;
       },
       function(error){
-        console.log("error");      
+        console.log("error");
       }
     );
   };
@@ -50,7 +50,7 @@ angular.module('conservar.treatment',[
       if(tab.name == current_tab.name)
         current_tab.active = true;
       else
-        tab.active = false;        
+        tab.active = false;
     });
   };
 
@@ -68,12 +68,13 @@ angular.module('conservar.treatment',[
     upload({
       url: '/treatments/'+$scope.treatment.id+'/images.json',
       method:"POST",
-      data: { 
-        "image[treatment_id]": $scope.treatment.id, 
+      data: {
+        "image[treatment_id]": $scope.treatment.id,
         "image[item_id]": $scope.treatment.item_id,
         "image[photo]": $("#file")[0].files[0],
         "image[description]": data.description,
-        "image[intervention_id]": data.intervention_id
+        "image[intervention_id]": data.intervention_id,
+        "image[show_report]": data.show_report
       }
     }).then(
       function (response) {
@@ -131,7 +132,7 @@ angular.module('conservar.treatment',[
       function(data){
         $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
       }
-    );    
+    );
   };
 
   $scope.removeExam = function(exam){
@@ -144,7 +145,7 @@ angular.module('conservar.treatment',[
       function(data){
         $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
       }
-    );    
+    );
   };
 
   $scope.removeIntervention = function(intervention){
@@ -157,7 +158,7 @@ angular.module('conservar.treatment',[
       function(data){
         $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
       }
-    );    
+    );
   };
 
   $scope.addAlert = function(type, message){
@@ -180,7 +181,7 @@ angular.module('conservar.treatment',[
     },
     controller: function($scope, TreatmentNoteRes) {
       $scope.save = function(note){
-        TreatmentNoteRes.save({treatment_id: $scope.treatment.id}, note, 
+        TreatmentNoteRes.save({treatment_id: $scope.treatment.id}, note,
           function(data){
             $scope.notes.push(data);
             $scope.note.content = "";
@@ -220,7 +221,7 @@ angular.module('conservar.treatment',[
 .factory('TreatmentRes', function($resource){
   var res = $resource("/items/:item_id/treatments/:id.json",
     { id:'@id', item_id: '@item_id' },
-    { 
+    {
       'update': { method: 'PATCH' },
       'close': {method: 'POST'},
       'open': {method: 'POST'},
@@ -231,7 +232,7 @@ angular.module('conservar.treatment',[
 .factory('TreatmentNoteRes', function($resource){
   var res = $resource("/treatments/:treatment_id/treatment_notes/:id.json",
     { id:'@id', treatment_id: '@treatment_id' },
-    { 
+    {
       'update': { method: 'PATCH' }
     });
   return res;

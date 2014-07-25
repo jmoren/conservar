@@ -5,24 +5,24 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report  = @collection.reports.new 
+    @report  = @collection.reports.new
     @report.organization_id = @organization.id
-    file     = CollectionReportPdf.new(@collection)
+    file     = CollectionReportPdf.new(@collection, current_user.organization)
     tmp_path = "#{Rails.root}/tmp/report_#{@collection.id}_#{Time.now.to_i}.pdf"
     file.render_file tmp_path
     respond_to do |format|
       if File.exists?(tmp_path)
-        @report.pdf = File.open(tmp_path)  
+        @report.pdf = File.open(tmp_path)
         if @report.save
           format.json { render json: {
-            id:         @report.id, 
-            pdf:        @report.pdf_url, 
+            id:         @report.id,
+            pdf:        @report.pdf_url,
             created_at: @report.created_at.strftime('%d/%m/%Y'),
-            collection: { 
-              id:   @collection.id, 
+            collection: {
+              id:   @collection.id,
               name: @collection.name
-            } 
-          }, 
+            }
+          },
           status: :created }
         else
           format.json { render json: @report.errors, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class ReportsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
 private
   def set_collection
     @collection = @organization.collections.find(params[:collection_id])

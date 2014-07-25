@@ -1,27 +1,53 @@
 class CollectionReportPdf < PdfReport
-  ACTIONS_TABLE_WIDTHS = [150, 700, 100]
-  ACTIONS_TABLE_HEADERS = ["Tipo", "Descricao", "Date"]
 
-  EXAMS_TABLE_WIDTHS = [150, 350, 350, 100]
-  EXAMS_TABLE_HEADERS = ["Nome", "Result", "Observacoes", "Date"]
-
-  def initialize(collection)
+  def initialize(collection, organization)
     super()
     @collection = collection
 
-    header 
-    report_collection(collection)
+    header(organization)            # page header
+    basic_info(collection)   # report title
+
+    # content
     collection.items.each do |item|
       treatment = item.treatments.open.last
       if treatment
-        item_introduction(item, treatment) 
-        start_new_page unless collection.items.last == item
+        # item treatment
+        item_introduction(item, treatment)
+        # data
+        display_actions(treatment.interventions)
+        display_exams(treatment.exams)
       end
     end
+
     footer
   end
 
   private
+
+  def basic_info(collection)
+    pad_top(20) { text collection.name, size: 14, style: :bold, align: :center }
+    move_down 20
+
+    text "Dados Gerais", size: 12, style: :bold
+    move_down 10
+
+    y_position = cursor
+    bounding_box([0, y_position], :width => 150) do
+      text "Description", style: :bold, size: 12
+    end
+    bounding_box([190, y_position], :width => 350) do
+      text collection.description, size: 11
+    end
+    move_down 10
+
+    y_position = cursor
+    bounding_box([0, y_position], :width => 150) do
+      text "Procedencia e Propietario", style: :bold, size: 12
+    end
+    bounding_box([190, y_position], :width => 350) do
+      text "#{collection.origin} - #{collection.owner}", size: 11
+    end
+  end
 
   def display_actions(actions)
     unless actions.empty?
@@ -46,7 +72,7 @@ class CollectionReportPdf < PdfReport
         stroke_color "f1f1f1"
         stroke_horizontal_rule
       end
-    end  
+    end
   end
 
   def display_exams(exams)
@@ -79,10 +105,10 @@ class CollectionReportPdf < PdfReport
     pad_top(20) { text item.name.titleize, size: 15, style: :bold, color: "#666566" }
 
     # diagnosis text
-    move_down 20  
+    move_down 20
     y_position = cursor
     bounding_box([0, y_position], :width => 150) do
-      text "Diagnostico", size: 13, style: :bold  
+      text "Diagnostico", size: 13, style: :bold
     end
     bounding_box([190, y_position], :width => 350) do
       text treatment.diagnosis
@@ -90,7 +116,7 @@ class CollectionReportPdf < PdfReport
     move_down 20
     stroke_color "f1f1f1"
     stroke_horizontal_rule
-    
+
     # proposal text
     move_down 20
     y_position = cursor
@@ -103,9 +129,5 @@ class CollectionReportPdf < PdfReport
     move_down 20
     stroke_color "f1f1f1"
     stroke_horizontal_rule
-
-    # data
-    display_actions(treatment.interventions)
-    display_exams(treatment.exams)
   end
 end

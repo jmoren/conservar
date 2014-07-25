@@ -36,8 +36,11 @@
           <tr>
             <td><i class="fa fa-search"></i> Tratamento</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
           </tr>
+          <tr ng-show="image.intervention.id">
+            <td><i class="fa fa-wrench"></i> Intervenção</td><td>#{{image.intervention.id}}</td>
+          </tr>
           <tr>
-            <td><i class="fa fa-wrench"></i> Intervencao</td><td>#{{image.intervention.id}}</td>
+            <td><i class="fa fa-paper-plane-o"></i> Incluir no relatorio</td><td>{{image.show_report ? 'sim' : 'não'}}</td>
           </tr>
         </tbody>
       </table>

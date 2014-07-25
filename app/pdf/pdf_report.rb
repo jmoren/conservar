@@ -10,22 +10,26 @@ class PdfReport < Prawn::Document
     font_size 10
   end
 
-  def header
-    text "Conservar App", style: :bold, size: 9
+  def header(organization)
+    text organization.name.titleize, style: :bold, size: 9
     move_up 10
-    text "Automated Report - #{Date.today.strftime('%b %d, %A %Y')}", style: :bold, align: :right, size: 9
+    text "#{Date.today.strftime('%b %d, %A %Y')}", style: :bold, align: :right, size: 9
     stroke_color "f1f1f1"
     move_down 5
     stroke_horizontal_rule
   end
 
-  def report_collection(collection)
-    pad_top(20) { text collection.name, size: 14, style: :bold_italic, align: :center }
-    # collection data
-  end
-
   def footer
-    # ...
+    repeat(:all) do
+      bounding_box [bounds.left, bounds.bottom + 30], :width  => bounds.width do
+        stroke_color "f1f1f1"
+        stroke_horizontal_rule
+        move_down 5
+        image "#{Rails.root}/app/assets/images/logo.png", :scale => 0.2
+        move_up 10
+        text "Automated Report", align: :right, size: 9
+      end
+    end
   end
 
 end

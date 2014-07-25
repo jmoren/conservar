@@ -209,9 +209,10 @@ table.image-info{
   position: relative;
   height: 150px;
   background: #e4e4e4;
-  border: solid 1px #6A696B;
+  border: solid 1px #b4b4b4;
   width: 200px;
   border-radius: 5px;
+  padding: 5px;
 }
 
 #item-cover:hover .cover{

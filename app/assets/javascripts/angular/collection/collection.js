@@ -23,7 +23,7 @@ angular.module('conservar.collection',[
   $scope.selected_item = {};
   $scope.newItem = new ItemsRes();
   $scope.format = 'dd/MM/yyyy';
-  
+
   $scope.init = function(){
     CollectionRes.get($stateParams,
       function(data){
@@ -32,7 +32,7 @@ angular.module('conservar.collection',[
         $scope.reports    = data.reports;
       },
       function(error){
-        console.log("error");      
+        console.log("error");
       }
     );
   };
@@ -62,7 +62,7 @@ angular.module('conservar.collection',[
 
   $scope.openModalItem = function(myItem, size, view){
     $scope.selected_item = myItem || $scope.newItem;
-    
+
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
@@ -89,17 +89,6 @@ angular.module('conservar.collection',[
     );
   };
 
-  $scope.updateItem = function(item){
-    ItemsRes.update({collection_id: $scope.collection.id}, item,
-      function(response, status){
-        $modalInstance.close();
-      },
-      function(data, status){
-        console.log(status);
-      }
-    );
-  };
-
   $scope.remove = function(item){
     result = confirm("Estas seguro?");
     if(result){
@@ -118,21 +107,22 @@ angular.module('conservar.collection',[
   };
 
   $scope.generateReport = function(){
-    modal = $modal.open({
-      size: 'sm',
+    $modalInstance = $modal.open({
       scope: $scope,
       templateUrl: '../templates/reports/reportModal.html'
     });
+  };
 
+  $scope.createReport = function(){
     ReportRes.save({collection_id: $scope.collection.id},
       function(data){
         console.log(data);
         $scope.reports.push(data);
-        modal.close();
+        $modalInstance.close();
       },
       function(error){
         console.log(error);
-        modal.close();
+        $modalInstance.close();
       }
     );
   };
@@ -170,6 +160,10 @@ angular.module('conservar.collection',[
     startingDay: 1,
     showWeeks: false
   };
+
+  $scope.close = function(){
+    $modalInstance.close();
+  }
 })
 
 .factory( 'ItemsRes', function ( $resource )  {

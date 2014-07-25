@@ -27,6 +27,7 @@ json.images do
     json.id image.id
     json.photo image.photo_url
     json.description truncate(image.description, length:20)
+    json.show_report image.show_report
     json.intervention do
       json.id image.intervention_id
     end

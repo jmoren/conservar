@@ -1,6 +1,7 @@
 json.image do
   json.id @image.id
   json.description truncate(@image.description, length:30)
+  json.show_report @image.show_report
   json.photo @image.photo_url
   json.item do
     json.id @image.item.id
