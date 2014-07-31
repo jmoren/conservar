@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
     @report  = @collection.reports.new
     @report.organization_id = @organization.id
     file     = CollectionReportPdf.new(@collection, current_user.organization)
-    tmp_path = "#{Rails.root}/tmp/report_#{@collection.id}_#{Time.now.to_i}.pdf"
+    tmp_path = "#{Rails.root}/tmp/automated_report_#{Time.now.to_i}.pdf"
     file.render_file tmp_path
     respond_to do |format|
       if File.exists?(tmp_path)

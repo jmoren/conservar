@@ -59,4 +59,12 @@ angular.module('conservar',[
     //$scope.alert.showBox('You are logged out. ','Goodbye '+$scope.current_user.email, 'alert-success');
     $scope.current_user = { email: null };
   });
+}).filter("formatDate", function () {
+  return function (input, format) {
+    if ((input) && (this.current_user.timezone)) {
+      return moment.tz(input, this.current_user.timezone).format(format);
+    } else {
+      return input;
+    }
+  };
 });

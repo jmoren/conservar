@@ -12,7 +12,7 @@
     </div>
     <div class="form-group" ng-class="{'has-error':addCollection.description.$invalid && addCollection.description.$dirty}">
       <label class="form-label">Descrição</label>
-      <textarea value="element.description" name="description" class="form-control" required ng-model="element.description"/>
+      <textarea value="element.description" name="description" rows="4" class="form-control" required ng-model="element.description"/>
     </div>
     <div class="form-group" ng-class="{'has-error':addCollection.origin.$invalid && addCollection.origin.$dirty}">
       <label class="form-label">Procedência</label>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group withDatePicker" ng-class="{'has-error':addCollection.entry_date.$invalid && addCollection.entry_date.$dirty}">
       <label class="form-label">Data de ingreso</label>
-      <input type="text" name="entry_date" class="form-control" datepicker-popup="{{format}}" ng-model="element.entry_date" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" placeholder="Selecione a data.." required value="element.entry_date">
+      <input type="text" name="entry_date" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="element.entry_date" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" placeholder="Selecione a data.." required value="element.entry_date">
     </div>
   </form>
 </div>

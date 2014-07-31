@@ -22,7 +22,7 @@ angular.module('conservar.collections',[
   $scope.collection  = new CollectionRes();
   $scope.selected_collection = null;
   $scope.selected    = false;
-  $scope.format = 'dd/MM/yyyy';
+  $scope.format = 'dd-MM-yyyy';
   $scope.opened = false;
 
   $scope.init = function(){
@@ -41,7 +41,6 @@ angular.module('conservar.collections',[
       function(data, status){
         $scope.collections.push(data.collection);
         $modalInstance.close();
-        $scope.reset_form();
       },
       function(data, status){
         console.log(status);
@@ -81,7 +80,7 @@ angular.module('conservar.collections',[
     }
   };
 
-  $scope.openModal = function(collection, view){
+  $scope.openModal = function(collection){
     $modalInstance = $modal.open({
       resolve: {
         element: function(){
@@ -89,6 +88,7 @@ angular.module('conservar.collections',[
         }
       },
       scope: $scope,
+      controller: 'modalCtrl',
       templateUrl: '../templates/collections/collectionFormModal.html'
     });
   };
