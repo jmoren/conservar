@@ -37,7 +37,7 @@
           <label class="col-sm-2 control-label">{{ 'FIELD.LANGUAGE' | translate }}</label>
           <div class="col-sm-6">
             <div class="form-control" ng-show="!editUser" style="background: #eee;">
-              <img src="/assets/{{current_user.lang}}.png"/> <b>{{ 'LANG' | translate}}</b>
+              <img ng-src="/assets/{{current_user.lang}}.png"/> <b>{{ 'LANG' | translate}}</b>
             </div>
             <select class="form-control" ng-model="current_user.lang" ng-show="editUser">
               <option value="pt">{{ 'BRAZIL' | translate }}</option>
