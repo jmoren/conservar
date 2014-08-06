@@ -1,7 +1,7 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
     <h2>
-      Tratamento #{{ treatment.id }}
+      {{ 'TREATMENT.SING' | translate }} #{{ treatment.id }}
       <div class="pull-right">
         <span class="text-muted"><i style="font-size:25px" class="fa fa-ellipsis-v"></i></span>
         <a href="#/items/{{treatment.item_id}}">{{ item.name }}</a>
@@ -15,7 +15,7 @@
       <div class="panel-title" ng-click="toggleTreatment = !toggleTreatment" style="cursor:pointer">
         <a class="close pull-right" ng-hide="toggleTreatment">&plus;</a>
         <a class="close pull-right" ng-show="toggleTreatment">&times;</a>
-        <h4><i class="fa fa-pencil"></i> Diagnóstico e Proposta</h4>
+        <h4><i class="fa fa-pencil"></i> {{ 'TREATMENT.TITLE_1' |  translate }}</h4>
       </div>
     </div>
     <div class="panel-body" ng-show="toggleTreatment">
@@ -24,8 +24,8 @@
         <wysiwyg-edit name="diagnosis" content="treatment.diagnosis"></wysiwyg-edit>
         <br>
         <div class="form-group">
-          <button type="submit" class="btn btn-sm btn-green">Salvar</button>
-          <a ng-click="editDiagnosis = false" class="btn btn-sm btn-default">Cancelar</a>
+          <button type="submit" class="btn btn-sm btn-green">{{ 'BUTTON_SUBMIT' | translate }}</button>
+          <a ng-click="editDiagnosis = false" class="btn btn-sm btn-default">{{ 'BUTTON_CANCEL' | translate }}</a>
         </div>
         <hr>
       </form>
@@ -34,8 +34,8 @@
         <wysiwyg-edit name="proposal" content="treatment.proposal"></wysiwyg-edit>
         <br>
         <div class="form-group">
-          <button type="submit" class="btn btn-sm btn-green">Salvar</button>
-          <a ng-click="editProposal = false" class="btn btn-sm btn-default">Cancelar</a>
+          <button type="submit" class="btn btn-sm btn-green">{{ 'BUTTON_SUBMIT' | translate }}</button>
+          <a ng-click="editProposal = false" class="btn btn-sm btn-default">{{ 'BUTTON_CANCEL' | translate }}</a>
         </div>
       </form>
     </div>
@@ -48,24 +48,24 @@
       <div class="panel-title" ng-click="toggleDetails = !toggleDetails" style="cursor:pointer">
         <a class="close pull-right" ng-hide="toggleDetails">&plus;</a>
         <a class="close pull-right" ng-show="toggleDetails">&times;</a>
-        <h4><i class="fa fa-gears"></i> Detalhes do tratamento</h4>
+        <h4><i class="fa fa-gears"></i> {{ 'TREATMENT.TITLE_2' |  translate }}</h4>
       </div>
     </div>
     <div class="panel-body" ng-show="toggleDetails">
       <ul class="nav nav-pills" style="margin: 5px 0">
         <li ng-class="{'active':tabs.actions.active}">
           <a ng-click="openTab(tabs.actions)">
-            {{ tabs.actions.name }}
+            {{ tabs.actions.name | translate }}
           </a>
         </li>
         <li ng-class="{'active':tabs.exams.active}">
           <a ng-click="openTab(tabs.exams)">
-            {{ tabs.exams.name }}
+            {{ tabs.exams.name | translate }}
           </a>
         </li>
         <li ng-class="{'active':tabs.notes.active}">
           <a ng-click="openTab(tabs.notes)">
-            {{ tabs.notes.name }}
+            {{ tabs.notes.name | translate }}
           </a>
         </li>
       </ul>
@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
-          <h4 class="text-muted" ng-show="interventions.length < 1">Atualmente não há intervenções</h4>
+          <h4 class="text-muted" ng-show="interventions.length < 1">{{ 'INTERVENTION.EMPTY' | translate }}</h4>
           <div class="intervention clearfix" ng-repeat="intervention in interventions">
             <a ng-click="openModalIntervention(intervention)" class="btn btn-xs btn-primary">Ver #{{ intervention.id }}</a>
             <span class="btn btn-default btn-xs">
@@ -98,7 +98,7 @@
           <exam-form exams="exams" treatment="treatment"></exam-form>
         </div>
         <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
-          <h4 class="text-muted" ng-show="exams.length < 1">Atualmente não há análises</h4>
+          <h4 class="text-muted" ng-show="exams.length < 1">{{ 'EXAM.EMPTY' | translate }}</h4>
           <div class="exam clearfix" ng-repeat="exam in exams">
             <a ng-click="removeExam(exam)" class="pull-right text-muted">
               <i class="fa fa-trash-o" style="font-weight:bold;font-size:15px"></i>
@@ -114,7 +114,7 @@
           <treatment-note notes="notes" open="toogleNotes" treatment="treatment"></treatment-note>
         </div>
         <div class="col-md-8" style="border-left: solid 2px #f1f1f1;">
-          <h4 class="text-muted" ng-show="notes.length < 1">Atualmente não há notas</h4>
+          <h4 class="text-muted" ng-show="notes.length < 1">{{ 'NOTE.EMPTY' | translate }}</h4>
           <div class="note clearfix" ng-repeat="note in notes">
             <span class="btn btn-xs btn-default">
               <i class="fa fa-clock-o"></i> comentado {{note.created_at}}
@@ -139,7 +139,7 @@
       <div class="panel-title" ng-click="toggleImages = !toggleImages" style="cursor:pointer">
         <a class="close pull-right" ng-hide="toggleImages">&plus;</a>
         <a class="close pull-right" ng-show="toggleImages">&times;</a>
-        <h4><i class="fa fa-image"></i> Imagens</h4>
+        <h4><i class="fa fa-image"></i> {{ 'IMAGE.PLUR' |  translate }}</h4>
       </div>
     </div>
     <div class="panel-body">
@@ -148,7 +148,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label class="form-label">Intervenção <small class="text-muted">(Opcional)</small></label>
+                <label class="form-label">{{ 'INTERVENTION.SING' | translate }}<small class="text-muted">(Opcional)</small></label>
                 <select ng-model="dataForm.intervention_id" class="form-control">
                   <option value="">selecione</option>
                   <option ng-repeat="intervention in interventions" value="{{intervention.id}}">{{intervention.id}}</option>
@@ -160,34 +160,40 @@
                   <i class="fa fa-camera"></i>
                 </div>
                 <div class="fileUpload btn btn-green btn-sm" style="margin:10px 0 10px 10px">
-                  <span>Imagem</span>
+                  <span>{{ 'IMAGE.SING' | translate }}</span>
                   <input type="file" class="upload" id="file" type="file"/>
                 </div>
                 <div>
                   <div class="checkbox">
                     <input type="checkbox" name="show" ng-model="dataForm.show_report"/>
-                    <label> Incluir no relatorio?</label>
+                    <label> {{ 'IMAGE.INCLUDE' | translate }}?</label>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-8">
               <div class="form-group">
-                <label class="form-label">Descrição / Nome <small class="text-muted">(Opcional)</small></label>
-                <textarea ng-model="dataForm.description" rows="5" class="form-control" placeholder="Agregar una descripcion"/>
+                <label class="form-label">
+                  {{ 'FIELD.DESCRIPTION' | translate}}/{{ 'FIELD.NAME' | translate}} 
+                </label>
+                <textarea 
+                  ng-model="dataForm.description" 
+                  rows="5" class="form-control" 
+                  placeholder="{{ 'IMAGE.PLACEHOLDER_DESC' | translate }}">
+                </textarea>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-sm btn-primary">Salvar</button>
-                <button class="btn btn-default btn-sm" ng-click="toggleImages=false">Cancelar</button>
+                <button type="submit" class="btn btn-primary btn-sm btn-primary">{{ 'BUTTON_SUBMIT' | translate }}</button>
+                <button class="btn btn-default btn-sm" ng-click="toggleImages=false">{{ 'BUTTON_CLOSE' | translate }}</button>
               </div>
             </div>
           </div>
         </form>
         <hr>
       </div>
-      <h4 class="text-muted" ng-show="images.length < 1">Atualmente não há imagens</h4>
+      <h4 class="text-muted" ng-show="images.length < 1">{{ 'IMAGE.EMPTY' | translate }}</h4>
       <div class="row">
         <div class="col-md-3" ng-repeat="image in images">
           <div class="thumbnail">
@@ -196,15 +202,15 @@
             </a>
             <div class="caption">
               <p>{{ image.description}}</p>
-              <p ng-show="image.intervention.id">Intervenção: #{{ image.intervention.id }} </p>
+              <p ng-show="image.intervention.id">{{ 'INTERVENTION.SING' | translate }}: #{{ image.intervention.id }} </p>
               <p class="text-muted">
                 <small>
                   <i class="fa fa-check text-success" ng-show="image.show_report"></i>
                   <i class="fa fa-times" ng-show="!image.show_report"></i>
-                  {{ image.show_report ? '' : 'Não'}} incluir no relatorio
+                  {{ image.show_report ? 'IMAGE.INCLUDE' : 'IMAGE.NOT_INCLUDE' | translate }}
                 </small>
               </p>
-              <small><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> apagar</a></small>
+              <small><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> {{ 'BUTTON_DELETE' | translate }}</a></small>
             </div>
           </div>
         </div>

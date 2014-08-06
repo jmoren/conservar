@@ -26,17 +26,17 @@ angular.module( 'conservar.profile', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'ProfileCtrl', function($scope, UsersRes, $location, $http, $anchorScroll, $window) {
+.controller( 'ProfileCtrl', function($scope, UsersRes, $location, $http, $anchorScroll, $translate) {
   $scope.init = function(){
     $scope.user = $scope.current_user;
     $scope.editUser = false;
   };
 
   $scope.save = function(user){
-    UsersRes.update({id: $scope.current_user.id}, {user: user}, 
+    UsersRes.update({id: $scope.current_user.id}, {user: user},
       function(data){
-        console.log(data);
         $scope.editUser = false;
+        $translate.use(user.lang);
       },
       function(error){
         console.log(error);

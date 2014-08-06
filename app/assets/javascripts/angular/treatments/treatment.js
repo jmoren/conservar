@@ -23,9 +23,9 @@ angular.module('conservar.treatment',[
   $scope.current_exam         = new ExamRes();
 
   $scope.tabs = {
-    actions: { active: true, name: 'Intervenções'},
-    exams: { active: false, name: 'Analises'},
-    notes: { active: false, name: 'Notas'},
+    actions: { active: true, name: 'INTERVENTIONS'},
+    exams: { active: false, name: 'EXAMS'},
+    notes: { active: false, name: 'NOTES'},
   };
 
   $scope.init = function(){

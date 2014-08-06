@@ -1,30 +1,34 @@
 <div class="modal-header">
-  <h3  ng-show="!element.id" class="modal-title">{{ element.detail_type == 'medidas' ? 'Nova Medida' : 'Nova Material'}}</h3>
-  <h3  ng-show="element.id" class="modal-title">{{ element.detail_type == 'medidas' ? 'Editar Medida' : 'Editar Material'}}</h3>
+  <h3  ng-show="!element.id" class="modal-title">{{ element.detail_type == 'medidas' ? 'MEASUREMENT.NEW' : 'MATERIAL.NEW' | translate }}</h3>
+  <h3  ng-show="element.id" class="modal-title">{{ element.detail_type == 'medidas' ? 'MEASUREMENT.EDIT' : 'MATERIAL.EDIT' | translate }}</h3>
 </div>
 <div class="modal-body">
   <form name="detailForm"  role="form">
     <input type="hidden" name="detail_type" ng-model="element.detail_type" value="{{element.detail_type}}">
     <div class="form-group" ng-class="{'has-error':detailForm.detail_type.$invalid && detailForm.detail_type.$dirty}">
-      <label class="form-label">Nome: {{ type }}</label>
+      <label class="form-label">{{ 'DETAIL.NAME' | translate }}</label>
       <select type="text" name="name" class="form-control" ng-model="element.name" required>
         <option ng-repeat="detail in types[element.detail_type]">{{detail}}</option>
       </select>
     </div>
     <div class="form-group" ng-class="{'has-error':detailForm.value.$invalid && detailForm.value.$dirty}">
-      <label class="form-label">Valor</label>
+      <label class="form-label">{{ 'DETAIL.VALUE' | translate }}</label>
       <div ng-if="element.detail_type == 'materiales'">
         <input type='text' name="value" required class="form-control" ng-model="element.value" value="element.value"/>
       </div>
       <div ng-if="element.detail_type == 'medidas'">
-        <input type='text' name="value" ng-required="true" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control" ng-model="element.value" value="element.value" placeholder="Insira solo numeros..."/>
-        <small class="help-block"><i class="fa fa-warning"></i> Medidas em centímetros</small>
+        <input type='text' name="value" ng-required="true" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control" ng-model="element.value" value="element.value" placeholder="{{ 'MEASUREMENT.PLACEHOLDER' | translate }}"/>
+        <small class="help-block"><i class="fa fa-warning"></i> {{ 'MEASUREMENT.MESSAGE' | translate }}</small>
       </div>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button ng-disabled="detailForm.$invalid" ng-show="!element.id" ng-click="saveDetail(element)" class="btn btn-primary">Salvar
-  <button ng-disabled="detailForm.$invalid" ng-show="element.id" ng-click="updateDetail(element)" class="btn btn-primary">Atualizar
-  <button class="btn btn-default" ng-click="cancel()">Fechar</button>
+  <button ng-disabled="detailForm.$invalid" ng-show="!element.id" ng-click="saveDetail(element)" class="btn btn-primary"> 
+    {{ 'BUTTON_SUBMIT' | translate}}
+  </button>
+  <button ng-disabled="detailForm.$invalid" ng-show="element.id" ng-click="updateDetail(element)" class="btn btn-primary">
+    {{ 'BUTTON_UPDATE' | translate}}
+  </button>
+  <button class="btn btn-default" ng-click="cancel()">{{ 'BUTTON_CANCEL' | translate}}</button>
 </div>

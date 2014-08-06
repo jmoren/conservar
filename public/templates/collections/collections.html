@@ -1,9 +1,9 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
     <h2>
-      <i class="fa fa-tags"></i> Itens
+      <i class="fa fa-tags"></i> {{ 'OBJECT.PLUR' | translate }}
       <a ng-click="openModal(null,'new')" class="btn btn-green pull-right">
-        <i class="fa fa-plus"></i> Novo Item
+        <i class="fa fa-plus"></i> {{ 'OBJECT.ADD' | translate }}
       </a>
     </h2>
   </div>
@@ -43,7 +43,7 @@
         </div>
         <div ng-show="selected">
           <h5 class="text-muted" ng-show="selected_collection.items.length < 1">
-            No há peças
+            {{ 'EMPTY_MESSAGE' | translate }}
           </h5>
           <div class="item" ng-repeat="item in selected_collection.items">
             <i class="fa fa-chevron-right"></i>
@@ -52,10 +52,10 @@
           <div ng-show="selected">
             <hr>
             <div class="btn-group btn-group-sm" >
-              <a href="#/collections/{{selected_collection.id}}" class="btn btn-default"><i class="fa fa-search"></i> Abrir</a>
-              <a ng-click="openModal(selected_collection)" class="btn btn-default"><i class="fa fa-edit"></i> Editar</a>
+              <a href="#/collections/{{selected_collection.id}}" class="btn btn-default"><i class="fa fa-search"></i> {{ 'BUTTON_SHOW' | translate }}</a>
+              <a ng-click="openModal(selected_collection)" class="btn btn-default"><i class="fa fa-edit"></i> {{ 'BUTTON_EDIT' | translate }}</a>
             </div>
-            <a ng-click="remove(selected_collection)" class="btn btn-danger btn-sm pull-right"><i class="fa fa-times"></i> Apagar</a>
+            <a ng-click="remove(selected_collection)" class="btn btn-danger btn-sm pull-right"><i class="fa fa-times"></i> {{ 'BUTTON_DELETE' | translate }}</a>
           </div>
         </div>
       </div>

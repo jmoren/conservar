@@ -76,6 +76,12 @@ angular.module( 'conservar.users', [
     $scope.alert = {type: type, message: message};
   };
 
+  $scope.clear = function() {
+    $scope.user.email = "";
+    $scope.user.name  = "";
+    $scope.user.last_name = "";
+  };
+  
   $scope.closeAlert = function(index) {
     $scope.alert.type = "";
     $scope.alert.message = "";

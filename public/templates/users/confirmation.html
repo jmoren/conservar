@@ -1,32 +1,67 @@
-<section class="signin" ng-init="init()">  
-  <h2 class="title"> <i class="fa fa-recycle"></i> Conservar</h2>
+<section id="signin" ng-init="init()">
+  <div id="brand">
+    <span class="title">CONSERV</span><span class='search'><span class='ar'>AR</span></span>
+  </div>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4>Confira sua conta, {{user.email }}</h4>
+      <h3>{{ 'CONFIRM.ACCOUNT' | translate}}, {{user.email }}</h3>
     </div>
     <div class="panel-body">
       <form ng-submit="confirm(user)" name="userForm">
         <div class="form-group form-group-icon">
-          <input type="password" name="password" ng-model="user.password" placeholder="Insira sua senha" class="form-control" required/>
+          <input type="password" 
+            name="password" 
+            id="password"
+            ng-model="user.password" 
+            placeholder="{{ 'LOGIN.PLACEHOLDER_PASS' | translate }}" 
+            class="form-control" 
+            required
+          />
           <i class="fa fa-lock" style="font-size:20px;top:8px"></i>
         </div>
         <div class="form-group form-group-icon">
-          <input type="password" name="password_confirmation" ng-model="user.password_confirmation" placeholder="Confira sua senha" class="form-control" required/>
+          <input type="password" 
+            name="password_confirmation"
+            id="confirmation"
+            ng-model="user.password_confirmation" 
+            placeholder="{{ 'LOGIN.PLACEHOLDER_PASS_CONF' | translate }}" 
+            class="form-control" 
+            required
+            pw-check="password"
+          />
           <i class="fa fa-lock" style="font-size:20px;top:8px"></i>
+          <small class="help-block error" ng-show="userForm.password_confirmation.$error.pwmatch && userForm.password_confirmation.$dirty">
+            {{ 'ERROR.PASS_CONF' | translate }}
+          </small>
         </div>
-        <button class="btn btn-primary" ng-disabled="userForm.$invalid">Confirma!</button>
-        <a href="#/login" class="pull-right">Entrar <i class="fa fa-sign-in"></i></a>
+        <button class="btn btn-primary" ng-disabled="userForm.$invalid">{{ 'CONFIRM.NOW' | translate }}</button>
+        <div class="pull-right flags">
+          <span ng-class="{active: lang == 'es'}"><img src="/assets/es.png" ng-click="changeLang('es')"></span>
+          <span ng-class="{active: lang == 'pt'}"><img src="/assets/pt.png" ng-click="changeLang('pt')"></span>  
+        </div>
+        
       </form>
       <div ng-show="message_error" class="alert alert-danger" style="margin:20px 0 0 0">
         <p ng-show="message_error.password">
-          <b>Senha: </b>
+          <b>{{ 'FIELD.PASSWORD' | translate }}: </b>
           <span ng-repeat="m in message_error.password">{{m}}</span>
         </p>
         <p ng-show="message_error.password_confirmation">
-          <b>Confirmação da senha: </b>
+          <b>{{ 'FIELD.PASSWORD_CONF' | translate }}: </b>
           <span ng-repeat="m in message_error.password_confirmation">{{m}}</span>
         </p>
       </div>
+    </div>
+  </div>
+  <hr>
+  <div class="footer clearfix">
+    <div class="pull-left">
+      &copy; 2014
+    </div>
+    <div class="pull-right">
+      <a href="#">Policy</a> -
+      <a href="#">Termos e condicoes</a> -
+      <a href="#">Ajuda</a>
     </div>
   </div>
 </section>

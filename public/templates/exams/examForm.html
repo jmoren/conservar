@@ -1,15 +1,17 @@
 <form ng-submit="save(exam)" name="examForm">  
-  <div class="alert alert-info"><b>Adicionar Analise</b></div>  
+  <div class="alert alert-info"><b>{{ 'ADD_MESSAGE' | translate}} {{ 'EXAM.SING' | translate }}</b></div>  
   <div class="form-group">
-    <input type="text" name="name" required placeholder="Insira o nome..." ng-model="exam.name" value="exam.name" class="form-control"/>
+    <input type="text" name="name" required placeholder="{{ 'EXAM.PLACEHOLDER_NAME' | translate }}"" ng-model="exam.name" value="exam.name" class="form-control"/>
   </div>
   <div class="form-group">
-    <textarea type="text" placeholder="Insira o resultado" rows="5" name="result" ng-model="exam.result" class="form-control" required/>
+    <textarea type="text" placeholder="{{ 'EXAM.PLACEHOLDER_RES' | translate }}"" rows="5" name="result" ng-model="exam.result" class="form-control" required/>
   </div>
   <div class="form-group">
-    <textarea name="observations" ng-model="exam.observations" class="form-control" placeholder="Observacoes..." required/>
+    <textarea name="observations" ng-model="exam.observations" class="form-control" placeholder="{{ 'EXAM.PLACEHOLDER_OBS' | translate }}"/>
   </div>
   <div class="form-group">
-    <button type="submit" ng-disabled="examForm.$invalid" class="btn btn-primary btn-sm">Salvar</button>
+    <button type="submit" ng-disabled="examForm.$invalid" class="btn btn-primary btn-sm">
+      {{ 'BUTTON_SUBMIT' | translate }}
+    </button>
   </div>
 </form>

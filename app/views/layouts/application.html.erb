@@ -22,7 +22,7 @@
             </a>
           </li>
         </ul>
-        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder="Procurar..."/>
+        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder=" {{ 'SEARCH.MESSAGE' | translate }}"/>
         <i class="fa fa-search" ng-hide="searching"></i>
         <i class="fa fa-times" ng-click="clear()" ng-show="searching"x1></i>
       </div>
@@ -30,37 +30,37 @@
     <ul class="list-group">
       <li class="list-group-item" ui-sref-active="active">
         <a href='#/collections' ui-sref="collections">
-          <i class="fa fa-tags"></i> Itens
+          <i class="fa fa-tags"></i> {{ 'OBJECT.PLUR' | translate }}
         </a>
         <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/images" ui-sref="images">
-          <i class="fa fa-camera"></i> Imagens
+          <i class="fa fa-camera"></i> {{ 'IMAGE.PLUR' | translate }}
         </a>
         <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/treatments" ui-sref="treatments">
-          <i class="fa fa-bars"></i> Tratamentos
+          <i class="fa fa-bars"></i> {{ 'TREATMENT.PLUR' | translate }}
         </a>
         <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/reports" ui-sref="reports">
-          <i class="fa fa-file-pdf-o"></i> Relatórios
+          <i class="fa fa-file-pdf-o"></i> {{ 'REPORT.PLUR' | translate }}
         </a>
         <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/analises" ui-sref="exams">
-          <i class="fa fa-search"></i> Análises
+          <i class="fa fa-search"></i> {{ 'EXAM.PLUR' | translate }}
         </a>
         <span class="arrow-left"></span>
       </li>
       <li class="list-group-item" ui-sref-active="active">
         <a href="#/organization/{{current_user.organization.id}}" ui-sref="organization">
-          <i class="fa fa-home"></i> Organização
+          <i class="fa fa-home"></i> {{ 'ORGANIZATION.SING' | translate }}
         </a>
         <span class="arrow-left"></span>
       </li>

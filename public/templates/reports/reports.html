@@ -1,7 +1,7 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
     <h2>
-      <i class="fa fa-file-pdf-o"></i> Relatórios
+      <i class="fa fa-file-pdf-o"></i> {{ 'REPORT.PLUR' | translate }}
     </h2>
   </div>
 </div>
@@ -10,9 +10,10 @@
     <div class="panel-body">
       <table class="table">
         <thead>
-          <th>Data</th>
-          <th>Baixar</th>
-          <th>Item</th>
+          <th>{{ 'REPORT.DATE' | translate }}</th>
+          <th>{{ 'REPORT.ACTION' | translate }}</th>
+          <th>{{ 'OBJECT.SING' | translate }}</th>
+          <th></th>
         </thead>
         <tbody>
           <tr ng-repeat="report in reports">
@@ -20,12 +21,17 @@
               {{ report.created_at }}
             </td>
             <td>
-              <a ng-href="{{report.pdf}}" class="btn btn-green btn-sm" target="_blank" >
-                <i class="fa fa-download"></i> Abrir relatório
+              <a ng-href="{{report.pdf}}" target="_blank" >
+                <i class="fa fa-download"></i> {{ 'REPORT.OPEN' | translate }}
               </a>
             </td>
             <td>
-              <a href="#/collections/{{report.collection.id}}" class="btn btn-primary btn-sm">{{report.collection.name}}</a>
+              <a href="#/collections/{{report.collection.id}}" class="text-primary">{{report.collection.name}}</a>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-xs" ng-click="remove(report)">
+                <i class="fa fa-times"></i> {{ 'BUTTON_DELETE' | translate }}
+              </button>
             </td>
           </tr>
         </tbody>

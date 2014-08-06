@@ -19,19 +19,21 @@ angular.module( 'conservar.confirmation', [
         templateUrl: '/templates/users/confirmation.html'
       }
     },
-    title: "Profile"
+    title: "Profile",
+    className: 'signin-panel'
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'ConfirmationCtrl', function($scope, UsersRes, $http, $location, $stateParams) {
+.controller( 'ConfirmationCtrl', function($scope, UsersRes, $http, $location, $stateParams, $translate) {
   $scope.user = new UsersRes();
   $scope.message_error = [];
+  $scope.lang = 'es';
 
   $scope.init = function(){
-    console.log('init');
+    $translate.use($scope.lang);
     $scope.token = $location.search().confirmation_token;
     $http({
       url: "/users/confirmation.json?confirmation_token="+$scope.token,
@@ -49,6 +51,11 @@ angular.module( 'conservar.confirmation', [
     });
   };
 
+  $scope.changeLang  = function(key){
+    $scope.lang = key;
+    $translate.use($scope.lang);
+  };
+
   $scope.confirm = function(user){
     $http({
       url: '/user/confirmation.json',
@@ -64,4 +71,9 @@ angular.module( 'conservar.confirmation', [
       }
     );
   };
+
+  $scope.goTo = function(location){
+    $location.path(location);
+  };
+  
 });

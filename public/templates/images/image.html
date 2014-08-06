@@ -16,31 +16,31 @@
 <div class="col-md-5">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <button class="btn btn-primary btn-sm" ng-click="updateImage = true">Editar</button>
-      <button class="btn btn-danger btn-sm" ng-click="remove(image)">Apagar</button>
+      <button class="btn btn-primary btn-sm" ng-click="updateImage = true">{{ 'BUTTON_EDIT' | translate }}</button>
+      <button class="btn btn-danger btn-sm" ng-click="remove(image)">{{ 'BUTTON_DELETE' | translate }}</button>
     </div>
     <div class="panel-body">
       <form ng-submit="update(image)" name="imageForm" ng-show="updateImage" style="margin-bottom: 15px;">
         <div class="form-group" ng-class="{'has-error':imageForm.description.$invalid && imageForm.description.$dirty}">
           <textarea class="form-control" ng-model="image.description" value="image.description" required/>
         </div>
-        <button ng-disabled="imageForm.$invalid" type="submit" class="btn btn-xs btn-green">Salvar</button>
-        <button ng-click="updateImage = false" class="btn btn-xs btn-default">Cancelar</button>
+        <button ng-disabled="imageForm.$invalid" type="submit" class="btn btn-xs btn-green">{{ 'BUTTON_UPDATE' | translate }}</button>
+        <button ng-click="updateImage = false" class="btn btn-xs btn-default">{{ 'BUTTON_CANCEL' | translate }}</button>
       </form>
       <p ng-hide="updateImage" class="well well-sm">{{ image.description}}</p>
       <table class="table">
         <tbody>
           <tr>
-            <td><i class="fa fa-check"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
+            <td><i class="fa fa-check"></i> {{ 'OBJECT.SING' | translate }}</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
           </tr>
           <tr>
-            <td><i class="fa fa-search"></i> Tratamento</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+            <td><i class="fa fa-search"></i> {{ 'TREATMENT.SING' | translate }}</td><td><a href="#/items/{{image.item.id}}/treatments/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
           </tr>
           <tr ng-show="image.intervention.id">
-            <td><i class="fa fa-wrench"></i> Intervenção</td><td>#{{image.intervention.id}}</td>
+            <td><i class="fa fa-wrench"></i> {{ 'INTERVENTION.SING' | translate }}</td><td>#{{image.intervention.id}}</td>
           </tr>
           <tr>
-            <td><i class="fa fa-paper-plane-o"></i> Incluir no relatorio</td><td>{{image.show_report ? 'sim' : 'não'}}</td>
+            <td><i class="fa fa-paper-plane-o"></i> {{ 'IMAGE.INCLUDE' | translate }}</td><td>{{image.show_report ? 'sim' : 'não'}}</td>
           </tr>
         </tbody>
       </table>

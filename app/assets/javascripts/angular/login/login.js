@@ -17,9 +17,19 @@ config(function config( $stateProvider, $httpProvider ) {
   });
 }).
 
-controller('LoginCtrl', function($http, $location, $scope, $rootScope){  
+controller('LoginCtrl', function($http, $location, $scope, $rootScope, $translate){  
   $scope.user        = { email: null, password: null};
   $scope.login_error = { message: null};
+  $scope.lang        = 'es';
+  
+  $scope.init = function(){
+    $translate.use($scope.lang);
+  };
+
+  $scope.changeLang  = function(key){
+    $scope.lang = key;
+    $translate.use($scope.lang);
+  };
 
   $scope.login = function(user){
     $http({

@@ -1,21 +1,25 @@
 <div class="modal-header">
-  <h3  ng-show="!element.id" class="modal-title">Novo Item</h3>
-  <h3  ng-show="element.id" class="modal-title">Editar Item</h3>
+  <h3  ng-show="!element.id" class="modal-title">{{ 'ITEM.NEW' | translate }}</h3>
+  <h3  ng-show="element.id" class="modal-title">{{ 'ITEM.NEW' | translate }}</h3>
 </div>
 <div class="modal-body">
   <form name="addItem"  role="form" enctype="multipart/form-data">
     <div class="form-group" ng-class="{'has-error':addItem.name.$invalid && addItem.name.$dirty}">
-      <label>Nome</label><br>
+      <label>{{ 'FIELD.NAME' | translate }}</label><br>
       <input type="text" name="name" class="form-control" ng-model="element.name" value="element.name" required/>
     </div>
     <div class="form-group" ng-class="{'has-error':addItem.description.$invalid && addItem.description.$dirty}">
-      <label>Descrição</label><br>
+      <label>{{ 'FIELD.DESCRIPTION' | translate }}</label><br>
       <textarea name="description" required class="form-control" ng-model="element.description" value="element.description"/>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button ng-disabled="addItem.$invalid" ng-show="!element.id" ng-click="saveItem(element)" class="btn btn-primary">Salvar
-  <button ng-disabled="addItem.$invalid" ng-show="element.id" ng-click="updateItem(element)" class="btn btn-primary">Atualizar
-  <button class="btn btn-default" ng-click="cancel()">Fechar</button>
+  <button ng-disabled="addItem.$invalid" ng-show="!element.id" ng-click="saveItem(element)" class="btn btn-primary">
+    {{ 'BUTTON_SUBMIT' | translate }}
+  </button>
+  <button ng-disabled="addItem.$invalid" ng-show="element.id" ng-click="updateItem(element)" class="btn btn-primary">
+    {{ 'BUTTON_UPDATE' | translate }}
+  </button>
+  <button class="btn btn-default" ng-click="cancel()">{{ 'BUTTON_CANCEL' | translate }}</button>
 </div>

@@ -7,15 +7,15 @@
       <div class="pull-right">
         <a ng-click="openTreatmentModal(null)" class="btn btn-green btn-sm">
           <i class="fa fa-plus"></i>
-          Tratamento
+          {{ 'TREATMENT.SING' | translate }}
         </a>
          <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-green btn-sm">
           <i class="fa fa-plus"></i>
-          Material
+          {{ 'MATERIAL.SING' | translate }}
         </a>
         <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-green btn-sm">
           <i class="fa fa-plus"></i>
-          Medida
+          {{ 'MEASUREMENT.SING' | translate }}
         </a>
       </div>
       <span ng-hide="editName" class="iname pull-left" ng-click="editName = true">
@@ -36,7 +36,9 @@
 
 <div class="col-md-3" id="item-cover">
   <img ng-src="{{item.cover}}" id="preview"/>
-  <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false"><i class="fa fa-camera"></i> alterar imagem </span>
+  <span class="cover" ng-click="updateFile = !updateFile" ng-init="updateFile=false"><i class="fa fa-camera"></i>
+    {{ 'IMAGE.CHANGE' | translate }}
+  </span>
 </div>
 <div class="col-md-9">
   <div class="well well-xs idesc">
@@ -68,7 +70,7 @@
     <div class="panel-heading">
       <div class="panel-title">
         <h4>
-          Medidas <span style="color:#6A696B;font-size:13px">(em centimetros)</span>
+          {{ 'MEASUREMENT.PLUR' | translate }} <span style="color:#6A696B;font-size:13px">{{ 'MEASUREMENT.MESSAGE' | translate }}</span>
         </h4>
 
       </div>
@@ -76,12 +78,12 @@
     <table class="table details-table">
       <thead>
         <th>
-          <a ng-click="predicate1 = 'name'; reverse1 = !reverse1">Nome</a>
+          <a ng-click="predicate1 = 'name'; reverse1 = !reverse1">{{ 'DETAIL.NAME' | translate }}</a>
           <span ng-show="predicate1 === 'name' && reverse1 === true"><i class="fa fa-angle-up"></i></span>
           <span ng-show="predicate1 === 'name' && reverse1 === false"><i class="fa fa-angle-down"></i></span>
         </th>
         <th>
-          <a ng-click="predicate1 = 'value'; reverse1 = !reverse1">Valor</a>
+          <a ng-click="predicate1 = 'value'; reverse1 = !reverse1">{{ 'DETAIL.VALUE' | translate }}</a>
           <span ng-show="predicate1 === 'value' && reverse1 === true"><i class="fa fa-angle-up"></i></span>
           <span ng-show="predicate1 === 'value' && reverse1 === false"><i class="fa fa-angle-down"></i></span>
         </th>
@@ -101,25 +103,61 @@
       </tbody>
     </table>
   </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title"><h4>{{ 'TREATMENT.PLUR' | translate }}</h4></div>
+    </div>
+    <div class="panel-body">
+      <div ng-repeat="treatment in item.treatments">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+          <div class="panel-title">
+            <h4>
+              <i class="fa fa-circle" ng-class="{'text-danger':!treatment.closed, 'text-success':treatment.closed}"></i>
+              <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">
+                {{ 'TREATMENT.SING' | translate }} #{{ treatment.id }}
+              </a>
+              <div class="btn-group btn-group-xs pull-right" >
+                <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">
+                  {{ 'BUTTON_EDIT' | translate }}
+                </a>
+                <a ng-click="closeTreatment(treatment)" ng-if="!treatment.closed" class="btn btn-primary">{{ 'BUTTON_CLOSE' | translate }}</a>
+                <a ng-click="openTreatment(treatment)"  ng-if="treatment.closed" class="btn btn-primary">{{ 'BUTTON_OPEN' | translate }}</a>
+              </div>
+            </h4>
+          </div>
+          </div>
+          <div class="panel-body">
+            <p>
+              <i class="fa fa-lock" ng-show="treatment.closed"></i>
+              <i class="fa fa-unlock" ng-show="!treatment.closed"></i>
+              <b> {{ treatment.closed ? 'TREATMENT.CLOSED' : 'TREATMENT.OPEN' | translate }}</b>
+            </p>
+            <i class="fa fa-calendar"></i>
+            {{ 'TREATMENT.CREATED_DATE' | translate }} <span class="text-primary">{{ treatment.created_at }}</span>
+            <i class="fa fa fa-ellipsis-v"></i>
+            {{ 'TREATMENT.UPDATED_DATE' | translate }}<span class="text-primary">{{ treatment.updated_at}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <div class="panel-title">
-        <h4>
-          Materiais
-        </h4>
-      </div>
+      <div class="panel-title"><h4>{{ 'MATERIAL.PLUR' | translate }}</h4></div>
     </div>
     <table class="table details-table">
       <thead>
         <th>
-          <a ng-click="predicate2 = 'name'; reverse2 = !reverse2">Nome</a>
+          <a ng-click="predicate2 = 'name'; reverse2 = !reverse2">{{ 'DETAIL.NAME' | translate }}</a>
           <span ng-show="predicate2 === 'name' && reverse2 === true"><i class="fa fa-angle-up"></i></span>
           <span ng-show="predicate2 === 'name' && reverse2 === false"><i class="fa fa-angle-down"></i></span>
         </th>
         <th>
-          <a ng-click="predicate2 = 'value'; reverse2 =! reverse2">Valor</a>
+          <a ng-click="predicate2 = 'value'; reverse2 =! reverse2">{{ 'DETAIL.VALUE' | translate }}</a>
           <span ng-show="predicate2 === 'value' && reverse2 === true"><i class="fa fa-angle-up"></i></span>
           <span ng-show="predicate2 === 'value' && reverse2 === false"><i class="fa fa-angle-down"></i></span>
         </th>
@@ -139,52 +177,11 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-md-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title"><h4>Tratamentos</h4></div>
-    </div>
-    <div class="panel-body">
-      <div ng-repeat="treatment in item.treatments">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-          <div class="panel-title">
-            <h4>
-              <i class="fa fa-circle" ng-class="{'text-danger':!treatment.closed, 'text-success':treatment.closed}"></i>
-              <a href="#/items/{{item.id}}/treatments/{{treatment.id}}">
-                Tratamento #{{ treatment.id }}
-              </a>
-              <div class="btn-group btn-group-xs pull-right" >
-                <a ng-click="openTreatmentModal(treatment)" class="btn btn-primary" ng-if="!treatment.closed">Editar</a>
-                <a ng-click="closeTreatment(treatment)" ng-if="!treatment.closed" class="btn btn-primary">Encerrar</a>
-                <a ng-click="openTreatment(treatment)"  ng-if="treatment.closed" class="btn btn-primary">Reabrir</a>
-              </div>
-            </h4>
-          </div>
-          </div>
-          <div class="panel-body">
-            <p>
-              <i class="fa fa-lock" ng-show="treatment.closed"></i>
-              <i class="fa fa-unlock" ng-show="!treatment.closed"></i>
-              <b> {{ treatment.closed ? 'Encerrado' : 'Aberto'}}</b>
-            </p>
-            <i class="fa fa-calendar"></i>
-            Criado no dia <span class="text-primary">{{ treatment.created_at }}</span>
-            <i class="fa fa fa-ellipsis-v"></i>
-            Ultima atualizacao foi <span class="text-primary">{{ treatment.updated_at}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
         <h4>
-          Imagens
+          {{ 'IMAGE.PLUR' | translate }}
         </h4>
       </div>
     </div>

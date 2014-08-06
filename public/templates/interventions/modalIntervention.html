@@ -1,21 +1,21 @@
 <div class="modal-header">
   <h3 class="modal-title">
-    Intervencao #{{element.id}}
+    {{ 'INTERVENTION.SING' | translate }} #{{element.id}}
     <button class="close" ng-click="cancel()">&times;</button>
   </h3>
 </div>
 <div class="modal-body clearfix">
   <h4><span class="pull-right label label-primary">{{element.intervention_type}}</span></h4>
   <br>
-  <label>Descricao</label>
+  <label>{{ 'FIELD.DESCRIPTION' | translate }}</label>
   <p class="well well-sm">
     {{ element.description }}
   </p>
-  <label>Materiais</label>
+  <label>{{ 'MATERIAL.PLUR' | translate }}</label>
   <div class="well well-sm">
     {{ element.materials }}
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-click="cancel()">Fechar</button>
+  <button class="btn btn-default" ng-click="cancel()">{{ 'BUTTON_CLOSE' | translate }}</button>
 </div>

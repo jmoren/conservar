@@ -44,7 +44,7 @@ angular.module('conservar.intervention',[
         $scope.intervention.description = "";
         $scope.intervention.intervention_type = "";
         $scope.intervention.intervention_date = "";
-        $scope.intervention.material = "";
+        $scope.intervention.materials = "";
       },
       function(data){
         $scope.addAlert("danger", "No pudo guardarse, intente nuevamente");

@@ -1,7 +1,7 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
     <h2>
-      <i class="fa fa-search"></i> Análises
+      <i class="fa fa-search"></i> {{ 'EXAM.PLUR' | translate }}
     </h2>
   </div>
 </div>
@@ -9,9 +9,9 @@
   <div class="panel-body">
     <table class="table">
       <thead>
-        <th>Nome</th>
-        <th>Resultado</th>
-        <th>Observações</th>
+        <th>{{ 'FIELD.NAME' | translate }}</th>
+        <th>{{ 'FIELD.RESULT' | translate }}</th>
+        <th>{{ 'FIELD.OBSERVATION' | translate }}</th>
       </thead>
       <tbody>
         <tr ng-repeat="exam in exams">
@@ -21,7 +21,7 @@
             </a>
             <p>
               <a href="#/items/{{exam.item.id}}">{{ exam.item.name}}</a> |
-              <a href="#/items/{{exam.item.id}}/treatment/{{exam.treatment_id}}">Tratamento #{{ exam.treatment_id}}</a>
+              <a href="#/items/{{exam.item.id}}/treatment/{{exam.treatment_id}}">{{ 'TREATMENT.SING' | translate }} #{{ exam.treatment_id}}</a>
             </p>
           </td>
           <td>

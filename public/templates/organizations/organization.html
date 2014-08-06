@@ -1,11 +1,17 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
     <h2>
-      <i class="fa fa-users"></i> Organização
+      <i class="fa fa-users"></i> {{ 'ORGANIZATION.SING' | translate }}
       <div class="pull-right">
-        <a class="btn btn-green" href="#/organization/{{organization.id}}/users"><i class="fa fa-cog"></i> Usuários</a>
-        <a class="btn btn-primary" ng-click="editOrg = !editOrg" ng-show="!editOrg"><i class="fa fa-edit"></i> Editar</a>
-        <a class="btn btn-primary" ng-click="editOrg = !editOrg" ng-show="editOrg"><i class="fa fa-times"></i> Cancelar</a>
+        <a class="btn btn-green" href="#/organization/{{organization.id}}/users">
+          <i class="fa fa-cog"></i> {{ 'USER.PLUR' | translate }}
+        </a>
+        <a class="btn btn-primary" ng-click="editOrg = !editOrg" ng-show="!editOrg">
+          <i class="fa fa-edit"></i> {{ 'BUTTON_EDIT' | translate }}
+        </a>
+        <a class="btn btn-primary" ng-click="editOrg = !editOrg" ng-show="editOrg">
+          <i class="fa fa-times"></i> {{ 'BUTTON_EDIT' | translate }}
+        </a>
       </div>
     </h2>
   </div>
@@ -15,25 +21,25 @@
     <div class="panel-body">
       <form ng-submit="save(organization)" class="form-horizontal" name="orgForm" id="customForm">
         <div class="form-group">
-          <label class="col-sm-2 control-label">Nome</label>
+          <label class="col-sm-2 control-label">{{ 'FIELD.NAME' | translate }}</label>
           <div class="col-sm-6">
             <input type="text" name="name" class="form-control" ng-model="organization.name" value="{{organization.name}}" ng-disabled="!editOrg"/>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-2 control-label">Endereço</label>
+          <label class="col-sm-2 control-label">{{ 'FIELD.ADDRESS' | translate }}</label>
           <div class="col-sm-6">
             <input type="text" name="address" class="form-control" ng-model="organization.address" value="{{organization.address }}" ng-disabled="!editOrg"/>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-2 control-label">Email</label>
+          <label class="col-sm-2 control-label">{{ 'FIELD.EMAIL' | translate }}</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" name="contact_email" ng-model="organization.contact_email" value="{{organization.contact_email}}" ng-disabled="!editOrg"/>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-2 control-label">Telefone</label>
+          <label class="col-sm-2 control-label">{{ 'FIELD.PHONE' | translate }}</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" name="phone" ng-model="organization.phone" value="{{organization.phone}}" ng-disabled="!editOrg"/>
           </div>

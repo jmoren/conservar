@@ -2,6 +2,7 @@ json.id         @user.id
 json.email      @user.email
 json.name       @user.name
 json.last_name  @user.last_name
+json.lang       @user.lang
 json.organization do
   json.id             @user.organization.id
   json.name           @user.organization.name

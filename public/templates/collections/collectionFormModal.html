@@ -1,39 +1,41 @@
 <div class="modal-header">
-  <h3  ng-show="!element.id" class="modal-title">Novo Item</h3>
-  <h3  ng-show="element.id" class="modal-title">Editar Item</h3>  
+  <h3  ng-show="!element.id" class="modal-title">{{ 'OBJECT.NEW' | translate }}</h3>
+  <h3  ng-show="element.id" class="modal-title">{{ 'OBJECT.EDIT' | translate }}</h3>  
 </div>
 <div class="modal-body">
   <form name="addCollection" role="form">
     <div class="form-group" ng-class="{'has-error':addCollection.name.$invalid && addCollection.name.$dirty}">
-      <label class="form-label">Nome</label>
+      <label class="form-label">{{ 'FIELD.NAME' | translate }}</label>
       <div class="controls">
         <input type="text" name="name" class="form-control" required ng-model="element.name" value="element.name"/>
       </div>
     </div>
     <div class="form-group" ng-class="{'has-error':addCollection.description.$invalid && addCollection.description.$dirty}">
-      <label class="form-label">Descrição</label>
+      <label class="form-label">{{ 'FIELD.DESCRIPTION' | translate }}</label>
       <textarea value="element.description" name="description" rows="4" class="form-control" required ng-model="element.description"/>
     </div>
     <div class="form-group" ng-class="{'has-error':addCollection.origin.$invalid && addCollection.origin.$dirty}">
-      <label class="form-label">Procedência</label>
+      <label class="form-label">{{ 'FIELD.ORIGIN' | translate }}</label>
       <input value="element.origin" name="origin" class="form-control" required ng-model="element.origin"/>
     </div>
     <div class="form-group" ng-class="{'has-error':addCollection.owner.$invalid && addCollection.owner.$dirty}">
-      <label class="form-label">Proprietário</label>
+      <label class="form-label">{{ 'FIELD.OWNER' | translate }}</label>
       <input value="element.owner" name="owner" class="form-control" required ng-model="element.owner"/>
     </div>
     <div class="form-group withDatePicker" ng-class="{'has-error':addCollection.entry_date.$invalid && addCollection.entry_date.$dirty}">
-      <label class="form-label">Data de ingreso</label>
+      <label class="form-label">{{ 'FIELD.DATE' | translate }}</label>
       <input type="text" name="entry_date" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="element.entry_date" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-click="open($event)" placeholder="Selecione a data.." required value="element.entry_date">
     </div>
   </form>
 </div>
 <div class="modal-footer">
   <button ng-disabled="addCollection.$invalid" ng-show="element.id" ng-click="updateCollection(element)" class="btn btn-primary">
-    Atualizar
+    {{ 'BUTTON_UPDATE' | translate }}
   </button>
   <button ng-disabled="addCollection.$invalid" ng-show="!element.id" ng-click="saveCollection(element)" class="btn btn-primary">
-    Salvar
+    {{ 'BUTTON_SUBMIT' | translate }}
   </button>
-  <a ng-click="cancel()" class="btn btn-default">Fechar</a>
+  <a ng-click="cancel()" class="btn btn-default">
+    {{ 'BUTTON_CLOSE' | translate }}
+  </a>
 </div>

@@ -1,9 +1,13 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
     <h2>
-      <i class="fa fa-camera"></i> Imagens
-      <a class="pull-right btn btn-primary" ng-click="toggleDetails = true" ng-hide="toggleDetails"><i class="fa fa-plus"></i> Detalhes</a>
-      <a class="pull-right btn btn-primary" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> Detalhes</a>
+      <i class="fa fa-camera"></i> {{ 'IMAGE.PLUR' | translate }}
+      <a class="pull-right btn btn-primary" ng-click="toggleDetails = true" ng-hide="toggleDetails"><i class="fa fa-plus"></i> 
+        {{ 'IMAGE.DETAILS' | translate }}
+      </a>
+      <a class="pull-right btn btn-primary" ng-click="toggleDetails = false" ng-show="toggleDetails"><i class="fa fa-minus"></i> 
+        { 'IMAGE.DETAILS' | translate }}
+      </a>
     </h2>
   </div>
 </div>
@@ -17,13 +21,16 @@
       <table class="table image-info">
         <tbody>
           <tr>
-            <td><i class="fa fa-paperclip"></i> Item</td><td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
+            <td><i class="fa fa-paperclip"></i> {{ 'OBJECT.SING' | translate }}</td>
+            <td><a href="#/items/{{image.item.id}}">{{image.item.name}}</a></td>
           </tr>
           <tr>
-            <td><i class="fa fa-paperclip"></i> Tratamento</td><td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
+            <td><i class="fa fa-paperclip"></i> {{ 'TREATMENT.SING' | translate }}</td>
+            <td><a href="#/items/{{image.treatment.id}}">#{{image.treatment.id}}</a></td>
           </tr>
           <tr>
-            <td><i class="fa fa-paperclip"></i> Intervenção</td><td>{{image.intervention.id}}</td>
+            <td><i class="fa fa-paperclip"></i> {{ 'INTERVENTION.SING' | translate }}</td>
+            <td>{{image.intervention.id}}</td>
           </tr>
         </tbody>
       </table>

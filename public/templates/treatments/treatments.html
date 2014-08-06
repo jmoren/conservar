@@ -1,7 +1,7 @@
 <div class="navbar navbar-default subnav" ng-init="init()">
   <div class="col-md-12">
     <h2>
-      <i class="fa fa-bars"></i> Tratamentos
+      <i class="fa fa-bars"></i> {{ 'TREATMENT.PLUR' | translate }}
     </h2>
   </div>
 </div>
@@ -30,7 +30,7 @@
         <div class="panel-title">
           <h4>
             <a href="#/items/{{treatment.item.id}}/treatments/{{treatment.id}}" class="btn btn-sm btn-primary">
-              Ver Tratamento #{{treatment.id}}
+              {{ 'TREATMENT.SHOW' | translate }} #{{treatment.id}}
             </a>
           </h4>
         </div>

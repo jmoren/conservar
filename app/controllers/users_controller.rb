@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:get_current_user]  
+  skip_before_filter :authenticate_user!, only: [:get_current_user]
   respond_to :json
 
   def index
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = @organization.users.find(params[:id])
   end
-  
+
   def profile
     @user = current_user
     respond_to do |format|
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       render status: 404, text: "You are trying to delete an inexistent admin"
     end
   end
-  
+
   def get_current_user
     @user = current_user
     respond_to do |format|
@@ -53,6 +53,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :last_name)
+    params.require(:user).permit(:name, :last_name, :lang)
   end
 end

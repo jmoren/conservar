@@ -26,6 +26,21 @@ angular.module('conservar.reports',[
     });
   };
 
+  $scope.remove = function(report){
+    res = confirm("Estas seguro?");
+    if(res){
+      ReportRes.remove({ collection_id: report.collection_id, id: report.id }, report, 
+        function(data){
+          index = $scope.reports.indexOf(report);
+          $scope.reports.splice(index,1);
+        }, 
+        function(error){
+          console.log(error);
+        }
+      );
+    }
+  };
+
   $scope.addAlert = function(type, message){
     $scope.alert = {type: type, message: message};
   };

@@ -1,26 +1,39 @@
-<section id="signin">
+<section id="signin" ng-init="init()">
   <div id="brand">
+    <div class="pull-left" style="font-size:20px;color:#ccc"><i class="fa fa-lock"></i> {{ 'LOGIN.SCREEN' | translate }}</div>
     <span class="title">CONSERV</span><span class='search'><span class='ar'>AR</span></span>
   </div>
   <div class="panel panel-default">
     <div class="panel-body">
       <form ng-submit="login(user)">
         <div class="form-group form-group-icon">
-          <input type="text" class="form-control uname" name="email" placeholder="Email" ng-model="user.email"/>
+          <input type="text" class="form-control uname" 
+            name="email" 
+            placeholder="{{ 'LOGIN.PLACEHOLDER_EMAIL' | translate }}" 
+            ng-model="user.email"
+          />
           <i class="fa fa-envelope"></i>
         </div>
         <div class="form-group form-group-icon">
-          <input type="password" class="form-control pword" name="password" placeholder="Password" ng-model="user.password"/>
+          <input type="password" class="form-control pword" 
+            name="password" 
+            placeholder="{{ 'LOGIN.PLACEHOLDER_PASS' | translate }}" 
+            ng-model="user.password"
+          />
           <i class="fa fa-lock" style="font-size:20px;"></i>
         </div>
         <div class="form-group clearfix">
           <div class="checkbox pull-left">
             <input type="checkbox" name="remember_me" checked/>
-            Mantenha-me conectado
+            {{ 'LOGIN.KEEP' | translate}}
           </div>
-          <a href="#" class="forgot pull-right">Esqueceu a senha? <i class="fa fa-question-circle"></i></a>
+          <a href="#" class="forgot pull-right">{{ 'LOGIN.RESET' | translate }} <i class="fa fa-question-circle"></i></a>
         </div>
-        <button class="btn btn-green" type="submit">Fazer Login <i class="fa fa-unlock" style="font-size:15px;margin-left:10px"></i></button>
+        <button class="btn btn-green" type="submit">{{ 'LOGIN.BUTTON' | translate }}</button>
+        <div class="pull-right flags">
+          <span ng-class="{active: lang == 'es'}"><img src="/assets/es.png" ng-click="changeLang('es')"></span>
+          <span ng-class="{active: lang == 'pt'}"><img src="/assets/pt.png" ng-click="changeLang('pt')"></span>  
+        </div>
       </form>
       <div ng-show="login_error.message" class="alert alert-danger" style="margin:20px 0 0 0">
         <b>{{login_error.message}}</b>
@@ -28,7 +41,7 @@
     </div>
   </div>
   <hr>
-  <div class="footer">
+  <div class="footer clearfix">
     <div class="pull-left">
       &copy; 2014
     </div>
@@ -39,3 +52,4 @@
     </div>
   </div>
 </section>
+

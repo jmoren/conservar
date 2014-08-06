@@ -1,9 +1,9 @@
 <form ng-submit="save(note)" name="noteForm">
-  <div class="alert alert-info"><b>Adicionar Nota</b></div>  
+  <div class="alert alert-info"><b>{{ 'ADD_MESSAGE' | translate}} {{ 'NOTE.SING' | translate }}</b></div>  
   <div class="form-group">
-    <textarea name="content" ng-model="note.content" rows="5" class="form-control" placeholder="Agregar una nota a este tratamiento" required/>
+    <textarea name="content" ng-model="note.content" rows="5" class="form-control" placeholder="{{ 'NOTE.PLACEHOLDER_BODY' | translate }}" required/>
   </div>
   <div class="form-group">
-    <button type="submit" ng-disabled="noteForm.$invalid" class="btn btn-primary btn-sm">Salvar</button>
+    <button type="submit" ng-disabled="noteForm.$invalid" class="btn btn-primary btn-sm">{{ 'BUTTON_SUBMIT' | translate }}</button>
   </div>
 </form>

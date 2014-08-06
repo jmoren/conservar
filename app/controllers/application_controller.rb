@@ -5,12 +5,13 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :authenticate_user!
   before_filter :set_organization
-  after_filter :set_csrf_cookie_for_ng
+  before_filter :set_locale
+  after_filter  :set_csrf_cookie_for_ng
 
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
-  
+
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
     render :text => 'invalid token', :status => :unprocessable_entity
@@ -19,8 +20,12 @@ class ApplicationController < ActionController::Base
   def set_organization
     return if current_user.nil?
     @organization = current_user.organization
+    session[:lang] = current_user.lang
   end
 
+  def set_locale
+    I18n.locale = current_user.try(:lang) || I18n.default_locale
+  end
 protected
   def verified_request?
     super || form_authenticity_token == request.headers['X-XSRF-TOKEN']

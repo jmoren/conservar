@@ -18,5 +18,6 @@
 //= require angular-ui-router
 //= require angular-bootstrap
 //= require angular-upload
+//= require angular-translate
 //= require angular/conservar
 //= require_tree .

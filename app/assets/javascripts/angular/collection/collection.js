@@ -127,13 +127,13 @@ angular.module('conservar.collection',[
     );
   };
 
-  $scope.remove = function(report){
+  $scope.removeReport = function(report){
     result = confirm("Estas seguro?");
     if(result){
       ReportRes.remove({collection_id: $scope.collection.id }, report,
         function(data,status){
-          index = collections.reports.indexOf(collection);
-          collections.reports.splice(index, 1);        },
+          index = $scope.reports.indexOf(report);
+          $scope.reports.splice(index, 1);        },
         function(status, data){
           console.log(status);
         }
@@ -163,7 +163,7 @@ angular.module('conservar.collection',[
 
   $scope.close = function(){
     $modalInstance.close();
-  }
+  };
 })
 
 .factory( 'ItemsRes', function ( $resource )  {
