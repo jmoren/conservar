@@ -1,4 +1,6 @@
-angular.module('common.modal',[]).controller('modalCtrl', function($scope, $modalInstance, element){
+angular.module('common.modal',[])
+
+.controller('modalCtrl', ['$scope', '$modalInstance', 'element', function($scope, $modalInstance, element){
   $scope.element = element;
 
   $scope.ok = function () {
@@ -8,4 +10,4 @@ angular.module('common.modal',[]).controller('modalCtrl', function($scope, $moda
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-});
+}]);

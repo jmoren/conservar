@@ -3,7 +3,7 @@ angular.module('conservar.images',[
   'ui.router',
   'ngResource'
 ])
-.config(function($stateProvider){
+.config(['$stateProvider', function($stateProvider){
   $stateProvider.state( 'images', {
     url: '/images',
     views: {
@@ -14,26 +14,28 @@ angular.module('conservar.images',[
     },
     title:'Images'
   });
-})
+}])
 
-.controller('ImagesCtrl', function($scope, $location, $stateParams, $modal, ImagesRes){
+.controller('ImagesCtrl', ['$scope', '$location', '$stateParams', '$modal', 'ImageRes',
+  function($scope, $location, $stateParams, $modal, ImagesRes){
 
-  $scope.init = function(){
-    ImagesRes.query(
-      function(data){
-        $scope.images = data;
-      },
-      function(error){
-        console.log("error");      
-      }
-    );
-  };
-})
+    $scope.init = function(){
+      ImagesRes.query(
+        function(data){
+          $scope.images = data;
+        },
+        function(error){
+          console.log("error");      
+        }
+      );
+    };
+  }
+])
 
-.factory('ImagesRes', function($resource){
+.factory('ImagesRes', ['$resource', function($resource){
   var res = $resource("/images/:id.json",
     { id:'@id' },
     { }
   );
   return res;
-});
+}]);

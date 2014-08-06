@@ -31,38 +31,42 @@ angular.module('conservar', [
   'conservar.translation'
   ])
 
-.config( function ConservarConfig ( $stateProvider, $urlRouterProvider ) {
+.config(['$stateProvider', '$urlRouterProvider', function ConservarConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/collections' );
-})
+}])
 
-.run(function ($rootScope, $state, $stateParams) {
+.run(['$rootScope', '$state', '$stateParams',  function ($rootScope, $state, $stateParams) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
-})
+}])
 
-.controller( 'ConservarCtrl', function($rootScope, $scope, $location, $http, SearchRes, $translate) {
+.controller('ConservarCtrl', ['$rootScope', '$scope', '$location', '$http', 'SearchRes', '$translate',
+  function($rootScope, $scope, $location, $http, SearchRes, $translate) {
 
-  $rootScope.current_user = { email: null, lang: 'es' };
-  $scope.loggedIn     = false;
-
-  $scope.$on('sessionActive', function(event, user){
-    $scope.loggedIn = true;
-    $rootScope.current_user = user;
-    $translate.use($scope.current_user.lang);
-  });
-
-  $scope.$on('loggedIn', function(event, user){
-    $scope.loggedIn = true;
-    $rootScope.current_user = user;
-    $translate.use($scope.current_user.lang);
-  });
-
-  $scope.$on('loggedOut', function(){
-    $scope.loggedIn = false;
     $rootScope.current_user = { email: null, lang: 'es' };
-  });
+    $scope.loggedIn     = false;
 
-}).filter("formatDate", function () {
+    $scope.$on('sessionActive', function(event, user){
+      $scope.loggedIn = true;
+      $rootScope.current_user = user;
+      $translate.use($scope.current_user.lang);
+    });
+
+    $scope.$on('loggedIn', function(event, user){
+      $scope.loggedIn = true;
+      $rootScope.current_user = user;
+      $translate.use($scope.current_user.lang);
+    });
+
+    $scope.$on('loggedOut', function(){
+      $scope.loggedIn = false;
+      $rootScope.current_user = { email: null, lang: 'es' };
+    });
+
+  }
+])
+
+.filter("formatDate", function () {
   return function (input, format) {
     if ((input) && (this.current_user.timezone)) {
       return moment.tz(input, this.current_user.timezone).format(format);
@@ -71,6 +75,7 @@ angular.module('conservar', [
     }
   };
 })
+
 .directive('pwCheck', function () {
   return {
     require: 'ngModel',

@@ -4,7 +4,7 @@ angular.module('conservar.reports',[
   'ngResource'
 ])
 
-.config( function( $stateProvider ){
+.config(['$stateProvider', function( $stateProvider ){
   $stateProvider.state( 'reports', {
     url: '/reports',
     views: {
@@ -14,44 +14,46 @@ angular.module('conservar.reports',[
       }
     }
   });
-})
+}])
 
-.controller('ReportsCtrl', function($scope, $http, ReportRes, ReportsRes){
-  // alert
-  $scope.alert = { type: "", message: "" };
-  
-  $scope.init = function(){
-    ReportsRes.query(function(data){
-      $scope.reports = data;
-    });
-  };
+.controller('ReportsCtrl', ['$scope', '$http', 'ReportRes', 'ReportsCtrl',
+  function($scope, $http, ReportRes, ReportsRes){
+    // alert
+    $scope.alert = { type: "", message: "" };
+    
+    $scope.init = function(){
+      ReportsRes.query(function(data){
+        $scope.reports = data;
+      });
+    };
 
-  $scope.remove = function(report){
-    res = confirm("Estas seguro?");
-    if(res){
-      ReportRes.remove({ collection_id: report.collection_id, id: report.id }, report, 
-        function(data){
-          index = $scope.reports.indexOf(report);
-          $scope.reports.splice(index,1);
-        }, 
-        function(error){
-          console.log(error);
-        }
-      );
-    }
-  };
+    $scope.remove = function(report){
+      res = confirm("Estas seguro?");
+      if(res){
+        ReportRes.remove({ collection_id: report.collection_id, id: report.id }, report, 
+          function(data){
+            index = $scope.reports.indexOf(report);
+            $scope.reports.splice(index,1);
+          }, 
+          function(error){
+            console.log(error);
+          }
+        );
+      }
+    };
 
-  $scope.addAlert = function(type, message){
-    $scope.alert = {type: type, message: message};
-  };
+    $scope.addAlert = function(type, message){
+      $scope.alert = {type: type, message: message};
+    };
 
-  $scope.closeAlert = function(index) {
-    $scope.alert.type = "";
-    $scope.alert.message = "";
-  };
-})
+    $scope.closeAlert = function(index) {
+      $scope.alert.type = "";
+      $scope.alert.message = "";
+    };
+  }
+])
 
-.factory( 'ReportRes', function ( $resource )  {
+.factory('ReportRes', ['$resource', function ($resource) {
   var res = $resource("/collections/:collection_id/reports/:id.json",
     { id:'@id', collection_id: '@collection_id' },
     {
@@ -59,14 +61,14 @@ angular.module('conservar.reports',[
     }
   );
   return res;
-})
+}])
 
-.factory( 'ReportsRes', function ( $resource )  {
+.factory( 'ReportsRes', ['$resource', function ( $resource )  {
   var res = $resource("/reports/:id.json",
     { id:'@id' },
     {}
   );
   return res;
-});
+}]);
 
 

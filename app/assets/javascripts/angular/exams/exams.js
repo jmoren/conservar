@@ -4,7 +4,7 @@ angular.module('conservar.exams',[
   'ngResource'
 ])
 
-.config( function( $stateProvider ){
+.config(['$stateProvider', function( $stateProvider ){
   $stateProvider.state( 'exams', {
     url: '/exams',
     views: {
@@ -15,9 +15,9 @@ angular.module('conservar.exams',[
     },
     title:'Analises'
   });
-})
+}])
 
-.controller('ExamsCtrl', function($scope, ExamsRes){
+.controller('ExamsCtrl', ['$scope', 'ExamsRes', function($scope, ExamsRes){
   // alert
   $scope.alert = { type: "", message: "" };
   
@@ -40,14 +40,14 @@ angular.module('conservar.exams',[
     $scope.alert.type = "";
     $scope.alert.message = "";
   };
-})
+}])
 
-.factory('ExamsRes', function($resource){
+.factory('ExamsRes', ['$resource', function($resource){
   var res = $resource("/exams/:id.json",
     { id:'@id' },
     { }
   );
   return res;
-});
+}]);
 
 

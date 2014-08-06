@@ -3,7 +3,7 @@ angular.module('conservar.treatments',[
   'ui.router',
   'ngResource'
 ])
-.config(function($stateProvider){
+.config(['$stateProvider', function($stateProvider){
   $stateProvider.state( 'treatments', {
     url: '/treatments',
     views: {
@@ -14,26 +14,28 @@ angular.module('conservar.treatments',[
     },
     title:'Tratamentos'
   });
-})
+}])
 
-.controller('TreatmentsCtrl', function($scope, $location, $stateParams, $modal, TreatmentsRes){
+.controller('TreatmentsCtrl', ['$scope', '$location', '$stateParams', '$modal', 'TreatmentsRes',
+  function($scope, $location, $stateParams, $modal, TreatmentsRes){
 
-  $scope.init = function(){
-    TreatmentsRes.query(
-      function(data){
-        $scope.treatments = data;
-      },
-      function(error){
-        console.log("error");      
-      }
-    );
-  };
-})
+    $scope.init = function(){
+      TreatmentsRes.query(
+        function(data){
+          $scope.treatments = data;
+        },
+        function(error){
+          console.log("error");      
+        }
+      );
+    };
+  }
+])
 
-.factory('TreatmentsRes', function($resource){
+.factory('TreatmentsRes', ['$resource', function($resource){
   var res = $resource("/treatments/:id.json",
     { id:'@id' },
     { }
   );
   return res;
-});
+}]);

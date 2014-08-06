@@ -2,21 +2,7 @@ angular.module('common.search',[
   'ngResource'
 ]).
 
-directive('clearWithEsc', function() {
-  return {
-    restrict: 'A',
-    require: '?ngModel',
-    link: function(scope, element, attrs, controller) {
-      element.on('keydown', function(ev) {
-        if (ev.keyCode != 27) 
-          return;        
-        scope.clear();
-      });
-    },
-  };
-}).
-
-controller('searchCtrl', function($scope, $http, $location, SearchRes){
+controller('searchCtrl', ['$scope', '$http', '$location', 'SearchRes', function($scope, $http, $location, SearchRes){
   $scope.keyword = "";
   $scope.results = [];
   $scope.searching = false;
@@ -54,13 +40,13 @@ controller('searchCtrl', function($scope, $http, $location, SearchRes){
     $scope.clear();
     $location.path(location);
   };
-}).
+}]).
 
-factory('SearchRes', function($resource){
+factory('SearchRes', ['$resource', function($resource){
   var res = $resource("../search.json",
     { id: null },
     {
       'query': { method: 'GET', isArray: false }
     });
   return res;
-});
+}]);

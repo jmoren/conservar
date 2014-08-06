@@ -22,7 +22,12 @@
             </a>
           </li>
         </ul>
-        <input type="search" class="form-control" ng-keyup="search($event)" id="search" ng-model="keyword" placeholder=" {{ 'SEARCH.MESSAGE' | translate }}"/>
+        <input type="search" 
+          class="form-control" 
+          ng-keyup="search($event)" 
+          id="search" ng-model="keyword" 
+          placeholder=" {{ 'SEARCH.MESSAGE' | translate }}"
+        />
         <i class="fa fa-search" ng-hide="searching"></i>
         <i class="fa fa-times" ng-click="clear()" ng-show="searching"x1></i>
       </div>

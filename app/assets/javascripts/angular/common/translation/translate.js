@@ -1,6 +1,6 @@
 angular.module('conservar.translation', ['pascalprecht.translate'])
 
-.config(function ($translateProvider) {
+.config(['$translateProvider', function ($translateProvider) {
 
   $translateProvider.translations('pt', {
     LANG: 'Português',
@@ -308,4 +308,4 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     EXAMS: 'Exámenes',
     ACTIONS: 'Acciones'
   });
-});
+}]);
