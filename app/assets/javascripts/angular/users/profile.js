@@ -50,7 +50,7 @@ angular.module( 'conservar.profile', [
 /**
  * Add a resource to allow us to get at the server
  */
-.factory( 'UsersRes', function ( $resource )  {
+.factory( 'UsersRes', ['$resource', function ( $resource )  {
   var res = $resource("../users/:id.json",
     { id:'@id' },
     {
@@ -58,4 +58,4 @@ angular.module( 'conservar.profile', [
       'remove' : {method: 'DELETE', isArray: false, headers: {'Content-Type': 'application/json'}}
     });
   return res;
-});
+}]);
