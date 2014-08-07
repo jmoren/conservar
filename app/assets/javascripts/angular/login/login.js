@@ -19,7 +19,7 @@ config(['$stateProvider', '$httpProvider', function config( $stateProvider, $htt
 
 controller('LoginCtrl', ['$http', '$location', '$scope', '$rootScope', '$translate',
   function($http, $location, $scope, $rootScope, $translate){  
-    $scope.user        = { email: null, password: null};
+    $scope.user        = { email: null, password: null, lang: null};
     $scope.login_error = { message: null};
     $scope.lang        = 'es';
     
@@ -33,6 +33,7 @@ controller('LoginCtrl', ['$http', '$location', '$scope', '$rootScope', '$transla
     };
 
     $scope.login = function(user){
+      console.log('first request');
       $http({
         url: "/users/sign_in.json",
         method: 'POST',
@@ -44,8 +45,8 @@ controller('LoginCtrl', ['$http', '$location', '$scope', '$rootScope', '$transla
         }else{
           $scope.login_error.message = data.error;
         }
-      }).error(function(data,status){
-        $scope.login_error.message = "Error " + status +". Contact the admins to solve this issue";
+      }).error(function(error, status){
+        console.log(error);
       });
     };
   }

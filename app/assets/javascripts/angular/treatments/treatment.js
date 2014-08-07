@@ -1,7 +1,8 @@
 angular.module('conservar.treatment',[
   'ui.router.state',
   'ui.router',
-  'ngResource'
+  'ngResource',
+  'lr.upload',
 ])
 .config(['$stateProvider', function($stateProvider){
   $stateProvider.state( 'treatment', {
@@ -16,8 +17,8 @@ angular.module('conservar.treatment',[
   });
 }])
 
-.controller('TreatmentCtrl', ['$scope', '$location', '$anchorScroll', '$stateParams', 'TreatmentRes', 'TreatmentNoteRes', 'InterventionRes', 'ExamRes', 'upload', 
-  function($scope, $location, $anchorScroll, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, ExamRes, upload){
+.controller('TreatmentCtrl', ['$scope', '$location', '$stateParams', 'TreatmentRes', 'TreatmentNoteRes', 'InterventionRes', 'ExamRes', 'upload', 
+  function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, ExamRes, upload){
     $scope.alert = { type: "", message: "" };
     $scope.current_note         = new TreatmentNoteRes();
     $scope.current_intervention = new InterventionRes();
@@ -61,11 +62,9 @@ angular.module('conservar.treatment',[
       if(hash === 'detailsPanel')
         $scope.toggleDetails = true;
       $location.hash(hash);
-      $anchorScroll();
     };
 
     $scope.doUpload = function(data){
-      console.log(data);
       upload({
         url: '/treatments/'+$scope.treatment.id+'/images.json',
         method:"POST",

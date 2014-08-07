@@ -26,7 +26,7 @@ angular.module( 'conservar.profile', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'ProfileCtrl', ['$scope', 'UserRes', '$location', '$http', '$anchorScroll', '$translate',
+.controller( 'ProfileCtrl', ['$scope', 'UsersRes', '$location', '$http', '$anchorScroll', '$translate',
   function($scope, UsersRes, $location, $http, $anchorScroll, $translate) {
     $scope.init = function(){
       $scope.user = $scope.current_user;

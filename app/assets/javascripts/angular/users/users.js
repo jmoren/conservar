@@ -26,7 +26,7 @@ angular.module( 'conservar.users', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'UsersCtrl', ['$scope', 'UserRes', '$location', '$http', '$anchorScroll', '$window',
+.controller( 'UsersCtrl', ['$scope', 'UsersRes', '$location', '$http', '$anchorScroll', '$window',
   function UserController( $scope, UsersRes, $location, $http, $anchorScroll, $window) {
     $scope.alert = { type: "", message: ""};
     $scope.user = new UsersRes();

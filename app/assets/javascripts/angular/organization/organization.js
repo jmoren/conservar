@@ -26,25 +26,32 @@ angular.module( 'conservar.organization', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'OrganizationCtrl', ['$scope', '$stateParams', 'UserRes', '$location', '$http',
-  function( $scope, $stateParams, UsersRes, $location) {
+.controller( 'OrganizationCtrl', ['$scope', '$stateParams', '$location', '$http', 'OrganizationRes',
+  function( $scope, $stateParams, $location, OrganizationRes) {
     $scope.editOrg = false;
 
     $scope.init = function(){
-      $scope.organization = $scope.current_user.organization;
+      OrganizationRes.get($stateParams, 
+        function(data){
+          console.log(data);
+          $scope.organization = data;
+        },
+        function(error){
+          console.log(error);
+        }
+      );
     };
 
     $scope.save = function(organization){
-      $http({
-        url: "/organizations/"+ $scope.organization.id+".json",
-        method: 'PATCH',
-        data: {organization: organization}
-      }).then(function(response){
-        $scope.organization = response.data;
-        $scope.editOrg = false;
-      },function(error){
-        console.log(error);
-      });
+      OrganizationRes.update({ id: organization.id}, organization,
+        function(response){
+          $scope.organization = response.data;
+          $scope.editOrg = false;
+        },
+        function(error){
+          console.log(error);
+        }
+      );
     };
   }
 ])
@@ -52,11 +59,11 @@ angular.module( 'conservar.organization', [
 /**
  * Add a resource to allow us to get at the server
  */
-.factory('OrganziationRes', ['$resource', function ($resource) {
+.factory('OrganizationRes', ['$resource', function ($resource) {
   var res = $resource("../organizations/:id.json",
     { id:'@id' },
     {
-      'remove' : {method: 'DELETE', isArray: false, headers: {'Content-Type': 'application/json'}}
+      'remove' : { method: 'DELETE', isArray: false, headers: {'Content-Type': 'application/json'} }
     });
   return res;
 }]);

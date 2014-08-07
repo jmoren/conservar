@@ -16,7 +16,7 @@ angular.module('conservar.reports',[
   });
 }])
 
-.controller('ReportsCtrl', ['$scope', '$http', 'ReportRes', 'ReportsCtrl',
+.controller('ReportsCtrl', ['$scope', '$http', 'ReportRes', 'ReportsRes',
   function($scope, $http, ReportRes, ReportsRes){
     // alert
     $scope.alert = { type: "", message: "" };

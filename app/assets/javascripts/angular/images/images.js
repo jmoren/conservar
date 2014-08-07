@@ -16,7 +16,7 @@ angular.module('conservar.images',[
   });
 }])
 
-.controller('ImagesCtrl', ['$scope', '$location', '$stateParams', '$modal', 'ImageRes',
+.controller('ImagesCtrl', ['$scope', '$location', '$stateParams', '$modal', 'ImagesRes',
   function($scope, $location, $stateParams, $modal, ImagesRes){
 
     $scope.init = function(){
