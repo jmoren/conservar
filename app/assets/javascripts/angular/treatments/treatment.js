@@ -17,7 +17,7 @@ angular.module('conservar.treatment',[
   });
 }])
 
-.controller('TreatmentCtrl', ['$scope', '$location', '$stateParams', 'TreatmentRes', 'TreatmentNoteRes', 'InterventionRes', 'ExamRes', 'upload', 
+.controller('TreatmentCtrl', ['$scope', '$location', '$stateParams', '$modal', 'TreatmentRes', 'TreatmentNoteRes', 'InterventionRes', 'ExamRes', 'upload', 
   function($scope, $location, $stateParams, $modal, TreatmentRes, TreatmentNoteRes, InterventionRes, ExamRes, upload){
     $scope.alert = { type: "", message: "" };
     $scope.current_note         = new TreatmentNoteRes();
