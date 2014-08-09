@@ -20,7 +20,7 @@ angular.module('conservar.collection',[
   }
 ])
 
-.controller('CollectionCtrl', ['$scope','CollectionRes', 'ItemRes', 'ReportRes', '$modal','$stateParams', 'upload', 
+.controller('CollectionCtrl', ['$scope','CollectionRes', 'ItemsRes', 'ReportRes', '$modal','$stateParams', 'upload', 
   function($scope, CollectionRes, ItemsRes, ReportRes, $modal, $stateParams, upload){
     $scope.currentUser = {};
     $scope.selected_item = {};

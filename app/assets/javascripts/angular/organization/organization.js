@@ -27,7 +27,7 @@ angular.module( 'conservar.organization', [
  * And of course we define a controller for our route.
  */
 .controller( 'OrganizationCtrl', ['$scope', '$stateParams', '$location', '$http', 'OrganizationRes',
-  function( $scope, $stateParams, $location, OrganizationRes) {
+  function( $scope, $stateParams, $location, $http, OrganizationRes) {
     $scope.editOrg = false;
 
     $scope.init = function(){
