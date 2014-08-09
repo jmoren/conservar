@@ -20,10 +20,12 @@ angular.module('conservar.reports',[
   function($scope, $http, ReportRes, ReportsRes){
     // alert
     $scope.alert = { type: "", message: "" };
+    $scope.loading = true;
     
     $scope.init = function(){
       ReportsRes.query(function(data){
         $scope.reports = data;
+        $scope.loading = false;
       });
     };
 

@@ -18,11 +18,13 @@ angular.module('conservar.treatments',[
 
 .controller('TreatmentsCtrl', ['$scope', '$location', '$stateParams', '$modal', 'TreatmentsRes',
   function($scope, $location, $stateParams, $modal, TreatmentsRes){
-
+    $scope.loading = true;
+    
     $scope.init = function(){
       TreatmentsRes.query(
         function(data){
           $scope.treatments = data;
+          $scope.loading    = false;
         },
         function(error){
           console.log("error");      

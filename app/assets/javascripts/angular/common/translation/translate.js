@@ -17,6 +17,7 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     BUTTON_RESET: 'Limpar',
     EMPTY_MESSAGE: 'No há peças',
     ADD_MESSAGE: 'Adicionar',
+    LOADING: 'Carregando data',
     CONFIRM:{
       ACCOUNT: 'Confira sua conta',
       NOW: 'Confirme!'
@@ -45,7 +46,7 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       CREATE_REPORT: 'Gerar Relatório',
       NEW:  'Novo objeto',
       EDIT: 'Editar objeto',
-      EMPTY: 'Não há objetos'    
+      EMPTY: 'Atualmente não há objetos'    
     },
     IMAGE: {
       SING: 'Imagem',
@@ -79,6 +80,7 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       DIAGNOSIS: 'Diagnóstico',
       TITLE_1: 'Proposta e Diagnóstico',
       TITLE_2: 'Detalhes do tratamento',
+      EMPTY: 'Atualmente não há tratamentos'
     },
     MEASUREMENT:{
       SING: 'Medida',
@@ -105,7 +107,8 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       DATE: 'Data',
       ACTION: 'Baixar',
       OPEN: 'Abrir relatório',
-      CREATING: 'Gerando relatório'
+      CREATING: 'Gerando relatório',
+      EMPTY: 'Atualmente não há relatórios'
     },
     EXAM: {
       SING: 'Exame',
@@ -123,7 +126,12 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     },
     ORGANIZATION: {
       SING: 'Organização',
-      PLUR: 'Organizações'
+      PLUR: 'Organizações',
+      PLACEHOLDER_NAME: 'Insira o nome ',
+      PLACEHOLDER_PHONE: 'Insira o telefone ',
+      PLACEHOLDER_CONTACT: 'Insira o email de contato',
+      PLACEHOLDER_ADDRESS: 'Insira o endereço ',
+      NOTE: 'Essas informações estarão disponíveis no relatório quando seja gerado'
     },
     ITEM: {
       PLUR: 'Peças',
@@ -174,6 +182,7 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     BUTTON_RESET: 'Limpiar',
     EMPTY_MESSAGE: 'No hay piezas',
     ADD_MESSAGE: 'Agregar',
+    LOADING: 'Cargando datos',
     CONFIRM:{
       ACCOUNT: 'Confirma tu cuenta',
       NOW: 'Confirma!'
@@ -200,7 +209,7 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       CREATE_REPORT: 'Crear Reporte',
       NEW: 'Nuevo objeto',
       EDIT: 'Editar objeto',
-      EMPTY: 'No hay objetos'
+      EMPTY: 'Actualmente no hay objetos'
     },
     IMAGE: {
       SING: 'Imagen',
@@ -209,7 +218,8 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       DETAILS: 'Detalles',
       INCLUDE: 'Incluir en el Reporte',
       NOT_INCLUDE: 'No incluir en el Reporte',
-      PLACEHOLDER_DESC: 'Agregar un nombre o descripción'
+      PLACEHOLDER_DESC: 'Agregar un nombre o descripción',
+      EMPTY: 'No hay Imágenes'
     },
     INTERVENTION:{
       SING: 'Intervención',
@@ -259,7 +269,8 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       DATE: 'Fecha',
       ACTION: 'Bajar',
       OPEN: 'Abrir reporte',
-      CREATING: 'Generando reporte'
+      CREATING: 'Generando reporte',
+      EMPTY: 'Actualmente no hay reportes'
     },
     EXAM: {
       SING: 'Examen',
@@ -277,7 +288,12 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     },
     ORGANIZATION: {
       SING: 'Organización',
-      PLUR: 'Organizaciones'
+      PLUR: 'Organizaciones',
+      PLACEHOLDER_NAME: 'Agregue el nombre',
+      PLACEHOLDER_PHONE: 'Agregue el teléfono',
+      PLACEHOLDER_CONTACT: 'Agregue el email de contacto',
+      PLACEHOLDER_ADDRESS: 'Agregue la dirección',
+      NOTE: 'Esta información estará disponible en el reporte que se genere'
     },
     ITEM: {
       PLUR: 'Piezas',

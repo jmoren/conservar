@@ -30,17 +30,30 @@ angular.module( 'conservar.users', [
   function UserController( $scope, UsersRes, $location, $http, $anchorScroll, $window) {
     $scope.alert = { type: "", message: ""};
     $scope.user = new UsersRes();
-    $scope.organization = $scope.current_user.organization;
-    $scope.users = UsersRes.query({organization_id: $scope.organization.id});
+    
+    $scope.loading = false;
+
+    $scope.init = function(){
+      $scope.organization = $scope.current_user.organization;
+      UsersRes.query({organization_id: $scope.organization.id}, 
+        function(response){
+          $scope.users = response;
+          $scope.loading = false;
+        }, function(error){
+          console.log(error);
+        }
+      );
+    };
     
     $scope.save = function(user) {
       user.organization_id = $scope.organization.id;
       UsersRes.save({organization_id: $scope.organization.id}, { user: user },
         function(data, status){
           $scope.users.push(data);
-          $scope.user.email = "";
-          $scope.user.name  = "";
-          $scope.user.last_name  = "";
+          $scope.user.email     = "";
+          $scope.user.name      = "";
+          $scope.user.last_name = "";
+          $scope.loading        = false;
         },
         function(data, status){
           console.log(data);

@@ -8,7 +8,12 @@
     </h2>
   </div>
 </div>
-<div ng-class="{'col-md-7':selected, 'col-md-12':!selected}">
+<div class="loader" ng-show="loading">
+  <i class="fa fa-spinner fa-spin"></i> 
+  <h4>{{ 'LOADING' | translate }}</h4>
+</div>
+<div class="empty-message" ng-show="collections.length < 1">{{ 'OBJECT.EMPTY' | translate }}</div>
+<div ng-class="{'col-md-7':selected, 'col-md-12':!selected}" ng-hide="loading">
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="collection in collections">
       <h4>

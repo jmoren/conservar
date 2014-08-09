@@ -22,9 +22,8 @@ angular.module('conservar.item',[
  function($scope, $stateParams, $http, $modal, ItemRes, ItemDetailRes, TreatmentRes, upload){
     $scope.editName = false;
     $scope.editDesc = false;
-
-    $scope.alert = { type: "", message: "" };
-
+    $scope.loading = true;
+    
     $scope.types = {
       medidas: ["alto", "ancho", "diagonal (izq - der)", "diagonal (der - izq)", "profundo", "largo", "diametro", "radio"],
       materiales: ["madera", "plastico", "cuero", "vidrio", "metal"],
@@ -37,8 +36,9 @@ angular.module('conservar.item',[
     $scope.setItem = function(){
       ItemRes.get($stateParams,
         function(data){
-          $scope.collection      = data.collection;
-          $scope.item            = data.item;
+          $scope.collection = data.collection;
+          $scope.item       = data.item;
+          $scope.loading    = false;
         },
         function(error){
           console.log("error");

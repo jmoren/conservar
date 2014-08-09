@@ -29,11 +29,13 @@ angular.module( 'conservar.organization', [
 .controller( 'OrganizationCtrl', ['$rootScope', '$scope', '$stateParams', '$location', '$http', 'OrganizationRes',
   function($rootScope, $scope, $stateParams, $location, $http, OrganizationRes) {
     $scope.editOrg = false;
-
+    $scope.loading = true;
+    
     $scope.init = function(){
       OrganizationRes.query(
         function(data){
           $scope.organization = data;
+          $scope.loading      = false;
         },
         function(error){
           console.log(error);

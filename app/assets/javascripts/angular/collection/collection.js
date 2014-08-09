@@ -22,6 +22,7 @@ angular.module('conservar.collection',[
 
 .controller('CollectionCtrl', ['$scope','CollectionRes', 'ItemsRes', 'ReportRes', '$modal','$stateParams', 'upload', 
   function($scope, CollectionRes, ItemsRes, ReportRes, $modal, $stateParams, upload){
+    $scope.loading = true;
     $scope.currentUser = {};
     $scope.selected_item = {};
     $scope.newItem = new ItemsRes();
@@ -33,6 +34,7 @@ angular.module('conservar.collection',[
           $scope.collection = data.collection;
           $scope.items      = data.items;
           $scope.reports    = data.reports;
+          $scope.loading    = false;
         },
         function(error){
           console.log("error");

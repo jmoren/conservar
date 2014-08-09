@@ -20,11 +20,13 @@ angular.module('conservar.image',[
   function($scope, $location, $stateParams, ImageRes){
     $scope.alert = { type: "", message: "" };
     $scope.updateImage = false;
-
+    $scope.loading = true;
+    
     $scope.init = function(){
       ImageRes.get($stateParams,
         function(data){
-          $scope.image = data.image;
+          $scope.image   = data.image;
+          $scope.loading = false;
         },
         function(error){
           console.log("error");      
@@ -67,13 +69,6 @@ angular.module('conservar.image',[
       $scope.alert.type = "";
       $scope.alert.message = "";
     };
-
-    $scope.$on('$locationChangeStart', function(event) {
-      console.log(event);
-      if(!confirm("Are you sure you want to leave this page?")) {
-        event.preventDefault();
-      }
-    });
   }
 ])
 

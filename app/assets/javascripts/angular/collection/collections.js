@@ -22,6 +22,7 @@ angular.module('conservar.collections',[
 
 .controller('CollectionsCtrl', ['$scope', 'ItemRes', 'CollectionRes', '$location', '$http', '$modal',
   function($scope, ItemRes, CollectionRes, $location, $http, $modal){
+    $scope.loading = true;
     $scope.collection  = new CollectionRes();
     $scope.selected_collection = null;
     $scope.selected    = false;
@@ -32,6 +33,7 @@ angular.module('conservar.collections',[
       CollectionRes.query(
         function(response){
           $scope.collections = response;
+          $scope.loading    = false;
         },
         function(error){
           console.log(error);

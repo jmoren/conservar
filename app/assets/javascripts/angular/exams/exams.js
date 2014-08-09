@@ -20,11 +20,13 @@ angular.module('conservar.exams',[
 .controller('ExamsCtrl', ['$scope', 'ExamsRes', function($scope, ExamsRes){
   // alert
   $scope.alert = { type: "", message: "" };
+  $scope.loading = true;
   
   $scope.init = function(){
     ExamsRes.query(
       function(data){
-        $scope.exams = data;
+        $scope.exams   = data;
+        $scope.loading = false;
       },
       function(error){
         $scope.addAlert("danger", "Nao foi possivel trazer os analises.");

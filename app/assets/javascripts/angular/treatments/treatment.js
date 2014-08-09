@@ -23,7 +23,8 @@ angular.module('conservar.treatment',[
     $scope.current_note         = new TreatmentNoteRes();
     $scope.current_intervention = new InterventionRes();
     $scope.current_exam         = new ExamRes();
-
+    $scope.loading = true;
+    
     $scope.tabs = {
       actions: { active: true, name: 'INTERVENTIONS'},
       exams: { active: false, name: 'EXAMS'},
@@ -40,6 +41,7 @@ angular.module('conservar.treatment',[
           $scope.treatment_status = data.status;
           $scope.item             = data.item;
           $scope.exams            = data.exams;
+          $scope.loading          = false;
         },
         function(error){
           console.log("error");

@@ -18,11 +18,13 @@ angular.module('conservar.images',[
 
 .controller('ImagesCtrl', ['$scope', '$location', '$stateParams', '$modal', 'ImagesRes',
   function($scope, $location, $stateParams, $modal, ImagesRes){
-
+    $scope.loading = true;
+    
     $scope.init = function(){
       ImagesRes.query(
         function(data){
-          $scope.images = data;
+          $scope.images  = data;
+          $scope.loading = false;
         },
         function(error){
           console.log("error");      

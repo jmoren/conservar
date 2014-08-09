@@ -28,6 +28,7 @@ angular.module( 'conservar.profile', [
  */
 .controller( 'ProfileCtrl', ['$rootScope','$scope', 'UsersRes', '$translate',
   function($rootScope, $scope, UsersRes, $translate) {
+    
     $scope.init = function(){
       $scope.editUser = false;
     };

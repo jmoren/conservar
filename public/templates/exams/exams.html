@@ -5,33 +5,40 @@
     </h2>
   </div>
 </div>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <table class="table">
-      <thead>
-        <th>{{ 'FIELD.NAME' | translate }}</th>
-        <th>{{ 'FIELD.RESULT' | translate }}</th>
-        <th>{{ 'FIELD.OBSERVATION' | translate }}</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="exam in exams">
-          <td>
-            <a href="#/item/{{exam.item_id}}" class="panel-title">
-              <h4>{{ exam.name }}</h4>
-            </a>
-            <p>
-              <a href="#/items/{{exam.item.id}}">{{ exam.item.name}}</a> |
-              <a href="#/items/{{exam.item.id}}/treatment/{{exam.treatment_id}}">{{ 'TREATMENT.SING' | translate }} #{{ exam.treatment_id}}</a>
-            </p>
-          </td>
-          <td>
-            <p class="well">{{ exam.result}}</p>
-          </td>
-          <td>
-            <p class="well">{{ exam.observations}}</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="loader" ng-show="loading">
+  <i class="fa fa-spinner fa-spin"></i> 
+  <h4>{{ 'LOADING' | translate }}</h4>
+</div>
+<div class="empty-message" ng-show="exams.length < 1">{{ 'EXAM.EMPTY' | translate }}</div>
+<div class="col-md-12" ng-hide="loading">
+  <div class="panel panel-default" ng-show="exams.length > 0">
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <th>{{ 'FIELD.NAME' | translate }}</th>
+          <th>{{ 'FIELD.RESULT' | translate }}</th>
+          <th>{{ 'FIELD.OBSERVATION' | translate }}</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="exam in exams">
+            <td>
+              <a href="#/item/{{exam.item_id}}" class="panel-title">
+                <h4>{{ exam.name }}</h4>
+              </a>
+              <p>
+                <a href="#/items/{{exam.item.id}}">{{ exam.item.name}}</a> |
+                <a href="#/items/{{exam.item.id}}/treatment/{{exam.treatment_id}}">{{ 'TREATMENT.SING' | translate }} #{{ exam.treatment_id}}</a>
+              </p>
+            </td>
+            <td>
+              <p class="well">{{ exam.result}}</p>
+            </td>
+            <td>
+              <p class="well">{{ exam.observations}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
