@@ -60,6 +60,12 @@ angular.module('conservar', [
       }
     };
 
+    // hack to remove zoomcontainer from body
+    $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+      if(from.name === 'singleImage')
+        $('.zoomContainer').remove();
+    });
+    
     $scope.$on('sessionActive', function(event, user){
       $scope.loggedIn = true;
       $rootScope.current_user = user;

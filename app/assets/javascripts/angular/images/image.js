@@ -4,7 +4,7 @@ angular.module('conservar.image',[
   'ngResource'
 ])
 .config(['$stateProvider', function($stateProvider){
-  $stateProvider.state( 'image', {
+  $stateProvider.state( 'singleImage', {
     url: '/treatments/:treatment_id/images/:id',
     views: {
       "main": {
@@ -68,6 +68,12 @@ angular.module('conservar.image',[
       $scope.alert.message = "";
     };
 
+    $scope.$on('$locationChangeStart', function(event) {
+      console.log(event);
+      if(!confirm("Are you sure you want to leave this page?")) {
+        event.preventDefault();
+      }
+    });
   }
 ])
 

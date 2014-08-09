@@ -48,5 +48,7 @@ controller('LoginCtrl', ['$http', '$location', '$scope', '$rootScope', '$transla
         console.log(error);
       });
     };
+
+    $scope.init();
   }
 ]);
