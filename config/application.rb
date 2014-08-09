@@ -6,16 +6,19 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
-CONFIG.merge! CONFIG.fetch(Rails.env, {})
-CONFIG.symbolize_keys!
+BASE_CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
+BASE_CONFIG.merge! BASE_CONFIG.fetch(Rails.env, {})
+BASE_CONFIG.symbolize_keys!
+
+CONFIG = BASE_CONFIG[Rails.env.to_sym]
 
 module Conservar
   class Application < Rails::Application
+  
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.autoload_paths += %W(#{config.root}/lib)
+    # config.autoload_paths += %W(#{config.root}/lib)
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
