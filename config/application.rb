@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
+CONFIG.merge! CONFIG.fetch(Rails.env, {})
+CONFIG.symbolize_keys!
+
 module Conservar
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -19,7 +23,7 @@ module Conservar
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :es
+    config.i18n.default_locale = CONFIG["locale"]
 
     config.assets.paths << Rails.root.join('vendor', 'assets')
     config.assets.paths << Rails.root.join('assets', 'fonts')

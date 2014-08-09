@@ -1,6 +1,4 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -81,14 +79,14 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => Settings[:host] }
+  config.action_mailer.default_url_options = { :host => CONFIG["host"] }
 
   ActionMailer::Base.smtp_settings = {  
     :address              => "smtp.gmail.com",  
-    :port                 => Settings[:port],  
-    :domain               => "gmail.com",  
-    :user_name            => Settings[:user],  
-    :password             => Settings[:password],  
+    :port                 => 587,  
+    :domain               => CONFIG["domain"],  
+    :user_name            => CONFIG["username"],  
+    :password             => CONFIG["password"],  
     :authentication       => "plain"
   }
 end

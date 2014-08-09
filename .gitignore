@@ -16,4 +16,6 @@
 /tmp
 vendor/assets/components
 public/uploads/**
-config/settings.yml
+
+# Ignore application configuration
+/config/application.yml
