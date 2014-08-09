@@ -33,7 +33,6 @@ controller('LoginCtrl', ['$http', '$location', '$scope', '$rootScope', '$transla
     };
 
     $scope.login = function(user){
-      console.log('first request');
       $http({
         url: "/users/sign_in.json",
         method: 'POST',

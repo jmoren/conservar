@@ -12,7 +12,7 @@ angular.module( 'conservar.organization', [
  */
 .config(['$stateProvider', function config( $stateProvider ) {
   $stateProvider.state( 'organization', {
-    url: '/organization/:id',
+    url: '/organization',
     views: {
       "main": {
         controller: 'OrganizationCtrl',
@@ -26,14 +26,13 @@ angular.module( 'conservar.organization', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'OrganizationCtrl', ['$scope', '$stateParams', '$location', '$http', 'OrganizationRes',
-  function( $scope, $stateParams, $location, $http, OrganizationRes) {
+.controller( 'OrganizationCtrl', ['$rootScope', '$scope', '$stateParams', '$location', '$http', 'OrganizationRes',
+  function($rootScope, $scope, $stateParams, $location, $http, OrganizationRes) {
     $scope.editOrg = false;
 
     $scope.init = function(){
-      OrganizationRes.get($stateParams, 
+      OrganizationRes.query(
         function(data){
-          console.log(data);
           $scope.organization = data;
         },
         function(error){
@@ -45,7 +44,7 @@ angular.module( 'conservar.organization', [
     $scope.save = function(organization){
       OrganizationRes.update({ id: organization.id}, organization,
         function(response){
-          $scope.organization = response.data;
+          $scope.organization = response;
           $scope.editOrg = false;
         },
         function(error){
@@ -63,6 +62,8 @@ angular.module( 'conservar.organization', [
   var res = $resource("../organizations/:id.json",
     { id:'@id' },
     {
+      'query': { method: 'GET', isArray: false},
+      'update': { method: 'PATCH'},
       'remove' : { method: 'DELETE', isArray: false, headers: {'Content-Type': 'application/json'} }
     });
   return res;

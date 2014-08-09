@@ -43,8 +43,22 @@ angular.module('conservar', [
 .controller('ConservarCtrl', ['$rootScope', '$scope', '$location', '$http', 'SearchRes', '$translate',
   function($rootScope, $scope, $location, $http, SearchRes, $translate) {
 
-    $rootScope.current_user = { email: null, lang: 'es' };
     $scope.loggedIn     = false;
+
+    $scope.getUser = function(){
+      if(!$scope.user_present){
+        $http({
+          url: '/current_user.json',
+          method: 'GET'
+        }).success(function(data, status){
+          if(status == 201 || status == 200){
+            $rootScope.$broadcast('sessionActive', data );
+          }
+        }).error(function(data, status){
+          //$scope.alert.showBox('Unexpected Error', "Contact the admins to solve this issue", 'alert-danger');
+        });
+      }
+    };
 
     $scope.$on('sessionActive', function(event, user){
       $scope.loggedIn = true;
@@ -60,9 +74,10 @@ angular.module('conservar', [
 
     $scope.$on('loggedOut', function(){
       $scope.loggedIn = false;
-      $rootScope.current_user = { email: null, lang: 'es' };
+      $rootScope.current_user = { email: null, lang: 'es', organization: {} };
     });
 
+    $scope.getUser();
   }
 ])
 

@@ -134,7 +134,9 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     USER: {
       PLUR: 'Usuários',
       PROFILE: 'Perfil',
-      NEW: 'Agregar Usuários'
+      NEW: 'Agregar Usuários',
+      PLACEHOLDER_NAME: 'Seu nome',
+      PLACEHOLDER_LAST: 'Seu sobrenome'
     },
     SEARCH:{
       MESSAGE: 'Procurar...'
@@ -286,7 +288,9 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     USER: {
       PLUR: 'Usuarios',
       PROFILE: 'Perfil',
-      NEW: 'Agregar Usuario'
+      NEW: 'Agregar Usuario',
+      PLACEHOLDER_NAME: 'Nombre completo',
+      PLACEHOLDER_LAST: 'Apellido completo'
     },
     SEARCH:{
       MESSAGE: 'Buscar...'
