@@ -30,12 +30,10 @@ angular.module( 'conservar.users', [
   function UserController( $scope, UsersRes, $location, $http, $anchorScroll, $window) {
     $scope.alert = { type: "", message: ""};
     $scope.user = new UsersRes();
-    
     $scope.loading = false;
 
     $scope.init = function(){
-      $scope.organization = $scope.current_user.organization;
-      UsersRes.query({organization_id: $scope.organization.id}, 
+      UsersRes.query( 
         function(response){
           $scope.users = response;
           $scope.loading = false;

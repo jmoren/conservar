@@ -26,7 +26,7 @@ angular.module( 'conservar.confirmation', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'ConfirmationCtrl', ['$scope', 'UsersRes', '$http', '$location', '$stateParams', '$translate',
+.controller('ConfirmationCtrl', ['$scope', 'UsersRes', '$http', '$location', '$stateParams', '$translate',
   function($scope, UsersRes, $http, $location, $stateParams, $translate) {
     $scope.user = new UsersRes();
     $scope.message_error = [];
