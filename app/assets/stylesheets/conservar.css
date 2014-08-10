@@ -371,17 +371,20 @@ form#itemCover button{
 
 .loader{
   text-align: center;
-  padding: 15px;
+  color: #6A6A6A;
+  width: 80%;
+  padding: 50px;
+  margin: 100px auto;
 }
 
-.loader .fa-spin{
-  font-size: 30px;
+.loader h4, .loader i{
+  font-size: 15px;
 }
 
 .empty-message{
   text-align: center;
   font-size: 40px;
-  color: #999;
+  color: #6A6A6A;
   background: #EBECED;
   width: 80%;
   padding: 50px;
