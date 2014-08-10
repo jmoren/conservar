@@ -30,7 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
         format.json { render json: @user }
       end
     else
-      render status: 403, text: "You are not allowed to do this task, please contact an admin"
+      render status: 422, text: "Error updating user"
     end
   end
 

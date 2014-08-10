@@ -28,7 +28,9 @@ angular.module('conservar', [
   'conservar.organization',
   'conservar.users',
   'conservar.confirmation',
-  'conservar.translation'
+  'conservar.translation',
+  'conservar.recover',
+  'conservar.reset'
   ])
 
 .config(['$stateProvider', '$urlRouterProvider', function ConservarConfig ( $stateProvider, $urlRouterProvider ) {

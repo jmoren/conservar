@@ -1,0 +1,49 @@
+<section id="signin" ng-init="init()" ng-cloak>
+  <div id="brand">
+    <span class="title">CONSERV</span><span class='search'><span class='ar'>AR</span></span>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>{{ 'RECOVER.ACCOUNT' | translate}}</h3>
+    </div>
+    <div class="panel-body">
+      <div style="font-size:15px" class="alert" ng-class="showAlert.type" ng-show="showAlert.message">
+        {{ showAlert.message |  translate }}
+        <hr>
+        <a href="#/login" class="btn btn-green" style="color:#fff">{{ 'LOGIN.GO_BACK' | translate }}</a>
+      </div>
+      <form ng-submit="recover(email)" name="userForm" ng-show="!showAlert.message">
+        <div class="form-group form-group-icon">
+          <input type="email" 
+            name="email" 
+            id="email"
+            ng-model="email" 
+            placeholder="{{ 'LOGIN.PLACEHOLDER_EMAIL' | translate }}" 
+            class="form-control" 
+            required
+          />
+          <i class="fa fa-envelope" style="font-size:20px;top:8px"></i>
+        </div>
+        <div class="clearfix" style="margin-bottom: 10px">
+          <button class="btn btn-primary" ng-disabled="userForm.$invalid">{{ 'RECOVER.NOW' | translate }}</button>
+          <a href="#/login" class="btn btn-green pull-right" style="color:#fff">{{ 'LOGIN.GO_BACK' | translate }}</a>
+        </div>
+        <div class="pull-right flags">
+          <span ng-class="{active: lang == 'es'}"><img src="/assets/es.png" ng-click="changeLang('es')"></span>
+          <span ng-class="{active: lang == 'pt'}"><img src="/assets/pt.png" ng-click="changeLang('pt')"></span>  
+        </div>   
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="footer clearfix">
+    <div class="pull-left">
+      &copy; 2014
+    </div>
+    <div class="pull-right" ng-hide="true">
+      <a href="#">Policy</a> -
+      <a href="#">Termos e condicoes</a> -
+      <a href="#">Ajuda</a>
+    </div>
+  </div>
+</section>

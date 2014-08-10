@@ -4,10 +4,10 @@
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3>{{ 'CONFIRM.ACCOUNT' | translate}}, {{user.email }}</h3>
+      <h3>{{ 'RESET.ACCOUNT' | translate}}</h3>
     </div>
     <div class="panel-body">
-      <form ng-submit="confirm(user)" name="userForm">
+      <form ng-submit="resetPassword(user)" name="userForm">
         <div class="form-group form-group-icon">
           <input type="password" 
             name="password" 
@@ -30,7 +30,7 @@
             pw-check="password"
           />
           <i class="fa fa-lock" style="font-size:20px;top:8px"></i>
-          <small class="help-block error" ng-show="userForm.password_confirmation.$error.pwmatch && userForm.password_confirmation.$dirty">
+          <small style="color:#d14836" ng-show="userForm.password_confirmation.$error.pwmatch && userForm.password_confirmation.$dirty">
             {{ 'ERROR.PASS_CONF' | translate }}
           </small>
         </div>
@@ -39,18 +39,7 @@
           <span ng-class="{active: lang == 'es'}"><img src="/assets/es.png" ng-click="changeLang('es')"></span>
           <span ng-class="{active: lang == 'pt'}"><img src="/assets/pt.png" ng-click="changeLang('pt')"></span>  
         </div>
-        
       </form>
-      <div ng-show="message_error" class="alert alert-danger" style="margin:20px 0 0 0">
-        <p ng-show="message_error.password">
-          <b>{{ 'FIELD.PASSWORD' | translate }}: </b>
-          <span ng-repeat="m in message_error.password">{{m}}</span>
-        </p>
-        <p ng-show="message_error.password_confirmation">
-          <b>{{ 'FIELD.PASSWORD_CONF' | translate }}: </b>
-          <span ng-repeat="m in message_error.password_confirmation">{{m}}</span>
-        </p>
-      </div>
     </div>
   </div>
   <hr>

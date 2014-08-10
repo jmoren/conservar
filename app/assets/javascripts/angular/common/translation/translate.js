@@ -22,6 +22,15 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       ACCOUNT: 'Confira sua conta',
       NOW: 'Confirme!'
     },
+    RESET: {
+      ACCOUNT: 'Ingrese sua nova senha',
+      NOW: 'Confirmar'
+    },
+    RECOVER:{
+      ACCOUNT: 'Recuperar sua senha',
+      NOW: 'Enviar instruções por email',
+      SUCCESS: 'Um email foi enviado para recuperar sua senha. Pode demorar uns minutos'
+    },
     FIELD: {
       NAME:   'Nome',
       DESCRIPTION:   'Descrição',
@@ -151,12 +160,13 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     },
     LOGIN: {
       KEEP: 'Mantenha-me conectado',
-      SCREEN: 'Fazer Login',
+      SCREEN: 'Iniciar sessão',
       BUTTON: 'Entrar',
       RESET: 'Esqueceu a senha?',
       PLACEHOLDER_PASS: 'Senha',
       PLACEHOLDER_EMAIL: 'Email',
-      PLACEHOLDER_PASS_CONF: 'Confira sua senha'
+      PLACEHOLDER_PASS_CONF: 'Confira sua senha',
+      GO_BACK: 'Voltar para o login'
     },
     ERROR:{
       PASS_CONF: 'A confirmação não coincide com a senha'
@@ -187,6 +197,17 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       ACCOUNT: 'Confirma tu cuenta',
       NOW: 'Confirma!'
     },
+    RESET: {
+      ACCOUNT: 'Ingrese su nueva contraseña',
+      NOW: 'Confirmar'
+    },
+
+    RECOVER:{
+      ACCOUNT: 'Recuperar contraseña',
+      NOW: 'Enviar instrucciones por email',
+      SUCCESS: 'Un email será enviado para la recuperación de su contraseña. Puede demorar unos minutos'
+    },
+
     FIELD: {
       NAME:   'Nombre',
       DESCRIPTION:   'Descripción',
@@ -314,12 +335,13 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     },
     LOGIN: {
       KEEP: 'Mantenerme conectado',
-      SCREEN: 'Loguearse',
+      SCREEN: 'Iniciar sesión',
       BUTTON: 'Entrar',
       RESET: 'Olvidó la contraseña?',
       PLACEHOLDER_PASS: 'Contraseña',
       PLACEHOLDER_EMAIL: 'Email',
-      PLACEHOLDER_PASS_CONF: 'Confirma tu contraseña'
+      PLACEHOLDER_PASS_CONF: 'Confirma tu contraseña',
+      GO_BACK: 'Volver al login'
     },
     ERROR:{
       PASS_CONF: 'La confirmación de la contraseña no conincide'
