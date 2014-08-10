@@ -17,9 +17,10 @@ angular.module('conservar.recover', [
 }])
 .controller('RecoverCtrl', ['$scope', '$http', '$location', '$stateParams', '$translate',
   function($scope, $http, $location, $stateParams, $translate) {
-    $scope.lang = 'es';
-    $scope.showAlert = false;
-    $scope.email = "";
+    $scope.lang       = 'es';
+    $scope.showAlert  = false;
+    $scope.email      = "";
+    $scope.sending    = false;
 
     $scope.init = function(){
       $translate.use($scope.lang);
@@ -31,16 +32,17 @@ angular.module('conservar.recover', [
     };
 
     $scope.recover = function(){
+      $scope.sending = true;
       $http({
-        url: '/users/password',
+        url: '/users/password.json',
         dataType: 'JSON',
         method: 'POST',
         data: { user: { email: $scope.email } }
       }).then(
         function(response){
-          console.log(response);
           $scope.showAlert = {type: 'alert-success', message: "RECOVER.SUCCESS" };
           $scope.email = "";
+          $scope.sending = false;
         }, function(error){
           $scope.showAlert = {type: 'alert-danger', message: "RECOVER.ERROR" };
         }
