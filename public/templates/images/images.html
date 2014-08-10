@@ -16,7 +16,7 @@
   <h4>{{ 'LOADING' | translate }}</h4>
 </div>
 <div ng-hide="loading">
-  <div class="empty-message" ng-show="images.length < 1">{{ 'IMAGE.EMPTY' | translate }}</div>
+  <div class="empty-message" ng-show="images.length < 1">{{ 'IMAGE.EMPTY' | translate }}  <p><i class="fa fa-meh-o"></i></p></div>
   <div ng-show="images.length > 0">
     <div class="col-md-4" ng-repeat="image in images">
       <div class="thumbnail">

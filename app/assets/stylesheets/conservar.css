@@ -382,5 +382,8 @@ form#itemCover button{
   text-align: center;
   font-size: 40px;
   color: #999;
-  margin-top: 100px;
+  background: #EBECED;
+  width: 80%;
+  padding: 50px;
+  margin: 100px auto;
 }

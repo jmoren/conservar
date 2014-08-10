@@ -9,7 +9,7 @@
   <i class="fa fa-spinner fa-spin"></i> 
   <h4>{{ 'LOADING' | translate }}</h4>
 </div>
-<div class="empty-message" ng-show="treatments.length < 1">{{ 'TREATMENT.EMPTY' | translate }}</div>
+<div class="empty-message" ng-show="treatments.length < 1">{{ 'TREATMENT.EMPTY' | translate }} <p><i class="fa fa-meh-o"></i></p></div>
 <div ng-hide="loading">
   <div ng-repeat="treatment in treatments">
     <div class="col-md-4">

@@ -243,6 +243,7 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       DIAGNOSIS: 'Diagnóstico',
       TITLE_1: 'Propuesta y Diagnóstico',
       TITLE_2: 'Detalles del Tratamiento',
+      EMPTY: 'Actualmente no hay tratamientos'
     },
     MEASUREMENT:{
       SING: 'Medida',
