@@ -13,7 +13,7 @@ angular.module('conservar.exams',[
         templateUrl: '/templates/exams/exams.html'
       }
     },
-    title:'Analises'
+    title:'EXAM.PLUR'
   });
 }])
 

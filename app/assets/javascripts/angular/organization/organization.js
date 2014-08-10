@@ -19,7 +19,7 @@ angular.module( 'conservar.organization', [
         templateUrl: '../templates/organizations/organization.html'
       }
     },
-    title: "Organization"
+    title: "ORGANIZATION.SING"
   });
 }])
 

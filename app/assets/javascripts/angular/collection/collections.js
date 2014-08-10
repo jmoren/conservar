@@ -15,7 +15,7 @@ angular.module('conservar.collections',[
           templateUrl: '/templates/collections/collections.html'
         }
       },
-      title:'Collections'
+      title:'OBJECT.PLUR'
     });
   }
 ])

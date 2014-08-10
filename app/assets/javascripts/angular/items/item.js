@@ -13,7 +13,7 @@ angular.module('conservar.item',[
         templateUrl: '/templates/items/item.html'
       }
     },
-    title:'Item',
+    title:'ITEM.SING',
     name: 'Item'
   });
 }])

@@ -12,7 +12,7 @@ angular.module('conservar.images',[
         templateUrl: '/templates/images/images.html'
       }
     },
-    title:'Images'
+    title:'IMAGE.PLUR'
   });
 }])
 

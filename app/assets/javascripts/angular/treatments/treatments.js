@@ -12,7 +12,7 @@ angular.module('conservar.treatments',[
         templateUrl: '/templates/treatments/treatments.html'
       }
     },
-    title:'Tratamentos'
+    title:'TREATMENT.PLUR'
   });
 }])
 

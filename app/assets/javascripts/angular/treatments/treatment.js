@@ -13,7 +13,7 @@ angular.module('conservar.treatment',[
         templateUrl: '/templates/treatments/treatment.html'
       }
     },
-    title:'Tratamento'
+    title: 'TREATMENT.SING'
   });
 }])
 

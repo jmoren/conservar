@@ -19,7 +19,6 @@ angular.module( 'conservar.confirmation', [
         templateUrl: '/templates/users/confirmation.html'
       }
     },
-    title: "Profile",
     className: 'signin-panel'
   });
 }])

@@ -12,7 +12,8 @@ angular.module('conservar.reports',[
         controller: 'ReportsCtrl',
         templateUrl: '/templates/reports/reports.html'
       }
-    }
+    },
+    title:'REPORT.PLUR'
   });
 }])
 

@@ -19,7 +19,7 @@ angular.module( 'conservar.profile', [
         templateUrl: '/templates/users/profile.html'
       }
     },
-    title: "Profile"
+    title: "Perfil"
   });
 }])
 

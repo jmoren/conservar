@@ -12,7 +12,7 @@ angular.module('conservar.image',[
         templateUrl: '/templates/images/image.html'
       }
     },
-    title:'Image'
+    title:'IMAGE.SING'
   });
 }])
 

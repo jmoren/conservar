@@ -19,7 +19,7 @@ angular.module( 'conservar.users', [
         templateUrl: '/templates/users/users.html'
       }
     },
-    title: "Usuarios"
+    title: "USER.PLUR"
   });
 }])
 
