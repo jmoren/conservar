@@ -10,7 +10,7 @@
           {{ 'OBJECT.ADD_PIECE' | translate }}
         </a>
         <a ng-click="openModalCollection()" class="btn btn-sm btn-green"><i class="fa fa-edit"></i> {{ 'BUTTON_EDIT' | translate }}</a>
-        <a ng-click="generateReport()" ng-show="collection.reportable" class="btn btn-sm btn-green"><i class="fa fa-bar-chart-o"></i>
+        <a href="/reports/{{collection.id}}/preview" target="_blank" class="btn btn-sm btn-green"><i class="fa fa-bar-chart-o"></i>
           {{ 'OBJECT.CREATE_REPORT' | translate }} 
         </a>
       </div>

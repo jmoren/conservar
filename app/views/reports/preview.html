@@ -1,0 +1,145 @@
+<header class="clearfix">
+  <div class="name"><%= @organization.name %></div>
+  <div class="date"><%= Date.today.strftime('%d.%m.%Y') %></div>
+</header>
+
+<h1 class="main-name">Objeto <%= @collection.name %></h1>
+
+<div class="section">
+  <h2>General Data</h2>
+  <section>
+    <table class="principal">
+      <tr>
+        <td>Description</td><td><%= @collection.description %></td>
+      </tr>
+      <tr>
+        <td>Owner</td><td><%= @collection.owner %></td>
+      </tr>
+      <tr>
+        <td>Orgin</td><td><%= @collection.origin %></td>
+      </tr>
+      <tr>
+        <td>Date</td><td><%= @collection.entry_date %></td>
+      </tr>
+    </table>
+  </section>
+</div>
+
+<div class="section">
+  <h2>Diagnosis</h2>
+  <section>
+    <table>
+      <tbody>
+        <% @items.each do |item| %>
+        <tr>
+          <td class="name"><%= item.name %></td><td> <%= item.treatments.last.diagnosis.html_safe %></td>
+        </tr>
+        <%  end %>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<div class="section">
+  <h2>Proposal</h2>
+  <section>
+    <table>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td class="name"><%= item.name %></td><td><%= item.treatments.last.proposal.html_safe %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<div class="section">
+  <h2>Interventions</h2>
+  <section>
+    <table class="bordered">
+      <thead>
+        <th></th>
+        <th>Interventions</th>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td class="name"><%= item.name %></td>
+            <td class="intervention">
+              <ul>
+                <% item.treatments.last.interventions.each do |intervention| %>
+                  <li>
+                    <table>
+                      <tr><td class="description"><%= intervention.description %></td></tr>
+                      <tr><td class="materials"><%= intervention.materials %></td></tr>
+                    </table>
+                    <div class="sub-info">
+                      <span class="label"> <%= intervention.intervention_type %></span> // 
+                      <span><%= intervention.intervention_date %></span>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<div class="section">
+  <h2>Exams</h2>
+  <section>
+    <table class="bordered">
+      <thead>
+        <th></th>
+        <th>Exams</th>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td class="name"><%= item.name %></td>
+            <td class="intervention">
+              <ul>
+                <% item.treatments.last.exams.each do |exam| %>
+                  <li ng-repeat="exam in item.exams">
+                    <table>
+                      <tr><td class="description"><b><%= exam.name.titleize %></b></td></tr>
+                      <tr><td class="materials"><%= exam.result %></td></tr>
+                    </table>
+                    <div class="sub-info"><%= exam.observations %></div>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<% unless  @images.empty? %>
+  <div class="section">
+    <h2>Images</h2>
+    <section>
+      <% @images.each do |image| %>
+        <ul class="images">
+          <li>
+            <%= image_tag(image.photo.url) %>
+            <caption><%= image.item.name %></caption>
+          </li>
+        </ul>
+      <% end %>
+    </section>
+  </div>
+<% end %>
+
+<footer>
+  <img src="/assets/logo.png">
+  <div class="disclaimer">Reporte generado automaticamente</div>
+</footer>
+

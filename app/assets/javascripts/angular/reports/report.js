@@ -5,16 +5,17 @@ angular.module('conservar.reports',[
 ])
 
 .config(['$stateProvider', function( $stateProvider ){
-  $stateProvider.state( 'reports', {
-    url: '/reports',
-    views: {
-      "main": {
-        controller: 'ReportsCtrl',
-        templateUrl: '/templates/reports/reports.html'
-      }
-    },
-    title:'REPORT.PLUR'
-  });
+  $stateProvider
+    .state( 'reports', {
+      url: '/reports',
+      views: {
+        "main": {
+          controller: 'ReportsCtrl',
+          templateUrl: '/templates/reports/reports.html'
+        }
+      },
+      title:'REPORT.PLUR'
+    });
 }])
 
 .controller('ReportsCtrl', ['$scope', '$http', 'ReportRes', 'ReportsRes',
@@ -60,7 +61,8 @@ angular.module('conservar.reports',[
   var res = $resource("/collections/:collection_id/reports/:id.json",
     { id:'@id', collection_id: '@collection_id' },
     {
-      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'} }
+      'remove': { method: 'DELETE', headers: {'Content-Type': 'application/json'} },
+      'preview': { method: 'GET', url: '/collections/:collection_id/reports/preview.json', params: {collection_id: '@collection_id'} }
     }
   );
   return res;

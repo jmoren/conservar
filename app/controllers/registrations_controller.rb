@@ -4,6 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     
+    resource.organization_id = @organization.id
     resource_saved = resource.save
     if resource_saved
       respond_with resource

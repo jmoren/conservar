@@ -4,6 +4,14 @@ class ReportsController < ApplicationController
     @reports = @organization.reports
   end
 
+  def preview
+    @collection = @organization.collections.find(params[:collection_id])
+    @items = @collection.items
+    treat_ids = @items.map {|i| i.treatments.last.try(:id) }
+    @images = Image.where(treatment_id: [treat_ids])
+    render layout: 'preview'
+  end
+
   def create
     @report  = @collection.reports.new
     @report.organization_id = @organization.id

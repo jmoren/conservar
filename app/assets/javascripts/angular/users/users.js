@@ -44,8 +44,7 @@ angular.module( 'conservar.users', [
     };
     
     $scope.save = function(user) {
-      user.organization_id = $scope.organization.id;
-      UsersRes.save({organization_id: $scope.organization.id}, { user: user },
+      UsersRes.save({ user: user },
         function(data, status){
           $scope.users.push(data);
           $scope.user.email     = "";

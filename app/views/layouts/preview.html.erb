@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html ng-app="conservar">
+<head>
+  <title>Report Preview</title>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+    @page { 
+      size: US-Letter;
+      margin: 0 0 35mm 0;
+      background: #ffffff;
+    }
+
+    /* setup the footer */
+    @page {
+      @bottom {
+        content: flow(footer);
+      }
+    }
+
+    footer {
+      flow: static(footer);
+    }
+
+    body {
+      font-family: "Ubuntu";
+      margin: 0;
+      font-size: 15px;
+    }
+    header, footer{
+      font-size: 12px;
+    }
+    header{
+      margin: 0px 20px 10px 20px;
+      padding: 10px 0px 10px 0px;
+      border-bottom: 2px solid #1b926c;
+      height: 20px;
+    }
+    header .name, footer img{
+      float: left;
+    }
+    header .date, footer .disclaimer{
+      float: right;
+    }
+    .clearfix{
+      clear: both;
+    }
+    footer{
+      padding: 10px 0px;
+      margin: 20px 20px 0 20px;
+      border-top: 2px solid #1b926c;
+      height: 40px;
+    }
+    footer img{
+      height: 30px;
+    }
+    h1.main-name{ text-align: center;color: #666; font-size: 40px;margin: 30px 0;}
+    section{
+      padding: 20px;
+      margin: 20px;
+      border: solid 1px #eee;
+    }
+    .section{
+      page-break-inside: avoid;
+    }
+    
+    h2{
+      padding: 10px 20px;
+      margin: 30px 0 10px 0;
+    }
+    section table{
+      width: 100%;
+      border-collapse: collapse;
+    }
+    section table td{
+      vertical-align: text-top;
+    }
+    section table.bordered {
+      border: solid 1px #ddd;
+    }
+    section table thead th{
+      padding: 10px 0;
+    }
+    
+    section table.bordered thead th{
+      border-bottom: solid 2px #ddd;
+      border-right: solid 1px #ddd;
+    }
+    
+    section table.bordered tbody td{
+      border-right: solid 1px #ddd;
+      padding: 10px;
+    }
+    
+    section table.bordered tbody td:last-child,
+    section table.bordered thead th:last-child{
+      border-right: none;
+    }
+
+    section table td.intervention{
+      width: 40%;
+    }
+    section table tr td:first-child{
+      width: 20%;
+    }
+    
+    section table.principal tbody td{
+      padding: 20px 10px;
+    }
+    section table.principal tbody tr{  
+      border-bottom: solid 1px #f1f1f1; 
+    }
+    section table.principal tbody tr:last-child{  
+      border-bottom: none;
+      
+    }
+    ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    ul li{
+      padding: 20px 0;
+      border-bottom: dashed 2px #ddd;
+    }
+    ul li:last-child{
+      border-bottom: none;
+    }
+    hr{
+      border-top: solid 1px #e4e4e4;
+      height: 0;
+      margin: 30px 0;
+    }
+    .sub-info{
+      font-size: 12px;
+      color: #999;
+      padding: 10px;
+    }
+    footer .disclaimer{
+      margin-top: 10px;
+    }
+
+    ul.images li img{
+      width: 200px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    ul.images li caption{
+      display: block;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

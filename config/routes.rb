@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   
   resources :collections do
     resources :items, except: [:show]
-    resources :reports, except: [:edit, :update]
+    resources :reports do
+      get :preview, on: :collection
+    end
   end
 
   resources :images, only: [:index, :show]
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :users
   
+  get '/reports/:collection_id/preview' => 'reports#preview'
   get '/search'  => "search#index"
   get '/current_user' => 'users#get_current_user'
 
