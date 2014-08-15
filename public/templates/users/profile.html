@@ -39,7 +39,7 @@
             <div class="form-control" ng-show="!editUser" style="background: #eee;">
               <img ng-src="/assets/{{current_user.lang}}.png"/> <b>{{ 'LANG' | translate}}</b>
             </div>
-            <select class="form-control" ng-model="current_user.lang" ng-show="editUser">
+            <select class="form-control" ng-model="current_user.lang" ng-show="editUser" ng-change="updateLang()">
               <option value="pt">{{ 'BRAZIL' | translate }}</option>
               <option value="es">{{ 'SPANISH' | translate }}</option>
             </select>
@@ -47,7 +47,10 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-green" ng-disabled="!editUser || userForm.$invalid">{{ 'BUTTON_SUBMIT' | translate }}</button>
+            <button type="submit" class="btn btn-green" ng-disabled="!editUser || userForm.$invalid || working">
+              {{ 'BUTTON_SUBMIT' | translate }}
+              <i class="fa fa-spin fa-spinner" ng-show="working"></i>
+            </button>
           </div>
         </div>
       </form>

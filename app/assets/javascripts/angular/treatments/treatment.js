@@ -182,7 +182,7 @@ angular.module('conservar.treatment',[
       treatment: '=treatment',
       notes: '=notes'
     },
-    controller: function($scope, TreatmentNoteRes) {
+    controller: ['$scope', 'TreatmentNoteRes', function($scope, TreatmentNoteRes) {
       $scope.save = function(note){
         TreatmentNoteRes.save({treatment_id: $scope.treatment.id}, note,
           function(data){
@@ -193,7 +193,7 @@ angular.module('conservar.treatment',[
           }
         );
       };
-    }
+    }]
   };
 })
 

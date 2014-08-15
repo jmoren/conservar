@@ -1,4 +1,24 @@
 es:
+  report:
+    general:
+      title: 'Datos Gernerales'
+      description: 'Descripción'
+      origin: 'Procedencia'
+      owner: 'Propietario'
+      date: 'Fecha ingreso'
+      disclaimer: 'Reporte creado automáticamente'
+    diagnosis:
+      title: 'Diagnóstico'
+    proposal:
+      title: 'Propuesta'
+    interventions:
+      title: 'Intervenciones'
+      details: 'Detalles'
+    images:
+      title: 'Imágenes'
+    exams:
+      title: 'Exámenes'
+      details: 'Detalles'
   date:
     abbr_day_names:
     - dom

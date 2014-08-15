@@ -6,17 +6,6 @@ class UsersController < ApplicationController
     @users = @organization.users
   end
 
-  def show
-    @user = @organization.users.find(params[:id])
-  end
-
-  def profile
-    @user = current_user
-    respond_to do |format|
-      format.json { render :show, status: :ok }
-    end
-  end
-
   def update
     @user = @organization.users.find(params[:id])
     respond_to do |format|

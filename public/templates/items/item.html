@@ -4,24 +4,18 @@
       <a href="#/collections/{{collection.id}}" class="pull-left subnav-link">
         <i class="fa fa-chevron-left"></i>
       </a>
-      <div class="pull-right">
+      <div class="pull-right" style="position:relative">
+        <small class="alert alert-warning text-center pull-left message-help" ng-show="item.treatments.length < 1">
+          <i class="fa fa-info-circle"></i> - Todavia no hay ningun tratamiento
+        </small>
         <a ng-click="openTreatmentModal(null)" class="btn btn-green btn-sm">
           <i class="fa fa-plus"></i>
           {{ 'TREATMENT.SING' | translate }}
-        </a>
-         <a ng-click="openDetailModal(null, 'materiales')" class="btn btn-green btn-sm">
-          <i class="fa fa-plus"></i>
-          {{ 'MATERIAL.SING' | translate }}
-        </a>
-        <a ng-click="openDetailModal(null, 'medidas')" class="btn btn-green btn-sm">
-          <i class="fa fa-plus"></i>
-          {{ 'MEASUREMENT.SING' | translate }}
         </a>
       </div>
       <span ng-hide="editName" class="iname pull-left" ng-click="editName = true">
         {{ item.name }}
       </span>
-
       <form class="form-inline itemNameForm" ng-show="editName">
         <div class="form-group">
           <input ng-model="item.name" type="text" class="form-control pull-left"/>
@@ -29,7 +23,6 @@
         <button class="btn btn-sm btn-primary" ng-click="updateInlineItem(item)"><i class="fa fa-check"></i></button>
         <button class="btn btn-sm btn-default" ng-click="editName=false"><i class="fa fa-times"></i></button>
       </form>
-
     </h2>
   </div>
 </div>
@@ -69,14 +62,19 @@
       <button type="submit" disabled="true" id="submitCover" class="btn btn-sm btn-primary">Carregar</button>
     </form>
   </div>
+
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">
+          <a ng-click="openDetailModal(null, 'medidas')" 
+             class="pull-right btn btn-xs btn-default" tooltip="{{ 'MEASUREMENT.ADD_PLUR' | translate }}">
+            <i class="fa fa-plus text-green"></i>
+          </a>
           <h4>
-            {{ 'MEASUREMENT.PLUR' | translate }} <span style="color:#6A696B;font-size:13px">{{ 'MEASUREMENT.MESSAGE' | translate }}</span>
+            {{ 'MEASUREMENT.PLUR' | translate }} 
+            <span style="color:#6A696B;font-size:13px">{{ 'MEASUREMENT.MESSAGE' | translate }}</span>
           </h4>
-
         </div>
       </div>
       <table class="table details-table">
@@ -151,7 +149,13 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <div class="panel-title"><h4>{{ 'MATERIAL.PLUR' | translate }}</h4></div>
+        <div class="panel-title">
+          <a ng-click="openDetailModal(null, 'materiales')" 
+             class="btn btn-xs btn-default pull-right" tooltip="{{ 'MATERIAL.ADD_PLUR' | translate }}">
+            <i class="fa fa-plus text-green"></i>
+          </a>        
+          <h4>{{ 'MATERIAL.PLUR' | translate }}</h4>
+        </div>
       </div>
       <table class="table details-table">
         <thead>

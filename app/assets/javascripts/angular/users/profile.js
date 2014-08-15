@@ -28,21 +28,34 @@ angular.module( 'conservar.profile', [
  */
 .controller( 'ProfileCtrl', ['$rootScope','$scope', 'UsersRes', '$translate',
   function($rootScope, $scope, UsersRes, $translate) {
+    $scope.working = false;
     
     $scope.init = function(){
       $scope.editUser = false;
     };
 
     $scope.save = function(user){
+      $scope.working = true;
       UsersRes.update({id: $scope.current_user.id}, {user: user},
         function(data){
+          
+
+          message = { message: 'USER.UPDATE.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
+
+          $scope.working  = false;
           $scope.editUser = false;
-          $translate.use(user.lang);
         },
         function(error){
-          console.log(error);
+          message = { message: 'USER.UPDATE.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
+          $scope.working = false;
         }
       );
+    };
+
+    $scope.updateLang = function () {
+      $translate.use($scope.current_user.lang);
     };
   }
 ])

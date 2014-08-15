@@ -1,4 +1,24 @@
 pt:
+  report:
+    general:
+      title: 'Dados Gerais'
+      description: 'Descrição'
+      origin: 'Procedência'
+      owner: 'Proprietário'
+      date: 'Data Ingreso'
+      disclaimer: 'Relatório criado automaticamente'
+    diagnosis:
+      title: 'Diagnóstico'
+    proposal:
+      title: 'Proposta'
+    interventions:
+      title: 'Intervenções'
+      details: 'Detalhes'
+    images:
+      title: 'Imagens'
+    exams:
+      title: 'Exames'
+      details: 'Detalhes'
   lang: Idioma
   date:
     abbr_day_names:
@@ -200,6 +220,6 @@ pt:
     am: ''
     formats:
       default: ! '%a, %d de %B de %Y, %H:%M:%S %z'
-      long: ! '%d de %B de %Y, %H:%M'
+      long: ! '%d de %B de %Y, %H:%M hs'
       short: ! '%d de %B, %H:%M'
     pm: ''

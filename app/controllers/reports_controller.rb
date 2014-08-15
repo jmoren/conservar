@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
   def preview
     @collection = @organization.collections.find(params[:collection_id])
     @items = @collection.items
-    treat_ids = @items.map {|i| i.treatments.last.try(:id) }
+    treat_ids = @items.map {|i| i.treatment_to_report.try(:id) }.compact!
     @images = Image.where(treatment_id: [treat_ids])
     render layout: 'preview'
   end
@@ -52,6 +52,6 @@ class ReportsController < ApplicationController
 
 private
   def set_collection
-    @collection = @organization.collections.find(params[:collection_id])
+    @collection = @organization.collections.joins(:items, :images, :treatments).find(params[:collection_id])
   end
 end

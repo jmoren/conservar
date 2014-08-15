@@ -8,7 +8,7 @@
   <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
-<body ui-view="body" ng-controller="ConservarCtrl" class="{{ $state.current.className}}">
+<body ui-view="body" ng-controller="ConservarCtrl" class="{{ $state.current.className}}" >
   <div class="col-md-2 side-bar" ng-controller="DashboardCtrl">
     <div id="brand"><a href="#/"><img src="/assets/logo.png" style="height:50px"></a></div>
     <form id="search-form" ng-controller="searchCtrl">
@@ -72,16 +72,15 @@
     </ul>
     <div class="profile-box">
       <div class="user">
-        <a href="#/users/me" class="profile"><i class="fa fa-user"></i></a>
-        <a ng-click="logout()" class="logout"><i class="fa fa-sign-out"></i></a>
+        <a ng-click="logout()" class="logout" popover-placement="top" popover="{{ 'LOGOUT' | translate }}" popover-trigger="mouseenter"><i class="fa fa-sign-out"></i></a>
+        <a href="#/users/me" class="profile" popover-placement="top" popover="{{ 'PROFILE' | translate }}" popover-trigger="mouseenter"><i class="fa fa-user"></i></a>
       </div>
     </div>
-
   </div>
   <div class="col-md-10 main-content">
-    <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "warning")' ng-show="alert.message" style="margin: -1px -15px;">
+    <div class="alert alert-panel" ng-class='"alert-" + (alert.type || "success")' ng-show="alert.open">
       <button type="button" class="close" ng-click="closeAlert()">&times;</button>
-      {{alert.message}}
+      {{ alert.message | translate }}
     </div>
     <div ui-view="main"></div>
   </div>

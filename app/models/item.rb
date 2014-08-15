@@ -9,6 +9,10 @@ class Item < ActiveRecord::Base
   
   mount_uploader :cover, CoverUploader
 
+  def treatment_to_report
+    treatments.closed.joins(:interventions, :images, :exams).order('created_at').first
+  end
+  
   def treatment_open?
     treatments.where(closed_at: nil).size > 0
   end

@@ -26,51 +26,73 @@ angular.module( 'conservar.users', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'UsersCtrl', ['$scope', 'UsersRes', '$location', '$http', '$anchorScroll', '$window',
-  function UserController( $scope, UsersRes, $location, $http, $anchorScroll, $window) {
-    $scope.alert = { type: "", message: ""};
+.controller( 'UsersCtrl', ['$scope', 'UsersRes', '$location', '$http', '$modal',
+  function UserController ($scope, UsersRes, $location, $http, $modal) {
     $scope.user = new UsersRes();
     $scope.loading = false;
+    $scope.working = false;
 
     $scope.init = function(){
+      $scope.loading = true;
       UsersRes.query( 
         function(response){
           $scope.users = response;
           $scope.loading = false;
         }, function(error){
-          console.log(error);
+          message = { message: 'USER.LOADING.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
+          $scope.loading = false;
         }
       );
     };
     
     $scope.save = function(user) {
+      $scope.working = true;
       UsersRes.save({ user: user },
         function(data, status){
           $scope.users.push(data);
-          $scope.user.email     = "";
-          $scope.user.name      = "";
-          $scope.user.last_name = "";
-          $scope.loading        = false;
+          $scope.cleanForm();
+          $scope.working = false;
+          message = { message: 'USER.CREATE.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
         },
         function(data, status){
-          console.log(data);
+          message = { message: 'USER.CREATE.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
+          $scope.working = false;
         }
       );
     };
 
     $scope.delete = function(user) {
-      if($window.confirm("Tem certeza que você quer deletar o usuario " + user.email + " de sua oganização?")){
-        user.$remove(
-          function(data, status){
-            index = $scope.users.indexOf(user);
-            $scope.users.splice(index, 1);
-            $scope.addAlert('success', "O usaurio "+ user.email + " foi removido!");
-          }, 
-          function(data){
-            console.log(data);
+      $modalInstance = $modal.open({
+        resolve: {
+          element: function(){
+            return user;
           }
-        );
-      }
+        },
+        scope: $scope,
+        controller: 'modalCtrl',
+        templateUrl: '../templates/users/deleteUserModal.html'
+      });
+    };
+
+    $scope.deleteUser = function(user){
+      $scope.working_delete = true;
+      UsersRes.remove({id: user.id},
+        function(data, status){
+          index = $scope.users.indexOf(user);
+          $scope.users.splice(index, 1);
+          $modalInstance.close();
+          message = { message: 'USER.DELETE.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
+
+        }, 
+        function(data){
+          message = { message: 'USER.DELETE.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
+        }
+      );
     };
 
     $scope.reSend = function(user){
@@ -78,24 +100,22 @@ angular.module( 'conservar.users', [
         url: '/users/confirmation',
         method: 'POST',
         data: { id: user.id, email: user.email }
-      }).then(function(response){
-        $scope.addAlert('success',response.data.text);
-      });
+      }).then(
+        function(response){
+          message = { message: 'CONFIRM.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
+        },
+        function(response){
+          message = { message: 'CONFIRM.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
+        }
+      );
     };
 
-    $scope.addAlert = function(type, message){
-      $scope.alert = {type: type, message: message};
-    };
-
-    $scope.clear = function() {
+    $scope.cleanForm = function() {
       $scope.user.email = "";
       $scope.user.name  = "";
       $scope.user.last_name = "";
-    };
-    
-    $scope.closeAlert = function(index) {
-      $scope.alert.type = "";
-      $scope.alert.message = "";
     };
   }
 ]);

@@ -6,8 +6,9 @@ class Treatment < ActiveRecord::Base
   has_many :interventions, dependent: :destroy
   has_many :exams, dependent: :destroy
   
-  scope :open, -> {where(closed_at: nil)}
-  
+  scope :open, -> { where(closed_at: nil) }
+  scope :closed, -> { where('closed_at IS NOT NULL') }
+
   def closed?
     !closed_at.nil?
   end
@@ -18,5 +19,11 @@ class Treatment < ActiveRecord::Base
 
   def close!
     self.update(closed_at: Date.today)
+  end
+
+  # Data for reports
+
+  def included_images
+    self.images.where(show_report: true)
   end
 end

@@ -1,32 +1,32 @@
 <header class="clearfix">
   <div class="name"><%= @organization.name %></div>
-  <div class="date"><%= Date.today.strftime('%d.%m.%Y') %></div>
+  <div class="date"><%= l Time.now, format: :long %></div>
 </header>
 
-<h1 class="main-name">Objeto <%= @collection.name %></h1>
+<h1 class="main-name"><%= @collection.name %></h1>
 
 <div class="section">
-  <h2>General Data</h2>
+  <h2><%= t('report.general.title') %></h2>
   <section>
     <table class="principal">
       <tr>
-        <td>Description</td><td><%= @collection.description %></td>
+        <td><%= t('report.general.description') %></td><td><%= @collection.description %></td>
       </tr>
       <tr>
-        <td>Owner</td><td><%= @collection.owner %></td>
+        <td><%= t('report.general.owner') %></td><td><%= @collection.owner %></td>
       </tr>
       <tr>
-        <td>Orgin</td><td><%= @collection.origin %></td>
+        <td><%= t('report.general.origin') %></td><td><%= @collection.origin %></td>
       </tr>
       <tr>
-        <td>Date</td><td><%= @collection.entry_date %></td>
+        <td><%= t('report.general.date') %></td><td><%= @collection.entry_date %></td>
       </tr>
     </table>
   </section>
 </div>
 
 <div class="section">
-  <h2>Diagnosis</h2>
+  <h2><%= t('report.diagnosis.title') %></h2>
   <section>
     <table>
       <tbody>
@@ -41,7 +41,7 @@
 </div>
 
 <div class="section">
-  <h2>Proposal</h2>
+  <h2><%= t('report.proposal.title') %></h2>
   <section>
     <table>
       <tbody>
@@ -56,12 +56,12 @@
 </div>
 
 <div class="section">
-  <h2>Interventions</h2>
+  <h2><%= t('report.interventions.title') %></h2>
   <section>
     <table class="bordered">
       <thead>
         <th></th>
-        <th>Interventions</th>
+        <th><%= t('report.interventions.details') %></th>
       </thead>
       <tbody>
         <% @items.each do |item| %>
@@ -91,12 +91,12 @@
 </div>
 
 <div class="section">
-  <h2>Exams</h2>
+  <h2><%= t('report.exams.title') %></h2>
   <section>
     <table class="bordered">
       <thead>
         <th></th>
-        <th>Exams</th>
+        <th><%= t('report.exams.details') %></th>
       </thead>
       <tbody>
         <% @items.each do |item| %>
@@ -124,7 +124,7 @@
 
 <% unless  @images.empty? %>
   <div class="section">
-    <h2>Images</h2>
+    <h2><%= t('report.images.title') %></h2>
     <section>
       <% @images.each do |image| %>
         <ul class="images">
@@ -140,6 +140,6 @@
 
 <footer>
   <img src="/assets/logo.png">
-  <div class="disclaimer">Reporte generado automaticamente</div>
+  <div class="disclaimer"><%= t('report.general.disclaimer') %></div>
 </footer>
 

@@ -37,7 +37,8 @@ angular.module('conservar.collection',[
           $scope.loading    = false;
         },
         function(error){
-          console.log("error");
+          message = { message: 'Error cargando el objeto', type: 'danger'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
@@ -59,8 +60,11 @@ angular.module('conservar.collection',[
       CollectionRes.update({id: collection.id, collection: collection},
         function(data, status){
           $modalInstance.close();
+          message = { message: 'Se actualizo el objeto', type: 'success'};
+          $scope.$emit('sentMessage', message);
         }, function(data, status){
-          console.log(status);
+          message = { message: 'Error actualizando el objeto', type: 'danger'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
@@ -87,9 +91,13 @@ angular.module('conservar.collection',[
           $scope.items.push(response.item);
           $scope.reset_item();
           $modalInstance.close();
+
+          message = { message: 'Se creo con exito la nueva pieza', type: 'success'};
+          $scope.$emit('sentMessage', message);
         },
         function (response) {
-          console.log(response);
+          message = { message: 'No se pudo guardar la pieza', type: 'success'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
@@ -101,9 +109,13 @@ angular.module('conservar.collection',[
           function(data,status){
             index = $scope.items.indexOf(item);
             $scope.items.splice(index, 1);
+
+            message = { message: 'Se elimino con exito la pieza', type: 'success'};
+            $scope.$emit('sentMessage', message);
           },
           function(status, data){
-            console.log(status);
+            message = { message: 'No se pudo eliminar la pieza', type: 'success'};
+            $scope.$emit('sentMessage', message);
           }
         );
       }else{

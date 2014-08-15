@@ -44,7 +44,7 @@ angular.module('conservar', [
 
 .controller('ConservarCtrl', ['$rootScope', '$scope', '$location', '$http', 'SearchRes', '$translate',
   function($rootScope, $scope, $location, $http, SearchRes, $translate) {
-
+    $scope.alert = {};
     $scope.loggedIn     = false;
 
     $scope.getUser = function(){
@@ -84,6 +84,19 @@ angular.module('conservar', [
       $scope.loggedIn = false;
       $rootScope.current_user = { email: null, lang: 'es', organization: {} };
     });
+
+    $scope.$on('sentMessage', function(event, data){
+      console.log(data);
+      $scope.alert = {
+        message: data.message,
+        type: data.type,
+        open: true
+      };
+    });
+
+    $scope.closeAlert = function () {
+      $scope.alert.open = false;
+    };
 
     $scope.getUser();
   }

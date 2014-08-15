@@ -93,7 +93,8 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     },
     MEASUREMENT:{
       SING: 'Medida',
-      PLUR: 'MEdidas',
+      PLUR: 'Medidas',
+      ADD_PLUR: 'Adicionar medidas',
       MESSAGE: 'em centímetros',
       NEW: 'Nova Medida',
       EDIT: 'Editar Medida',
@@ -103,7 +104,8 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       SING: 'Material',
       PLUR: 'Materiais',
       NEW: 'Novo Material',
-      EDIT: 'Editar Material'
+      EDIT: 'Editar Material',
+      ADD_PLUR: 'Adicionar material'
     },
     DETAIL:{
       NAME: 'Nombre',
@@ -140,7 +142,14 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       PLACEHOLDER_PHONE: 'Insira o telefone ',
       PLACEHOLDER_CONTACT: 'Insira o email de contato',
       PLACEHOLDER_ADDRESS: 'Insira o endereço ',
-      NOTE: 'Essas informações estarão disponíveis no relatório quando seja gerado'
+      NOTE: 'Essas informações estarão disponíveis no relatório quando seja gerado',
+      LOADING:{
+        ERROR: 'Temos um erro carregando os dados. Tente mais tarde!'
+      },
+      UPDATE: {
+        ERROR: 'Error atualizando sua Organização',
+        SUCCESS: 'Sua Organização foi atualizada com sucesso'
+      }
     },
     ITEM: {
       PLUR: 'Peças',
@@ -153,7 +162,30 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       PROFILE: 'Perfil',
       NEW: 'Agregar Usuários',
       PLACEHOLDER_NAME: 'Seu nome',
-      PLACEHOLDER_LAST: 'Seu sobrenome'
+      PLACEHOLDER_LAST: 'Seu sobrenome',
+      LOADING:{
+        ERROR: 'Temos um erro carregando os dados. Tente mais tarde!',
+        ALL_ERROR: 'Não foi possível carregar os usuarios. Tente novamente mais tarde'
+      },
+      CREATE: {
+        SUCCESS: 'O usuário foi criado com sucesso',
+        ERROR: 'Não foi possível adicionar o usuário'
+      },
+      UPDATE: {
+        ERROR: 'Error atualizando sua conta',
+        SUCCESS: 'Sua conta foi atualizada com sucesso'
+      },
+      DELETE:{
+        TITLE: 'Gerenciamento de usuários',
+        CONFIRM: 'Apagar usuário',
+        SUCCESS: 'O usuário foi apagado com sucesso',
+        ERROR: 'O usuário não foi apagado. Tente novamente mais tarde',
+        MESSAGE: 'Você tem certeza de excluir o usuário '
+      },
+      CONFIRM: {
+        SUCCESS: 'Um email foi enviado novamente para confirmar a conta',
+        ERROR: 'Não foi possível enviar a confirmação'
+      }
     },
     SEARCH:{
       MESSAGE: 'Procurar...'
@@ -174,7 +206,9 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     INTERVENTIONS: 'Intervenções',
     NOTES: 'Notas',
     EXAMS: 'Exames',
-    ACTIONS: 'Ações'
+    ACTIONS: 'Ações',
+    LOGOUT: 'Sair do sistema',
+    PROFILE: 'Ver / Editar seu perfil'
   });
 
   $translateProvider.translations('es', {
@@ -269,6 +303,7 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     MEASUREMENT:{
       SING: 'Medida',
       PLUR: 'Medidas',
+      ADD_PLUR: 'Agregar medidas',
       MESSAGE: 'en centímetros',
       NEW: 'Nueva Medida',
       EDIT: 'Editar Medida',
@@ -278,7 +313,8 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       SING: 'Material',
       PLUR: 'Materiales',
       NEW: 'Nuevo Material',
-      EDIT: 'Editar Material'
+      EDIT: 'Editar Material',
+      ADD_PLUR: 'Agregar material'
     },
     DETAIL:{
       NAME: 'Nombre',
@@ -328,7 +364,30 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       PROFILE: 'Perfil',
       NEW: 'Agregar Usuario',
       PLACEHOLDER_NAME: 'Nombre completo',
-      PLACEHOLDER_LAST: 'Apellido completo'
+      PLACEHOLDER_LAST: 'Apellido completo',
+      LOADING:{
+        ERROR: 'Hubo un error cargando sus datos',
+        ALL_ERROR: 'Hubo un error al cargar los usuario. Intente nuevamente mas tarde'
+      },
+      CREATE: {
+        SUCCESS: 'El usuario fue creado con exito',
+        ERROR: 'Hubo un error al crear el usuario. Intente nuevamente mas tarde'
+      },
+      UPDATE: {
+        ERROR: 'Su cuenta no pudo ser actucalizada.',
+        SUCCESS: 'Su cuenta fue actualizada con exito'
+      },
+      DELETE:{
+        TITLE: 'Administracion de usuarios',
+        CONFIRM: 'Borrar usuario',
+        SUCCESS: 'El usuario fue borrado con exito',
+        ERROR: 'Hubo un error al borrar el usuario. Intente nuevamente mas tarde',
+        MESSAGE: 'Estas seguro de eliminar al usuario '
+      },
+      CONFIRM: {
+        SUCCESS: 'Se envio el email con exito',
+        ERROR: 'Hubo un error al enviar el email.'
+      }
     },
     SEARCH:{
       MESSAGE: 'Buscar...'
@@ -349,6 +408,8 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
     INTERVENTIONS: 'Intervenciones',
     NOTES: 'Notas',
     EXAMS: 'Exámenes',
-    ACTIONS: 'Acciones'
+    ACTIONS: 'Acciones',
+    LOGOUT: 'Salir del sistema',
+    PROFILE: 'Ver / Editar su perfil'
   });
 }]);

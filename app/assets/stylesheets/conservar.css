@@ -49,6 +49,10 @@ body { background: #e4e7ea; font-family: 'Ubuntu'; color: #4b4b4b;}
   background: #1fa67a;
 }
 
+.text-green{
+  color: #1fa67a;
+}
+
 .nav-green .navbar-nav > li > a, .navbar-default .navbar-brand, .navbar-default .navbar-brand{
   color: #f1f1f1;
 }
@@ -69,9 +73,16 @@ a, a:hover{
   text-decoration: none;
 }
 
-.alert-panel.alert-success{
-  border-bottom: solid 1px #329439;
+.alert-panel{
+  position: absolute;
+  width: 40%;
+  top: 10px;
+  left: 300px;
+  z-index: 100;
+  height: 50px;
 }
+
+.alert button{ vertical-align: center;}
 
 .center-text{
   text-align: right;
@@ -83,11 +94,10 @@ a, a:hover{
   color: #f1f1f1;
   border-color: #1b926c;
 }
+
 .btn-green:focus, .btn-green:hover{
   color: #fff;
 }
-
-
 
 table.details-table td{
   width: 160px;
@@ -274,13 +284,6 @@ form#itemCover button{
   border: 1px solid #999;
 }
 
-.alert-panel{
-  margin: -1px -15px 0 -16px;
-  border-radius:0;
-  font-weight: bold;
-  padding: 20px 20px;
-}
-
 .download{
   margin-right:10px;
 }
@@ -389,4 +392,10 @@ form#itemCover button{
   width: 80%;
   padding: 50px;
   margin: 100px auto;
+}
+
+.message-help{
+  margin: 5px 10px;
+  font-size: 12px;
+  padding: 8px 15px;
 }

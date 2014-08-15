@@ -29,28 +29,36 @@ angular.module( 'conservar.organization', [
 .controller( 'OrganizationCtrl', ['$rootScope', '$scope', '$stateParams', '$location', '$http', 'OrganizationRes',
   function($rootScope, $scope, $stateParams, $location, $http, OrganizationRes) {
     $scope.editOrg = false;
-    $scope.loading = true;
-    
+    $scope.loading = false;
+    $scope.working = false;
+
     $scope.init = function(){
       OrganizationRes.query(
         function(data){
           $scope.organization = data;
-          $scope.loading      = false;
+          $scope.loading = false;
         },
         function(error){
-          console.log(error);
+          message = { message: 'ORGANIZATION.LOADING.ERROR', type: 'success'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
 
     $scope.save = function(organization){
+      $scope.working = true;
       OrganizationRes.update({ id: organization.id}, organization,
         function(response){
           $scope.organization = response;
           $scope.editOrg = false;
+          $scope.working = false;
+          message = { message: 'ORGANIZATION.UPDATE.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
         },
         function(error){
-          console.log(error);
+          message = { message: 'ORGANIZATION.UPDATE.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
+          $scope.working = false;
         }
       );
     };

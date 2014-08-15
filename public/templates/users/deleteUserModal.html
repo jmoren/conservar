@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4>{{ 'USER.DELETE.TITLE' | translate }}</h4>
+</div>
+<div class="modal-body">
+  <p>{{ 'USER.DELETE.MESSAGE' | translate }} <b>{{ element.email }}</b>?</p>
+</div>
+<div class="modal-footer">
+  <button ng-click="deleteUser(element)" ng-disabled="working_delete" class="btn btn-danger">
+    {{ 'USER.DELETE.CONFIRM' | translate }}
+    <i class="fa fa-spin fa-spinner" ng-show="working_delete"></i>
+  </button>
+  <a ng-click="cancel()" class="btn btn-default">{{ 'BUTTON_CANCEL' | translate }}</a>
+</div>
