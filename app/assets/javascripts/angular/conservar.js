@@ -86,7 +86,6 @@ angular.module('conservar', [
     });
 
     $scope.$on('sentMessage', function(event, data){
-      console.log(data);
       $scope.alert = {
         message: data.message,
         type: data.type,

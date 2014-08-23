@@ -82,11 +82,13 @@ angular.module( 'conservar.users', [
       UsersRes.remove({id: user.id},
         function(data, status){
           index = $scope.users.indexOf(user);
-          $scope.users.splice(index, 1);
+          $scope.users.splice(index, 1);          
           $modalInstance.close();
+          
+          $scope.working_delete = false;
+          
           message = { message: 'USER.DELETE.SUCCESS', type: 'success'};
           $scope.$emit('sentMessage', message);
-
         }, 
         function(data){
           message = { message: 'USER.DELETE.ERROR', type: 'danger'};

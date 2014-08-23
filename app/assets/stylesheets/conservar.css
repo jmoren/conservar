@@ -1,6 +1,8 @@
+@import url("//fonts.googleapis.com/css?family=Numans");
+
 html{ height: 100%;}
 
-body { background: #e4e7ea; font-family: 'Ubuntu'; color: #4b4b4b;}
+body { background: #e4e7ea; font-family: 'Numans'; color: #4b4b4b;}
 
 #brand{
   background: #fff;

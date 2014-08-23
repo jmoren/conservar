@@ -39,18 +39,6 @@
           <i class="fa fa-eraser"></i>
         </span>
       </div>
-      <div class="btn-group btn-group-sm" dropdown on-toggle="toggled(open)">
-        <span class="btn btn-default dropdown-toggle">
-          <i class="fa fa-font"></i> <span class="caret"></span>
-        </span>
-        <ul class="dropdown-menu">
-          <li ng-repeat="name in fonts">
-            <a ng-click="execCommand('fontname', name)">
-              {{ name }}
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
 
     <textarea data-placeholder-attr="" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; resize: none; width: 100%; height: 300px;" ng-show="editMode" ng-model="content"></textarea>
