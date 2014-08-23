@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_collection, except: [:index]
+  before_action :set_collection, except: [:index, :preview]
   def index
     @reports = @organization.reports
   end
