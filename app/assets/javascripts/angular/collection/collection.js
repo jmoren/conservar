@@ -118,8 +118,6 @@ angular.module('conservar.collection',[
             $scope.$emit('sentMessage', message);
           }
         );
-      }else{
-        console.log("declined");
       }
     };
 
@@ -133,7 +131,6 @@ angular.module('conservar.collection',[
     $scope.createReport = function(){
       ReportRes.save({collection_id: $scope.collection.id},
         function(data){
-          console.log(data);
           $scope.reports.push(data);
           $modalInstance.close();
         },
@@ -148,15 +145,13 @@ angular.module('conservar.collection',[
       result = confirm("Estas seguro?");
       if(result){
         ReportRes.remove({collection_id: $scope.collection.id }, report,
-          function(data,status){
+          function(response){
             index = $scope.reports.indexOf(report);
             $scope.reports.splice(index, 1);        },
-          function(status, data){
-            console.log(status);
+          function(error){
+            console.log(error);
           }
         );
-      }else{
-        console.log("declined");
       }
     };
 

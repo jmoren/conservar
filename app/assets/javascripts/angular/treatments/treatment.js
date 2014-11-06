@@ -44,7 +44,8 @@ angular.module('conservar.treatment',[
           $scope.loading          = false;
         },
         function(error){
-          console.log("error");
+          message = { message: 'TREATMENT.FETCH.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
@@ -84,9 +85,12 @@ angular.module('conservar.treatment',[
           data.description = "";
           data.intervention_id = "";
           $("#imageForm")[0].reset();
+          message = { message: 'IMAGE.ADDED.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
         },
         function (response) {
-          console.log(response);
+          message = { message: 'IMAGE.ADDED.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
@@ -95,6 +99,8 @@ angular.module('conservar.treatment',[
       TreatmentRes.update({item_id: treatment.item_id, id: $scope.treatment.id}, treatment, function(){
         $scope.editDiagnosis = false;
         $scope.editProposal  = false;
+        message = { message: 'TREATMENT.UPDATE.SUCCESS', type: 'success'};
+        $scope.$emit('sentMessage', message);
       });
     };
 
@@ -129,10 +135,12 @@ angular.module('conservar.treatment',[
         function(data){
           index = $scope.notes.indexOf(note);
           $scope.notes.splice(index,1);
-          $scope.addAlert("success", "Se elimino con exito");
+          message = { message: 'NOTE.REMOVE.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
         },
         function(data){
-          $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+          message = { message: 'NOTE.REMOVE.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
@@ -142,10 +150,12 @@ angular.module('conservar.treatment',[
         function(data){
           index = $scope.exams.indexOf(exam);
           $scope.exams.splice(index,1);
-          $scope.addAlert("success", "Se elimino con exito");
+          message = { message: 'EXAM.REMOVE.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
         },
         function(data){
-          $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+          message = { message: 'EXAM.REMOVE.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };
@@ -155,10 +165,12 @@ angular.module('conservar.treatment',[
         function(data){
           index = $scope.interventions.indexOf(intervention);
           $scope.interventions.splice(index,1);
-          $scope.addAlert("success", "Se elimino con exito");
+          message = { message: 'INTERVENTION.REMOVE.SUCCESS', type: 'success'};
+          $scope.$emit('sentMessage', message);
         },
         function(data){
-          $scope.addAlert("danger", "No pudo eliminarse, intente nuevamente");
+          message = { message: 'INTERVENTION.REMOVE.ERROR', type: 'danger'};
+          $scope.$emit('sentMessage', message);
         }
       );
     };

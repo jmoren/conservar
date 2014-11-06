@@ -80,8 +80,6 @@ angular.module('conservar.collections',[
             console.log(status);
           }
         );
-      }else{
-        console.log("declined");
       }
     };
 

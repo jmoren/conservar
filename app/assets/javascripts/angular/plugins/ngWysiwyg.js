@@ -57,8 +57,6 @@ angular.module('ngWYSIWYG', [])
     };
       
     scope.$on('execCommand', function(e, cmd) {
-      console.log('execCommand: ');
-      console.log(cmd);
       scope.getSelection();
       $document.execCommand(cmd.command, 0, cmd.arg);
       //scope.restoreSelection();

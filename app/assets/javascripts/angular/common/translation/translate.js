@@ -73,7 +73,11 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       PLACEHOLDER_DESC: 'Como foi a intervenção',
       PLACEHOLDER_MAT: 'Mareriais utilizados',
       PLACEHOLDER_DATE: 'Seleciona a data',
-      EMPTY: 'Atualmente não há intervenções'
+      EMPTY: 'Atualmente não há intervenções',
+      REMOVE: {
+        ERROR: 'Error apagando a intervenção',
+        SUCCESS: 'A intervenção foi apagada com sucesso'
+      }
     },    
     TREATMENT: {
       SING: 'Tratamento',
@@ -127,13 +131,21 @@ angular.module('conservar.translation', ['pascalprecht.translate'])
       PLACEHOLDER_NAME: 'Insira o nome',
       PLACEHOLDER_RES: 'Como foi o resultado?',
       PLACEHOLDER_OBS: 'Insira as observações',
-      EMPTY: 'Atualmente não há exames'
+      EMPTY: 'Atualmente não há exames',
+      REMOVE: {
+        ERROR: 'Error apagando o exame',
+        SUCCESS: 'O exame foi apagado com sucesso'
+      }
     },
     NOTE: {
       SING: 'Nota',
       PLUR: 'Notas',
       PLACEHOLDER_BODY: 'Adicione uma nota ou comentário',
-      EMPTY: 'Atualmente não há notas'
+      EMPTY: 'Atualmente não há notas',
+      REMOVE: {
+        ERROR: 'Error apagando a nota',
+        SUCCESS: 'A nota foi apagada com sucesso'
+      }
     },
     ORGANIZATION: {
       SING: 'Organização',

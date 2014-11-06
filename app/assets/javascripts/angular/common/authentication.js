@@ -9,10 +9,8 @@ angular.module('common.authentication', [])
     return {
       responseError: function(rejection) {
         if (rejection.status == 401) {
-          console.log("Unauthorized user");
           $rootScope.$broadcast('event:unauthorized');
           $location.path('/login');
-          console.log($location.path());
           return rejection;
         }
         return $q.reject(rejection);

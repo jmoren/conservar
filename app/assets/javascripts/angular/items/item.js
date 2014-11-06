@@ -41,7 +41,7 @@ angular.module('conservar.item',[
           $scope.loading    = false;
         },
         function(error){
-          console.log("error");
+          console.log(error);
         }
       );
     };
@@ -63,7 +63,6 @@ angular.module('conservar.item',[
         }
       }).then(
         function (response) {
-          console.log(response);
           $("#itemCover")[0].reset();
           $scope.updateFile = false;
           $scope.addAlert("success", "A imagem foi atualizada");
@@ -185,7 +184,6 @@ angular.module('conservar.item',[
     };
 
     $scope.deleteDetail = function(detail){
-      console.log(detail);
       ItemDetailRes.remove({item_id: $scope.item.id, id: detail.id},
         function(){
           if(detail.detail_type == 'materiales'){
@@ -212,7 +210,7 @@ angular.module('conservar.item',[
           function(response){
             treatment.closed = false;
           }, function(data){
-            console.log("error");
+            console.log(data);
           }
         );
       }
@@ -225,7 +223,7 @@ angular.module('conservar.item',[
           function(response){
             treatment.closed = true;
           }, function(data){
-            console.log("error");
+            console.log(data);
           }
         );
       }
