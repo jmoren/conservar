@@ -11,26 +11,31 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "angular"          : "~1.2",
-    "angular-mocks"    : "*",
-    "angular-resource" : "*",
+  "devDependencies": {
+    "angular"          : "1.2.26",
+    "angular-mocks"    : "1.2.26",
+    "angular-resource" : "1.2.26",
     "angular-ui-router": "0.2",
-    "angular-ui-utils" : "*",
-    "angular-bootstrap": "*",
+    "angular-ui-utils" : "0.1.1",
+    "angular-bootstrap": "0.11.2",
     "ng-table"         : "~0.3.1",
     "angular-upload"   : "1.0.11",
-    "angular-translate": "2.2.0"
+    "angular-translate": "2.2.0",
+    "angular-moment"   : "0.8.2"
   },
   "dependencies": {
-    "angular"          : "~1.2",
-    "angular-mocks"    : "*",
-    "angular-resource" : "*",
-    "angular-ui-router": "~0.2",
-    "angular-ui-utils" : "*",
-    "angular-bootstrap": "*",
+    "angular"          : "1.2.26",
+    "angular-mocks"    : "1.2.26",
+    "angular-resource" : "1.2.26",
+    "angular-ui-router": "0.2",
+    "angular-ui-utils" : "0.1.1",
+    "angular-bootstrap": "0.11.2",
     "ng-table"         : "~0.3.1",
     "angular-upload"   : "1.0.11",
-    "angular-translate": "2.2.0"
+    "angular-translate": "2.2.0",
+    "angular-moment"   : "0.8.2"
+  },
+  "resolutions": {
+    "angular": "1.2.26"
   }
 }
