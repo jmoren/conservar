@@ -1,7 +1,8 @@
 angular.module('conservar.treatments',[
   'ui.router.state',
   'ui.router',
-  'ngResource'
+  'ngResource',
+  'ngSanitize'
 ])
 .config(['$stateProvider', function($stateProvider){
   $stateProvider.state( 'treatments', {
@@ -16,8 +17,8 @@ angular.module('conservar.treatments',[
   });
 }])
 
-.controller('TreatmentsCtrl', ['$scope', '$location', '$stateParams', '$modal', 'TreatmentsRes',
-  function($scope, $location, $stateParams, $modal, TreatmentsRes){
+.controller('TreatmentsCtrl', ['$scope', '$location', '$stateParams', '$modal', 'TreatmentsRes', '$sanitize',
+  function($scope, $location, $stateParams, $modal, TreatmentsRes, $sanitize){
     $scope.loading = true;
     
     $scope.init = function(){
