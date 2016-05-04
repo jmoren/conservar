@@ -16,3 +16,4 @@
 /tmp
 vendor/assets/components
 public/uploads/**
+.rvmrc
